@@ -16,6 +16,8 @@
 		BEB60B5D2AE53C4500D2BDD6 /* WODTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB60B5C2AE53C4500D2BDD6 /* WODTests.swift */; };
 		BEB60B672AE53C4600D2BDD6 /* WODUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB60B662AE53C4600D2BDD6 /* WODUITests.swift */; };
 		BEB60B692AE53C4600D2BDD6 /* WODUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB60B682AE53C4600D2BDD6 /* WODUITestsLaunchTests.swift */; };
+		BEB60B762AE556B400D2BDD6 /* TmpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB60B752AE556B400D2BDD6 /* TmpView.swift */; };
+		BEB60B782AE556F300D2BDD6 /* TmpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB60B772AE556F300D2BDD6 /* TmpViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,8 @@
 		BEB60B622AE53C4500D2BDD6 /* WODUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WODUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEB60B662AE53C4600D2BDD6 /* WODUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WODUITests.swift; sourceTree = "<group>"; };
 		BEB60B682AE53C4600D2BDD6 /* WODUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WODUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		BEB60B752AE556B400D2BDD6 /* TmpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TmpView.swift; sourceTree = "<group>"; };
+		BEB60B772AE556F300D2BDD6 /* TmpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TmpViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,8 @@
 				BEB60B4F2AE53C4500D2BDD6 /* Persistence.swift */,
 				BEB60B512AE53C4500D2BDD6 /* WOD.xcdatamodeld */,
 				BEB60B4C2AE53C4500D2BDD6 /* Preview Content */,
+				BEB60B752AE556B400D2BDD6 /* TmpView.swift */,
+				BEB60B772AE556F300D2BDD6 /* TmpViewModel.swift */,
 			);
 			path = WOD;
 			sourceTree = "<group>";
@@ -263,9 +269,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEB60B762AE556B400D2BDD6 /* TmpView.swift in Sources */,
 				BEB60B502AE53C4500D2BDD6 /* Persistence.swift in Sources */,
 				BEB60B492AE53C4200D2BDD6 /* ContentView.swift in Sources */,
 				BEB60B532AE53C4500D2BDD6 /* WOD.xcdatamodeld in Sources */,
+				BEB60B782AE556F300D2BDD6 /* TmpViewModel.swift in Sources */,
 				BEB60B472AE53C4200D2BDD6 /* WODApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -428,6 +436,7 @@
 				DEVELOPMENT_TEAM = 8T9KYF6LUJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WOD/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -458,6 +467,7 @@
 				DEVELOPMENT_TEAM = 8T9KYF6LUJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WOD/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
