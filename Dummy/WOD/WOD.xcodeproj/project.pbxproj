@@ -18,6 +18,7 @@
 		BEB60B692AE53C4600D2BDD6 /* WODUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB60B682AE53C4600D2BDD6 /* WODUITestsLaunchTests.swift */; };
 		BEB60B762AE556B400D2BDD6 /* TmpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB60B752AE556B400D2BDD6 /* TmpView.swift */; };
 		BEB60B782AE556F300D2BDD6 /* TmpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB60B772AE556F300D2BDD6 /* TmpViewModel.swift */; };
+		BEB60B7B2AE802BA00D2BDD6 /* TmpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB60B7A2AE802BA00D2BDD6 /* TmpModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		BEB60B682AE53C4600D2BDD6 /* WODUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WODUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		BEB60B752AE556B400D2BDD6 /* TmpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TmpView.swift; sourceTree = "<group>"; };
 		BEB60B772AE556F300D2BDD6 /* TmpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TmpViewModel.swift; sourceTree = "<group>"; };
+		BEB60B7A2AE802BA00D2BDD6 /* TmpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TmpModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				BEB60B4F2AE53C4500D2BDD6 /* Persistence.swift */,
 				BEB60B512AE53C4500D2BDD6 /* WOD.xcdatamodeld */,
 				BEB60B4C2AE53C4500D2BDD6 /* Preview Content */,
+				BEB60B7A2AE802BA00D2BDD6 /* TmpModel.swift */,
 				BEB60B752AE556B400D2BDD6 /* TmpView.swift */,
 				BEB60B772AE556F300D2BDD6 /* TmpViewModel.swift */,
 			);
@@ -269,6 +272,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEB60B7B2AE802BA00D2BDD6 /* TmpModel.swift in Sources */,
 				BEB60B762AE556B400D2BDD6 /* TmpView.swift in Sources */,
 				BEB60B502AE53C4500D2BDD6 /* Persistence.swift in Sources */,
 				BEB60B492AE53C4200D2BDD6 /* ContentView.swift in Sources */,
