@@ -1,24 +1,33 @@
 //
-//  TimerModel.swift
+//  WodInterModel.swift
 //  Timer
 //
-//  Created by lkh on 10/26/23.
+//  Created by lkh on 10/27/23.
 //
 
 import Foundation
 
-struct TimerModel {
-    var secElapsed: Double // 타이머 초 경과 시간
-    var lapElapsed: Double // 랩 경과 시간
-    var lapTimes: [String]
+struct WodInterModel: Identifiable {
+    let id = UUID()
+    var wiName: String
+    var setCount: Int
+    var preparation: Int
+    var wiDetail: WodInterDetail
+    var totalTime: Int
+}
+
+struct WodInterDetail: Identifiable {
+    let id = UUID()
+    var name: String
+    var wiTime: Int
+}
+
+struct WodInterTimer {
+    var secElapsed: Double // 이번엔 떨어지게
     
     // view에서 사용할 변수들
     var elapsedSec: String { // 경과시간(ms)를 문자열(mm:ss.SS)로 저장
         timeToString(secElapsed)
-    }
-    
-    var selectedLap: String { // 랩타임 경과시간(ms)를 문자열(mm:ss.SS)로 저장
-        timeToString(lapElapsed)
     }
     
     private func timeToString(_ t: Double) -> String {

@@ -23,7 +23,7 @@ struct TimePickerView: View {
                         // right-aligned
                         Spacer()
                         Text("\(timeIncrement)")
-                            .foregroundColor(.white)
+                            //.foregroundColor(.white)
                             .multilineTextAlignment(.trailing)
                     }
                 }
@@ -52,8 +52,8 @@ struct PickerView: View {
         }
         .padding(.all, 32)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(.black)
-        .foregroundColor(.white)
+        //.background(.black)
+        //.foregroundColor(.white)
     }
 }
 

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PlayButton: View {
-    var mode: TimerManager.Mode
+    var mode: GeneralViewModel.Mode
     
     var action: (() -> Void)?
     

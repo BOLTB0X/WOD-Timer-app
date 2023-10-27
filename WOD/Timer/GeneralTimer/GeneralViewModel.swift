@@ -1,22 +1,29 @@
 //
-//  TimerManager.swift
+//  GeneralTimerViewModel.swift
 //  Timer
 //
-//  Created by lkh on 10/26/23.
+//  Created by lkh on 10/27/23.
 //
 
-import SwiftUI
+import Foundation
+import Combine
 
-class TimerManager: ObservableObject {
-    // MARK: - 프로퍼티
-    @Published var timeManager: TimerModel = TimerModel(secElapsed: 0.000, lapElapsed: 0.000, lapTimes: [])
-    private var timer = Timer()
+class GeneralViewModel: ObservableObject {
+    @Published var manager: GeneralModel = GeneralModel(secElapsed: 0.000, lapElapsed: 0.000, lapTimes: [])
+    private var timerCancellable: AnyCancellable?
     
     enum ScenePhase {
         case active
         case inactive
         case background
     }
+
+    enum Mode {
+        case running // 실행
+        case paused // 잠시 멈춤
+        case stopped // 진짜 멈춤
+    }
+
     
     @Published var scene: ScenePhase = .active {
         didSet {
@@ -30,13 +37,7 @@ class TimerManager: ObservableObject {
             }
         }
     }
-    
-    enum Mode {
-        case running // 실행
-        case paused // 잠시 멈춤
-        case stopped // 진짜 멈춤
-    }
-    
+        
     @Published var mode: Mode = .stopped {
         didSet {
             switch mode {
@@ -90,29 +91,30 @@ class TimerManager: ObservableObject {
     }
     
     func userRecordTimer() {
-        timeManager.lapTimes.append(timeManager.selectedLap)
-        timeManager.lapElapsed = 0.000
+        manager.lapTimes.append(manager.selectedLap)
+        manager.lapElapsed = 0.000
     }
     
     // MARK: - Timer Control
     func startTimer() {
-        timer = Timer.scheduledTimer(withTimeInterval: 0.010, repeats: true, block: { [weak self] _ in
-            guard let self = self else { return }
-            self.timeManager.secElapsed += 0.010
-            self.timeManager.lapElapsed += 0.010
-            self.objectWillChange.send()
-        })
-        RunLoop.current.add(timer, forMode: .common)
+        timerCancellable = Timer.publish(every: 0.01, on: .main, in: .common)
+            .autoconnect()
+            .sink(receiveValue: { _ in
+                self.manager.secElapsed += 0.01
+                self.manager.lapElapsed += 0.01
+                self.objectWillChange.send()
+            }
+        )
     }
     
     func stopTimer() {
-        timer.invalidate()
-        timeManager.secElapsed = 0.000
-        timeManager.lapElapsed = 0.000
-        timeManager.lapTimes.removeAll()
+        timerCancellable?.cancel()
+        manager.secElapsed = 0.000
+        manager.lapElapsed = 0.000
+        manager.lapTimes.removeAll()
     }
     
     func pauseTimer() {
-        timer.invalidate()
+        timerCancellable?.cancel()
     }
 }
