@@ -9,6 +9,8 @@ import Foundation
 
 struct InputSimple {
     var roundString: String
+    var readayMinString: String
+    var readaySecString: String
     var workName: String
     var workMinString: String
     var workSecString: String
@@ -17,6 +19,8 @@ struct InputSimple {
     
     init() {
         roundString = "0"
+        readayMinString = "0"
+        readaySecString = "3"
         workName = "work"
         workMinString = "0"
         workSecString = "30"
@@ -24,9 +28,11 @@ struct InputSimple {
         restSecString = "5"
     }
     
-    init(roundString: String, workName: String, workMinString: String, workSecString: String, restMinString: String, restSecString: String) {
+    init(roundString: String, readayMibString: String, readaySecString: String, workName: String, workMinString: String, workSecString: String, restMinString: String, restSecString: String) {
         self.roundString = roundString
         self.workName = workName
+        self.readayMinString = readayMibString
+        self.readaySecString = readaySecString
         self.workMinString = workMinString
         self.workSecString = workSecString
         self.restMinString = restMinString
@@ -89,4 +95,3 @@ struct usingSimple {
         return (workInSeconds + restInSeconds) * Double(simpleRound)
     }
 }
-

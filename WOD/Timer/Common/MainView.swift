@@ -11,40 +11,51 @@ struct MainView: View {
     @State var selectedTab = 0
     
     var body: some View {
-        ZStack(alignment: .bottom){
-            TabView(selection: $selectedTab) {
-                WodInterView()
-                    .tag(0)
-
-                PassivityView()
-                    .tag(1)
-
-                GeneralView()
-                    .tag(2)
-
-                ProfileView()
-                    .tag(3)
-            }
-            
-            ZStack{
-                HStack{
-                    ForEach((TabbedItems.allCases), id: \.self){ item in
-                        Button{
-                            selectedTab = item.rawValue
-                        } label: {
-                            CustomTabItem(imageName: item.iconName, title: item.title, isActive: (selectedTab == item.rawValue))
-                        }
-                    }
+        TabView {
+            WodInterView()
+                .tabItem {
+                    Image(systemName: "figure.highintensity.intervaltraining")
                 }
-                .padding(6)
-            }
-            .frame(maxWidth: .infinity)
-            .frame(height: 70)
-            .background(.blue.opacity(0.2))
-            .cornerRadius(35)
-            .padding(.horizontal, 26)
-            .padding(.bottom, 0) 
+            
+            GeneralView()
+                .tabItem {
+                    Image(systemName: "timer")
+                }
         }
+//        ZStack(alignment: .bottom) {
+//            TabView(selection: $selectedTab) {
+//                WodInterView()
+//                    .tag(0)
+//                
+//                PassivityView()
+//                    .tag(1)
+//                
+//                GeneralView()
+//                    .tag(2)
+//                
+//                ProfileView()
+//                    .tag(3)
+//            }
+//            
+//                        ZStack{
+//                            HStack{
+//                                ForEach((TabbedItems.allCases), id: \.self){ item in
+//                                    Button{
+//                                        selectedTab = item.rawValue
+//                                    } label: {
+//                                        CustomTabItem(imageName: item.iconName, title: item.title, isActive: (selectedTab == item.rawValue))
+//                                    }
+//                                }
+//                            }
+//                            .padding(6)
+//                        }
+//                        .frame(maxWidth: .infinity)
+//                        .frame(height: 70)
+//                        .background(.blue.opacity(0.2))
+//                        .cornerRadius(35)
+//                        .padding(.horizontal, 26)
+//                        .padding(.bottom, 0)
+//        }
     }
 }
 

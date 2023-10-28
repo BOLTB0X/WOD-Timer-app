@@ -10,16 +10,17 @@ import Foundation
 struct WodInterModel: Identifiable {
     let id = UUID()
     var wiName: String
-    var setCount: Int
-    var preparation: Int
-    var wiDetail: WodInterDetail
-    var totalTime: Int
+    var setCount: String
+    var preparation: String
+    var wiDetail: [WodInterDetail]
+    var totalTime: String
 }
 
 struct WodInterDetail: Identifiable {
     let id = UUID()
     var name: String
-    var wiTime: Int
+    var wiTime: String
+    var timer: Timer
 }
 
 struct WodInterTimer {

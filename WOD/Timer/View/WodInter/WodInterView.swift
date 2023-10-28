@@ -11,14 +11,13 @@ struct WodInterView: View {
     var body: some View {
         NavigationView { // navigationTitle 이용 및 뷰 구성을 위해
             VStack {
-                List {
-                    Section(header: Text("Right now")) {
-
-                    }
-                }
+                SimpleSetupView()
             }
             .navigationTitle("WOD / Interval")
-            .navigationBarTitleDisplayMode(.inline)
+//            .navigationBarTitleDisplayMode(.inline)
+//            .onTapGesture { // 키보드 내리기용
+//                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+//            }
         }
     }
 }

@@ -8,30 +8,40 @@
 import SwiftUI
 
 struct SimpleSetupView: View {
-    @State private var userSet: String = "3"
-    @State private var userReady1: String = "00"
-    @State private var userReady2: String = "30"
-
+    @ObservedObject var simpleViewModel = WodInterViewModel()
     
     var body: some View {
-            VStack(alignment: .center) {
-                Text("SET")
-                SimpleSetupCountRow(inputStr: $userSet, btnImg1: "plus.app.fill", btnImg2: "minus.square.fill")
-                
-                Text("Ready")
-                SimpleSetupTimeRow(inputMin: $userReady1, inputSec: $userReady2, btnImg1: "plus.app.fill", btnImg2: "minus.square.fill")
-                
-                Text("Movements")
-                SimpleSetupTimeRow(inputMin: $userReady1, inputSec: $userReady2, btnImg1: "plus.app.fill", btnImg2: "minus.square.fill")
-
-                
-                Text("Rest")
-                SimpleSetupTimeRow(inputMin: $userReady1, inputSec: $userReady2, btnImg1: "plus.app.fill", btnImg2: "minus.square.fill")
-
+        VStack(alignment: .center) {
+            Form {
+                Section(header: Text("Simple")) {
+                    SimpleSetupCountRow(
+                        title: "Round",
+                        inputStr: $simpleViewModel.inputSimple.roundInput,
+                        btnImg1: "minus.square.fill",
+                        btnImg2: "plus.app.fill",
+                        btn1Action: simpleViewModel.incrementRound
+                    )
+                    
+                    SimpleSetupTimeRow(
+                        inputMin: $simpleViewModel.inputSimple.workMinInput,
+                        inputSec: $simpleViewModel.inputSimple.workSecInput,
+                        title: "Movements",
+                        btnImg1: "minus.square.fill",
+                        btnImg2: "plus.app.fill"
+                    )
+                    
+                    SimpleSetupTimeRow(
+                        inputMin: $simpleViewModel.inputSimple.restMinInput,
+                        inputSec: $simpleViewModel.inputSimple.restSecInput,
+                        title: "Rest",
+                        btnImg1: "minus.square.fill",
+                        btnImg2: "plus.app.fill"
+                    )
+                }
             }
-        }        
+        }
+    }
 }
-
 
 
 #Preview {
