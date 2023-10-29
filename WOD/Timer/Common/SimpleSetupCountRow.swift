@@ -28,9 +28,9 @@ struct SimpleSetupCountRow: View {
         VStack(alignment: .center, spacing: 15) {
             Text(title)
                 
-            HStack(alignment: .center, spacing: 10) {
+            HStack(alignment: .center) {
                 Spacer()
-                Button(action: {btn1Action },
+                Button(action: { btn1Action?() },
                        label: {
                     Image(systemName: btnImg1)        .resizable()
                         .frame(width: 40, height: 40)
@@ -44,7 +44,7 @@ struct SimpleSetupCountRow: View {
                     .frame(width: 80, height: 40)
                     .font(.system(size: 40))
                 
-                Button(action: {btn2Action },
+                Button(action: { btn1Action?() },
                        label: {
                     Image(systemName: btnImg2)
                         .resizable()
