@@ -17,7 +17,7 @@ struct MainView: View {
                     Image(systemName: "figure.highintensity.intervaltraining")
                 }
             
-            GeneralView()
+            StopWatchView()
                 .tabItem {
                     Image(systemName: "timer")
                 }

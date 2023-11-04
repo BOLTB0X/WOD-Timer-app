@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RecordButton: View {
-    var mode: GeneralViewModel.Mode
+    var mode: StopWatchViewModel.Mode
     
     var action: (() -> Void)?
     

@@ -8,8 +8,8 @@
 import Foundation
 import Combine
 
-class GeneralViewModel: ObservableObject {
-    @Published var manager: GeneralModel = GeneralModel(secElapsed: 0.000, lapElapsed: 0.000, lapTimes: [])
+class StopWatchViewModel: ObservableObject {
+    @Published var manager: StopWatchModel = StopWatchModel(secElapsed: 0.000, lapElapsed: 0.000, lapTimes: [])
     private var timerCancellable: AnyCancellable?
     
     enum ScenePhase {

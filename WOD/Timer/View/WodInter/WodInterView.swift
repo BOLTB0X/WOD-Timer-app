@@ -11,7 +11,7 @@ struct WodInterView: View {
     var body: some View {
         NavigationView { // navigationTitle 이용 및 뷰 구성을 위해
             VStack {
-                SimpleSetupView()
+                //SimpleSetupView()
             }
             .navigationTitle("WOD / Interval")
 //            .navigationBarTitleDisplayMode(.inline)

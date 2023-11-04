@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct GeneralView: View {
-    @ObservedObject var timerviewModel = GeneralViewModel()
+struct StopWatchView: View {
+    @ObservedObject var timerviewModel = StopWatchViewModel()
     
     var body: some View {
         VStack {
@@ -32,6 +32,6 @@ struct GeneralView: View {
 }
 
 #Preview {
-    GeneralView()
+    StopWatchView()
 
 }

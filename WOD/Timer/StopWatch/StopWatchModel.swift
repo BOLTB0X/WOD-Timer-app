@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GeneralModel {
+struct StopWatchModel {
     var secElapsed: Double // 타이머 초 경과 시간
     var lapElapsed: Double // 랩 경과 시간
     var lapTimes: [String]
