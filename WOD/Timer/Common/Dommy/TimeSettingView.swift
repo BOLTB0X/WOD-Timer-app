@@ -8,40 +8,38 @@
 import SwiftUI
 
 struct TimeSettingView: View {
-    @ObservedObject private var model = TimeSettingInput()
+    @ObservedObject private var model = WodInterViewModel()
     @State private var isChange: Bool = false
-
+    
     var body: some View {
-        if isChange  {
-            TimeSettingTextField(setHour: $model.selectedHoursText,
-                                 setminute: $model.selectedMinutesText,
-                                 setSecond: $model.selectedSecondsText,
-                                isChange: $isChange)
-        }
-        else {
-            HStack {
-                TimeSettingPicker(title: "hour",
-                                  range: model.minutesRange,
-                                  binding: $model.selectedHoursPicker)
-                
-                Spacer()
-                
-                TimeSettingPicker(title: "min",
-                                  range: model.minutesRange,
-                                  binding: $model.selectedMinutesPicker)
-                
-                Spacer()
-                
-                TimeSettingPicker(title: "sec",
-                                  range: model.secondsRange,
-                                  binding: $model.selectedSecondsPicker)
+        VStack(alignment: .center, spacing: 0) {
+            if isChange  {
+                TimeSettingTextField(setHour: $model.selectedHoursAmount,
+                                     setMinute: $model.selectedMinutesAmount,
+                                     setSecond: $model.selectedSecondsAmount,
+                                     isChange: $isChange, isUsedAuto: $model.isCalculatedBtn, viewModel: model)
             }
-            .padding(.all, 32)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(.black)
-            .foregroundColor(.white)
-            .onTapGesture {
-                isChange.toggle()
+            else {
+                HStack {
+                    TimeSettingPicker(title: "hour",
+                                      range: model.minutesRange,
+                                      binding: $model.selectedHoursAmount)
+                    
+                    Spacer()
+                    
+                    TimeSettingPicker(title: "min",
+                                      range: model.minutesRange,
+                                      binding: $model.selectedMinutesAmount)
+                    
+                    Spacer()
+                    
+                    TimeSettingPicker(title: "sec",
+                                      range: model.secondsRange,
+                                      binding: $model.selectedSecondsAmount)
+                }
+                .onTapGesture {
+                    isChange.toggle()
+                }
             }
         }
     }

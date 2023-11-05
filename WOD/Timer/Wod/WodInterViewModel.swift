@@ -9,32 +9,15 @@ import Foundation
 
 class WodInterViewModel: ObservableObject {
     @Published var inputSimple: SimpleModel = SimpleModel()
-    
-    @Published var selectedHoursAmount = 10 {
-        didSet {
-            selectedHoursAmount = min(selectedHoursAmount, 23)
-            // TODO
-        }
-    }
-    
-    @Published var selectedMinutesAmount = 10 {
-        didSet {
-            selectedMinutesAmount = min(selectedMinutesAmount, 59)
-            // TODO
-        }
-    }
-    
-    @Published var selectedSecondsAmount = 10 {
-        didSet {
-            selectedSecondsAmount = min(selectedSecondsAmount, 59)
-            // TODO
-        }
-    }
+    @Published var selectedHoursAmount = 10
+    @Published var selectedMinutesAmount = 10
+    @Published var selectedSecondsAmount = 10
+    @Published var isCalculatedBtn: Bool = false
     
     private var settingTime: Double = 0.00
     private var settingRound: Int = 0
     
-    let hoursRange = Array(0...23)
+    let hoursRange = Array(0...99)
     let minutesRange = Array(0...59)
     let secondsRange = Array(0...59)
     

@@ -50,9 +50,7 @@ struct TimerNaviView: View {
                         }
                         
                         Button(action: {
-                            // inputName과 inputRepOrMeter 값을 전달하여 더미를 추가
                             vm.addPressed(InputMovements(name: inputName, detail: inputDetail, aim: inputAim))
-                            // 입력 필드 초기화
                         }, label: {Text("add")})
                         .modifier(btnCustom())
                         //                        .frame(width: geometry.size.width)

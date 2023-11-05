@@ -8,29 +8,22 @@
 import SwiftUI
 
 struct TimeSettingPicker: View {
-    //private let pickerViewTitlePadding: CGFloat = 4.0
-
     let title: String
     let range: [Int]
     @Binding var binding: Int
-
+    
     var body: some View {
-        HStack(alignment: .center) {
-            Picker(title, selection: $binding) {
-                ForEach(range, id: \.self) { timeIncrement in
-                    HStack {
-                        Spacer()
-                        Text("\(timeIncrement)")
-                            .foregroundColor(.white)
-                            .multilineTextAlignment(.trailing)
-                    }
-                }
+        Picker(title, selection: $binding) {
+            ForEach(range, id: \.self) { timeIncrement in
+                
+                Text("\(timeIncrement)")
+                    .font(.system(size: 40))
+                    //.foregroundColor(.white)
+                    .padding()
+                
             }
-            .pickerStyle(InlinePickerStyle())
-            .labelsHidden()
-
-            Text(title)
-                .fontWeight(.bold)
         }
+        .labelsHidden()
+        .pickerStyle(InlinePickerStyle())
     }
 }
