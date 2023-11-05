@@ -1,7 +1,6 @@
 # WOD-Timer
 
 ![naruto-shippuden-op](https://github.com/BOLTB0X/WOD-Timer-app/assets/83914919/46390356-0983-4b42-917b-5a44cbbffbd4)
-tps://3.gall-img.com/tdgall/files/attach/images/82/035/780/137/a4e79aa706cdbeb3eb7f95220770a0ef.gif.mp4)
 
 ## Reference
 
