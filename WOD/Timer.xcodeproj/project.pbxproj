@@ -10,6 +10,9 @@
 		56A9987E2AF6730E000D5C99 /* TimeSettingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A9987D2AF6730E000D5C99 /* TimeSettingTextField.swift */; };
 		56A998802AF6799A000D5C99 /* TimeSettingPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A9987F2AF6799A000D5C99 /* TimeSettingPicker.swift */; };
 		56A998892AF75F41000D5C99 /* WodInter+Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A998882AF75F41000D5C99 /* WodInter+Input.swift */; };
+		56AC34162AF930EC00A100BF /* Extension+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AC34152AF930EC00A100BF /* Extension+View.swift */; };
+		56AC34182AF9321F00A100BF /* WodSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AC34172AF9321F00A100BF /* WodSet.swift */; };
+		56AC341A2AF932DF00A100BF /* SimpleSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AC34192AF932DF00A100BF /* SimpleSet.swift */; };
 		56AF0AD92AE892B5009AF8A2 /* TimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF0AD82AE892B5009AF8A2 /* TimerApp.swift */; };
 		56AF0ADB2AE892B5009AF8A2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF0ADA2AE892B5009AF8A2 /* ContentView.swift */; };
 		56AF0ADD2AE892B8009AF8A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56AF0ADC2AE892B8009AF8A2 /* Assets.xcassets */; };
@@ -42,6 +45,9 @@
 		56A9987D2AF6730E000D5C99 /* TimeSettingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSettingTextField.swift; sourceTree = "<group>"; };
 		56A9987F2AF6799A000D5C99 /* TimeSettingPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSettingPicker.swift; sourceTree = "<group>"; };
 		56A998882AF75F41000D5C99 /* WodInter+Input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WodInter+Input.swift"; sourceTree = "<group>"; };
+		56AC34152AF930EC00A100BF /* Extension+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+View.swift"; sourceTree = "<group>"; };
+		56AC34172AF9321F00A100BF /* WodSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WodSet.swift; sourceTree = "<group>"; };
+		56AC34192AF932DF00A100BF /* SimpleSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSet.swift; sourceTree = "<group>"; };
 		56AF0AD52AE892B5009AF8A2 /* Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Timer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56AF0AD82AE892B5009AF8A2 /* TimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerApp.swift; sourceTree = "<group>"; };
 		56AF0ADA2AE892B5009AF8A2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -86,9 +92,6 @@
 		56A998812AF67C7A000D5C99 /* StopWatch */ = {
 			isa = PBXGroup;
 			children = (
-				56AF0AF32AEA05EB009AF8A2 /* StopWatchModel.swift */,
-				56AF0AFD2AEA4294009AF8A2 /* StopWatchView.swift */,
-				56AF0B402AEB9C33009AF8A2 /* StopWatchViewModel.swift */,
 			);
 			path = StopWatch;
 			sourceTree = "<group>";
@@ -96,6 +99,8 @@
 		56A998822AF67D27000D5C99 /* Wod */ = {
 			isa = PBXGroup;
 			children = (
+				56AC34172AF9321F00A100BF /* WodSet.swift */,
+				56AC34192AF932DF00A100BF /* SimpleSet.swift */,
 				56AF0B282AEB5CEA009AF8A2 /* WodInterView.swift */,
 				56AF0B3E2AEB9B94009AF8A2 /* WodInterViewModel.swift */,
 				56A998882AF75F41000D5C99 /* WodInter+Input.swift */,
@@ -153,6 +158,7 @@
 				56AF0B2E2AEB5E8F009AF8A2 /* TabbedItems.swift */,
 				56AF0B302AEB5F16009AF8A2 /* MainView.swift */,
 				56AF0AF12AE9F4B3009AF8A2 /* RealTimeView.swift */,
+				56AC34152AF930EC00A100BF /* Extension+View.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -178,6 +184,9 @@
 				56AF0AEF2AE9606F009AF8A2 /* TimeSettingView.swift */,
 				56A9987D2AF6730E000D5C99 /* TimeSettingTextField.swift */,
 				56A9987F2AF6799A000D5C99 /* TimeSettingPicker.swift */,
+				56AF0AF32AEA05EB009AF8A2 /* StopWatchModel.swift */,
+				56AF0AFD2AEA4294009AF8A2 /* StopWatchView.swift */,
+				56AF0B402AEB9C33009AF8A2 /* StopWatchViewModel.swift */,
 			);
 			path = Dommy;
 			sourceTree = "<group>";
@@ -304,6 +313,8 @@
 				56AF0B412AEB9C33009AF8A2 /* StopWatchViewModel.swift in Sources */,
 				56AF0B4D2AED4719009AF8A2 /* SimpleModel.swift in Sources */,
 				56AF0B262AEB5B72009AF8A2 /* TimerNaviView.swift in Sources */,
+				56AC341A2AF932DF00A100BF /* SimpleSet.swift in Sources */,
+				56AC34162AF930EC00A100BF /* Extension+View.swift in Sources */,
 				56AF0B352AEB763E009AF8A2 /* WodInterModel.swift in Sources */,
 				56AF0AEE2AE8D198009AF8A2 /* WodView.swift in Sources */,
 				56AF0AFE2AEA4294009AF8A2 /* StopWatchView.swift in Sources */,
@@ -313,6 +324,7 @@
 				56AF0AD92AE892B5009AF8A2 /* TimerApp.swift in Sources */,
 				56A998802AF6799A000D5C99 /* TimeSettingPicker.swift in Sources */,
 				56AF0B002AEA4955009AF8A2 /* RecordButton.swift in Sources */,
+				56AC34182AF9321F00A100BF /* WodSet.swift in Sources */,
 				56AF0B312AEB5F16009AF8A2 /* MainView.swift in Sources */,
 				56AF0AF22AE9F4B3009AF8A2 /* RealTimeView.swift in Sources */,
 				56AF0AF02AE9606F009AF8A2 /* TimeSettingView.swift in Sources */,
