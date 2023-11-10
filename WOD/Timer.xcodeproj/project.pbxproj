@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5697A7CC2AFE57A800ADBBD1 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697A7CB2AFE57A800ADBBD1 /* BackButton.swift */; };
+		5697A7CE2AFE59E200ADBBD1 /* EffectButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697A7CD2AFE59E200ADBBD1 /* EffectButtonStyle.swift */; };
+		5697A7D02AFE73C300ADBBD1 /* RoundSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697A7CF2AFE73C300ADBBD1 /* RoundSet.swift */; };
+		5697A7D22AFE74BE00ADBBD1 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697A7D12AFE74BE00ADBBD1 /* KeyboardManager.swift */; };
 		56A9987E2AF6730E000D5C99 /* TimeSettingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A9987D2AF6730E000D5C99 /* TimeSettingTextField.swift */; };
 		56A998802AF6799A000D5C99 /* TimeSettingPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A9987F2AF6799A000D5C99 /* TimeSettingPicker.swift */; };
 		56A998892AF75F41000D5C99 /* WodInter+Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A998882AF75F41000D5C99 /* WodInter+Input.swift */; };
@@ -30,8 +34,6 @@
 		56AF0B002AEA4955009AF8A2 /* RecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF0AFF2AEA4955009AF8A2 /* RecordButton.swift */; };
 		56AF0B262AEB5B72009AF8A2 /* TimerNaviView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF0B252AEB5B72009AF8A2 /* TimerNaviView.swift */; };
 		56AF0B292AEB5CEA009AF8A2 /* WodInterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF0B282AEB5CEA009AF8A2 /* WodInterView.swift */; };
-		56AF0B2B2AEB5D66009AF8A2 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF0B2A2AEB5D66009AF8A2 /* ProfileView.swift */; };
-		56AF0B2D2AEB5DEB009AF8A2 /* PassivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF0B2C2AEB5DEB009AF8A2 /* PassivityView.swift */; };
 		56AF0B2F2AEB5E8F009AF8A2 /* TabbedItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF0B2E2AEB5E8F009AF8A2 /* TabbedItems.swift */; };
 		56AF0B312AEB5F16009AF8A2 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF0B302AEB5F16009AF8A2 /* MainView.swift */; };
 		56AF0B352AEB763E009AF8A2 /* WodInterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF0B342AEB763E009AF8A2 /* WodInterModel.swift */; };
@@ -42,6 +44,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5697A7CB2AFE57A800ADBBD1 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
+		5697A7CD2AFE59E200ADBBD1 /* EffectButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectButtonStyle.swift; sourceTree = "<group>"; };
+		5697A7CF2AFE73C300ADBBD1 /* RoundSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundSet.swift; sourceTree = "<group>"; };
+		5697A7D12AFE74BE00ADBBD1 /* KeyboardManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
 		56A9987D2AF6730E000D5C99 /* TimeSettingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSettingTextField.swift; sourceTree = "<group>"; };
 		56A9987F2AF6799A000D5C99 /* TimeSettingPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSettingPicker.swift; sourceTree = "<group>"; };
 		56A998882AF75F41000D5C99 /* WodInter+Input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WodInter+Input.swift"; sourceTree = "<group>"; };
@@ -67,8 +73,6 @@
 		56AF0AFF2AEA4955009AF8A2 /* RecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButton.swift; sourceTree = "<group>"; };
 		56AF0B252AEB5B72009AF8A2 /* TimerNaviView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerNaviView.swift; sourceTree = "<group>"; };
 		56AF0B282AEB5CEA009AF8A2 /* WodInterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WodInterView.swift; sourceTree = "<group>"; };
-		56AF0B2A2AEB5D66009AF8A2 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		56AF0B2C2AEB5DEB009AF8A2 /* PassivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassivityView.swift; sourceTree = "<group>"; };
 		56AF0B2E2AEB5E8F009AF8A2 /* TabbedItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbedItems.swift; sourceTree = "<group>"; };
 		56AF0B302AEB5F16009AF8A2 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		56AF0B342AEB763E009AF8A2 /* WodInterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WodInterModel.swift; sourceTree = "<group>"; };
@@ -99,6 +103,9 @@
 		56A998822AF67D27000D5C99 /* Wod */ = {
 			isa = PBXGroup;
 			children = (
+				56AF0B442AEBA5AA009AF8A2 /* InputModel.swift */,
+				56AF0B4C2AED4719009AF8A2 /* SimpleModel.swift */,
+				56AF0B342AEB763E009AF8A2 /* WodInterModel.swift */,
 				56AC34172AF9321F00A100BF /* WodSet.swift */,
 				56AC34192AF932DF00A100BF /* SimpleSet.swift */,
 				56AF0B282AEB5CEA009AF8A2 /* WodInterView.swift */,
@@ -135,7 +142,6 @@
 				56A998822AF67D27000D5C99 /* Wod */,
 				56A998812AF67C7A000D5C99 /* StopWatch */,
 				56AF0B462AED32BB009AF8A2 /* Model */,
-				56AF0B472AED330C009AF8A2 /* View */,
 				56AF0B482AED3314009AF8A2 /* ViewModel */,
 				56AF0ADE2AE892B8009AF8A2 /* Preview Content */,
 			);
@@ -156,9 +162,13 @@
 				56AF0B242AEB5B44009AF8A2 /* Dommy */,
 				56AF0AF82AEA35B5009AF8A2 /* BTN */,
 				56AF0B2E2AEB5E8F009AF8A2 /* TabbedItems.swift */,
+				5697A7CD2AFE59E200ADBBD1 /* EffectButtonStyle.swift */,
 				56AF0B302AEB5F16009AF8A2 /* MainView.swift */,
 				56AF0AF12AE9F4B3009AF8A2 /* RealTimeView.swift */,
 				56AC34152AF930EC00A100BF /* Extension+View.swift */,
+				5697A7CB2AFE57A800ADBBD1 /* BackButton.swift */,
+				5697A7CF2AFE73C300ADBBD1 /* RoundSet.swift */,
+				5697A7D12AFE74BE00ADBBD1 /* KeyboardManager.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -191,39 +201,11 @@
 			path = Dommy;
 			sourceTree = "<group>";
 		};
-		56AF0B322AEB74CE009AF8A2 /* GeneralTimer */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = GeneralTimer;
-			sourceTree = "<group>";
-		};
-		56AF0B332AEB761A009AF8A2 /* WodInter */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = WodInter;
-			sourceTree = "<group>";
-		};
 		56AF0B462AED32BB009AF8A2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				56AF0B442AEBA5AA009AF8A2 /* InputModel.swift */,
-				56AF0B4C2AED4719009AF8A2 /* SimpleModel.swift */,
-				56AF0B342AEB763E009AF8A2 /* WodInterModel.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		56AF0B472AED330C009AF8A2 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				56AF0B2A2AEB5D66009AF8A2 /* ProfileView.swift */,
-				56AF0B2C2AEB5DEB009AF8A2 /* PassivityView.swift */,
-				56AF0B322AEB74CE009AF8A2 /* GeneralTimer */,
-				56AF0B332AEB761A009AF8A2 /* WodInter */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		56AF0B482AED3314009AF8A2 /* ViewModel */ = {
@@ -303,11 +285,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5697A7CC2AFE57A800ADBBD1 /* BackButton.swift in Sources */,
 				56AF0AFA2AEA35CE009AF8A2 /* CommonButton.swift in Sources */,
 				56A998892AF75F41000D5C99 /* WodInter+Input.swift in Sources */,
 				56AF0B452AEBA5AA009AF8A2 /* InputModel.swift in Sources */,
 				56AF0AF42AEA05EB009AF8A2 /* StopWatchModel.swift in Sources */,
 				56AF0ADB2AE892B5009AF8A2 /* ContentView.swift in Sources */,
+				5697A7CE2AFE59E200ADBBD1 /* EffectButtonStyle.swift in Sources */,
 				56AF0B292AEB5CEA009AF8A2 /* WodInterView.swift in Sources */,
 				56A9987E2AF6730E000D5C99 /* TimeSettingTextField.swift in Sources */,
 				56AF0B412AEB9C33009AF8A2 /* StopWatchViewModel.swift in Sources */,
@@ -321,6 +305,7 @@
 				56AF0AFC2AEA3E95009AF8A2 /* PlayButton.swift in Sources */,
 				56AF0AEA2AE8A867009AF8A2 /* MovementsViewModel.swift in Sources */,
 				56AF0AE82AE89B51009AF8A2 /* Movements.swift in Sources */,
+				5697A7D22AFE74BE00ADBBD1 /* KeyboardManager.swift in Sources */,
 				56AF0AD92AE892B5009AF8A2 /* TimerApp.swift in Sources */,
 				56A998802AF6799A000D5C99 /* TimeSettingPicker.swift in Sources */,
 				56AF0B002AEA4955009AF8A2 /* RecordButton.swift in Sources */,
@@ -328,9 +313,8 @@
 				56AF0B312AEB5F16009AF8A2 /* MainView.swift in Sources */,
 				56AF0AF22AE9F4B3009AF8A2 /* RealTimeView.swift in Sources */,
 				56AF0AF02AE9606F009AF8A2 /* TimeSettingView.swift in Sources */,
-				56AF0B2D2AEB5DEB009AF8A2 /* PassivityView.swift in Sources */,
+				5697A7D02AFE73C300ADBBD1 /* RoundSet.swift in Sources */,
 				56AF0B3F2AEB9B94009AF8A2 /* WodInterViewModel.swift in Sources */,
-				56AF0B2B2AEB5D66009AF8A2 /* ProfileView.swift in Sources */,
 				56AF0AEC2AE8B08B009AF8A2 /* TmpTimeView.swift in Sources */,
 				56AF0B2F2AEB5E8F009AF8A2 /* TabbedItems.swift in Sources */,
 			);

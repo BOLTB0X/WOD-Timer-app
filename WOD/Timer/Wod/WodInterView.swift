@@ -8,23 +8,24 @@
 import SwiftUI
 
 struct WodInterView: View {
+    @State private var simpleButton: SimpleButton?
+    @State private var showPopup: Bool = false
+    
+    private let simpleArr: [SimpleButton] = [.round, .preparation, .movements, .rest]
+    
     var body: some View {
         NavigationView { // for navigationTitle 이용 및 뷰 구성
-            VStack(alignment: .center, spacing: 0) {
-                //TimeSettingView()
-                Form {
-                    Section(header: Text("WOD / Interval Set").font(.headline)) {
-                        VStack(alignment: .leading, spacing: 30) {
-                            NavigationLink("New Set", destination: WodSet())
-                            
-                            NavigationLink("Simple Set", destination: SimpleSet())
+            VStack(alignment: .leading, spacing: 0) {
+                List {
+                    // TODO: Right NOW
+                    Section(header: Text("Right Now").font(.headline)) {
+                        ForEach(simpleArr, id: \.self) { btn in
+                            Button(btn.buttonText) {
+                                simpleButton = btn
+                                showPopup.toggle()
+                            }
+                            .buttonStyle(EffectButtonStyle())
                         }
-                        
-                    }
-                    
-                    // TODO: Edit
-                    Section(header: Text("My Set").font(.headline)) {
-                        
                     }
                     
                     // TODO: 지난것들
@@ -32,10 +33,16 @@ struct WodInterView: View {
                         
                     }
                 }
-                
             }
             .navigationTitle("WOD / Interval")
             .navigationBarTitleDisplayMode(.inline)
+            .popupNavigationView(show: $showPopup) {
+                RoundSet()
+                     .navigationBarTitleDisplayMode(.inline)
+                     .popupToolbar {
+                         showPopup.toggle()
+                     }
+            }
         }
     }
 }

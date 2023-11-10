@@ -7,6 +7,26 @@
 
 import Foundation
 
+enum SimpleButton {
+    case round
+    case preparation
+    case movements
+    case rest
+
+    var buttonText: String {
+        switch self {
+        case .round: 
+            return "Round"
+        case .preparation: 
+            return "Preparation"
+        case .movements: 
+            return "Movements"
+        case .rest: 
+            return "Rest"
+        }
+    }
+}
+
 struct SimpleModel {
     var roundInput: Int
     var workMinInput: Int

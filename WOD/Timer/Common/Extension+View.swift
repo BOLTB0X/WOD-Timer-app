@@ -32,4 +32,15 @@ extension View {
                 }
             }
     }
+    
+    // MARK: - popupToolbar
+    func popupToolbar(action: @escaping () -> Void) -> some View {
+        toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: { withAnimation { action() } }) {
+                    Image(systemName: "xmark").foregroundColor(.black)
+                }
+            }
+        }
+    }
 }
