@@ -13,49 +13,33 @@ enum Field {
     case ss
 }
 
-// MARK: - TimeSettingTextField
-struct TimeSettingTextField: View {
+// MARK: - SettingTimeTextField
+struct SettingTimeTextField: View {
     @Binding var setHour: Int
     @Binding var setMinute: Int
     @Binding var setSecond: Int
-    @FocusState private var focusedField: Field?
-    @Binding var isChange: Bool
     @Binding var isUsedAuto: Bool
     
-    let viewModel: WodInterViewModel
+    @FocusState private var focusedField: Field?
+    
+    let viewModel: WodViewModel
     
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
-            Spacer()
-            Button("back") {
-                isChange.toggle()
-            }
-            HStack(alignment: .center, spacing: 0) {
+            HStack(alignment: .center, spacing: 10) {
                 TextField("hh", value: $setHour, format: .number)
                     .textFieldStyle(CommonTextfieldStyle())
                     .focused($focusedField, equals: .hh)
                     .onChange(of: setHour) { newValue in
                         viewModel.updateValuesForField(.hh, newValue: newValue)
                     }
-                
-                Spacer()
-                
-                Text(":")
-                
-                Spacer()
-                
+                                
                 TextField("mm", value: $setMinute, format: .number)
                     .textFieldStyle(CommonTextfieldStyle())
                     .focused($focusedField, equals: .mm)
                     .onChange(of: setMinute) { newValue in
                         viewModel.updateValuesForField(.mm, newValue: newValue)
                     }
-                
-                Spacer()
-                
-                Text(":")
-                
-                Spacer()
                 
                 TextField("ss", value: $setSecond, format: .number)
                     .textFieldStyle(CommonTextfieldStyle())
@@ -86,6 +70,7 @@ struct TimeSettingTextField: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .onTapGesture {
             hideKeyboard()
+            focusedField = nil
         }
     }
     
@@ -127,15 +112,10 @@ struct CommonTextfieldStyle: TextFieldStyle {
             // 텍스트필드
             configuration
                 .keyboardType(.numberPad)
-                .font(.system(size: 60))
+                .font(.system(size: 50))
                 .multilineTextAlignment(.center)
                 .padding()
         }
     }
 }
 
-extension View {
-  func hideKeyboard() {
-    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-  }
-}

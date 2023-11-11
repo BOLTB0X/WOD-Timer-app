@@ -15,7 +15,7 @@ struct RealTimeView: View {
             Text(time)
                 .frame(maxWidth: .infinity, maxHeight: .infinity) 
                 .font(
-                    .system(size: fontSize ?? 24) // 폰트 크기를 조절, 기본 크기는 24
+                    .system(size: fontSize ?? 24) 
                         .weight(.bold)
                         .monospacedDigit()
                     

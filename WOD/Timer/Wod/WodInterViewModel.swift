@@ -17,6 +17,9 @@ class WodInterViewModel: ObservableObject {
     private var settingTime: Double = 0.00
     private var settingRound: Int = 0
     
+    // MARK: - Common property
+    let RoundRange = Array(1...99)
+    
     let hoursRange = Array(0...99)
     let minutesRange = Array(0...59)
     let secondsRange = Array(0...59)

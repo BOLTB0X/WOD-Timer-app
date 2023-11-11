@@ -15,7 +15,6 @@ extension View {
             .overlay {
                 if show .wrappedValue {
                     GeometryReader { proxy in
-                        
                         Color.primary
                             .opacity(0.15)
                             .ignoresSafeArea()
@@ -23,9 +22,12 @@ extension View {
                         let size = proxy.size
                         
                         NavigationView {
-                            content()
+                            VStack(alignment: .center, spacing: 0) {
+                                content()
+                                Spacer()
+                            }
                         }
-                        .frame(width: size.width - horizontalPadding, height: size.height / 1.7, alignment: .center)
+                        .frame(width: size.width - horizontalPadding, height: size.height / 2, alignment: .top)
                         .cornerRadius(15)
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                     }
@@ -42,5 +44,9 @@ extension View {
                 }
             }
         }
+    }
+    
+    func hideKeyboard() {
+      UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
