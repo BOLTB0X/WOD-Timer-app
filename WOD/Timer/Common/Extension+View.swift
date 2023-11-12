@@ -36,17 +36,23 @@ extension View {
     }
     
     // MARK: - popupToolbar
-    func popupToolbar(action: @escaping () -> Void) -> some View {
+    func popupSettingToolbar(action1: @escaping () -> Void, text: String, action2: @escaping () -> Void) -> some View {
         toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: { withAnimation { action() } }) {
+                Button(action: { withAnimation { action1() } }) {
                     Image(systemName: "xmark").foregroundColor(.black)
+                }
+            }
+            
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button(action: { withAnimation { action2() } }) {
+                    Text(text)
                 }
             }
         }
     }
     
     func hideKeyboard() {
-      UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }

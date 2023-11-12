@@ -9,30 +9,22 @@ import SwiftUI
 
 struct RoundSet: View {
     @EnvironmentObject var viewModel: WodViewModel
-    @State private var isChange: Bool = false
+    @Binding var isChange: Bool
     
     var body: some View {
         NavigationView {
             GeometryReader { geometry in
                 VStack(alignment: .center, spacing: 0) {
-                    Group {
-                        if isChange  {
-                            SettingTextField(setBinding: $viewModel.selectedRoundAmount)
-                        }
-                        else {
-                            SettingPicker(title: "round",
-                                              range: viewModel.roundRange,
-                                              binding: $viewModel.selectedRoundAmount)
-                            .onTapGesture {
-                                isChange.toggle()
-                            }
-                        }
+                    if isChange  {
+                        SettingTextField(setBinding: $viewModel.selectedRoundAmount)
                     }
-                    
-                    Spacer()
-                    
-                    Button(!isChange ? "keyboard" : "Wheel") {
-                        isChange.toggle()
+                    else {
+                        SettingPicker(title: "round",
+                                      range: viewModel.roundRange,
+                                      binding: $viewModel.selectedRoundAmount)
+                        .onTapGesture {
+                            isChange.toggle()
+                        }
                     }
                 }
             }

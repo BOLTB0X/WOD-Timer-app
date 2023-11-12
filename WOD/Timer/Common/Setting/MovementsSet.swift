@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MovementsSet: View {
     @EnvironmentObject var viewModel: WodViewModel
-    @State private var isChange: Bool = false
+    @Binding var isChange: Bool
     
     var body: some View {
         NavigationView {
@@ -20,31 +20,19 @@ struct MovementsSet: View {
                     }
                     else {
                         HStack {
-                            SettingPicker(title: "hour",
-                                          range: viewModel.hoursRange,
-                                          binding: $viewModel.selectedMovementAmount.hours)
+                            SettingPicker(title: "hour", range: viewModel.hoursRange, binding: $viewModel.selectedMovementAmount.hours)
                             
                             Spacer()
                             
-                            SettingPicker(title: "min",
-                                          range: viewModel.minutesRange,
-                                          binding: $viewModel.selectedMovementAmount.minutes)
+                            SettingPicker(title: "min", range: viewModel.minutesRange, binding: $viewModel.selectedMovementAmount.minutes)
                             
                             Spacer()
                             
-                            SettingPicker(title: "sec",
-                                          range: viewModel.minutesRange,
-                                          binding: $viewModel.selectedMovementAmount.seconds)
+                            SettingPicker(title: "sec", range: viewModel.minutesRange, binding: $viewModel.selectedMovementAmount.seconds)
                         }
                         .onTapGesture {
                             isChange.toggle()
                         }
-                    }
-                    
-                    Spacer()
-                    
-                    Button(!isChange ? "keyboard" : "Wheel") {
-                        isChange.toggle()
                     }
                 }
             }

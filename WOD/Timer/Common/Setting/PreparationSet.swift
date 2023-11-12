@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PreparationSet: View {
     @EnvironmentObject var viewModel: WodViewModel
-    @State private var isChange: Bool = false
+    @Binding var isChange: Bool
     
     var body: some View {
         NavigationView {
@@ -27,12 +27,6 @@ struct PreparationSet: View {
                                 isChange.toggle()
                             }
                         }
-                    }
-                    
-                    Spacer()
-                    
-                    Button(!isChange ? "keyboard" : "Wheel") {
-                        isChange.toggle()
                     }
                 }
             }

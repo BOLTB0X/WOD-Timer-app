@@ -9,13 +9,12 @@ import SwiftUI
 
 struct RestSet: View {
     @EnvironmentObject var viewModel: WodViewModel
-    @State private var isChange: Bool = false
+    @Binding var isChange: Bool
     
     var body: some View {
         NavigationView {
             GeometryReader { geometry in
                 VStack(alignment: .center, spacing: 0) {
-                    Group {
                         if isChange  {
                             SettingTextField(setBinding: $viewModel.selectedRestAmount)
                         }
@@ -27,13 +26,6 @@ struct RestSet: View {
                                 isChange.toggle()
                             }
                         }
-                    }
-                    
-                    Spacer()
-                    
-                    Button(!isChange ? "keyboard" : "Wheel") {
-                        isChange.toggle()
-                    }
                 }
             }
         }

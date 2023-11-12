@@ -25,28 +25,48 @@ struct SettingTimeTextField: View {
     let viewModel: WodViewModel
     
     var body: some View {
-        VStack(alignment: .center, spacing: 0) {
-            HStack(alignment: .center, spacing: 10) {
-                TextField("hh", value: $setHour, format: .number)
-                    .textFieldStyle(CommonTextfieldStyle())
-                    .focused($focusedField, equals: .hh)
-                    .onChange(of: setHour) { newValue in
-                        viewModel.updateValuesForField(.hh, newValue: newValue)
-                    }
-                                
-                TextField("mm", value: $setMinute, format: .number)
-                    .textFieldStyle(CommonTextfieldStyle())
-                    .focused($focusedField, equals: .mm)
-                    .onChange(of: setMinute) { newValue in
-                        viewModel.updateValuesForField(.mm, newValue: newValue)
-                    }
+        NavigationView {
+            VStack(alignment: .center, spacing: 0) {
+//                HStack(alignment: .center, spacing: 10) {
+//                    Button("before") {
+//                        keyboardToolbar_BeforeBtn()
+//                    }
+//                    Spacer()
+//                    
+//                    Toggle("auto Calculator", isOn: $isUsedAuto)
+//                    Spacer()
+//                    
+//                    Button("next") {
+//                        keyboardToolbar_NextBtn()
+//                    }
+//                }
+//                .padding()
                 
-                TextField("ss", value: $setSecond, format: .number)
-                    .textFieldStyle(CommonTextfieldStyle())
-                    .focused($focusedField, equals: .ss)
-                    .onChange(of: setSecond) { newValue in
-                        viewModel.updateValuesForField(.ss, newValue: newValue)
-                    }
+                HStack(alignment: .center, spacing: 10) {
+                    TextField("hh", value: $setHour, format: .number)
+                        .textFieldStyle(CommonTextfieldStyle())
+                        .focused($focusedField, equals: .hh)
+                        .onChange(of: setHour) { newValue in
+                            viewModel.updateValuesForField(.hh, newValue: newValue)
+                        }
+                    
+                    TextField("mm", value: $setMinute, format: .number)
+                        .textFieldStyle(CommonTextfieldStyle())
+                        .focused($focusedField, equals: .mm)
+                        .onChange(of: setMinute) { newValue in
+                            viewModel.updateValuesForField(.mm, newValue: newValue)
+                        }
+                    
+                    TextField("ss", value: $setSecond, format: .number)
+                        .textFieldStyle(CommonTextfieldStyle())
+                        .focused($focusedField, equals: .ss)
+                        .onChange(of: setSecond) { newValue in
+                            viewModel.updateValuesForField(.ss, newValue: newValue)
+                        }
+                }
+                .padding()
+                
+                Spacer()
             }
             .toolbar {
                 ToolbarItemGroup(placement: .keyboard) {
@@ -63,14 +83,10 @@ struct SettingTimeTextField: View {
                     }
                 }
             }
-            .padding()
-            
-            Spacer()
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .onTapGesture {
-            hideKeyboard()
-            focusedField = nil
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .onTapGesture {
+                focusedField = nil
+            }
         }
     }
     

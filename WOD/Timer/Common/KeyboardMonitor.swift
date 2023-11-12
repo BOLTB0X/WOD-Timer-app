@@ -49,5 +49,4 @@ final class KeyboardMonitor : ObservableObject {
                 return .zero
             }.subscribe(Subscribers.Assign(object: self, keyPath: \.keyboardHeight))
     }
-    
 }

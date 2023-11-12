@@ -12,7 +12,9 @@ struct WodInterView: View {
     @ObservedObject private var model = WodInterViewModel()
     @State private var simpleButton: SimpleButton?
     @State private var showPopup: Bool = false
-    
+    @State private var isChange: Bool = false
+
+        
     private let simpleArr: [SimpleButton] = [.round, .preparation, .movements, .rest]
     
     var body: some View {
@@ -41,40 +43,39 @@ struct WodInterView: View {
             .popupNavigationView(show: $showPopup) {
                 switch simpleButton {
                 case .round:
-                    RoundSet()
+                    RoundSet(isChange: $isChange)
                         .environmentObject(viewModel)
                         .navigationTitle("Round")
                          .navigationBarTitleDisplayMode(.inline)
-                         .popupToolbar {
-                             showPopup.toggle()
-                         }
+                         .popupSettingToolbar(action1:  { showPopup.toggle() }, text: !isChange ? "keyboard" : "wheel", action2: { isChange.toggle() }
+                         )
                 case .preparation:
-                    PreparationSet()
+                    PreparationSet(isChange: $isChange)
                         .environmentObject(viewModel)
                         .navigationTitle("Preparation")
                         .navigationBarTitleDisplayMode(.inline)
-                        .popupToolbar {
-                            showPopup.toggle()
-                        }
+                        .popupSettingToolbar(action1:  { showPopup.toggle() }, text: !isChange ? "keyboard" : "wheel", action2: { isChange.toggle() }
+                        )
                 case .movements:
-                    MovementsSet()
+                    MovementsSet(isChange: $isChange)
                         .environmentObject(viewModel)
                         .navigationTitle("Movements")
                         .navigationBarTitleDisplayMode(.inline)
-                        .popupToolbar {
-                            showPopup.toggle()
-                        }
+                        .popupSettingToolbar(action1:  { showPopup.toggle() }, text: !isChange ? "keyboard" : "wheel", action2: { isChange.toggle() }
+                        )
 
                 default:
-                    RestSet()
+                    RestSet(isChange: $isChange)
                         .environmentObject(viewModel)
                         .navigationTitle("Rest")
                         .navigationBarTitleDisplayMode(.inline)
-                        .popupToolbar {
-                            showPopup.toggle()
-                        }
+                        .popupSettingToolbar(action1:  { showPopup.toggle() }, text: !isChange ? "keyboard" : "wheel", action2: { isChange.toggle() }
+                        )
                 }
             }
+        }
+        .onTapGesture {
+            self.hideKeyboard()
         }
     }
 }
