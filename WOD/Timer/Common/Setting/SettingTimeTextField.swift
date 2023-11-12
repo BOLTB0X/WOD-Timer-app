@@ -27,21 +27,6 @@ struct SettingTimeTextField: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: 0) {
-//                HStack(alignment: .center, spacing: 10) {
-//                    Button("before") {
-//                        keyboardToolbar_BeforeBtn()
-//                    }
-//                    Spacer()
-//                    
-//                    Toggle("auto Calculator", isOn: $isUsedAuto)
-//                    Spacer()
-//                    
-//                    Button("next") {
-//                        keyboardToolbar_NextBtn()
-//                    }
-//                }
-//                .padding()
-                
                 HStack(alignment: .center, spacing: 10) {
                     TextField("hh", value: $setHour, format: .number)
                         .textFieldStyle(CommonTextfieldStyle())
@@ -65,8 +50,6 @@ struct SettingTimeTextField: View {
                         }
                 }
                 .padding()
-                
-                Spacer()
             }
             .toolbar {
                 ToolbarItemGroup(placement: .keyboard) {
@@ -127,6 +110,8 @@ struct CommonTextfieldStyle: TextFieldStyle {
             
             // 텍스트필드
             configuration
+                .textInputAutocapitalization(.never)
+                .disableAutocorrection(true)
                 .keyboardType(.numberPad)
                 .font(.system(size: 50))
                 .multilineTextAlignment(.center)
