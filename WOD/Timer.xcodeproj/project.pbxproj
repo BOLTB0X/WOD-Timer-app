@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5697A7CE2AFE59E200ADBBD1 /* EffectButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697A7CD2AFE59E200ADBBD1 /* EffectButtonStyle.swift */; };
+		5697A7CE2AFE59E200ADBBD1 /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697A7CD2AFE59E200ADBBD1 /* ButtonStyle.swift */; };
 		5697A7D02AFE73C300ADBBD1 /* RoundSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697A7CF2AFE73C300ADBBD1 /* RoundSet.swift */; };
 		5697A7D42AFF431400ADBBD1 /* InputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697A7D32AFF431400ADBBD1 /* InputManager.swift */; };
 		5697A7D62AFF4B9B00ADBBD1 /* WodViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697A7D52AFF4B9B00ADBBD1 /* WodViewModel.swift */; };
@@ -16,12 +16,10 @@
 		5697A7DE2AFF56C200ADBBD1 /* MovementsSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697A7DD2AFF56C200ADBBD1 /* MovementsSet.swift */; };
 		5697A7E02AFF56CE00ADBBD1 /* RestSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697A7DF2AFF56CE00ADBBD1 /* RestSet.swift */; };
 		5697A7E32AFF6E9600ADBBD1 /* WodViewModel+Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697A7E22AFF6E9600ADBBD1 /* WodViewModel+Input.swift */; };
-		5697A7EE2B011AA800ADBBD1 /* SimpleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697A7ED2B011AA800ADBBD1 /* SimpleRow.swift */; };
 		56A9987E2AF6730E000D5C99 /* SettingTimeTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A9987D2AF6730E000D5C99 /* SettingTimeTextField.swift */; };
 		56A998802AF6799A000D5C99 /* SettingPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A9987F2AF6799A000D5C99 /* SettingPicker.swift */; };
 		56A998892AF75F41000D5C99 /* WodInter+Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A998882AF75F41000D5C99 /* WodInter+Input.swift */; };
 		56AC34162AF930EC00A100BF /* Extension+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AC34152AF930EC00A100BF /* Extension+View.swift */; };
-		56AC34182AF9321F00A100BF /* WodSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AC34172AF9321F00A100BF /* WodSet.swift */; };
 		56AF0AD92AE892B5009AF8A2 /* TimerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF0AD82AE892B5009AF8A2 /* TimerApp.swift */; };
 		56AF0ADB2AE892B5009AF8A2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF0ADA2AE892B5009AF8A2 /* ContentView.swift */; };
 		56AF0ADD2AE892B8009AF8A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56AF0ADC2AE892B8009AF8A2 /* Assets.xcassets */; };
@@ -47,7 +45,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5697A7CD2AFE59E200ADBBD1 /* EffectButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectButtonStyle.swift; sourceTree = "<group>"; };
+		5697A7CD2AFE59E200ADBBD1 /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
 		5697A7CF2AFE73C300ADBBD1 /* RoundSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundSet.swift; sourceTree = "<group>"; };
 		5697A7D32AFF431400ADBBD1 /* InputManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputManager.swift; sourceTree = "<group>"; };
 		5697A7D52AFF4B9B00ADBBD1 /* WodViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WodViewModel.swift; sourceTree = "<group>"; };
@@ -56,12 +54,10 @@
 		5697A7DD2AFF56C200ADBBD1 /* MovementsSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementsSet.swift; sourceTree = "<group>"; };
 		5697A7DF2AFF56CE00ADBBD1 /* RestSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestSet.swift; sourceTree = "<group>"; };
 		5697A7E22AFF6E9600ADBBD1 /* WodViewModel+Input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WodViewModel+Input.swift"; sourceTree = "<group>"; };
-		5697A7ED2B011AA800ADBBD1 /* SimpleRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleRow.swift; sourceTree = "<group>"; };
 		56A9987D2AF6730E000D5C99 /* SettingTimeTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTimeTextField.swift; sourceTree = "<group>"; };
 		56A9987F2AF6799A000D5C99 /* SettingPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPicker.swift; sourceTree = "<group>"; };
 		56A998882AF75F41000D5C99 /* WodInter+Input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WodInter+Input.swift"; sourceTree = "<group>"; };
 		56AC34152AF930EC00A100BF /* Extension+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+View.swift"; sourceTree = "<group>"; };
-		56AC34172AF9321F00A100BF /* WodSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WodSet.swift; sourceTree = "<group>"; };
 		56AF0AD52AE892B5009AF8A2 /* Timer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Timer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56AF0AD82AE892B5009AF8A2 /* TimerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerApp.swift; sourceTree = "<group>"; };
 		56AF0ADA2AE892B5009AF8A2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -125,11 +121,7 @@
 			children = (
 				56AF0B4C2AED4719009AF8A2 /* SimpleModel.swift */,
 				56AF0B342AEB763E009AF8A2 /* WodInterModel.swift */,
-				56AC34172AF9321F00A100BF /* WodSet.swift */,
 				56AF0B282AEB5CEA009AF8A2 /* WodInterView.swift */,
-				5697A7ED2B011AA800ADBBD1 /* SimpleRow.swift */,
-				56AF0B3E2AEB9B94009AF8A2 /* WodInterViewModel.swift */,
-				56A998882AF75F41000D5C99 /* WodInter+Input.swift */,
 				5697A7D52AFF4B9B00ADBBD1 /* WodViewModel.swift */,
 				5697A7E22AFF6E9600ADBBD1 /* WodViewModel+Input.swift */,
 			);
@@ -182,7 +174,6 @@
 				5697A7E12AFF5D9100ADBBD1 /* Setting */,
 				56AF0AF82AEA35B5009AF8A2 /* BTN */,
 				56AC34152AF930EC00A100BF /* Extension+View.swift */,
-				5697A7CD2AFE59E200ADBBD1 /* EffectButtonStyle.swift */,
 				56AF0B302AEB5F16009AF8A2 /* MainView.swift */,
 				56AF0AF12AE9F4B3009AF8A2 /* RealTimeView.swift */,
 				5697A7D32AFF431400ADBBD1 /* InputManager.swift */,
@@ -193,6 +184,7 @@
 		56AF0AF82AEA35B5009AF8A2 /* BTN */ = {
 			isa = PBXGroup;
 			children = (
+				5697A7CD2AFE59E200ADBBD1 /* ButtonStyle.swift */,
 				56AF0AF92AEA35CE009AF8A2 /* CommonButton.swift */,
 				56AF0AFB2AEA3E95009AF8A2 /* PlayButton.swift */,
 				56AF0AFF2AEA4955009AF8A2 /* RecordButton.swift */,
@@ -212,6 +204,8 @@
 				56AF0AF32AEA05EB009AF8A2 /* StopWatchModel.swift */,
 				56AF0AFD2AEA4294009AF8A2 /* StopWatchView.swift */,
 				56AF0B402AEB9C33009AF8A2 /* StopWatchViewModel.swift */,
+				56A998882AF75F41000D5C99 /* WodInter+Input.swift */,
+				56AF0B3E2AEB9B94009AF8A2 /* WodInterViewModel.swift */,
 			);
 			path = Dommy;
 			sourceTree = "<group>";
@@ -291,7 +285,7 @@
 				56A998892AF75F41000D5C99 /* WodInter+Input.swift in Sources */,
 				56AF0AF42AEA05EB009AF8A2 /* StopWatchModel.swift in Sources */,
 				56AF0ADB2AE892B5009AF8A2 /* ContentView.swift in Sources */,
-				5697A7CE2AFE59E200ADBBD1 /* EffectButtonStyle.swift in Sources */,
+				5697A7CE2AFE59E200ADBBD1 /* ButtonStyle.swift in Sources */,
 				56AF0B292AEB5CEA009AF8A2 /* WodInterView.swift in Sources */,
 				5697A7DC2AFF569100ADBBD1 /* PreparationSet.swift in Sources */,
 				56A9987E2AF6730E000D5C99 /* SettingTimeTextField.swift in Sources */,
@@ -311,11 +305,9 @@
 				56A998802AF6799A000D5C99 /* SettingPicker.swift in Sources */,
 				56AF0B002AEA4955009AF8A2 /* RecordButton.swift in Sources */,
 				5697A7D62AFF4B9B00ADBBD1 /* WodViewModel.swift in Sources */,
-				56AC34182AF9321F00A100BF /* WodSet.swift in Sources */,
 				5697A7DA2AFF4E3400ADBBD1 /* SettingTextField.swift in Sources */,
 				56AF0B312AEB5F16009AF8A2 /* MainView.swift in Sources */,
 				5697A7D42AFF431400ADBBD1 /* InputManager.swift in Sources */,
-				5697A7EE2B011AA800ADBBD1 /* SimpleRow.swift in Sources */,
 				56AF0AF22AE9F4B3009AF8A2 /* RealTimeView.swift in Sources */,
 				56AF0AF02AE9606F009AF8A2 /* TimeSettingView.swift in Sources */,
 				5697A7D02AFE73C300ADBBD1 /* RoundSet.swift in Sources */,

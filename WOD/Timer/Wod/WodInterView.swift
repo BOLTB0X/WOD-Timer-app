@@ -27,8 +27,14 @@ struct WodInterView: View {
                                     simpleButton = btn
                                     showPopup.toggle()
                                 }
-                                .buttonStyle(EffectButtonStyle(text: viewModel.displaySetValue(btn.buttonText)))
+                                .buttonStyle(EffectButtonStyle(
+                                    text: viewModel.displaySetValue(btn.buttonText)))
                         }
+                            Button("Start") {
+                                
+                            }
+                            .buttonStyle(RoundedRectangleButtonStyle())
+                      
                     }
                     
                     // TODO: 지난것들
