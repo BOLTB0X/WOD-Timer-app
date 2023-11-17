@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		562164CD2B07A59E008E472B /* SimpleTimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562164CC2B07A59E008E472B /* SimpleTimerManager.swift */; };
+		562164CF2B07AA5C008E472B /* MovementTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562164CE2B07AA5C008E472B /* MovementTime.swift */; };
 		5697A7CE2AFE59E200ADBBD1 /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697A7CD2AFE59E200ADBBD1 /* ButtonStyle.swift */; };
 		5697A7D02AFE73C300ADBBD1 /* RoundSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697A7CF2AFE73C300ADBBD1 /* RoundSet.swift */; };
 		5697A7D42AFF431400ADBBD1 /* InputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697A7D32AFF431400ADBBD1 /* InputManager.swift */; };
@@ -45,6 +47,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		562164CC2B07A59E008E472B /* SimpleTimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTimerManager.swift; sourceTree = "<group>"; };
+		562164CE2B07AA5C008E472B /* MovementTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementTime.swift; sourceTree = "<group>"; };
 		5697A7CD2AFE59E200ADBBD1 /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
 		5697A7CF2AFE73C300ADBBD1 /* RoundSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundSet.swift; sourceTree = "<group>"; };
 		5697A7D32AFF431400ADBBD1 /* InputManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputManager.swift; sourceTree = "<group>"; };
@@ -171,11 +175,13 @@
 		56AF0AF72AEA354F009AF8A2 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				5697A7E12AFF5D9100ADBBD1 /* Setting */,
 				56AF0AF82AEA35B5009AF8A2 /* BTN */,
+				5697A7E12AFF5D9100ADBBD1 /* Setting */,
 				56AC34152AF930EC00A100BF /* Extension+View.swift */,
 				56AF0B302AEB5F16009AF8A2 /* MainView.swift */,
+				562164CC2B07A59E008E472B /* SimpleTimerManager.swift */,
 				56AF0AF12AE9F4B3009AF8A2 /* RealTimeView.swift */,
+				562164CE2B07AA5C008E472B /* MovementTime.swift */,
 				5697A7D32AFF431400ADBBD1 /* InputManager.swift */,
 			);
 			path = Common;
@@ -303,8 +309,10 @@
 				56AF0AE82AE89B51009AF8A2 /* Movements.swift in Sources */,
 				56AF0AD92AE892B5009AF8A2 /* TimerApp.swift in Sources */,
 				56A998802AF6799A000D5C99 /* SettingPicker.swift in Sources */,
+				562164CD2B07A59E008E472B /* SimpleTimerManager.swift in Sources */,
 				56AF0B002AEA4955009AF8A2 /* RecordButton.swift in Sources */,
 				5697A7D62AFF4B9B00ADBBD1 /* WodViewModel.swift in Sources */,
+				562164CF2B07AA5C008E472B /* MovementTime.swift in Sources */,
 				5697A7DA2AFF4E3400ADBBD1 /* SettingTextField.swift in Sources */,
 				56AF0B312AEB5F16009AF8A2 /* MainView.swift in Sources */,
 				5697A7D42AFF431400ADBBD1 /* InputManager.swift in Sources */,

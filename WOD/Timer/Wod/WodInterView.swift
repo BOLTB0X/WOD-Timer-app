@@ -13,6 +13,7 @@ struct WodInterView: View {
     @State private var simpleButton: SimpleButton?
     @State private var showPopup: Bool = false
     @State private var isChange: Bool = false
+    @State private var isStartBtn: Bool = false
     
     private let simpleArr: [SimpleButton] = [.round, .preparation, .movements, .rest]
     
@@ -21,7 +22,7 @@ struct WodInterView: View {
             VStack(alignment: .leading, spacing: 0) {
                 List {
                     // TODO: Simple NOW
-                    Section(header: Text("Right Now").font(.headline)) {
+                    Section(header: Text("Simple").font(.headline)) {
                         ForEach(simpleArr, id: \.self) { btn in
                                 Button(btn.buttonText) {
                                     simpleButton = btn
@@ -30,15 +31,15 @@ struct WodInterView: View {
                                 .buttonStyle(EffectButtonStyle(
                                     text: viewModel.displaySetValue(btn.buttonText)))
                         }
-                            Button("Start") {
-                                
-                            }
-                            .buttonStyle(RoundedRectangleButtonStyle())
-                      
+                        Button("Start") {
+                            isStartBtn.toggle()
+                        }
+                        .buttonStyle(BlueButtonStyle())
                     }
                     
+                    
                     // TODO: 지난것들
-                    Section(header: Text("Detail Setting").font(.headline)) {
+                    Section(header: Text("Detail").font(.headline)) {
                         
                     }
                 }
@@ -51,6 +52,16 @@ struct WodInterView: View {
                     .navigationBarTitleDisplayMode(.inline)
                     .popupSettingToolbar(action1:  { showPopup.toggle() }, text: !isChange ? "keyboard" : "wheel", action2: { isChange.toggle() }
                     )
+            }
+            .alert(isPresented: $isStartBtn) {
+                Alert(
+                    title: Text("Confirm"),
+                    message: Text("Are you sure you want to start?"),
+                    primaryButton: .default(Text("Start")) {
+                        viewModel.isSimpleStart = true
+                    },
+                    secondaryButton: .cancel(Text("Cancel"))
+                )
             }
         }
         .onTapGesture {

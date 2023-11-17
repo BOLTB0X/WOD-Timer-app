@@ -12,14 +12,13 @@ struct RealTimeView: View {
     var fontSize: CGFloat?
     
     var body: some View {
-            Text(time)
-                .frame(maxWidth: .infinity, maxHeight: .infinity) 
-                .font(
-                    .system(size: fontSize ?? 24) 
-                        .weight(.bold)
-                        .monospacedDigit()
-                    
-                )
+        Text(time)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .font(
+                .system(size: fontSize ?? 24)
+                .weight(.bold)
+                .monospacedDigit()
+            )
     }
 }
 
@@ -27,10 +26,10 @@ struct RealTimeView: View {
     Group {
         RealTimeView(time: "23:45")
             .previewLayout(.sizeThatFits)
-            //.preferredColorScheme(.dark)
+        //.preferredColorScheme(.dark)
         
         RealTimeView(time: "01:23:45", fontSize: 90)
             .previewLayout(.sizeThatFits)
-            //.preferredColorScheme(.dark)
+        //.preferredColorScheme(.dark)
     }
 }

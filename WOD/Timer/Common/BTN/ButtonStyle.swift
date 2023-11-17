@@ -13,7 +13,7 @@ struct EffectButtonStyle: ButtonStyle {
         HStack {
             configuration.label
                 .scaleEffect(configuration.isPressed ? 0.88 : 1.0)
-            
+            Spacer()
             Text(text)
         }
     }
@@ -32,15 +32,13 @@ struct InsetRoundScaleButton: ButtonStyle {
   }
 }
 
-struct RoundedRectangleButtonStyle: ButtonStyle {
+struct BlueButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .padding(10)
-            .background(RoundedRectangle(cornerRadius: 10)
-                    .fill(Color.blue)
-                    .opacity(configuration.isPressed ? 0.8 : 1.0)
-            )
-            .foregroundColor(.white)
-            .frame(width: .infinity, height: .infinity)
+            .foregroundColor(Color.white)
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background(RoundedRectangle(cornerRadius: 10).fill(.blue))
+            .scaleEffect(configuration.isPressed ? 0.88 : 1.0)
     }
 }
