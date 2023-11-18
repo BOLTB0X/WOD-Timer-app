@@ -15,19 +15,18 @@ struct PreparationSet: View {
         NavigationView {
             GeometryReader { geometry in
                 VStack(alignment: .center, spacing: 0) {
-                    Group {
-                        if isChange  {
-                            SettingTextField(setBinding: $viewModel.selectedPreparationAmount)
-                        }
-                        else {
-                            SettingPicker(title: "Preparation",
-                                              range: viewModel.preparationRange,
-                                              binding: $viewModel.selectedPreparationAmount)
-                            .onTapGesture {
-                                isChange.toggle()
-                            }
+                    if isChange  {
+                        SettingTextField(setBinding: $viewModel.selectedPreparationAmount)
+                    }
+                    else {
+                        SettingPicker(title: "Preparation",
+                                      range: viewModel.preparationRange,
+                                      binding: $viewModel.selectedPreparationAmount)
+                        .onTapGesture {
+                            isChange.toggle()
                         }
                     }
+                    
                 }
             }
         }

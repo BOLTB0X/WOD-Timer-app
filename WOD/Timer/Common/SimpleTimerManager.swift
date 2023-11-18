@@ -9,20 +9,24 @@ import Foundation
 import Combine
 
 class SimpleTimerManager: ObservableObject {
+    static let shared = SimpleTimerManager()
+    
+    @Published var roundCount: Int
     @Published var preparationTime: MovementTime
     @Published var movementTime: MovementTime
     @Published var restTime: MovementTime
     @Published var totalTime: MovementTime
     
-    private var cancellables: Set<AnyCancellable> = []
-
     var timer: Timer?
     
-    init(preparationTime: MovementTime, movementTime: MovementTime, restTime: MovementTime) {
-        self.preparationTime = preparationTime
-        self.movementTime = movementTime
-        self.restTime = restTime
-        self.totalTime = preparationTime + movementTime + restTime
+    private var cancellables: Set<AnyCancellable> = []
+    
+    private init() {
+        roundCount = 0
+        preparationTime = MovementTime(hours: 0, minutes: 0, seconds: 0)
+        movementTime = MovementTime(hours: 0, minutes: 0, seconds: 0)
+        restTime = MovementTime(hours: 0, minutes: 0, seconds: 0)
+        totalTime = MovementTime(hours: 0, minutes: 0, seconds: 0)
     }
     
     func startTimer() {

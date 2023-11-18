@@ -29,7 +29,3 @@ struct SettingTextField: View {
         }
     }
 }
-
-//#Preview {
-//    SettingTextField()
-//}
