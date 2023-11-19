@@ -16,7 +16,7 @@ struct RoundSet: View {
             GeometryReader { geometry in
                 VStack(alignment: .center, spacing: 0) {
                     if isChange  {
-                        SettingTextField(setBinding: $viewModel.selectedRoundAmount)
+                        SettingTextField(setBinding: $viewModel.selectedPreparationAmount)
                     }
                     else {
                         SettingPicker(title: "round",

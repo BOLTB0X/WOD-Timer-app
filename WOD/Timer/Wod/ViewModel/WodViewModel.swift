@@ -16,6 +16,8 @@ class WodViewModel: InputManager {
     
     let simpleArr: [SimpleButton] = [.round, .preparation, .movements, .rest]
     
+    var simpleTimerManager: SimpleTimerManager = SimpleTimerManager.shared
+    
     // MARK: - displaySetValue
     func displaySetValue(_ state: String) -> String {
         switch state {
@@ -35,14 +37,17 @@ class WodViewModel: InputManager {
         }
     }
     
-    // MARK: - simpleStartButtonTouchd
-    func simpleStartButtonTouchd() {
-        SimpleTimerManager.shared.roundCount = self.selectedRoundAmount
-        SimpleTimerManager.shared.preparationTime = MovementTime(minutes: self.selectedPreparationAmount)
-        SimpleTimerManager.shared.movementTime = MovementTime(
-            hours: self.selectedMovementAmount.hours,
-            minutes: self.selectedMovementAmount.minutes,
-            seconds: self.selectedMovementAmount.seconds)
-        SimpleTimerManager.shared.restTime = MovementTime(minutes: self.selectedRestAmount)
+    // MARK: - simpleStartButtonTouched
+    func simpleStartButtonTouched() {
+         let round = Round(
+             preparationTime: MovementTime(seconds: selectedPreparationAmount),
+             movementTime: selectedMovementAmount,
+             restTime: MovementTime(seconds: selectedRestAmount)
+         )
+         
+         // 라운드 배열로 타이머 매니저에 전달
+         let rounds = Array(repeating: round, count: selectedRoundAmount)
+        
+         simpleTimerManager = SimpleTimerManager(rounds: rounds)
     }
 }

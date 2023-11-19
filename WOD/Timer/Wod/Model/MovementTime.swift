@@ -46,7 +46,8 @@ struct MovementTime {
     
     // 연산자 오버로딩
     static func + (lhs: MovementTime, rhs: MovementTime) -> MovementTime {
-        MovementTime(totalSeconds: lhs.totalSeconds + rhs.totalSeconds)
+        let totalSeconds = lhs.totalSeconds + rhs.totalSeconds
+        return MovementTime(totalSeconds: totalSeconds)
     }
 
     var totalSeconds: Int {
@@ -57,5 +58,10 @@ struct MovementTime {
         self.hours = totalSeconds / 3600
         self.minutes = (totalSeconds % 3600) / 60
         self.seconds = totalSeconds % 60
+    }
+    
+    
+    init(totalSeconds: Double) {
+        self.init(seconds: Int(totalSeconds))
     }
 }

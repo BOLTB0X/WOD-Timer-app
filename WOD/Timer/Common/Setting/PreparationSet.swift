@@ -26,7 +26,6 @@ struct PreparationSet: View {
                             isChange.toggle()
                         }
                     }
-                    
                 }
             }
         }

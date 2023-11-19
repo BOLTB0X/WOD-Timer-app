@@ -16,7 +16,7 @@ struct RestSet: View {
             GeometryReader { geometry in
                 VStack(alignment: .center, spacing: 0) {
                         if isChange  {
-                            SettingTextField(setBinding: $viewModel.selectedRestAmount)
+                            SettingTextField(setBinding: $viewModel.selectedPreparationAmount)
                         }
                         else {
                             SettingPicker(title: "Rest",

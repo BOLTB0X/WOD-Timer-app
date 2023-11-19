@@ -47,7 +47,7 @@ struct WodInterView: View {
                 NavigationLink(destination: SimpleTimerView(), isActive: $viewModel.isSimpleStart) {
                             EmptyView()
                         }
-                        .hidden()
+                       
             }
             .navigationTitle("WOD / Interval")
             .navigationBarTitleDisplayMode(.inline)
@@ -63,7 +63,7 @@ struct WodInterView: View {
                     title: Text("Confirm"),
                     message: Text("Are you sure you want to start?"),
                     primaryButton: .default(Text("Start")) {
-                        viewModel.simpleStartButtonTouchd()
+                        viewModel.simpleStartButtonTouched()
                         viewModel.isSimpleStart.toggle()
                     },
                     secondaryButton: .cancel(Text("Cancel"))
