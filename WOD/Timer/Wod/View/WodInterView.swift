@@ -15,7 +15,6 @@ struct WodInterView: View {
     // MARK: - view 프로퍼티
     @State private var simpleButton: SimpleButton?
     @State private var showPopup: Bool = false
-    @State private var isChange: Bool = false
     @State private var isStartBtn: Bool = false
     
     var body: some View {
@@ -54,9 +53,6 @@ struct WodInterView: View {
             .popupNavigationView(show: $showPopup) {
                 switchForButton()
                     .environmentObject(viewModel)
-                    .navigationBarTitleDisplayMode(.inline)
-                    .popupSettingToolbar(action1:  { showPopup.toggle() }, text: !isChange ? "keyboard" : "wheel", action2: { isChange.toggle() }
-                    )
             }
             .alert(isPresented: $isStartBtn) {
                 Alert(
@@ -79,19 +75,15 @@ struct WodInterView: View {
     private func switchForButton() -> some View {
         switch simpleButton {
         case .round:
-            RoundSet(isChange: $isChange)
-                .navigationTitle("Round")
+            RoundSet(showPopup: $showPopup)
         case .preparation:
-            PreparationSet(isChange: $isChange)
-                .navigationTitle("Preparation")
+            PreparationSet(showPopup: $showPopup)
 
         case .movements:
-            MovementsSet(isChange: $isChange)
-                .navigationTitle("Movements")
+            MovementsSet(showPopup: $showPopup)
 
         default:
-            RestSet(isChange: $isChange)
-                .navigationTitle("Rest")
+            RestSet(showPopup: $showPopup)
         }
     }
 }

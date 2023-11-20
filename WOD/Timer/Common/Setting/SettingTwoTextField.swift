@@ -1,25 +1,17 @@
 //
-//  TimeSettingTextFieldView.swift
+//  SettingTwoTextField.swift
 //  Timer
 //
-//  Created by lkh on 11/4/23.
+//  Created by lkh on 11/20/23.
 //
 
 import SwiftUI
 
-enum Field {
-    case hh
-    case mm
-    case ss
-}
-
-// MARK: - SettingTimeTextField
-struct SettingTimeTextField: View {
-    @Binding var setHour: Int
+struct SettingTwoTextField: View {
     @Binding var setMinute: Int
     @Binding var setSecond: Int
     @Binding var isUsedAuto: Bool
-    
+
     @FocusState private var focusedField: Field?
     
     let viewModel: InputManager
@@ -28,25 +20,18 @@ struct SettingTimeTextField: View {
         NavigationView {
             VStack(alignment: .center, spacing: 0) {
                 HStack(alignment: .center, spacing: 10) {
-                    TextField("hh", value: $setHour, format: .number)
-                        .textFieldStyle(CommonTextfieldStyle())
-                        .focused($focusedField, equals: .hh)
-                        .onChange(of: setHour) { newValue in
-                            viewModel.updateMovementValuesForField(.hh, newValue: newValue)
-                        }
-                    
                     TextField("mm", value: $setMinute, format: .number)
                         .textFieldStyle(CommonTextfieldStyle())
                         .focused($focusedField, equals: .mm)
                         .onChange(of: setMinute) { newValue in
-                            viewModel.updateMovementValuesForField(.mm, newValue: newValue)
+                            viewModel.updateRestValuesForField(.mm, newValue: newValue)
                         }
                     
                     TextField("ss", value: $setSecond, format: .number)
                         .textFieldStyle(CommonTextfieldStyle())
                         .focused($focusedField, equals: .ss)
                         .onChange(of: setSecond) { newValue in
-                            viewModel.updateMovementValuesForField(.ss, newValue: newValue)
+                            viewModel.updateRestValuesForField(.ss, newValue: newValue)
                         }
                 }
                 .padding()
@@ -75,9 +60,9 @@ struct SettingTimeTextField: View {
     private func keyboardToolbar_BeforeBtn() {
         switch focusedField {
         case .hh:
-            focusedField = .ss
+            break
         case .mm:
-            focusedField = .hh
+            focusedField = .ss
         case .ss:
             focusedField = .mm
         default:
@@ -88,13 +73,14 @@ struct SettingTimeTextField: View {
     private func keyboardToolbar_NextBtn() {
         switch focusedField {
         case .hh:
-            focusedField = .mm
+            break
         case .mm:
             focusedField = .ss
         case .ss:
-            focusedField = .hh
+            focusedField = .mm
         default:
             break
         }
     }
 }
+

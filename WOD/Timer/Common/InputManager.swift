@@ -13,7 +13,7 @@ class InputManager: ObservableObject {
     @Published var selectedRoundAmount = 3
     @Published var selectedPreparationAmount = 5
     @Published var selectedMovementAmount = MovementTime(hours: 0, minutes: 0, seconds: 30)
-    @Published var selectedRestAmount = 10
+    @Published var selectedRestAmount = MovementTime(hours: 0, minutes: 0, seconds: 10)
 
     @Published var isCalculatedBtn: Bool = false
     
