@@ -31,7 +31,7 @@ class WodViewModel: InputManager {
                           selectedMovementAmount.minutes,
                           selectedMovementAmount.seconds)
         case "Rest":
-            return String(format: "00:%02d", selectedRestAmount)
+            return String(format: "%02d:%02d", selectedRestAmount.minutes,selectedRestAmount.seconds)
         default:
             return ""
         }
@@ -39,15 +39,15 @@ class WodViewModel: InputManager {
     
     // MARK: - simpleStartButtonTouched
     func simpleStartButtonTouched() {
-         let round = Round(
-             preparationTime: MovementTime(seconds: selectedPreparationAmount),
-             movementTime: selectedMovementAmount,
-             restTime: MovementTime(seconds: selectedRestAmount)
-         )
-         
-         // 라운드 배열로 타이머 매니저에 전달
-         let rounds = Array(repeating: round, count: selectedRoundAmount)
-        
-         simpleTimerManager = SimpleTimerManager(rounds: rounds)
+//         let round = Round(
+//             preparationTime: MovementTime(seconds: selectedPreparationAmount),
+//             movementTime: selectedMovementAmount,
+//             restTime: MovementTime(seconds: selectedRestAmount)
+//         )
+//         
+//         // 라운드 배열로 타이머 매니저에 전달
+//         let rounds = Array(repeating: round, count: selectedRoundAmount)
+//        
+//         simpleTimerManager = SimpleTimerManager(rounds: rounds)
     }
 }

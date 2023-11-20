@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SettingTextField: View {
     @Binding var setBinding: Int
+    @Binding var complete: Bool
+
     @FocusState private var focusedField: Bool
     
     var body: some View {
@@ -22,9 +24,21 @@ struct SettingTextField: View {
                     Spacer()
                 }
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .onTapGesture {
                 focusedField = false
+            }
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
+                    Button("+") { setBinding += 1 }
+                    
+                    Spacer()
+                    
+                    Button("complete") { complete.toggle() }
+                    
+                    Spacer()
+                    
+                    Button("-") { setBinding -= 1 }
+                }
             }
         }
     }

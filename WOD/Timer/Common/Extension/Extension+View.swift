@@ -36,17 +36,18 @@ extension View {
     }
     
     // MARK: - popupToolbar
-    func popupSettingToolbar(action1: @escaping () -> Void, text: String, action2: @escaping () -> Void) -> some View {
+    func popupSettingToolbar(cancelAction: @escaping () -> Void, action: @escaping () -> Void, completeAction: @escaping () -> Void) -> some View {
         toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: { withAnimation { action1() } }) {
-                    Image(systemName: "xmark").foregroundColor(.black)
+                Button(action: { withAnimation { cancelAction() } }) {
+                    Text("cancel")
+                    .foregroundColor(.secondary)
                 }
             }
-            
+                        
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: { withAnimation { action2() } }) {
-                    Text(text)
+                Button(action: { withAnimation { completeAction() } }) {
+                    Text("complete")
                 }
             }
         }
