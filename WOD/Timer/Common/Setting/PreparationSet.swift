@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PreparationSet: View {
     @EnvironmentObject var viewModel: WodViewModel
-    @State private var selectedAmount = 3
+    @ObservedObject var manager = InputManager()
     @State private var isChange: Bool = false
     
     @Binding var showPopup: Bool
@@ -21,7 +21,7 @@ struct PreparationSet: View {
                 VStack(alignment: .center, spacing: 0) {
                     // MARK: - 초기화 & 전환
                     HStack(alignment: .center, spacing: 0) {
-                        Button(action: {selectedAmount = 3},
+                        Button(action: {manager.selectedPreparationAmount = 3},
                                label: {
                             Image(systemName: "gobackward")
                         })
@@ -38,12 +38,12 @@ struct PreparationSet: View {
                     
                     // MARK: - set
                     if isChange  {
-                        SettingTextField(setBinding: $selectedAmount, complete: $showPopup)
+                        SettingTextField(setBinding: $manager.selectedPreparationAmount, complete: $showPopup, viewModel: manager)
                     }
                     else {
                         SettingPicker(title: "Preparation",
                                       range: preparationRange,
-                                      binding: $selectedAmount)
+                                      binding: $manager.selectedPreparationAmount)
                         .onTapGesture {
                             isChange.toggle()
                         }
@@ -57,7 +57,7 @@ struct PreparationSet: View {
             cancelAction:  { showPopup.toggle() },
             action:  { isChange.toggle() },
             completeAction: { 
-                viewModel.selectedPreparationAmount = selectedAmount
+                viewModel.selectedPreparationAmount = manager.selectedPreparationAmount
                 showPopup.toggle()
             }
         )

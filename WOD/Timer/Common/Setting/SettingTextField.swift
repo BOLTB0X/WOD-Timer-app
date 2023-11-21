@@ -13,6 +13,8 @@ struct SettingTextField: View {
 
     @FocusState private var focusedField: Bool
     
+    let viewModel: InputManager
+
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: 0) {
@@ -21,6 +23,13 @@ struct SettingTextField: View {
                     TextField("Round", value: $setBinding, format: .number)
                         .textFieldStyle(CommonTextfieldStyle())
                         .focused($focusedField)
+                        .onChange(of: setBinding) { newValue in
+                            if String(newValue).count >= 2 &&  String(newValue).first! == "0" {
+                                setBinding = 0
+                            } else {
+                                setBinding = newValue >= 100 ? newValue % 100 : newValue
+                            }
+                        }
                     Spacer()
                 }
             }
