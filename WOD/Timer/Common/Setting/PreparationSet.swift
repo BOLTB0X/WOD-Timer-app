@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PreparationSet: View {
     @EnvironmentObject var viewModel: WodViewModel
-    @ObservedObject var manager = InputManager()
+    @StateObject var manager = InputManager()
     @State private var isChange: Bool = false
     
     @Binding var showPopup: Bool
@@ -38,7 +38,7 @@ struct PreparationSet: View {
                     
                     // MARK: - set
                     if isChange  {
-                        SettingTextField(setBinding: $manager.selectedPreparationAmount, complete: $showPopup, viewModel: manager)
+                        SettingTextField(setBinding: $manager.selectedPreparationAmount, viewModel: manager)
                     }
                     else {
                         SettingPicker(title: "Preparation",

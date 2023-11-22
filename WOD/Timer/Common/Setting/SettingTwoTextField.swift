@@ -24,9 +24,6 @@ struct SettingTwoTextField: View {
                         .textFieldStyle(CommonTextfieldStyle())
                         .focused($focusedField, equals: .mm)
                         .onChange(of: setMinute) { newValue in
-                            if String(newValue).count >= 2 &&  String(newValue).first! == "0" {
-                                setMinute = 0
-                            }
                             viewModel.updateRestValuesForField(.mm, newValue: newValue)
                         }
                     
@@ -34,9 +31,6 @@ struct SettingTwoTextField: View {
                         .textFieldStyle(CommonTextfieldStyle())
                         .focused($focusedField, equals: .ss)
                         .onChange(of: setSecond) { newValue in
-                            if String(newValue).count >= 2 &&  String(newValue).first! == "0" {
-                                setSecond = 0
-                            }
                             viewModel.updateRestValuesForField(.ss, newValue: newValue)
                         }
                 }

@@ -7,9 +7,9 @@
 
 import SwiftUI
 
+
 struct SettingTextField: View {
     @Binding var setBinding: Int
-    @Binding var complete: Bool
 
     @FocusState private var focusedField: Bool
     
@@ -24,11 +24,7 @@ struct SettingTextField: View {
                         .textFieldStyle(CommonTextfieldStyle())
                         .focused($focusedField)
                         .onChange(of: setBinding) { newValue in
-                            if String(newValue).count >= 2 &&  String(newValue).first! == "0" {
-                                setBinding = 0
-                            } else {
-                                setBinding = newValue >= 100 ? newValue % 100 : newValue
-                            }
+                            setBinding = newValue % 100
                         }
                     Spacer()
                 }
@@ -39,10 +35,6 @@ struct SettingTextField: View {
             .toolbar {
                 ToolbarItemGroup(placement: .keyboard) {
                     Button("+") { setBinding += 1 }
-                    
-                    Spacer()
-                    
-                    Button("complete") { complete.toggle() }
                     
                     Spacer()
                     

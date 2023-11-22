@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MovementsSet: View {
     @EnvironmentObject var viewModel: WodViewModel
-    @ObservedObject var manager = InputManager()
+    @StateObject var manager = InputManager()
 
     @State private var isChange: Bool = false
     @Binding var showPopup: Bool

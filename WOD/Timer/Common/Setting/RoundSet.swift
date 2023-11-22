@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RoundSet: View {
     @EnvironmentObject var viewModel: WodViewModel
-    @ObservedObject var manager = InputManager()
+    @StateObject var manager = InputManager()
 
     @State private var isChange: Bool = false
     
@@ -39,7 +39,7 @@ struct RoundSet: View {
                     
                     // MARK: - set
                     if isChange  {
-                        SettingTextField(setBinding: $manager.selectedRoundAmount, complete: $showPopup, viewModel: manager)
+                        SettingTextField(setBinding: $manager.selectedRoundAmount, viewModel: manager)
                     }
                     else {
                         SettingPicker(title: "round",
