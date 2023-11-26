@@ -9,7 +9,8 @@ import SwiftUI
 
 struct RoundSet: View {
     @EnvironmentObject var viewModel: WodViewModel
-    @State private var selectedAmount = 3
+    @StateObject var manager = InputManager()
+
     @State private var isChange: Bool = false
     
     @Binding var showPopup: Bool
@@ -21,7 +22,7 @@ struct RoundSet: View {
                 VStack(alignment: .center, spacing: 0) {
                     // MARK: - 초기화 & 전환
                     HStack(alignment: .center, spacing: 0) {
-                        Button(action: {selectedAmount = 3},
+                        Button(action: {manager.selectedRoundAmount = 3},
                                label: {
                             Image(systemName: "gobackward")
                         })
@@ -38,12 +39,12 @@ struct RoundSet: View {
                     
                     // MARK: - set
                     if isChange  {
-                        SettingTextField(setBinding: $selectedAmount, complete: $showPopup)
+                        SettingTextField(setBinding: $manager.selectedRoundAmount, title: "Round",viewModel: manager)
                     }
                     else {
                         SettingPicker(title: "round",
                                       range: roundRange,
-                                      binding: $selectedAmount)
+                                      binding: $manager.selectedRoundAmount)
                         .onTapGesture {
                             isChange.toggle()
                         }
@@ -51,13 +52,16 @@ struct RoundSet: View {
                 }
             }
         }
+        .onAppear {
+            manager.selectedRoundAmount = viewModel.selectedRoundAmount
+        }
         .navigationTitle("Round")
         .navigationBarTitleDisplayMode(.inline)
         .popupSettingToolbar(
             cancelAction:  { showPopup.toggle() },
             action:  { isChange.toggle() },
             completeAction: { 
-                viewModel.selectedRoundAmount = selectedAmount
+                viewModel.selectedRoundAmount = manager.selectedRoundAmount
                 showPopup.toggle()
             }
         )

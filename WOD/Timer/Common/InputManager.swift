@@ -19,8 +19,16 @@ class InputManager: ObservableObject {
     
     // MARK: - Common property
     let roundRange = Array(1...99)
-    let preparationRange = Array(0...60)
+    let preparationRange = Array(0...59)
     let hoursRange = Array(0...99)
     let minutesRange = Array(0...59)
     let secondsRange = Array(0...59)
+    
+    func updateRoundOrPrepa(_ newValue: Int) {
+        if newValue >= 100 {
+            self.selectedRoundAmount = newValue % 100
+        } else {
+            selectedRoundAmount = newValue
+        }
+    }
 }

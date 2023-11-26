@@ -51,6 +51,7 @@
 		56AF0B3F2AEB9B94009AF8A2 /* WodInterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF0B3E2AEB9B94009AF8A2 /* WodInterViewModel.swift */; };
 		56AF0B412AEB9C33009AF8A2 /* StopWatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF0B402AEB9C33009AF8A2 /* StopWatchViewModel.swift */; };
 		56AF0B4D2AED4719009AF8A2 /* SimpleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF0B4C2AED4719009AF8A2 /* SimpleModel.swift */; };
+		56C5A49B2B136BDE008ABCA0 /* TextLimiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C5A49A2B136BDE008ABCA0 /* TextLimiter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +101,7 @@
 		56AF0B3E2AEB9B94009AF8A2 /* WodInterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WodInterViewModel.swift; sourceTree = "<group>"; };
 		56AF0B402AEB9C33009AF8A2 /* StopWatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchViewModel.swift; sourceTree = "<group>"; };
 		56AF0B4C2AED4719009AF8A2 /* SimpleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleModel.swift; sourceTree = "<group>"; };
+		56C5A49A2B136BDE008ABCA0 /* TextLimiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLimiter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +234,7 @@
 				56AF0AF82AEA35B5009AF8A2 /* CustomStyle */,
 				5697A7E12AFF5D9100ADBBD1 /* Setting */,
 				56AF0AF12AE9F4B3009AF8A2 /* RealTimeView.swift */,
+				56C5A49A2B136BDE008ABCA0 /* TextLimiter.swift */,
 				5697A7D32AFF431400ADBBD1 /* InputManager.swift */,
 				5621651E2B0B85F2008E472B /* InputManager+Movement.swift */,
 				562165202B0B8CA6008E472B /* InputManager+Rest.swift */,
@@ -360,6 +363,7 @@
 				562165212B0B8CA6008E472B /* InputManager+Rest.swift in Sources */,
 				56AF0AFE2AEA4294009AF8A2 /* StopWatchView.swift in Sources */,
 				56AF0AFC2AEA3E95009AF8A2 /* PlayButton.swift in Sources */,
+				56C5A49B2B136BDE008ABCA0 /* TextLimiter.swift in Sources */,
 				56AF0AEA2AE8A867009AF8A2 /* MovementsViewModel.swift in Sources */,
 				56AF0AE82AE89B51009AF8A2 /* Movements.swift in Sources */,
 				56AF0AD92AE892B5009AF8A2 /* TimerApp.swift in Sources */,
