@@ -26,3 +26,12 @@ struct CommonTextfieldStyle: TextFieldStyle {
         }
     }
 }
+
+extension NumberFormatter {
+    static var twoDigits: NumberFormatter {
+        let formatter = NumberFormatter()
+        formatter.minimumIntegerDigits = 1
+        formatter.maximumIntegerDigits = 2
+        return formatter
+    }
+}

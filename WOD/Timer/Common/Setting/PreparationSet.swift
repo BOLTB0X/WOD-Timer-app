@@ -13,7 +13,7 @@ struct PreparationSet: View {
     @State private var isChange: Bool = false
     
     @Binding var showPopup: Bool
-    let preparationRange = Array(0...60)
+    let preparationRange = Array(1...60)
     
     var body: some View {
         NavigationView {
@@ -38,7 +38,7 @@ struct PreparationSet: View {
                     
                     // MARK: - set
                     if isChange  {
-                        SettingTextField(setBinding: $manager.selectedPreparationAmount, viewModel: manager)
+                        SettingTextField(setBinding: $manager.selectedPreparationAmount, title: "Preparation",viewModel: manager)
                     }
                     else {
                         SettingPicker(title: "Preparation",
@@ -50,6 +50,9 @@ struct PreparationSet: View {
                     }
                 }
             }
+        }
+        .onAppear {
+            manager.selectedPreparationAmount = viewModel.selectedPreparationAmount
         }
         .navigationTitle("Preparation")
         .navigationBarTitleDisplayMode(.inline)

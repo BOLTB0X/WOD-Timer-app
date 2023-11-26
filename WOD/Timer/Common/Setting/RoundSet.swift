@@ -39,7 +39,7 @@ struct RoundSet: View {
                     
                     // MARK: - set
                     if isChange  {
-                        SettingTextField(setBinding: $manager.selectedRoundAmount, viewModel: manager)
+                        SettingTextField(setBinding: $manager.selectedRoundAmount, title: "Round",viewModel: manager)
                     }
                     else {
                         SettingPicker(title: "round",
@@ -51,6 +51,9 @@ struct RoundSet: View {
                     }
                 }
             }
+        }
+        .onAppear {
+            manager.selectedRoundAmount = viewModel.selectedRoundAmount
         }
         .navigationTitle("Round")
         .navigationBarTitleDisplayMode(.inline)

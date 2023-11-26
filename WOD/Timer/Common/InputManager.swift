@@ -31,16 +31,4 @@ class InputManager: ObservableObject {
             selectedRoundAmount = newValue
         }
     }
-    
-    func blockZeros(_ newValue: String) -> Int {
-        // 0으로 시작하는 경우 0을 제거
-        if newValue.count > 1 && newValue.first != "0" {
-            return 0
-        }
-        
-        if let value = Int(newValue) {
-            return value
-        }
-        return 0
-    }
 }

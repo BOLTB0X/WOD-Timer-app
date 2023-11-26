@@ -58,6 +58,9 @@ struct MovementsSet: View {
                 }
             }
         }
+        .onAppear {
+            manager.selectedMovementAmount = viewModel.selectedMovementAmount
+        }
         .navigationTitle("Movements")
         .navigationBarTitleDisplayMode(.inline)
         .popupSettingToolbar(
