@@ -26,3 +26,9 @@ enum SimpleButton {
         }
     }
 }
+
+enum ScenePhase {
+    case active
+    case inactive
+    case background
+}

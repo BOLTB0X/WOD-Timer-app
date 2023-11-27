@@ -10,8 +10,9 @@ import SwiftUI
 struct RestSet: View {
     @EnvironmentObject var viewModel: WodViewModel
     @StateObject var manager = InputManager()
-    @State private var isChange: Bool = false
     @Binding var showPopup: Bool
+
+    @State private var isChange: Bool = false
     
     var body: some View {
         NavigationView {

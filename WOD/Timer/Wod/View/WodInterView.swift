@@ -10,7 +10,6 @@ import SwiftUI
 struct WodInterView: View {
     // MARK: - class
     @ObservedObject private var viewModel = WodViewModel.shared
-    @StateObject var simpleTimer = SimpleTimerManager.shared
     
     // MARK: - view 프로퍼티
     @State private var simpleButton: SimpleButton?
@@ -24,14 +23,15 @@ struct WodInterView: View {
                     // TODO: Simple NOW
                     Section(header: Text("Simple").font(.headline)) {
                         ForEach(viewModel.simpleArr, id: \.self) { btn in
-                                Button(btn.buttonText) {
-                                    simpleButton = btn
-                                    showPopup.toggle()
-                                }
-                                .buttonStyle(EffectButtonStyle(
-                                    text: viewModel.displaySetValue(btn.buttonText)))
+                            Button(btn.buttonText) {
+                                simpleButton = btn
+                                showPopup.toggle()
+                            }
+                            .buttonStyle(EffectButtonStyle(
+                                text: viewModel.displaySetValue(btn.buttonText)))
                         }
                         Button("Start") {
+                            viewModel.simpleStartTouched()
                             isStartBtn.toggle()
                         }
                         .buttonStyle(BlueButtonStyle())
@@ -44,9 +44,9 @@ struct WodInterView: View {
                     }
                 }
                 NavigationLink(destination: SimpleTimerView(), isActive: $viewModel.isSimpleStart) {
-                            EmptyView()
-                        }
-                       
+                    EmptyView()
+                }
+                
             }
             .navigationTitle("WOD / Interval")
             .navigationBarTitleDisplayMode(.inline)
@@ -57,12 +57,19 @@ struct WodInterView: View {
             .alert(isPresented: $isStartBtn) {
                 Alert(
                     title: Text("Confirm"),
-                    message: Text("Are you sure you want to start?"),
+                    message: Text("""
+    Are you sure you want to start?
+    Total Round: \(viewModel.selectedRoundAmount)
+    Select Preparation: \(viewModel.selectedPreparationAmount)
+    Select Movement: \(String(format: "%02d:%02d:%02d", viewModel.selectedMovementAmount.hours, viewModel.selectedMovementAmount.minutes, viewModel.selectedMovementAmount.seconds))
+    Select Rest: \(viewModel.selectedRestAmount.totalSeconds)
+    Total Second: \(viewModel.simpleTotalTime)
+""")
+                    .font(.subheadline),
                     primaryButton: .default(Text("Start")) {
-                        viewModel.simpleStartButtonTouched()
                         viewModel.isSimpleStart.toggle()
                     },
-                    secondaryButton: .cancel(Text("Cancel"))
+                    secondaryButton: .cancel(Text("Cancel").foregroundColor(.secondary))
                 )
             }
         }
@@ -78,10 +85,10 @@ struct WodInterView: View {
             RoundSet(showPopup: $showPopup)
         case .preparation:
             PreparationSet(showPopup: $showPopup)
-
+            
         case .movements:
             MovementsSet(showPopup: $showPopup)
-
+            
         default:
             RestSet(showPopup: $showPopup)
         }

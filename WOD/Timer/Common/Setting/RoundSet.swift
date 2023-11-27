@@ -14,7 +14,6 @@ struct RoundSet: View {
     @State private var isChange: Bool = false
     
     @Binding var showPopup: Bool
-    let roundRange = Array(1...99)
     
     var body: some View {
         NavigationView {
@@ -43,7 +42,7 @@ struct RoundSet: View {
                     }
                     else {
                         SettingPicker(title: "round",
-                                      range: roundRange,
+                                      range: manager.roundRange,
                                       binding: $manager.selectedRoundAmount)
                         .onTapGesture {
                             isChange.toggle()

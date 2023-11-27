@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct SimpleTimerView: View {
-    @ObservedObject var timer = SimpleTimerManager.shared
+    
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: 0) {
-                Text("\(timer.totalTime)")
+                Text(",)")
             }
         }
     }

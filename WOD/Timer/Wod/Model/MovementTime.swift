@@ -65,3 +65,14 @@ struct MovementTime {
         self.init(seconds: Int(totalSeconds))
     }
 }
+
+// MARK: - Round
+struct Round {
+    var preparationTime: MovementTime
+    var movementTime: MovementTime
+    var restTime: MovementTime
+    
+    var totalTime: Int {
+        preparationTime.totalSeconds + movementTime.totalSeconds + restTime.totalSeconds
+    }
+}
