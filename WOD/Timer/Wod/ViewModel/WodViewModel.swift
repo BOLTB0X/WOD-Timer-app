@@ -14,9 +14,16 @@ class WodViewModel: InputManager {
     @Published var isSimpleStart: Bool = false
     @Published var isDetailStart: Bool = false
     
+    @Published var simpleRounds: [Round]
+    var simpleTotalTime:Int = 0
+    var timerCancellable: AnyCancellable?
+    
     let simpleArr: [SimpleButton] = [.round, .preparation, .movements, .rest]
     
-    var simpleTimerManager: SimpleTimerManager = SimpleTimerManager.shared
+    private override init() {
+        simpleRounds = []
+        timerCancellable = nil
+    }
     
     // MARK: - displaySetValue
     func displaySetValue(_ state: String) -> String {
@@ -35,19 +42,5 @@ class WodViewModel: InputManager {
         default:
             return ""
         }
-    }
-    
-    // MARK: - simpleStartButtonTouched
-    func simpleStartButtonTouched() {
-//         let round = Round(
-//             preparationTime: MovementTime(seconds: selectedPreparationAmount),
-//             movementTime: selectedMovementAmount,
-//             restTime: MovementTime(seconds: selectedRestAmount)
-//         )
-//         
-//         // 라운드 배열로 타이머 매니저에 전달
-//         let rounds = Array(repeating: round, count: selectedRoundAmount)
-//        
-//         simpleTimerManager = SimpleTimerManager(rounds: rounds)
     }
 }

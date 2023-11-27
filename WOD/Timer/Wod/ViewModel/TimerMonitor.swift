@@ -1,15 +1,20 @@
 //
-//  GeneralTimerViewModel.swift
+//  TimerViewModel.swift
 //  Timer
 //
-//  Created by lkh on 10/27/23.
+//  Created by lkh on 11/27/23.
 //
 
 import Foundation
 import Combine
 
-class StopWatchViewModel: ObservableObject {
-    @Published var manager: StopWatchModel = StopWatchModel(secElapsed: 0.000, lapElapsed: 0.000, lapTimes: [])
+class TimerMonitor: ObservableObject {
+    @Published var realTime: Double
+    
+    init(realTime: Double) {
+        self.realTime = realTime
+    }
+    
     private var timerCancellable: AnyCancellable?
     
     enum ScenePhase {
@@ -53,54 +58,12 @@ class StopWatchViewModel: ObservableObject {
         }
     }
     
-    // MARK: - ViewTimer Control
-    func viewTimerRecord() {
-        switch mode {
-        case .running:
-            userRecordTimer()
-        case .stopped:
-            return
-        case .paused:
-            userStopTimer()
-        }
-    }
-    
-    func viewTimerStartOrPause() {
-        switch mode {
-        case .running:
-            userPauseTimer()
-        case .paused:
-            userStartTimer()
-        case .stopped:
-            userStartTimer()
-        }
-    }
-    
-    // MARK: - user Control
-    func userStopTimer() {
-        mode = .stopped
-    }
-    
-    func userStartTimer() {
-        mode = .running
-    }
-    
-    func userPauseTimer() {
-        mode = .paused
-    }
-    
-    func userRecordTimer() {
-        manager.lapTimes.append(manager.selectedLap)
-        manager.lapElapsed = 0.000
-    }
-    
     // MARK: - Timer Control
     func startTimer() {
         timerCancellable = Timer.publish(every: 0.01, on: .main, in: .common)
             .autoconnect()
             .sink(receiveValue: { _ in
-                self.manager.secElapsed += 0.01
-                self.manager.lapElapsed += 0.01
+                self.realTime -= 0.01
                 self.objectWillChange.send()
             }
         )
@@ -108,9 +71,7 @@ class StopWatchViewModel: ObservableObject {
     
     func stopTimer() {
         timerCancellable?.cancel()
-        manager.secElapsed = 0.000
-        manager.lapElapsed = 0.000
-        manager.lapTimes.removeAll()
+        realTime = 0.00
     }
     
     func pauseTimer() {

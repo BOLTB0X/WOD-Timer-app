@@ -13,7 +13,6 @@ struct PreparationSet: View {
     @State private var isChange: Bool = false
     
     @Binding var showPopup: Bool
-    let preparationRange = Array(1...60)
     
     var body: some View {
         NavigationView {
@@ -42,7 +41,7 @@ struct PreparationSet: View {
                     }
                     else {
                         SettingPicker(title: "Preparation",
-                                      range: preparationRange,
+                                      range: manager.preparationRange,
                                       binding: $manager.selectedPreparationAmount)
                         .onTapGesture {
                             isChange.toggle()
