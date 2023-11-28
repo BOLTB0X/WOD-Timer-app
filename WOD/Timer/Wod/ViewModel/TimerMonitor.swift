@@ -8,73 +8,59 @@
 import Foundation
 import Combine
 
+// MARK: - TimerMonitor
 class TimerMonitor: ObservableObject {
-    @Published var realTime: Double
-    
-    init(realTime: Double) {
-        self.realTime = realTime
-    }
-    
+    @Published var totalTimeForCurrentSelection: Int
+    @Published var secondsToCompletion: Int = 0
+    @Published var completionDate = Date()
+
     private var timerCancellable: AnyCancellable?
     
-    enum ScenePhase {
+    init(totalTimeForCurrentSelection: Int) {
+        self.totalTimeForCurrentSelection = totalTimeForCurrentSelection
+    }
+
+    enum TimerState {
         case active
-        case inactive
-        case background
+        case paused
+        case resumed
+        case cancelled
     }
 
-    enum Mode {
-        case running // 실행
-        case paused // 잠시 멈춤
-        case stopped // 진짜 멈춤
-    }
-
-    @Published var scene: ScenePhase = .active {
+    @Published var state: TimerState = .cancelled {
         didSet {
-            switch scene {
-            case .active:
-                break;
-            case .inactive:
-                break;
-            case .background:
-                break;
+            switch state {
+            case .cancelled: // 취소
+                timerCancellable?.cancel()
+                secondsToCompletion = 0
+
+            case .active: // 실행
+                startTimer()
+                secondsToCompletion = totalTimeForCurrentSelection
+                updateCompletionDate()
+
+            case .paused: // 중지
+                timerCancellable?.cancel()
+
+            case .resumed: // 재개
+                startTimer()
+                updateCompletionDate()
             }
         }
     }
-        
-    @Published var mode: Mode = .stopped {
-        didSet {
-            switch mode {
-            case .running:
-                startTimer() // 실행
-                break
-            case .paused:
-                pauseTimer() // 일시정지
-                break
-            case .stopped:
-                stopTimer() // 종료
-                break
-            }
-        }
-    }
-    
-    // MARK: - Timer Control
-    func startTimer() {
-        timerCancellable = Timer.publish(every: 0.01, on: .main, in: .common)
+
+    private func startTimer() {
+        timerCancellable = Timer.publish(every: 1.0, on: .main, in: .common)
             .autoconnect()
-            .sink(receiveValue: { _ in
-                self.realTime -= 0.01
-                self.objectWillChange.send()
+            .sink { _ in
+                self.secondsToCompletion -= 1
+                if self.secondsToCompletion <= 0 {
+                    self.state = .cancelled
+                }
             }
-        )
     }
-    
-    func stopTimer() {
-        timerCancellable?.cancel()
-        realTime = 0.00
-    }
-    
-    func pauseTimer() {
-        timerCancellable?.cancel()
+
+    private func updateCompletionDate() {
+        completionDate = Date().addingTimeInterval(Double(secondsToCompletion))
     }
 }

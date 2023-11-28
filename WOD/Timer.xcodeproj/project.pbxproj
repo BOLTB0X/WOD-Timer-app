@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		562164CF2B07AA5C008E472B /* MovementTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562164CE2B07AA5C008E472B /* MovementTime.swift */; };
-		562164D22B08D6E5008E472B /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562164D12B08D6E5008E472B /* Extension+String.swift */; };
+		562164CF2B07AA5C008E472B /* WodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562164CE2B07AA5C008E472B /* WodModel.swift */; };
+		562164D22B08D6E5008E472B /* Extension+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562164D12B08D6E5008E472B /* Extension+Type.swift */; };
 		562164D42B08D7F1008E472B /* TextfieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562164D32B08D7F1008E472B /* TextfieldStyle.swift */; };
 		562164D92B08DA26008E472B /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562164D82B08DA26008E472B /* Enum.swift */; };
 		562164DB2B08F9D7008E472B /* SimpleTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562164DA2B08F9D7008E472B /* SimpleTimerView.swift */; };
@@ -54,8 +54,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		562164CE2B07AA5C008E472B /* MovementTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementTime.swift; sourceTree = "<group>"; };
-		562164D12B08D6E5008E472B /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
+		562164CE2B07AA5C008E472B /* WodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WodModel.swift; sourceTree = "<group>"; };
+		562164D12B08D6E5008E472B /* Extension+Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Type.swift"; sourceTree = "<group>"; };
 		562164D32B08D7F1008E472B /* TextfieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextfieldStyle.swift; sourceTree = "<group>"; };
 		562164D82B08DA26008E472B /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		562164DA2B08F9D7008E472B /* SimpleTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTimerView.swift; sourceTree = "<group>"; };
@@ -117,7 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				56AC34152AF930EC00A100BF /* Extension+View.swift */,
-				562164D12B08D6E5008E472B /* Extension+String.swift */,
+				562164D12B08D6E5008E472B /* Extension+Type.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -127,7 +127,7 @@
 			children = (
 				562164D82B08DA26008E472B /* Enum.swift */,
 				56AF0B4C2AED4719009AF8A2 /* SimpleModel.swift */,
-				562164CE2B07AA5C008E472B /* MovementTime.swift */,
+				562164CE2B07AA5C008E472B /* WodModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -367,7 +367,7 @@
 				56AF0B002AEA4955009AF8A2 /* RecordButton.swift in Sources */,
 				5697A7D62AFF4B9B00ADBBD1 /* WodViewModel.swift in Sources */,
 				56C5A4BF2B14B570008ABCA0 /* WodViewModel+SimpleTimer.swift in Sources */,
-				562164CF2B07AA5C008E472B /* MovementTime.swift in Sources */,
+				562164CF2B07AA5C008E472B /* WodModel.swift in Sources */,
 				562164DB2B08F9D7008E472B /* SimpleTimerView.swift in Sources */,
 				5697A7DA2AFF4E3400ADBBD1 /* SettingTextField.swift in Sources */,
 				5621651D2B0B8561008E472B /* SettingTwoTextField.swift in Sources */,
@@ -376,7 +376,7 @@
 				56AF0AF22AE9F4B3009AF8A2 /* RealTimeView.swift in Sources */,
 				56AF0AF02AE9606F009AF8A2 /* TimeSettingView.swift in Sources */,
 				562164D92B08DA26008E472B /* Enum.swift in Sources */,
-				562164D22B08D6E5008E472B /* Extension+String.swift in Sources */,
+				562164D22B08D6E5008E472B /* Extension+Type.swift in Sources */,
 				5697A7D02AFE73C300ADBBD1 /* RoundSet.swift in Sources */,
 				562164D42B08D7F1008E472B /* TextfieldStyle.swift in Sources */,
 				56AF0B3F2AEB9B94009AF8A2 /* WodInterViewModel.swift in Sources */,

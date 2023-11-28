@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SimpleTimerView: View {
+    @EnvironmentObject private var viewModel: WodViewModel
     
     var body: some View {
         NavigationView {
@@ -20,4 +21,5 @@ struct SimpleTimerView: View {
 
 #Preview {
     SimpleTimerView()
+        .environmentObject(WodViewModel())
 }
