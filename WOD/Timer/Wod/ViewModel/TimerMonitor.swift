@@ -46,6 +46,7 @@ class TimerMonitor: ObservableObject {
         timerCancellable = Timer.publish(every: 1.0, on: .main, in: .common)
             .autoconnect()
             .sink { _ in
+                print(self.secondsToCompletion)
                 self.secondsToCompletion -= 1
                 if self.secondsToCompletion <= 0 {
                     self.state = .completed

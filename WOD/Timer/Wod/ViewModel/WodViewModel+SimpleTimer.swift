@@ -39,8 +39,11 @@ extension WodViewModel {
     
     // MARK: - startSimpleRoutine
     func startSimpleRoutine() {
-        guard !simpleRounds.isEmpty else { return }
-        
+        print("실행")
+        guard !simpleRounds.isEmpty else {
+            print("비어있음")
+            return
+        }
         // 첫 번째 라운드의 타이머 설정
         startTimerForCurrentRound()
     }
@@ -48,12 +51,12 @@ extension WodViewModel {
     // MARK: - startTimerForCurrentRound
     func startTimerForCurrentRound() {
         guard currentRoundIndex < simpleRounds.count else {
-            // 모든 라운드가 완료되었을 때의 처리
+            print("루프 순회 완료")
             return
         }
         
         let currentRound = simpleRounds[currentRoundIndex]
-        
+        print("타이머 실행")
         // 각 타이머 시작
         startTimer(for: currentRound.preparationTime) { // 준비
             self.startTimer(for: currentRound.movementTime) {
@@ -80,7 +83,7 @@ extension WodViewModel {
     // MARK: - moveToNextRound
     // 다음 라운드로 이동
     func moveToNextRound() {
-        guard currentRoundIndex < simpleRounds.count - 1 else {
+        guard currentRoundIndex < simpleRounds.count else {
             // 모든 라운드가 완료되었을 때의 처리
             return
         }

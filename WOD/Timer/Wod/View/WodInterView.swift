@@ -43,7 +43,7 @@ struct WodInterView: View {
                         
                     }
                 }
-                NavigationLink(destination: SimpleTimerView(), isActive: $viewModel.isSimpleStart) {
+                NavigationLink(destination: SimpleTimerView().environmentObject(viewModel), isActive: $viewModel.isSimpleStart) {
                     EmptyView()
                 }
                 
@@ -67,6 +67,7 @@ struct WodInterView: View {
 """)
                     .font(.subheadline),
                     primaryButton: .default(Text("Start")) {
+                        viewModel.simpleStartTouched()
                         viewModel.isSimpleStart.toggle()
                     },
                     secondaryButton: .cancel(Text("Cancel").foregroundColor(.secondary))
