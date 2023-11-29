@@ -43,6 +43,15 @@
     [multiple Combine publishers 블로그](https://swiftwithmajid.com/2021/05/12/combining-multiple-combine-publishers-in-swift/)
     <br/>
 
+- Timer
+    <br/>
+    [참고 타이머 프로젝트 1](https://digitalbunker.dev/recreating-the-ios-timer-in-swiftui/)
+    <br/>
+
+    [참고 타이머 프로젝트 2](https://programmingwithswift.com/build-a-stopwatch-app-with-swiftui/)
+    <br/>
+
+
 - 기타
     <br/>
     [연산자 오버로딩 참고](https://kka7.tistory.com/73)
