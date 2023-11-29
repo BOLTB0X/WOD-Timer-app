@@ -31,5 +31,8 @@ struct RealTimeView: View {
         RealTimeView(time: "01:23:45", fontSize: 90)
             .previewLayout(.sizeThatFits)
         //.preferredColorScheme(.dark)
+        
+        RealTimeView(time: "23:45", fontSize: 125)
+            .previewLayout(.sizeThatFits)
     }
 }

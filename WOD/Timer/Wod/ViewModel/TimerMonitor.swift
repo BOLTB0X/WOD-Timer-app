@@ -20,17 +20,10 @@ class TimerMonitor: ObservableObject {
         self.totalTimeForCurrentSelection = totalTimeForCurrentSelection
     }
 
-    enum TimerState {
-        case active
-        case paused
-        case resumed
-        case cancelled
-    }
-
     @Published var state: TimerState = .cancelled {
         didSet {
             switch state {
-            case .cancelled: // 취소
+            case .cancelled, .completed: // 취소 또는 완료
                 timerCancellable?.cancel()
                 secondsToCompletion = 0
 
@@ -55,7 +48,8 @@ class TimerMonitor: ObservableObject {
             .sink { _ in
                 self.secondsToCompletion -= 1
                 if self.secondsToCompletion <= 0 {
-                    self.state = .cancelled
+                    self.state = .completed
+                    self.timerCancellable?.cancel()
                 }
             }
     }

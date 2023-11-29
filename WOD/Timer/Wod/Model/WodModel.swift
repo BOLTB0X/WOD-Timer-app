@@ -72,6 +72,10 @@ struct Round {
     var movementTime: MovementTime
     var restTime: MovementTime
     
+    var elapsedPreparationTime: MovementTime = MovementTime(seconds: 0)
+    var elapsedMovementTime: MovementTime = MovementTime(seconds: 0)
+    var elapsedRestTime: MovementTime = MovementTime(seconds: 0)
+    
     var totalTime: Int {
         preparationTime.totalSeconds + movementTime.totalSeconds + restTime.totalSeconds
     }

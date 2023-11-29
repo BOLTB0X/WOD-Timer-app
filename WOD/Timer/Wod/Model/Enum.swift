@@ -7,6 +7,8 @@
 
 import Foundation
 
+// MARK: - SimpleButton
+// 각 버튼 별
 enum SimpleButton {
     case round
     case preparation
@@ -27,8 +29,27 @@ enum SimpleButton {
     }
 }
 
+// MARK: - ScenePhase
+// 앱이 어디서 실행되는지 구분
 enum ScenePhase {
     case active
     case inactive
     case background
+}
+
+// MARK: - TimerState
+// 타이머 실행 단계
+enum TimerState {
+    case active
+    case paused
+    case resumed
+    case cancelled
+    case completed
+}
+
+// MARK: - SimpleRoundPhase
+enum SimpleRoundPhase {
+    case preparation
+    case movement
+    case rest
 }
