@@ -40,11 +40,27 @@ enum ScenePhase {
 // MARK: - TimerState
 // 타이머 실행 단계
 enum TimerState {
-    case active
-    case paused
-    case resumed
-    case cancelled
-    case completed
+    case active // 실행
+    case paused // 중단
+    case resumed // 재개
+    case cancelled // 취소
+    case completed // 완료
+    
+    // 현재 타이머 상태를 문자열로
+    var statusText: String {
+         switch self {
+         case .active:
+             return "Active"
+         case .paused:
+             return "Paused"
+         case .resumed:
+             return "Resumed"
+         case .cancelled:
+             return "Cancelled"
+         case .completed:
+             return "Completed"
+         }
+     }
 }
 
 // MARK: - SimpleRoundPhase
@@ -52,4 +68,19 @@ enum SimpleRoundPhase {
     case preparation
     case movement
     case rest
+    case completed
+    
+    // 현재 라운드 단계를 문자열로
+    var phaseText: String {
+        switch self {
+        case .preparation:
+            return "Preparation"
+        case .movement:
+            return "Movement"
+        case .rest:
+            return "Rest"
+        case .completed:
+            return "Completed"
+        }
+    }
 }

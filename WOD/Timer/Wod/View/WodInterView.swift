@@ -13,8 +13,11 @@ struct WodInterView: View {
     
     // MARK: - view 프로퍼티
     @State private var simpleButton: SimpleButton?
+    @State private var isSimpleStart: Bool = false
     @State private var showPopup: Bool = false
     @State private var isStartBtn: Bool = false
+    
+    private let simpleArr: [SimpleButton] = [.round, .preparation, .movements, .rest]
     
     var body: some View {
         NavigationView { // for navigationTitle 이용 및 뷰 구성
@@ -22,16 +25,15 @@ struct WodInterView: View {
                 List {
                     // TODO: Simple NOW
                     Section(header: Text("Simple").font(.headline)) {
-                        ForEach(viewModel.simpleArr, id: \.self) { btn in
+                        ForEach(simpleArr, id: \.self) { btn in
                             Button(btn.buttonText) {
                                 simpleButton = btn
                                 showPopup.toggle()
                             }
                             .buttonStyle(EffectButtonStyle(
-                                text: viewModel.displaySetValue(btn.buttonText)))
+                                text: viewModel.displaySimpleSetValue(btn.buttonText)))
                         }
                         Button("Start") {
-                            viewModel.simpleStartTouched()
                             isStartBtn.toggle()
                         }
                         .buttonStyle(BlueButtonStyle())
@@ -43,7 +45,7 @@ struct WodInterView: View {
                         
                     }
                 }
-                NavigationLink(destination: SimpleTimerView().environmentObject(viewModel), isActive: $viewModel.isSimpleStart) {
+                NavigationLink(destination: SimpleTimerView().environmentObject(viewModel), isActive: $isSimpleStart) {
                     EmptyView()
                 }
                 
@@ -57,18 +59,11 @@ struct WodInterView: View {
             .alert(isPresented: $isStartBtn) {
                 Alert(
                     title: Text("Confirm"),
-                    message: Text("""
-    Are you sure you want to start?
-    Total Round: \(viewModel.selectedRoundAmount)
-    Select Preparation: \(viewModel.selectedPreparationAmount)
-    Select Movement: \(String(format: "%02d:%02d:%02d", viewModel.selectedMovementAmount.hours, viewModel.selectedMovementAmount.minutes, viewModel.selectedMovementAmount.seconds))
-    Select Rest: \(viewModel.selectedRestAmount.totalSeconds)
-    Total Second: \(viewModel.simpleTotalTime)
-""")
+                    message: Text(viewModel.confirmationMessage)
                     .font(.subheadline),
                     primaryButton: .default(Text("Start")) {
                         viewModel.simpleStartTouched()
-                        viewModel.isSimpleStart.toggle()
+                        isSimpleStart.toggle()
                     },
                     secondaryButton: .cancel(Text("Cancel").foregroundColor(.secondary))
                 )

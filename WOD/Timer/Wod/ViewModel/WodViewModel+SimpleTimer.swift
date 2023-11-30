@@ -8,125 +8,76 @@
 import Foundation
 import Combine
 
-// MARK: - Simple Timer
+// MARK: - WodViewModel+SimpleTimer
 extension WodViewModel {
-    // MARK: - displaySetValue
-    func displaySetValue(_ state: String) -> String {
-        switch state {
-        case "Round":
-            return String(selectedRoundAmount)
-        case "Preparation":
-            return String(format: "00:%02d", selectedPreparationAmount)
-        case "Movements":
-            return String(format: "%02d:%02d:%02d",
-                          selectedMovementAmount.hours,
-                          selectedMovementAmount.minutes,
-                          selectedMovementAmount.seconds)
-        case "Rest":
-            return String(format: "%02d:%02d", selectedRestAmount.minutes,selectedRestAmount.seconds)
-        default:
-            return ""
-        }
-    }
+    // MARK: - SimpleTimer Methods
     
     // MARK: - simpleStartTouched
+    // 스타트 신호를 받으면 타이머을 돌린 배열에 넣어줌
     func simpleStartTouched() {
-        simpleRounds = Array(repeating: Round(preparationTime: MovementTime(seconds: selectedPreparationAmount),
-                                              movementTime: selectedMovementAmount,
-                                              restTime: selectedRestAmount), count: selectedRoundAmount)
-        simpleTotalTime = simpleRounds.reduce(0) { $0 + $1.totalTime }
-    }
-    
-    // MARK: - startSimpleRoutine
-    func startSimpleRoutine() {
-        print("실행")
-        guard !simpleRounds.isEmpty else {
-            print("비어있음")
-            return
-        }
-        // 첫 번째 라운드의 타이머 설정
-        startTimerForCurrentRound()
-    }
-    
-    // MARK: - startTimerForCurrentRound
-    func startTimerForCurrentRound() {
-        guard currentRoundIndex < simpleRounds.count else {
-            print("루프 순회 완료")
-            return
-        }
-        
-        let currentRound = simpleRounds[currentRoundIndex]
-        print("타이머 실행")
-        // 각 타이머 시작
-        startTimer(for: currentRound.preparationTime) { // 준비
-            self.startTimer(for: currentRound.movementTime) {
-                self.startTimer(for: currentRound.restTime) {
-                    // 모든 타이머가 완료되면 다음 라운드로 이동
-                    self.moveToNextRound()
-                }
+        for i in 0..<selectedRoundAmount {
+            if i == selectedRoundAmount - 1 {
+                simpleRounds.append((selectedPreparationAmount, selectedMovementAmount.totalSeconds, 0))
+            } else {
+                simpleRounds.append((selectedPreparationAmount, selectedMovementAmount.totalSeconds, selectedRestAmount.totalSeconds))
             }
         }
-    }
-    
-    // MARK: - startTimer
-    func startTimer(for time: MovementTime, completion: @escaping () -> Void) {
-        let timer = TimerMonitor(totalTimeForCurrentSelection: time.totalSeconds)
         
-        timer.$state.sink { state in
-            guard state == .completed else { return }
-            completion()
-        }.store(in: &cancellables)
-        
-        timer.state = .active
+        simpleTotalTime = simpleRounds.map { $0.0 + $0.1 + $0.2 }.reduce(0, +)
+        print(simpleRounds, simpleTotalTime)
+        return
     }
     
     // MARK: - moveToNextRound
     // 다음 라운드로 이동
     func moveToNextRound() {
-        guard currentRoundIndex < simpleRounds.count else {
-            // 모든 라운드가 완료되었을 때의 처리
+        if simpleRoundIdx == nil {
+            simpleRoundIdx = 0
+        } else {
+            simpleRoundIdx! += 1
+        }
+        
+        guard simpleRoundIdx! < simpleRounds.count else {
+            simpleRoundPhase = .completed
+            print("완료")
             return
         }
         
-        // 현재 라운드 인덱스를 증가시킴
-        currentRoundIndex += 1
-        
-        // 다음 라운드를 위한 타이머 설정
-        startTimerForCurrentRound()
+        let currentRound = simpleRounds[simpleRoundIdx!]
+        simpleDisplay = currentRound.0
+        simpleRoundPhase = .preparation
+        print(simpleRoundPhase?.phaseText ?? "")
+        simpleState = .active
+        return
     }
     
-    // MARK: - pauseTimer
-    func pauseTimer() {
-        cancellables.forEach { $0.cancel() }
-        simpleRounds[currentRoundIndex].elapsedMovementTime = simpleRounds[currentRoundIndex].movementTime
-        simpleRounds[currentRoundIndex].elapsedRestTime = simpleRounds[currentRoundIndex].restTime
-        timerState = .paused
-    }
-    
-    // MARK: - resumeTimer
-    func resumeTimer() {
-        startTimerForCurrentRound()
-        timerState = .resumed
-    }
-    
-    // MARK: - displayCurrentPhase
-    func displayCurrentPhase() -> String {
-        guard currentRoundIndex < simpleRounds.count else {
-            return ""
-        }
-        
-        let currentPhase = currentSimpleRoundPhase
+    // MARK: - moveToNextRoundPhase
+    // 라운드의 다음 단계로 이동
+    func moveToNextRoundPhase() {
+        guard let currentPhase = simpleRoundPhase else { return }
+        let currentRound = simpleRounds[simpleRoundIdx!]
         
         switch currentPhase {
         case .preparation:
-            return String(format: "00:%02d", simpleRounds[currentRoundIndex].elapsedPreparationTime.seconds)
+//            let currentRound = simpleRounds[simpleRoundIdx!]
+            simpleDisplay = currentRound.1
+            simpleRoundPhase = .movement
+            simpleState = .active
+            
         case .movement:
-            return String(format: "%02d:%02d:%02d",
-                          simpleRounds[currentRoundIndex].elapsedMovementTime.hours,
-                          simpleRounds[currentRoundIndex].elapsedMovementTime.minutes,
-                          simpleRounds[currentRoundIndex].elapsedMovementTime.seconds)
+//            let currentRound = simpleRounds[simpleRoundIdx!]
+            if simpleRoundIdx! < selectedRoundAmount - 1 {
+                simpleDisplay = currentRound.2
+            }
+            simpleRoundPhase = .rest
+            simpleState = .active
+            
         case .rest:
-            return String(format: "%02d:%02d", simpleRounds[currentRoundIndex].elapsedRestTime.minutes, simpleRounds[currentRoundIndex].elapsedRestTime.seconds)
+            // 현재 라운드의 모든 단계가 완료된 경우 다음 라운드로 이동
+            moveToNextRound()
+            
+        default:
+            break
         }
     }
 }
