@@ -8,28 +8,24 @@
 import SwiftUI
 
 struct EffectButtonStyle: ButtonStyle {
-    let text: String
     func makeBody(configuration: Configuration) -> some View {
-        HStack {
-            configuration.label
-                .scaleEffect(configuration.isPressed ? 0.88 : 1.0)
-            Spacer()
-            Text(text)
-        }
+        configuration.label
+            .frame(maxWidth: .infinity)
+            .scaleEffect(configuration.isPressed ? 0.88 : 1.0)
     }
 }
 
 struct InsetRoundScaleButton: ButtonStyle {
-  var labelColor = Color.white
-  var backgroundColor = Color.blue
-  
-  func makeBody(configuration: Configuration) -> some View {
-    configuration.label
-      .foregroundColor(labelColor)
-      .padding()
-      .background(Capsule().fill(backgroundColor))
-      .scaleEffect(configuration.isPressed ? 0.88 : 1.0)
-  }
+    var labelColor = Color.white
+    var backgroundColor = Color.blue
+    
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .foregroundColor(labelColor)
+            .padding()
+            .background(Capsule().fill(backgroundColor))
+            .scaleEffect(configuration.isPressed ? 0.88 : 1.0)
+    }
 }
 
 struct BlueButtonStyle: ButtonStyle {

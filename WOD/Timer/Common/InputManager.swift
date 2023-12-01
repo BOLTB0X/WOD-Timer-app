@@ -22,5 +22,5 @@ class InputManager: ObservableObject {
     let preparationRange = Array(1...59)
     let hoursRange = Array(0...99)
     let minutesRange = Array(0...59)
-    let secondsRange = Array(0...59)
+    let secondsRange = Array(1...59)
 }

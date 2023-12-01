@@ -26,25 +26,21 @@ struct WodInterView: View {
                     // TODO: Simple NOW
                     Section(header: Text("Simple").font(.headline)) {
                         ForEach(simpleArr, id: \.self) { btn in
-                            Button(btn.buttonText) {
-                                simpleButton = btn
-                                showPopup.toggle()
-                            }
-                            .buttonStyle(EffectButtonStyle(
-                                text: viewModel.displaySimpleSetValue(btn.buttonText)))
+                            settingButtonRow(btn)
                         }
+                        
                         Button("Start") {
                             isStartBtn.toggle()
                         }
                         .buttonStyle(BlueButtonStyle())
                     }
                     
-                    
-                    // TODO: 지난것들
+                    // TODO: Detail
                     Section(header: Text("Detail").font(.headline)) {
                         
                     }
                 }
+                
                 NavigationLink(destination: SimpleTimerView().environmentObject(viewModel), isActive: $isSimpleStart) {
                     EmptyView()
                 }
@@ -52,15 +48,17 @@ struct WodInterView: View {
             }
             .navigationTitle("WOD / Interval")
             .navigationBarTitleDisplayMode(.inline)
+            // MARK: - 팝업
             .popupNavigationView(show: $showPopup) {
-                switchForButton()
+                displayPopup()
                     .environmentObject(viewModel)
             }
+            // MARK: - 경고창
             .alert(isPresented: $isStartBtn) {
                 Alert(
                     title: Text("Confirm"),
                     message: Text(viewModel.confirmationMessage)
-                    .font(.subheadline),
+                        .font(.subheadline),
                     primaryButton: .default(Text("Start")) {
                         viewModel.simpleStartTouched()
                         isSimpleStart.toggle()
@@ -74,17 +72,35 @@ struct WodInterView: View {
         }
     }
     
+    // MARK: - ViewBuilder
+    // ..
+    // MARK: - settingButtonRow
     @ViewBuilder
-    private func switchForButton() -> some View {
+    private func settingButtonRow(_ btn: SimpleButton) -> some View {
+        Button(action: {
+            simpleButton = btn
+            showPopup.toggle()
+        }, label: {
+            HStack(alignment: .center, spacing: 0) {
+                Text(btn.buttonText)
+                Spacer()
+                Text(viewModel.displaySimpleSetValue(btn.buttonText))
+            }
+            .contentShape(Rectangle())
+        })
+        .buttonStyle(EffectButtonStyle())
+    }
+    
+    // MARK: - displayPopup
+    @ViewBuilder
+    private func displayPopup() -> some View {
         switch simpleButton {
         case .round:
             RoundSet(showPopup: $showPopup)
         case .preparation:
             PreparationSet(showPopup: $showPopup)
-            
         case .movements:
             MovementsSet(showPopup: $showPopup)
-            
         default:
             RestSet(showPopup: $showPopup)
         }
