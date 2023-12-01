@@ -47,7 +47,7 @@ struct RestSet: View {
                             
                             Spacer()
                             
-                            SettingPicker(title: "sec", range: manager.minutesRange, binding: $manager.selectedRestAmount.seconds)
+                            SettingPicker(title: "sec", range: manager.secondsRange, binding: $manager.selectedRestAmount.seconds)
                         }
                         .onTapGesture {
                             isChange.toggle()

@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct SettingTextField: View {
     @Binding var setBinding: Int
     @FocusState private var focusedField: Bool

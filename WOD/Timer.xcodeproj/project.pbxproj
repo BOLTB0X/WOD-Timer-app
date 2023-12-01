@@ -46,6 +46,7 @@
 		56AF0B312AEB5F16009AF8A2 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF0B302AEB5F16009AF8A2 /* MainView.swift */; };
 		56AF0B412AEB9C33009AF8A2 /* StopWatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF0B402AEB9C33009AF8A2 /* StopWatchViewModel.swift */; };
 		56C4F6242B184195009D2721 /* WodViewModel+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C4F6232B184195009D2721 /* WodViewModel+View.swift */; };
+		56C4F64B2B19F4DF009D2721 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C4F64A2B19F4DF009D2721 /* SwiftUIView.swift */; };
 		56C5A49B2B136BDE008ABCA0 /* TextLimiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C5A49A2B136BDE008ABCA0 /* TextLimiter.swift */; };
 		56C5A4BF2B14B570008ABCA0 /* WodViewModel+SimpleTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C5A4BE2B14B570008ABCA0 /* WodViewModel+SimpleTimer.swift */; };
 /* End PBXBuildFile section */
@@ -92,6 +93,7 @@
 		56AF0B302AEB5F16009AF8A2 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		56AF0B402AEB9C33009AF8A2 /* StopWatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchViewModel.swift; sourceTree = "<group>"; };
 		56C4F6232B184195009D2721 /* WodViewModel+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WodViewModel+View.swift"; sourceTree = "<group>"; };
+		56C4F64A2B19F4DF009D2721 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		56C5A49A2B136BDE008ABCA0 /* TextLimiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLimiter.swift; sourceTree = "<group>"; };
 		56C5A4BE2B14B570008ABCA0 /* WodViewModel+SimpleTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WodViewModel+SimpleTimer.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,6 +132,7 @@
 			children = (
 				56AF0B282AEB5CEA009AF8A2 /* WodInterView.swift */,
 				562164DA2B08F9D7008E472B /* SimpleTimerView.swift */,
+				56C4F64A2B19F4DF009D2721 /* SwiftUIView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -138,8 +141,8 @@
 			isa = PBXGroup;
 			children = (
 				5697A7D52AFF4B9B00ADBBD1 /* WodViewModel.swift */,
-				56C4F6232B184195009D2721 /* WodViewModel+View.swift */,
 				56C5A4BE2B14B570008ABCA0 /* WodViewModel+SimpleTimer.swift */,
+				56C4F6232B184195009D2721 /* WodViewModel+View.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				5697A7D42AFF431400ADBBD1 /* InputManager.swift in Sources */,
 				56AF0AF22AE9F4B3009AF8A2 /* RealTimeView.swift in Sources */,
 				56AF0AF02AE9606F009AF8A2 /* TimeSettingView.swift in Sources */,
+				56C4F64B2B19F4DF009D2721 /* SwiftUIView.swift in Sources */,
 				562164D92B08DA26008E472B /* Enum.swift in Sources */,
 				562164D22B08D6E5008E472B /* Extension+Type.swift in Sources */,
 				5697A7D02AFE73C300ADBBD1 /* RoundSet.swift in Sources */,
