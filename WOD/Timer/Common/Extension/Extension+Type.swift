@@ -5,7 +5,7 @@
 //  Created by lkh on 11/18/23.
 //
 
-import Foundation
+import SwiftUI
 
 extension String {
     static func timeToString(_ t: Double) -> String {
@@ -21,7 +21,39 @@ extension Int {
         let hour = self / 3600
         let minute = self / 60 % 60
         let second = self % 60
+        
+        if hour > 0 {
+            return String(format: "%02i:%02i:%02i", hour, minute, second)
+        } else {
+            return String(format: "%02i:%02i", minute, second)
+        }
+    }
+}
 
-        return String(format: "%02i:%02i:%02i", hour, minute, second)
+extension Color {
+    // 배경색
+    static let preparationColors = ["lightYellow1", "lightYellow2", "lightYellow3"]
+    static let movementColors = ["lightBlue2", "lightBlue1", "lightBlue3", "lightBlue4"]
+    static let restColors = ["lightGreen1", "lightGreen2", "lightGreen3"]
+    
+    static func randomPreparationColor() -> Color {
+        guard let randomElement = preparationColors.randomElement() else {
+            return .clear
+        }
+        return Color(randomElement)
+    }
+    
+    static func randomMovementColor() -> Color {
+        guard let randomElement = movementColors.randomElement() else {
+            return .clear
+        }
+        return Color(randomElement)
+    }
+    
+    static func randomRestColor() -> Color {
+        guard let randomElement = restColors.randomElement() else {
+            return .clear
+        }
+        return Color(randomElement)
     }
 }

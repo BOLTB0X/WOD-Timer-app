@@ -49,7 +49,7 @@ struct MovementsSet: View {
                             
                             Spacer()
                             
-                            SettingPicker(title: "sec", range: manager.minutesRange, binding: $manager.selectedMovementAmount.seconds)
+                            SettingPicker(title: "sec", range: manager.secondsRange, binding: $manager.selectedMovementAmount.seconds)
                         }
                         .onTapGesture {
                             isChange.toggle()

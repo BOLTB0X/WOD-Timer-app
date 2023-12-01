@@ -14,71 +14,42 @@ class WodViewModel: InputManager {
     static let shared = WodViewModel() // 싱글톤 패턴
     
     // MARK: - Simple 프로퍼티s
-    @Published var simpleRounds: [(Int, Int, Int)] = [] // 심플 루틴 배열
+    @Published var simpleRounds: [(movement: Int, rest: Int)] = []  // 심플 루틴 배열
     @Published var simpleTotalTime:Int = 0 // 심플 루틴 배열의 총 시간
-    @Published var simpleRoundIdx: Int?
-    @Published var simpleCompletion: Date?
-    @Published var simpleDisplay: Int = 0
+    @Published var simpleRoundIdx: Int? //
+    @Published var simpleCompletion: Date? // 완료일
+    @Published var simpleDisplay: Int = 0 // 뷰에 나타낼
     
+    @Published var simpleUnitProgress: Float = 0.0
+    @Published var simpleFullProgress: Float = 0.0
+    
+    // 상태 관련
     @Published var simpleState: TimerState = .cancelled {
         didSet {
             switch simpleState {
             case .cancelled, .completed: // 취소 또는 완료
                 timerCancellable?.cancel()
                 simpleDisplay = 0
-                updateCompletionDate()
+                updateSimpleCompletionDate()
                 
             case .active: // 실행
-                startTimer()
-                //moveToNextRoundPhase()
+                startSimpleTimer()
                 
             case .paused: // 중지
-                timerCancellable?.cancel()
+                pauseSimpleTimer()
+                //timerCancellable?.cancel()
                 
             case .resumed: // 재개
-                startTimer()
-                updateCompletionDate()
+                resumeSimpleTimer()
+//                startSimpleTimer()
+//                updateSimpleCompletionDate()
             }
         }
     }
-    // MARK: - 연산 프로퍼티s
+    
     @Published var simpleRoundPhase: SimpleRoundPhase?
+    @Published var phaseBackgroundColor: Color = .clear
     
     // 타이머 메모리 날리기 용
     var timerCancellable: AnyCancellable?
-    
-    // MARK: - Common Methods
-    // ...
-    // MARK: - startTimer
-     func startTimer() {
-         print("타이머 실행")
-//         guard timerCancellable == nil else {
-//             // 이미 타이머가 동작 중이면 무시
-//             return
-//         }
-         
-         timerCancellable = Timer.publish(every: 1.0, on: .main, in: .common)
-             .autoconnect()
-             .sink { _ in
-                 print(self.simpleDisplay) // 확인
-                 self.simpleDisplay -= 1
-                 if self.simpleDisplay < 0 {
-                     self.timerCancellable?.cancel()
-                     
-                     
-                        self.simpleState = .completed
-                         
-//                         // 다음 라운드 페이즈로 이동
-                        self.moveToNextRoundPhase()
-                    
-                 }
-             }
-     }
-    
-    // MARK: - updateCompletionDate
-    func updateCompletionDate() {
-        simpleCompletion = Date().addingTimeInterval(Double(simpleDisplay))
-        print("완료 \(simpleCompletion)")
-        return
-    }
 }
