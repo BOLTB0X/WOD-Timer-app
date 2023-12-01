@@ -3,7 +3,7 @@
 ![naruto-shippuden-op](https://github.com/BOLTB0X/WOD-Timer-app/assets/83914919/46390356-0983-4b42-917b-5a44cbbffbd4)
 
 ## current - ing
-![으아아아아아가](https://github.com/BOLTB0X/WOD-Timer-app/blob/main/history/%EC%85%8B%ED%8C%85%20%EB%A3%A8%ED%94%84%20%ED%99%95%EC%9D%B8.gif?raw=true)
+![으아아아아아가](https://github.com/BOLTB0X/WOD-Timer-app/blob/main/history/%EC%8B%AC%ED%94%8C2.gif?raw=true) ![으아아아](https://github.com/BOLTB0X/WOD-Timer-app/blob/main/history/%EC%8B%AC%ED%94%8C3.gif?raw=true)
 <br/>
 
 ## Reference
