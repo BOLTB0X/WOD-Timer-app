@@ -78,6 +78,15 @@ extension WodViewModel {
         return
     }
     
+    // MARK: - simpleRestart
+    // 재시작
+    func simpleRestart() {
+        simpleRoundIdx = nil
+        simpleTotalTime = simpleRounds.map { $0.movement + $0.rest }.reduce(0, +)
+        nextSimpleRound()
+        return
+    }
+    
     // MARK: - moveToNextRound
     // 다음 라운드로 이동
     func nextSimpleRound() {

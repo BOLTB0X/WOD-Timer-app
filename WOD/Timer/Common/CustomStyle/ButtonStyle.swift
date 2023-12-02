@@ -10,7 +10,7 @@ import SwiftUI
 struct EffectButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .frame(maxWidth: .infinity)
+            //.frame(maxWidth: .infinity)
             .scaleEffect(configuration.isPressed ? 0.88 : 1.0)
     }
 }
@@ -34,7 +34,7 @@ struct BlueButtonStyle: ButtonStyle {
             .foregroundColor(Color.white)
             .padding()
             .frame(maxWidth: .infinity)
-            .background(RoundedRectangle(cornerRadius: 10).fill(.blue))
+            .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemBlue)))
             .scaleEffect(configuration.isPressed ? 0.88 : 1.0)
     }
 }

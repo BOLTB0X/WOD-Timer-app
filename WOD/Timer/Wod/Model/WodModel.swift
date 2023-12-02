@@ -14,6 +14,7 @@ struct MovementTime {
     var minutes: Int
     var seconds: Int
     
+    // MARK: init
     init(hours: Int) {
         self.hours = hours
         self.minutes = 0
@@ -49,9 +50,18 @@ struct MovementTime {
         let totalSeconds = lhs.totalSeconds + rhs.totalSeconds
         return MovementTime(totalSeconds: totalSeconds)
     }
-
+    
+    // MARK: 연산 프로퍼티s
     var totalSeconds: Int {
         hours * 3600 + minutes * 60 + seconds
+    }
+    
+    var timerBigFontSize: CGFloat {
+        return hours > 0 ? 88 : 120
+    }
+    
+    var timerSmallFontSize: CGFloat {
+        return hours > 0 ? 40 : 50
     }
     
     init(totalSeconds: Int) {
