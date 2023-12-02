@@ -21,9 +21,10 @@ struct WodInterView: View {
     
     var body: some View {
         NavigationView { // for navigationTitle 이용 및 뷰 구성
+            // MARK: - main
             VStack(alignment: .leading, spacing: 0) {
                 List {
-                    // TODO: Simple NOW
+                    // MARK: - Simple
                     Section(header: Text("Simple").font(.headline)) {
                         ForEach(simpleArr, id: \.self) { btn in
                             settingButtonRow(btn)
@@ -41,7 +42,7 @@ struct WodInterView: View {
                     }
                 }
                 
-                NavigationLink(destination: SimpleTimerView().environmentObject(viewModel), isActive: $isSimpleStart) {
+                NavigationLink(destination: SimpleTimerView(isBackRootView: $isSimpleStart).environmentObject(viewModel), isActive: $isSimpleStart) {
                     EmptyView()
                 }
                 

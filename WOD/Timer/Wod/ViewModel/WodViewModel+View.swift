@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - WodViewModel+View
 extension WodViewModel {
-    // MARK: - 염산 프로퍼티s
+    // MARK: - 연산 프로퍼티s
     // ..
     // MARK: - confirmationMessage
     var confirmationMessage: String {
@@ -28,16 +28,16 @@ extension WodViewModel {
     var nextTimerPhase: String {
         guard let currentRoundIdx = simpleRoundIdx,
               currentRoundIdx < simpleRounds.count else {
-            return "Next: End"
+            return ""
         }
         
         switch simpleRoundPhase {
         case .preparation:
-            return "Next: Movement"
+            return "Movement"
         case .movement:
-            return "Next: Rest"
+            return currentRoundIdx != simpleRounds.count-1 ? "Rest" : ""
         case .rest:
-            return "Next: movement"
+            return "movement"
         default:
             return ""
         }
@@ -47,7 +47,7 @@ extension WodViewModel {
     var nextTimerTime: String {
         guard let currentRoundIdx = simpleRoundIdx,
               currentRoundIdx < simpleRounds.count else {
-            return "END"
+            return ""
         }
 
         switch simpleRoundPhase {
@@ -70,6 +70,22 @@ extension WodViewModel {
         }
     }
     
+    // MARK: - currentRoundDisplay
+    var currentRoundDisplay: String {
+        return simpleRoundIdx ?? 0 < selectedRoundAmount ? "\((simpleRoundIdx ?? 0) + 1) Round" : "\(selectedRoundAmount) Round"
+    }
+    
+    // MARK: - currentPhaseText
+    var currentPhaseText: String {
+        return simpleRoundPhase?.phaseText ?? ""
+    }
+    
+    // MARK: - currentDisplayTime
+    var currentDisplayTime: String {
+        return simpleRoundIdx ?? 0 < selectedRoundAmount ? simpleDisplay.asTimestamp : "END"
+    }
+    
+    /*==================================================================================*/
     // MARK: - Methods
     // ..
     // MARK: - displaySetValue

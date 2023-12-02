@@ -9,31 +9,34 @@ import SwiftUI
 
 struct SimpleTimerView: View {
     @EnvironmentObject private var viewModel: WodViewModel
+    @Binding var isBackRootView: Bool
     
     var body: some View {
         NavigationView {
             ZStack {
+                // 배경색
                 viewModel.phaseBackgroundColor
-                    .ignoresSafeArea(.all, edges: .bottom)
                 
+                // MARK: - main
                 VStack(alignment: .center, spacing: 10) {
-                    Text("\((viewModel.simpleRoundIdx ?? 0) + 1) Round")
-                        .font(.title)
+                    Text(viewModel.currentRoundDisplay)
+                        .font(.system(size: 50, weight: .bold))
                         .fontWeight(.bold)
                         .padding()
                     
-
+                    
                     // MARK: 현재 타이머
                     VStack(alignment: .center, spacing: 0) {
-                        Text("Current: \(viewModel.simpleRoundPhase?.phaseText ?? "")")
+                        Text(viewModel.currentPhaseText)
                             .font(.system(size: 20, weight: .semibold))
                             .padding()
                         
                         // 현재 라운드의 진행 중인 타이머 시간 표시
-                        Text(viewModel.simpleDisplay.asTimestamp)
+                        Text(viewModel.currentDisplayTime)
                             .font(
-                                .system(size: viewModel.selectedMovementAmount.hours > 0 ? 88 : 120, weight: .heavy)
+                                .system(size: viewModel.selectedMovementAmount.timerBigFontSize, weight: .heavy)
                             )
+                            
                     }
                     
                     // MARK: 다음 타이머
@@ -44,19 +47,35 @@ struct SimpleTimerView: View {
                         
                         Text(viewModel.nextTimerTime)
                             .font(
-                                .system(size: viewModel.selectedMovementAmount.hours > 0 ? 44 : 50, weight: .bold)
+                                .system(size: viewModel.selectedMovementAmount.timerSmallFontSize, weight: .bold)
                             )
-                    }.foregroundColor(.secondary)
+                    }
+                    .foregroundColor(.secondary)
                 }
                 
+                
+                // MARK: - side
                 .navigationTitle("\(viewModel.simpleTotalTime.asTimestamp)")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button(action: {
+                            isBackRootView.toggle()
+                        }) {
+                            if viewModel.simpleRoundIdx ?? 0 == viewModel.selectedRoundAmount {
+                                Image(systemName: "arrow.backward")
+                            }
+                        }.buttonStyle(EffectButtonStyle())
+                    }
+                    
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button(action: {
+                            viewModel.simpleRestart()
                         }) {
-                            Image(systemName: "gear")
-                        }
+                            if viewModel.simpleRoundIdx ?? 0 == viewModel.selectedRoundAmount {
+                                Image(systemName: "arrow.clockwise")
+                            }
+                        }.buttonStyle(EffectButtonStyle())
                     }
                 }
             }
@@ -69,6 +88,6 @@ struct SimpleTimerView: View {
 }
 
 #Preview {
-    SimpleTimerView()
+    SimpleTimerView(isBackRootView: .constant(true))
         .environmentObject(WodViewModel())
 }
