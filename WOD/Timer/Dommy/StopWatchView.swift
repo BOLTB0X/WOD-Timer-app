@@ -12,7 +12,7 @@ struct StopWatchView: View {
     
     var body: some View {
         VStack {
-            RealTimeView(time: timerviewModel.manager.elapsedSec, fontSize: 90)
+            RealTime(time: timerviewModel.manager.elapsedSec, fontSize: 90)
             
             List(timerviewModel.manager.lapTimes, id: \.self) { lapTime in
                 Text(lapTime)

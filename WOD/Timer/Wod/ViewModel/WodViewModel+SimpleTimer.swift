@@ -16,15 +16,18 @@ extension WodViewModel {
     func startSimpleTimer() {
         print("타이머 실행")
         print(simpleRoundPhase?.phaseText ?? "??")
-
+        
         timerCancellable = Timer.publish(every: 1.0, on: .main, in: .common)
             .autoconnect()
             .sink { _ in
-                print(self.simpleDisplay) // 확인
+                //print(self.simpleDisplay) // 확인
                 if self.simpleDisplay > 0 && self.simpleRoundPhase != .preparation {
                     self.simpleTotalTime -= 1
                 }
+                
                 self.simpleDisplay -= 1
+                self.updateSimpleUnitProgress()
+                
                 if self.simpleDisplay < 0 {
                     self.timerCancellable?.cancel()
                     self.simpleState = .completed
@@ -122,6 +125,28 @@ extension WodViewModel {
         return
     }
     
+    // MARK: - updateSimpleUnitProgress
+    // progress 업데이트
+    private func updateSimpleUnitProgress() {
+        guard let currentPhase = simpleRoundPhase else { return }
+        let currentRound = simpleRounds[simpleRoundIdx!]
+        
+        switch currentPhase {
+        case .preparation:
+            let elapsedTime = selectedPreparationAmount - simpleDisplay
+            simpleUnitProgress = Float(elapsedTime) / Float(selectedPreparationAmount)
+        case .movement, .rest:
+            let totalSeconds = currentPhase == .movement ? currentRound.movement : currentRound.rest
+            let elapsedTime = selectedMovementAmount.totalSeconds - simpleDisplay
+            simpleUnitProgress = Float(elapsedTime) / Float(totalSeconds)
+        default:
+            simpleUnitProgress = 0.0
+        }
+        
+        print(simpleUnitProgress)
+        return
+    }
+    
     // MARK: - nextSimpleRoundPhase
     // 라운드의 다음 단계로 이동
     private func nextSimpleRoundPhase() {
@@ -146,7 +171,7 @@ extension WodViewModel {
             }
             
         case .rest:
-            // 현재 라운드의 모든 단계가 완료된 경우 다음 라운드로 이동
+            // 현재 라운드의 모든 단계가 완료된 경우 -> 다음 라운드로 이동
             nextSimpleRound()
             
         default:

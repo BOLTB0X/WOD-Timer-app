@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RealTimeView: View {
+struct RealTime: View {
     var time: String
     var fontSize: CGFloat?
     
@@ -24,15 +24,15 @@ struct RealTimeView: View {
 
 #Preview {
     Group {
-        RealTimeView(time: "23:45")
+        RealTime(time: "23:45")
             .previewLayout(.sizeThatFits)
         //.preferredColorScheme(.dark)
         
-        RealTimeView(time: "01:23:45", fontSize: 90)
+        RealTime(time: "01:23:45", fontSize: 90)
             .previewLayout(.sizeThatFits)
         //.preferredColorScheme(.dark)
         
-        RealTimeView(time: "23:45", fontSize: 125)
+        RealTime(time: "23:45", fontSize: 125)
             .previewLayout(.sizeThatFits)
     }
 }

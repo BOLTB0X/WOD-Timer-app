@@ -13,7 +13,7 @@ class WodViewModel: InputManager {
     // MARK: - 프로퍼티s
     static let shared = WodViewModel() // 싱글톤 패턴
     
-    // MARK: - Simple 프로퍼티s
+    // MARK: - Simple property wrappers
     @Published var simpleRounds: [(movement: Int, rest: Int)] = []  // 심플 루틴 배열
     @Published var simpleTotalTime:Int = 0 // 심플 루틴 배열의 총 시간
     @Published var simpleRoundIdx: Int? //
@@ -37,7 +37,7 @@ class WodViewModel: InputManager {
                 
             case .paused: // 중지
                 pauseSimpleTimer()
-                //timerCancellable?.cancel()
+                timerCancellable?.cancel()
                 
             case .resumed: // 재개
                 resumeSimpleTimer()
