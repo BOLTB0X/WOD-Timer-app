@@ -37,12 +37,9 @@ class WodViewModel: InputManager {
                 
             case .paused: // 중지
                 pauseSimpleTimer()
-                timerCancellable?.cancel()
                 
             case .resumed: // 재개
                 resumeSimpleTimer()
-//                startSimpleTimer()
-//                updateSimpleCompletionDate()
             }
         }
     }

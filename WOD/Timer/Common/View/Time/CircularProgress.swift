@@ -18,11 +18,13 @@ struct CircularProgress: View {
 
             Circle()
                 .trim(from: 0.0, to: CGFloat(min(progress, 1.0)))
-                .stroke(style: StrokeStyle(lineWidth: 30.0,
+                .stroke(style: StrokeStyle(lineWidth: 10.0,
                     lineCap: .round, lineJoin: .round))
                 .rotationEffect(Angle(degrees: 270))
+                .foregroundColor(Color(.systemBlue))
         }
         .animation(.linear(duration: 1.0), value: progress)
+        .frame(maxWidth: .infinity , maxHeight: .infinity)
     }
 }
 

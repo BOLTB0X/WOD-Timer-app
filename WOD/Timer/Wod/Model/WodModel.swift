@@ -57,11 +57,11 @@ struct MovementTime {
     }
     
     var timerBigFontSize: CGFloat {
-        return hours > 0 ? 88 : 120
+        return hours > 0 ? 85 : 120
     }
     
     var timerSmallFontSize: CGFloat {
-        return hours > 0 ? 40 : 50
+        return hours > 0 ? 50 : 60
     }
     
     init(totalSeconds: Int) {

@@ -13,12 +13,12 @@ struct RealTime: View {
     
     var body: some View {
         Text(time)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            //.frame(maxWidth: .infinity, maxHeight: .infinity)
             .font(
-                .system(size: fontSize ?? 24)
-                .weight(.bold)
-                .monospacedDigit()
+                .system(size: fontSize ?? 24, weight: .heavy)
             )
+            .monospacedDigit()
+        
     }
 }
 
@@ -28,7 +28,7 @@ struct RealTime: View {
             .previewLayout(.sizeThatFits)
         //.preferredColorScheme(.dark)
         
-        RealTime(time: "01:23:45", fontSize: 90)
+        RealTime(time: "01:23:45", fontSize: 85)
             .previewLayout(.sizeThatFits)
         //.preferredColorScheme(.dark)
         

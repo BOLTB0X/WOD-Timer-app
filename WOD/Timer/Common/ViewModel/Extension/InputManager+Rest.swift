@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - InputManager: InputManager+Rest 입력 관련
 extension InputManager {
     private var restTotalSeconds: Int {
         selectedRestAmount.minutes * 60 + selectedRestAmount.seconds

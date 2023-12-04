@@ -31,7 +31,7 @@ extension WodViewModel {
                 if self.simpleDisplay < 0 {
                     self.timerCancellable?.cancel()
                     self.simpleState = .completed
-                    
+                    self.simpleUnitProgress = 0.0
                     // 다음 라운드 페이즈로 이동
                     self.nextSimpleRoundPhase()
                 }
@@ -41,18 +41,18 @@ extension WodViewModel {
     // MARK: - pauseSimpleTimer
     // 일시 중지
     func pauseSimpleTimer() {
-        simpleState = .paused
         timerCancellable?.cancel()
         print("일시중지")
+        updateSimpleCompletionDate()
         return
     }
     
     // MARK: - resumeSimpleTimer
     // 재개
     func resumeSimpleTimer() {
-        simpleState = .resumed
         print("재개")
-        startSimpleTimer()
+        updateSimpleCompletionDate()
+        simpleState = .active
         return
     }
     
@@ -77,7 +77,6 @@ extension WodViewModel {
         }
         
         simpleTotalTime = simpleRounds.map { $0.movement + $0.rest }.reduce(0, +)
-        //print(simpleRounds, simpleTotalTime)
         return
     }
     
@@ -135,9 +134,13 @@ extension WodViewModel {
         case .preparation:
             let elapsedTime = selectedPreparationAmount - simpleDisplay
             simpleUnitProgress = Float(elapsedTime) / Float(selectedPreparationAmount)
-        case .movement, .rest:
-            let totalSeconds = currentPhase == .movement ? currentRound.movement : currentRound.rest
+        case .movement:
+            let totalSeconds = currentRound.movement
             let elapsedTime = selectedMovementAmount.totalSeconds - simpleDisplay
+            simpleUnitProgress = Float(elapsedTime) / Float(totalSeconds)
+        case .rest:
+            let totalSeconds = currentRound.rest
+            let elapsedTime = selectedRestAmount.totalSeconds - simpleDisplay
             simpleUnitProgress = Float(elapsedTime) / Float(totalSeconds)
         default:
             simpleUnitProgress = 0.0

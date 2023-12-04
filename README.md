@@ -54,7 +54,13 @@
     [Combine Timers](https://cozzin.tistory.com/34)
     <br/>
 
+- Orientation
+    <br/>
+    [Orientation - 1](https://sarunw.com/posts/how-to-preview-a-device-in-landscape-orientation-with-swiftui-previews/)
+    <br/>
 
+    [Orientation -2](https://developer.apple.com/forums/thread/126878)
+    <br/>
 
 - 기타
     <br/>

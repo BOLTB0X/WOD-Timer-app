@@ -37,7 +37,7 @@ struct WodInterView: View {
                     }
                     
                     // TODO: Detail
-                    Section(header: Text("Detail").font(.headline)) {
+                    Section(header: Text("My Set").font(.headline)) {
                         
                     }
                 }

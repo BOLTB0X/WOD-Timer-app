@@ -28,18 +28,18 @@ extension WodViewModel {
     var nextTimerPhase: String {
         guard let currentRoundIdx = simpleRoundIdx,
               currentRoundIdx < simpleRounds.count else {
-            return ""
+            return "END"
         }
         
         switch simpleRoundPhase {
         case .preparation:
             return "Movement"
         case .movement:
-            return currentRoundIdx != simpleRounds.count-1 ? "Rest" : ""
+            return currentRoundIdx != simpleRounds.count - 1 ? "Rest" : "Rest X"
         case .rest:
-            return "movement"
+            return "Movement"
         default:
-            return ""
+            return "END"
         }
     }
     
@@ -47,7 +47,7 @@ extension WodViewModel {
     var nextTimerTime: String {
         guard let currentRoundIdx = simpleRoundIdx,
               currentRoundIdx < simpleRounds.count else {
-            return ""
+            return "00:00"
         }
 
         switch simpleRoundPhase {
@@ -63,7 +63,7 @@ extension WodViewModel {
             if currentRoundIdx + 1 < simpleRounds.count {
                 return simpleRounds[currentRoundIdx].movement.asTimestamp
             } else {
-                return "END"
+                return "NEXT"
             }
         default:
             return "END"
@@ -83,6 +83,16 @@ extension WodViewModel {
     // MARK: - currentDisplayTime
     var currentDisplayTime: String {
         return simpleRoundIdx ?? 0 < selectedRoundAmount ? simpleDisplay.asTimestamp : "END"
+    }
+    
+    // MARK: - currentRemainingRounds
+    var currentRemainingRounds: String {
+        switch simpleRoundPhase {
+        case .preparation:
+            return "Remaining: \(selectedRoundAmount) Round"
+        default:
+            return "Remaining: \(selectedRoundAmount - ((simpleRoundIdx ?? 0) + 1)) Round"
+        }
     }
     
     /*==================================================================================*/

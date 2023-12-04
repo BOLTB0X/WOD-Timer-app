@@ -56,7 +56,6 @@ struct ControlButton: View {
                 .buttonStyle(EffectButtonStyle())
             }
         }
-        .scaledToFit()
     }
 }
 

@@ -7,7 +7,9 @@
 
 import Foundation
 
+// MARK: - InputManager: InputManager+Movement 입력 관련
 extension InputManager {
+    // 연산 프로퍼티s
     private var moveTotalMinutes: Int {
         selectedMovementAmount.hours * 60 + selectedMovementAmount.minutes
     }
