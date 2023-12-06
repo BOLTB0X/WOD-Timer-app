@@ -12,6 +12,7 @@ import Combine
 extension WodViewModel {
     // MARK: - Control Methods
     /// ...
+
     // MARK: - startTimer
     func startSimpleTimer() {
         print("타이머 실행")
@@ -55,7 +56,6 @@ extension WodViewModel {
         simpleState = .active
         return
     }
-    
     // MARK: - updateCompletionDate
     func updateSimpleCompletionDate() {
         simpleCompletion = Date().addingTimeInterval(Double(simpleDisplay))
@@ -68,6 +68,8 @@ extension WodViewModel {
     // MARK: - simpleStartTouched
     // 스타트 신호를 받으면 타이머을 돌린 배열에 넣어줌
     func simpleStartTouched() {
+        simpleRounds = [] // 초기화
+        
         for i in 0..<selectedRoundAmount {
             if i == selectedRoundAmount - 1 {
                 simpleRounds.append((selectedMovementAmount.totalSeconds, 0))
@@ -76,16 +78,8 @@ extension WodViewModel {
             }
         }
         
-        simpleTotalTime = simpleRounds.map { $0.movement + $0.rest }.reduce(0, +)
-        return
-    }
-    
-    // MARK: - simpleRestart
-    // 재시작
-    func simpleRestart() {
-        simpleRoundIdx = nil
-        simpleTotalTime = simpleRounds.map { $0.movement + $0.rest }.reduce(0, +)
-        nextSimpleRound()
+        simpleTotalTime = 0
+        simpleTotalTime = simpleRounds.reduce(0) { $0 + ($1.movement + $1.rest) }
         return
     }
     
@@ -108,7 +102,7 @@ extension WodViewModel {
         
         simpleRoundIdx! += 1
         
-        guard simpleRoundIdx! < simpleRounds.count else {
+        guard let idx = simpleRoundIdx, idx < simpleRounds.count else {
             // 더 이상 진행할 라운드가 없으면 완료 상태로 변경
             simpleRoundPhase = .completed
             simpleState = .completed
@@ -116,7 +110,7 @@ extension WodViewModel {
             return
         }
         
-        let currentRound = simpleRounds[simpleRoundIdx!]
+        let currentRound = simpleRounds[idx]
         simpleDisplay = currentRound.movement
         simpleRoundPhase = .movement
         updateBackgroundColor()

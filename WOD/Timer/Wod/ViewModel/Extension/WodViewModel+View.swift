@@ -49,7 +49,7 @@ extension WodViewModel {
               currentRoundIdx < simpleRounds.count else {
             return "00:00"
         }
-
+        
         switch simpleRoundPhase {
         case .preparation:
             return simpleRounds[currentRoundIdx].movement.asTimestamp
@@ -124,7 +124,7 @@ extension WodViewModel {
     // MARK: - updateBackgroundColor
     func updateBackgroundColor() {
         guard let phase = simpleRoundPhase else { return }
-
+        
         switch phase {
         case .preparation:
             phaseBackgroundColor = Color.randomPreparationColor()

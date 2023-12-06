@@ -11,7 +11,6 @@ struct SimpleControl: View {
     @EnvironmentObject var viewModel: WodViewModel
     
     var body: some View {
-        
         HStack(alignment: .center, spacing: 10) {
             // before
             ControlButton(action: viewModel.controlBefore, defaultImgName: "chevron.left.2")

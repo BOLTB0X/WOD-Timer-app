@@ -23,7 +23,6 @@ struct SimpleTimerView: View {
                         .fontWeight(.bold)
                     .padding()
                     
-                    Spacer()
                     
                     SimpleRealTime()
                         .environmentObject(viewModel)
@@ -36,9 +35,9 @@ struct SimpleTimerView: View {
                     Text(viewModel.currentRemainingRounds)
                         .font(.system(size: 30, weight: .semibold))
                         .foregroundColor(viewModel.simpleRoundIdx ?? 0 < viewModel.simpleRounds.count ? .secondary : viewModel.phaseBackgroundColor)
-
                         .padding()
                     
+                    Spacer()
                 }
                 .frame(maxWidth: .infinity , maxHeight: .infinity)
                 .background(viewModel.phaseBackgroundColor)
