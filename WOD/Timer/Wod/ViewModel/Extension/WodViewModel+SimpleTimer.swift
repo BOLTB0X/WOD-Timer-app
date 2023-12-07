@@ -15,6 +15,10 @@ extension WodViewModel {
 
     // MARK: - startTimer
     func startSimpleTimer() {
+        guard let idx = simpleRoundIdx, idx < simpleRounds.count else {
+            return
+        }
+        
         print("타이머 실행")
         print(simpleRoundPhase?.phaseText ?? "??")
         
@@ -121,8 +125,12 @@ extension WodViewModel {
     // MARK: - updateSimpleUnitProgress
     // progress 업데이트
     private func updateSimpleUnitProgress() {
+        guard let idx = simpleRoundIdx, idx < simpleRounds.count else {
+            return
+        }
+        
         guard let currentPhase = simpleRoundPhase else { return }
-        let currentRound = simpleRounds[simpleRoundIdx!]
+        let currentRound = simpleRounds[idx]
         
         switch currentPhase {
         case .preparation:
@@ -147,8 +155,12 @@ extension WodViewModel {
     // MARK: - nextSimpleRoundPhase
     // 라운드의 다음 단계로 이동
     private func nextSimpleRoundPhase() {
+        guard let idx = simpleRoundIdx, idx < simpleRounds.count else {
+            return
+        }
+        
         guard let currentPhase = simpleRoundPhase else { return }
-        let currentRound = simpleRounds[simpleRoundIdx!]
+        let currentRound = simpleRounds[idx]
         
         switch currentPhase {
         case .preparation:

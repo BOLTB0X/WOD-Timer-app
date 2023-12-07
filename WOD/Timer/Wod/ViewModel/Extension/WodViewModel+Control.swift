@@ -94,6 +94,7 @@ extension WodViewModel {
         }
         
         if simpleRoundPhase == .completed {
+            updateBackgroundColor()
             return
         }
         
@@ -104,7 +105,7 @@ extension WodViewModel {
                 simpleDisplay = simpleRounds[roundIdx].movement
                 
             } else if simpleRoundPhase == .movement { // 운동 -> 휴식
-                let currentRound = simpleRounds[simpleRoundIdx!]
+                let currentRound = simpleRounds[roundIdx]
                 simpleRoundPhase = .rest
                 simpleDisplay = currentRound.rest
                 
@@ -117,13 +118,13 @@ extension WodViewModel {
         } else {
             if simpleRoundPhase == .movement && roundIdx < simpleRounds.count - 1 { // 현재가 운동이면 라운드를 앞으로 당겨야함
                 // 이전 라운드로 이동
-                let currentRound = simpleRounds[simpleRoundIdx!]
+                let currentRound = simpleRounds[roundIdx]
                 simpleRoundPhase = .rest
-                simpleDisplay = simpleRounds[roundIdx].rest
+                simpleDisplay = currentRound.rest
                 
                 
             } else if simpleRoundPhase == .movement && roundIdx == simpleRounds.count - 1 {
-                simpleRoundPhase = .completed
+                simpleRoundIdx! += 1
                 
             } else { // 휴식인 경우 -> 다음 라운드 운동으로
                 simpleRoundIdx! += 1
@@ -133,9 +134,10 @@ extension WodViewModel {
             }
         }
         
-        //updateBeforeSimpleTotalTime()
+        updateNextSimpleTotalTime()
         updateBackgroundColor()
         simpleState = .active
+        return
     }
     
     // MARK: - updateBeforeSimpleTotalTime
@@ -189,5 +191,37 @@ extension WodViewModel {
     // MARK: - updateNextSimpleTotalTime
     // 총 시간 업데이트
     private func updateNextSimpleTotalTime() {
+        guard let idx = simpleRoundIdx, idx < simpleRounds.count else {
+            return
+        }
+        
+        simpleTotalTime = 0
+        
+        var totalBeforeCurrentRound: Int = 0
+        
+        if idx == 0 { // 맨 처음
+            // 0번째 라운드에서는 초기 설정값으로 토탈시간 설정
+            totalBeforeCurrentRound = simpleRounds.reduce(0) { $0 + ($1.movement + $1.rest) }
+            if simpleRoundPhase == .rest {
+                totalBeforeCurrentRound -= simpleRounds[idx].movement
+            }
+        } else if idx == simpleRounds.count - 1 { // 마지막
+            if simpleRoundPhase == .movement {
+                totalBeforeCurrentRound = simpleRounds[idx].movement
+            } else { }
+        } else { // 중간
+            // 다음 라운드부터 총 토탈시간 계산해줌
+            totalBeforeCurrentRound = simpleRounds[idx...].reduce(0) { $0 + ($1.movement + $1.rest) }
+            
+            if simpleRoundPhase == .rest {
+                // 휴식에서 다음 라운드로 간 경우
+                totalBeforeCurrentRound -= simpleRounds[idx].movement
+            } else {
+                //totalBeforeCurrentRound -= simpleRounds[idx].rest
+            }
+        }
+        
+        simpleTotalTime = totalBeforeCurrentRound
+        return
     }
 }
