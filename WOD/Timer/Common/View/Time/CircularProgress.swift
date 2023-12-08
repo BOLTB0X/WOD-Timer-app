@@ -23,8 +23,8 @@ struct CircularProgress: View {
                 .rotationEffect(Angle(degrees: 270))
                 .foregroundColor(Color(.systemBlue))
         }
-        .animation(.linear(duration: 1.0), value: progress)
-        .frame(maxWidth: .infinity , maxHeight: .infinity)
+        .animation(progress == 0.0 ? nil : .linear(duration: 1.0), value: progress)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 

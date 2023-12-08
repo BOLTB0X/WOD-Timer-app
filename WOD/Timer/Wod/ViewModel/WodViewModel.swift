@@ -31,7 +31,6 @@ class WodViewModel: InputManager {
                 timerCancellable?.cancel()
                 simpleDisplay = 0
                 updateSimpleCompletionDate()
-                
             case .active: // 실행
                 startSimpleTimer()
                 
@@ -46,6 +45,7 @@ class WodViewModel: InputManager {
     
     @Published var simpleRoundPhase: SimpleRoundPhase?
     @Published var phaseBackgroundColor: Color = .clear
+    @Published var controlBtn: Bool = false // 바인딩할 프로퍼티
     
     // 타이머 메모리 날리기 용
     var timerCancellable: AnyCancellable?

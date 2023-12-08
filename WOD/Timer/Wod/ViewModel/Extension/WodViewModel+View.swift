@@ -9,6 +9,7 @@ import SwiftUI
 import Foundation
 
 // MARK: - WodViewModel+View
+// 뷰에 나타내는 텍스트, 컬러 관련 연산 프로퍼티 및 메소드들
 extension WodViewModel {
     // MARK: - 연산 프로퍼티s
     // ..
@@ -120,7 +121,7 @@ extension WodViewModel {
             return ""
         }
     }
-    
+        
     // MARK: - updateBackgroundColor
     func updateBackgroundColor() {
         guard let phase = simpleRoundPhase else { return }
@@ -133,7 +134,7 @@ extension WodViewModel {
         case .rest:
             phaseBackgroundColor = Color.randomRestColor()
         case .completed:
-            phaseBackgroundColor = .clear
+            phaseBackgroundColor = Color(.systemGray5)
         }
     }
 }

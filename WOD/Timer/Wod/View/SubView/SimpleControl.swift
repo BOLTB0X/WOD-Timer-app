@@ -13,20 +13,20 @@ struct SimpleControl: View {
     var body: some View {
         HStack(alignment: .center, spacing: 10) {
             // before
-            ControlButton(action: viewModel.controlBefore, defaultImgName: "chevron.left.2")
+            ControlButton(isPaused: $viewModel.controlBtn ,action: viewModel.controlBefore, defaultImgName: "chevron.left.2")
             
             // start / pause
             ZStack {
                 CircularProgress(progress: $viewModel.simpleUnitProgress)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 
-                ControlButton(action:  viewModel.controlPausedOrResumed,
+                ControlButton(isPaused: $viewModel.controlBtn, action:  viewModel.controlPausedOrResumed,
                               img1Name: "play.fill",
                               img2Name: "pause.fill")
-            }
+            } 
             
             // next
-            ControlButton(action: viewModel.controlNext, defaultImgName: "chevron.right.2")
+            ControlButton(isPaused: $viewModel.controlBtn, action: viewModel.controlNext, defaultImgName: "chevron.right.2")
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         
