@@ -54,7 +54,7 @@
 		56C4F65B2B1D6E74009D2721 /* SimpleControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C4F65A2B1D6E74009D2721 /* SimpleControl.swift */; };
 		56C4F6622B1D89E0009D2721 /* SimpleNextRealTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C4F6612B1D89E0009D2721 /* SimpleNextRealTime.swift */; };
 		56C5A49B2B136BDE008ABCA0 /* TextLimiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C5A49A2B136BDE008ABCA0 /* TextLimiter.swift */; };
-		56C5A4BF2B14B570008ABCA0 /* WodViewModel+SimpleTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C5A4BE2B14B570008ABCA0 /* WodViewModel+SimpleTimer.swift */; };
+		56C5A4BF2B14B570008ABCA0 /* WodViewModel+Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C5A4BE2B14B570008ABCA0 /* WodViewModel+Update.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -107,7 +107,7 @@
 		56C4F65A2B1D6E74009D2721 /* SimpleControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleControl.swift; sourceTree = "<group>"; };
 		56C4F6612B1D89E0009D2721 /* SimpleNextRealTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleNextRealTime.swift; sourceTree = "<group>"; };
 		56C5A49A2B136BDE008ABCA0 /* TextLimiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLimiter.swift; sourceTree = "<group>"; };
-		56C5A4BE2B14B570008ABCA0 /* WodViewModel+SimpleTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WodViewModel+SimpleTimer.swift"; sourceTree = "<group>"; };
+		56C5A4BE2B14B570008ABCA0 /* WodViewModel+Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WodViewModel+Update.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,8 +300,8 @@
 		56C4F65D2B1D6E9F009D2721 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				56C5A4BE2B14B570008ABCA0 /* WodViewModel+SimpleTimer.swift */,
 				56C4F6562B1CBDDC009D2721 /* WodViewModel+Control.swift */,
+				56C5A4BE2B14B570008ABCA0 /* WodViewModel+Update.swift */,
 				56C4F6232B184195009D2721 /* WodViewModel+View.swift */,
 			);
 			path = Extension;
@@ -436,7 +436,7 @@
 				56A998802AF6799A000D5C99 /* SettingPicker.swift in Sources */,
 				56AF0B002AEA4955009AF8A2 /* RecordButton.swift in Sources */,
 				5697A7D62AFF4B9B00ADBBD1 /* WodViewModel.swift in Sources */,
-				56C5A4BF2B14B570008ABCA0 /* WodViewModel+SimpleTimer.swift in Sources */,
+				56C5A4BF2B14B570008ABCA0 /* WodViewModel+Update.swift in Sources */,
 				562164CF2B07AA5C008E472B /* WodModel.swift in Sources */,
 				562164DB2B08F9D7008E472B /* SimpleTimerView.swift in Sources */,
 				5697A7DA2AFF4E3400ADBBD1 /* SettingTextField.swift in Sources */,

@@ -39,6 +39,7 @@ struct SimpleTimerView: View {
                     
                     Spacer()
                 }
+                
                 .frame(maxWidth: .infinity , maxHeight: .infinity)
                 .background(viewModel.phaseBackgroundColor)
                                 

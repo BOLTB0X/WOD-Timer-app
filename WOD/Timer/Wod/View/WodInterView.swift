@@ -61,7 +61,7 @@ struct WodInterView: View {
                     message: Text(viewModel.confirmationMessage)
                         .font(.subheadline),
                     primaryButton: .default(Text("Start")) {
-                        viewModel.simpleStartTouched()
+                        viewModel.createSimpleRounds()
                         isSimpleStart.toggle()
                     },
                     secondaryButton: .cancel(Text("Cancel").foregroundColor(.secondary))

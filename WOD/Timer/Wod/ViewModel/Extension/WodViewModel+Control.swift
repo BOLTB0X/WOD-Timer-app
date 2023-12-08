@@ -7,8 +7,64 @@
 
 import Foundation
 
-// MARK: - WodViewModel+SimpleTimer: SimpleTimer Control
+// MARK: - WodViewModel+Control: SimpleTimer Control
+// 제어관련 메소드들
 extension WodViewModel {
+    // MARK: - startTimer
+    func startSimpleTimer() {
+        guard let idx = simpleRoundIdx, idx < simpleRounds.count else {
+            return
+        }
+        
+        print("타이머 실행")
+        print(simpleRoundPhase?.phaseText ?? "??")
+        
+        timerCancellable = Timer.publish(every: 1.0, on: .main, in: .common)
+            .autoconnect()
+            .sink { _ in
+                if self.simpleDisplay > 0 && self.simpleRoundPhase != .preparation {
+                    self.simpleTotalTime -= 1
+                }
+                
+                self.simpleDisplay -= 1
+                self.updateSimpleUnitProgress()
+                
+                if self.simpleDisplay < 0 {
+                    self.completedCurrentTimer() // 완료
+                }
+            }
+    }
+    
+    // MARK: - completedCurrentTimer
+    // 현재 타이머 종료시 다음 단계로 이동
+    func completedCurrentTimer() {
+        timerCancellable?.cancel()
+        simpleState = .completed
+        simpleUnitProgress = 0.0
+        // 다음 라운드 페이즈로 이동
+        nextSimpleRoundPhase()
+        return
+    }
+    
+    // MARK: - pauseSimpleTimer
+    // 일시 중지
+    func pauseSimpleTimer() {
+        timerCancellable?.cancel()
+        print("일시중지")
+        updateSimpleCompletionDate()
+        return
+    }
+    
+    // MARK: - resumeSimpleTimer
+    // 재개
+    func resumeSimpleTimer() {
+        print("재개")
+        updateSimpleCompletionDate()
+        simpleState = .active
+        controlBtn = false
+        return
+    }
+    
     // MARK: - simpleRestart
     // 재시작
     func simpleRestart() {
@@ -22,14 +78,19 @@ extension WodViewModel {
     // 중지 또는 재개
     func controlPausedOrResumed() {
         // 만약 셋팅받은 게 없을 때 막기
-        guard let _ = simpleRoundIdx else {
+        guard let _ = simpleRoundIdx, simpleRoundPhase != .completed else {
             return
         }
         
+        controlBtn.toggle()
+
         if simpleState == .paused {
+            controlBtn = false
             simpleState = .resumed
-        } else { simpleState = .paused }
-        return
+        } else if simpleState == .active {
+            controlBtn = true
+            simpleState = .paused
+        }
     }
     
     // MARK: - controlBefore
@@ -42,6 +103,7 @@ extension WodViewModel {
         
         // 현재 타이머 중지
         simpleState = .paused
+        simpleUnitProgress = 0
         
         if simpleRoundPhase == .completed {
             simpleRoundIdx! -= 1
@@ -49,7 +111,10 @@ extension WodViewModel {
             simpleDisplay = simpleRounds[roundIdx-1].movement
             simpleTotalTime = simpleRounds[roundIdx-1].movement
             updateBackgroundColor()
-            simpleState = .active
+            
+            controlBtn = controlBtn
+                 
+            simpleState = controlBtn ? .paused : .active
             return
         }
         
@@ -70,18 +135,15 @@ extension WodViewModel {
                 let currentRound = simpleRounds[simpleRoundIdx!]
                 simpleRoundPhase = .rest
                 simpleDisplay = currentRound.rest
-                
-                
             } else { // 휴식인 경우
                 simpleRoundPhase = .movement
                 simpleDisplay = simpleRounds[simpleRoundIdx!].movement
-                
             }
         }
         
         updateBeforeSimpleTotalTime()
         updateBackgroundColor()
-        simpleState = .active
+        simpleState = controlBtn ? .paused : .active
         return
     }
     
@@ -93,50 +155,11 @@ extension WodViewModel {
             return
         }
         
-        if simpleRoundPhase == .completed {
-            updateBackgroundColor()
-            return
-        }
-        
-        // 현재가 완전 맨 처음인 경우
-        if roundIdx == 0 {
-            if simpleRoundPhase == .preparation { // 준비인 경우 -> 운동 단계로
-                simpleRoundPhase = .movement
-                simpleDisplay = simpleRounds[roundIdx].movement
-                
-            } else if simpleRoundPhase == .movement { // 운동 -> 휴식
-                let currentRound = simpleRounds[roundIdx]
-                simpleRoundPhase = .rest
-                simpleDisplay = currentRound.rest
-                
-            } else { // 현재가 첫번째이고 휴식인 경우 -> 운동으로
-                simpleRoundIdx! += 1
-                let currentRound = simpleRounds[simpleRoundIdx!]
-                simpleDisplay = currentRound.movement
-                simpleRoundPhase = .movement
-            }
-        } else {
-            if simpleRoundPhase == .movement && roundIdx < simpleRounds.count - 1 { // 현재가 운동이면 라운드를 앞으로 당겨야함
-                // 이전 라운드로 이동
-                let currentRound = simpleRounds[roundIdx]
-                simpleRoundPhase = .rest
-                simpleDisplay = currentRound.rest
-                
-                
-            } else if simpleRoundPhase == .movement && roundIdx == simpleRounds.count - 1 {
-                simpleRoundIdx! += 1
-                
-            } else { // 휴식인 경우 -> 다음 라운드 운동으로
-                simpleRoundIdx! += 1
-                let currentRound = simpleRounds[simpleRoundIdx!]
-                simpleDisplay = currentRound.movement
-                simpleRoundPhase = .movement
-            }
-        }
-        
+        // 현재 타이머 중지
+        simpleState = .paused
+        simpleUnitProgress = 0
+        nextSimpleRoundPhase()
         updateNextSimpleTotalTime()
-        updateBackgroundColor()
-        simpleState = .active
         return
     }
     
@@ -176,7 +199,6 @@ extension WodViewModel {
             
             totalBeforeCurrentRound = simpleRounds[idx...].reduce(0) { $0 + ($1.movement + $1.rest) }
             
-            
             if simpleRoundPhase == .movement { // 운동으로 온경우
                 totalBeforeCurrentRound += 0
             } else { // 휴식으로 온 경우
@@ -192,36 +214,39 @@ extension WodViewModel {
     // 총 시간 업데이트
     private func updateNextSimpleTotalTime() {
         guard let idx = simpleRoundIdx, idx < simpleRounds.count else {
+            simpleTotalTime = 0
             return
         }
         
         simpleTotalTime = 0
         
-        var totalBeforeCurrentRound: Int = 0
+        var totalNextCurrentRound: Int = 0
         
         if idx == 0 { // 맨 처음
             // 0번째 라운드에서는 초기 설정값으로 토탈시간 설정
-            totalBeforeCurrentRound = simpleRounds.reduce(0) { $0 + ($1.movement + $1.rest) }
+            totalNextCurrentRound = simpleRounds.reduce(0) { $0 + ($1.movement + $1.rest) }
             if simpleRoundPhase == .rest {
-                totalBeforeCurrentRound -= simpleRounds[idx].movement
+                totalNextCurrentRound -= simpleRounds[idx].movement
+            } else {
             }
         } else if idx == simpleRounds.count - 1 { // 마지막
             if simpleRoundPhase == .movement {
-                totalBeforeCurrentRound = simpleRounds[idx].movement
-            } else { }
+                totalNextCurrentRound = simpleRounds[idx].movement
+            } else {
+                totalNextCurrentRound = 0
+            }
         } else { // 중간
             // 다음 라운드부터 총 토탈시간 계산해줌
-            totalBeforeCurrentRound = simpleRounds[idx...].reduce(0) { $0 + ($1.movement + $1.rest) }
+            totalNextCurrentRound = simpleRounds[idx...].reduce(0) { $0 + ($1.movement + $1.rest) }
             
             if simpleRoundPhase == .rest {
                 // 휴식에서 다음 라운드로 간 경우
-                totalBeforeCurrentRound -= simpleRounds[idx].movement
+                totalNextCurrentRound -= simpleRounds[idx].movement
             } else {
-                //totalBeforeCurrentRound -= simpleRounds[idx].rest
             }
         }
         
-        simpleTotalTime = totalBeforeCurrentRound
+        simpleTotalTime = totalNextCurrentRound
         return
     }
 }
