@@ -9,11 +9,19 @@ import Foundation
 
 // MARK: - InputManager: InputManager+Rest 입력 관련
 extension InputManager {
+    // MARK: - 연산 프로퍼티s
+    // ..
+    // MARK: - restTotalSeconds
     private var restTotalSeconds: Int {
         selectedRestAmount.minutes * 60 + selectedRestAmount.seconds
     }
     
+    /*==================================================================================*/
+    // MARK: - Methods
+    // ..
     // MARK: - updateField Rest 관련
+    
+    // MARK: - updateRestValuesForField
     func updateRestValuesForField(_ field: Field, newValue: Int) {
         if isCalculatedBtn {
             autoRestCalculator(field, newValue)
@@ -22,6 +30,7 @@ extension InputManager {
         }
     }
     
+    // MARK: - nonAutoRestCalculator
     private func nonAutoRestCalculator(_ field: Field, _ newValue: Int) {
         switch field {
         case .hh:
@@ -41,6 +50,7 @@ extension InputManager {
         }
     }
     
+    // MARK: - autoRestCalculator
     private func autoRestCalculator(_ field: Field, _ newValue: Int) {
         switch field {
         case .hh:

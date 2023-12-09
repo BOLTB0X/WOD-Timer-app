@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		562164CF2B07AA5C008E472B /* WodModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562164CE2B07AA5C008E472B /* WodModel.swift */; };
+		562164CF2B07AA5C008E472B /* SimpleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562164CE2B07AA5C008E472B /* SimpleModel.swift */; };
 		562164D22B08D6E5008E472B /* Extension+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562164D12B08D6E5008E472B /* Extension+Type.swift */; };
 		562164D42B08D7F1008E472B /* TextfieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562164D32B08D7F1008E472B /* TextfieldStyle.swift */; };
 		562164D92B08DA26008E472B /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562164D82B08DA26008E472B /* Enum.swift */; };
@@ -15,10 +15,14 @@
 		5621651D2B0B8561008E472B /* SettingTwoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5621651C2B0B8561008E472B /* SettingTwoTextField.swift */; };
 		5621651F2B0B85F2008E472B /* InputManager+Movement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5621651E2B0B85F2008E472B /* InputManager+Movement.swift */; };
 		562165212B0B8CA6008E472B /* InputManager+Rest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562165202B0B8CA6008E472B /* InputManager+Rest.swift */; };
+		562FC9202B245ECF0038731B /* ToolbarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562FC91F2B245ECF0038731B /* ToolbarButton.swift */; };
+		562FC9222B2483630038731B /* AVManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562FC9212B2483630038731B /* AVManager.swift */; };
+		562FC9312B24A0620038731B /* whistle_counting.caf in Resources */ = {isa = PBXBuildFile; fileRef = 562FC92F2B24A03A0038731B /* whistle_counting.caf */; };
+		562FC9372B24A5AD0038731B /* whistle_countComplete.caf in Resources */ = {isa = PBXBuildFile; fileRef = 562FC9362B24A5A70038731B /* whistle_countComplete.caf */; };
 		5697A7CE2AFE59E200ADBBD1 /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697A7CD2AFE59E200ADBBD1 /* ButtonStyle.swift */; };
 		5697A7D02AFE73C300ADBBD1 /* RoundSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697A7CF2AFE73C300ADBBD1 /* RoundSet.swift */; };
 		5697A7D42AFF431400ADBBD1 /* InputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697A7D32AFF431400ADBBD1 /* InputManager.swift */; };
-		5697A7D62AFF4B9B00ADBBD1 /* WodViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697A7D52AFF4B9B00ADBBD1 /* WodViewModel.swift */; };
+		5697A7D62AFF4B9B00ADBBD1 /* SimpleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697A7D52AFF4B9B00ADBBD1 /* SimpleViewModel.swift */; };
 		5697A7DA2AFF4E3400ADBBD1 /* SettingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697A7D92AFF4E3400ADBBD1 /* SettingTextField.swift */; };
 		5697A7DC2AFF569100ADBBD1 /* PreparationSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697A7DB2AFF569100ADBBD1 /* PreparationSet.swift */; };
 		5697A7DE2AFF56C200ADBBD1 /* MovementsSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697A7DD2AFF56C200ADBBD1 /* MovementsSet.swift */; };
@@ -42,23 +46,21 @@
 		56AF0AFE2AEA4294009AF8A2 /* StopWatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF0AFD2AEA4294009AF8A2 /* StopWatchView.swift */; };
 		56AF0B002AEA4955009AF8A2 /* RecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF0AFF2AEA4955009AF8A2 /* RecordButton.swift */; };
 		56AF0B262AEB5B72009AF8A2 /* TimerNaviView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF0B252AEB5B72009AF8A2 /* TimerNaviView.swift */; };
-		56AF0B292AEB5CEA009AF8A2 /* WodInterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF0B282AEB5CEA009AF8A2 /* WodInterView.swift */; };
-		56AF0B312AEB5F16009AF8A2 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF0B302AEB5F16009AF8A2 /* MainView.swift */; };
+		56AF0B292AEB5CEA009AF8A2 /* SimpleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF0B282AEB5CEA009AF8A2 /* SimpleView.swift */; };
 		56AF0B412AEB9C33009AF8A2 /* StopWatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF0B402AEB9C33009AF8A2 /* StopWatchViewModel.swift */; };
-		56C4F6242B184195009D2721 /* WodViewModel+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C4F6232B184195009D2721 /* WodViewModel+View.swift */; };
+		56C4F6242B184195009D2721 /* SimpleViewModel+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C4F6232B184195009D2721 /* SimpleViewModel+View.swift */; };
 		56C4F64D2B1B5A74009D2721 /* LabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C4F64C2B1B5A74009D2721 /* LabelView.swift */; };
 		56C4F64F2B1C5BFF009D2721 /* ControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C4F64E2B1C5BFF009D2721 /* ControlButton.swift */; };
 		56C4F6552B1CABFF009D2721 /* CircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C4F6542B1CABFF009D2721 /* CircularProgress.swift */; };
-		56C4F6572B1CBDDC009D2721 /* WodViewModel+Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C4F6562B1CBDDC009D2721 /* WodViewModel+Control.swift */; };
+		56C4F6572B1CBDDC009D2721 /* SimpleViewModel+Control.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C4F6562B1CBDDC009D2721 /* SimpleViewModel+Control.swift */; };
 		56C4F6592B1D64C2009D2721 /* SimpleRealTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C4F6582B1D64C2009D2721 /* SimpleRealTime.swift */; };
-		56C4F65B2B1D6E74009D2721 /* SimpleControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C4F65A2B1D6E74009D2721 /* SimpleControl.swift */; };
 		56C4F6622B1D89E0009D2721 /* SimpleNextRealTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C4F6612B1D89E0009D2721 /* SimpleNextRealTime.swift */; };
 		56C5A49B2B136BDE008ABCA0 /* TextLimiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C5A49A2B136BDE008ABCA0 /* TextLimiter.swift */; };
-		56C5A4BF2B14B570008ABCA0 /* WodViewModel+Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C5A4BE2B14B570008ABCA0 /* WodViewModel+Update.swift */; };
+		56C5A4BF2B14B570008ABCA0 /* SimpleViewModel+Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C5A4BE2B14B570008ABCA0 /* SimpleViewModel+Update.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		562164CE2B07AA5C008E472B /* WodModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WodModel.swift; sourceTree = "<group>"; };
+		562164CE2B07AA5C008E472B /* SimpleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleModel.swift; sourceTree = "<group>"; };
 		562164D12B08D6E5008E472B /* Extension+Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Type.swift"; sourceTree = "<group>"; };
 		562164D32B08D7F1008E472B /* TextfieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextfieldStyle.swift; sourceTree = "<group>"; };
 		562164D82B08DA26008E472B /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
@@ -66,10 +68,14 @@
 		5621651C2B0B8561008E472B /* SettingTwoTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTwoTextField.swift; sourceTree = "<group>"; };
 		5621651E2B0B85F2008E472B /* InputManager+Movement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InputManager+Movement.swift"; sourceTree = "<group>"; };
 		562165202B0B8CA6008E472B /* InputManager+Rest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InputManager+Rest.swift"; sourceTree = "<group>"; };
+		562FC91F2B245ECF0038731B /* ToolbarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarButton.swift; sourceTree = "<group>"; };
+		562FC9212B2483630038731B /* AVManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVManager.swift; sourceTree = "<group>"; };
+		562FC92F2B24A03A0038731B /* whistle_counting.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = whistle_counting.caf; path = ../../../../../Downloads/whistle_counting.caf; sourceTree = "<group>"; };
+		562FC9362B24A5A70038731B /* whistle_countComplete.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = whistle_countComplete.caf; sourceTree = "<group>"; };
 		5697A7CD2AFE59E200ADBBD1 /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
 		5697A7CF2AFE73C300ADBBD1 /* RoundSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundSet.swift; sourceTree = "<group>"; };
 		5697A7D32AFF431400ADBBD1 /* InputManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputManager.swift; sourceTree = "<group>"; };
-		5697A7D52AFF4B9B00ADBBD1 /* WodViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WodViewModel.swift; sourceTree = "<group>"; };
+		5697A7D52AFF4B9B00ADBBD1 /* SimpleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleViewModel.swift; sourceTree = "<group>"; };
 		5697A7D92AFF4E3400ADBBD1 /* SettingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTextField.swift; sourceTree = "<group>"; };
 		5697A7DB2AFF569100ADBBD1 /* PreparationSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreparationSet.swift; sourceTree = "<group>"; };
 		5697A7DD2AFF56C200ADBBD1 /* MovementsSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementsSet.swift; sourceTree = "<group>"; };
@@ -95,19 +101,17 @@
 		56AF0AFD2AEA4294009AF8A2 /* StopWatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchView.swift; sourceTree = "<group>"; };
 		56AF0AFF2AEA4955009AF8A2 /* RecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButton.swift; sourceTree = "<group>"; };
 		56AF0B252AEB5B72009AF8A2 /* TimerNaviView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerNaviView.swift; sourceTree = "<group>"; };
-		56AF0B282AEB5CEA009AF8A2 /* WodInterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WodInterView.swift; sourceTree = "<group>"; };
-		56AF0B302AEB5F16009AF8A2 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		56AF0B282AEB5CEA009AF8A2 /* SimpleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleView.swift; sourceTree = "<group>"; };
 		56AF0B402AEB9C33009AF8A2 /* StopWatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchViewModel.swift; sourceTree = "<group>"; };
-		56C4F6232B184195009D2721 /* WodViewModel+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WodViewModel+View.swift"; sourceTree = "<group>"; };
+		56C4F6232B184195009D2721 /* SimpleViewModel+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleViewModel+View.swift"; sourceTree = "<group>"; };
 		56C4F64C2B1B5A74009D2721 /* LabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelView.swift; sourceTree = "<group>"; };
 		56C4F64E2B1C5BFF009D2721 /* ControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlButton.swift; sourceTree = "<group>"; };
 		56C4F6542B1CABFF009D2721 /* CircularProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgress.swift; sourceTree = "<group>"; };
-		56C4F6562B1CBDDC009D2721 /* WodViewModel+Control.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WodViewModel+Control.swift"; sourceTree = "<group>"; };
+		56C4F6562B1CBDDC009D2721 /* SimpleViewModel+Control.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleViewModel+Control.swift"; sourceTree = "<group>"; };
 		56C4F6582B1D64C2009D2721 /* SimpleRealTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleRealTime.swift; sourceTree = "<group>"; };
-		56C4F65A2B1D6E74009D2721 /* SimpleControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleControl.swift; sourceTree = "<group>"; };
 		56C4F6612B1D89E0009D2721 /* SimpleNextRealTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleNextRealTime.swift; sourceTree = "<group>"; };
 		56C5A49A2B136BDE008ABCA0 /* TextLimiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLimiter.swift; sourceTree = "<group>"; };
-		56C5A4BE2B14B570008ABCA0 /* WodViewModel+Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WodViewModel+Update.swift"; sourceTree = "<group>"; };
+		56C5A4BE2B14B570008ABCA0 /* SimpleViewModel+Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleViewModel+Update.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				562164D82B08DA26008E472B /* Enum.swift */,
-				562164CE2B07AA5C008E472B /* WodModel.swift */,
+				562164CE2B07AA5C008E472B /* SimpleModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -142,7 +146,7 @@
 		562164D62B08D870008E472B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				56AF0B282AEB5CEA009AF8A2 /* WodInterView.swift */,
+				56AF0B282AEB5CEA009AF8A2 /* SimpleView.swift */,
 				562164DA2B08F9D7008E472B /* SimpleTimerView.swift */,
 				56C4F65C2B1D6E78009D2721 /* SubView */,
 			);
@@ -152,10 +156,29 @@
 		562164D72B08D881008E472B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				5697A7D52AFF4B9B00ADBBD1 /* WodViewModel.swift */,
+				5697A7D52AFF4B9B00ADBBD1 /* SimpleViewModel.swift */,
 				56C4F65D2B1D6E9F009D2721 /* Extension */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		562FC91E2B245EA60038731B /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				56C4F64E2B1C5BFF009D2721 /* ControlButton.swift */,
+				562FC91F2B245ECF0038731B /* ToolbarButton.swift */,
+			);
+			path = Control;
+			sourceTree = "<group>";
+		};
+		562FC9292B249AF70038731B /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				56AF0ADC2AE892B8009AF8A2 /* Assets.xcassets */,
+				562FC92F2B24A03A0038731B /* whistle_counting.caf */,
+				562FC9362B24A5A70038731B /* whistle_countComplete.caf */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 		5697A7E12AFF5D9100ADBBD1 /* Setting */ = {
@@ -177,14 +200,14 @@
 			path = StopWatch;
 			sourceTree = "<group>";
 		};
-		56A998822AF67D27000D5C99 /* Wod */ = {
+		56A998822AF67D27000D5C99 /* Simple */ = {
 			isa = PBXGroup;
 			children = (
 				562164D52B08D861008E472B /* Model */,
 				562164D62B08D870008E472B /* View */,
 				562164D72B08D881008E472B /* ViewModel */,
 			);
-			path = Wod;
+			path = Simple;
 			sourceTree = "<group>";
 		};
 		56AF0ACC2AE892B5009AF8A2 = {
@@ -209,9 +232,9 @@
 				56AF0AE62AE89A29009AF8A2 /* Info.plist */,
 				56AF0AD82AE892B5009AF8A2 /* TimerApp.swift */,
 				56AF0ADA2AE892B5009AF8A2 /* ContentView.swift */,
-				56AF0ADC2AE892B8009AF8A2 /* Assets.xcassets */,
+				562FC9292B249AF70038731B /* Resource */,
 				56AF0AF72AEA354F009AF8A2 /* Common */,
-				56A998822AF67D27000D5C99 /* Wod */,
+				56A998822AF67D27000D5C99 /* Simple */,
 				56A998812AF67C7A000D5C99 /* StopWatch */,
 				56AF0B242AEB5B44009AF8A2 /* Dommy */,
 				56AF0ADE2AE892B8009AF8A2 /* Preview Content */,
@@ -230,7 +253,6 @@
 		56AF0AF72AEA354F009AF8A2 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				56AF0B302AEB5F16009AF8A2 /* MainView.swift */,
 				562164D02B08D67A008E472B /* Extension */,
 				56AF0AF82AEA35B5009AF8A2 /* CustomStyle */,
 				56C4F6532B1CABD7009D2721 /* View */,
@@ -273,6 +295,7 @@
 			children = (
 				5697A7D32AFF431400ADBBD1 /* InputManager.swift */,
 				56C5A49A2B136BDE008ABCA0 /* TextLimiter.swift */,
+				562FC9212B2483630038731B /* AVManager.swift */,
 				56C4F65F2B1D6F3F009D2721 /* Extension */,
 			);
 			path = ViewModel;
@@ -282,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				56C4F6602B1D7059009D2721 /* Time */,
+				562FC91E2B245EA60038731B /* Control */,
 				5697A7E12AFF5D9100ADBBD1 /* Setting */,
 			);
 			path = View;
@@ -292,7 +316,6 @@
 			children = (
 				56C4F6582B1D64C2009D2721 /* SimpleRealTime.swift */,
 				56C4F6612B1D89E0009D2721 /* SimpleNextRealTime.swift */,
-				56C4F65A2B1D6E74009D2721 /* SimpleControl.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -300,9 +323,9 @@
 		56C4F65D2B1D6E9F009D2721 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				56C4F6562B1CBDDC009D2721 /* WodViewModel+Control.swift */,
-				56C5A4BE2B14B570008ABCA0 /* WodViewModel+Update.swift */,
-				56C4F6232B184195009D2721 /* WodViewModel+View.swift */,
+				56C4F6562B1CBDDC009D2721 /* SimpleViewModel+Control.swift */,
+				56C5A4BE2B14B570008ABCA0 /* SimpleViewModel+Update.swift */,
+				56C4F6232B184195009D2721 /* SimpleViewModel+View.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -331,7 +354,6 @@
 			isa = PBXGroup;
 			children = (
 				56C4F6542B1CABFF009D2721 /* CircularProgress.swift */,
-				56C4F64E2B1C5BFF009D2721 /* ControlButton.swift */,
 				56AF0AF12AE9F4B3009AF8A2 /* RealTime.swift */,
 			);
 			path = Time;
@@ -395,6 +417,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				562FC9372B24A5AD0038731B /* whistle_countComplete.caf in Resources */,
+				562FC9312B24A0620038731B /* whistle_counting.caf in Resources */,
 				56AF0AE02AE892B8009AF8A2 /* Preview Assets.xcassets in Resources */,
 				56AF0ADD2AE892B8009AF8A2 /* Assets.xcassets in Resources */,
 			);
@@ -412,22 +436,22 @@
 				56AF0AF42AEA05EB009AF8A2 /* StopWatchModel.swift in Sources */,
 				56AF0ADB2AE892B5009AF8A2 /* ContentView.swift in Sources */,
 				5697A7CE2AFE59E200ADBBD1 /* ButtonStyle.swift in Sources */,
-				56AF0B292AEB5CEA009AF8A2 /* WodInterView.swift in Sources */,
+				56AF0B292AEB5CEA009AF8A2 /* SimpleView.swift in Sources */,
 				5697A7DC2AFF569100ADBBD1 /* PreparationSet.swift in Sources */,
-				56C4F6242B184195009D2721 /* WodViewModel+View.swift in Sources */,
+				56C4F6242B184195009D2721 /* SimpleViewModel+View.swift in Sources */,
 				56C4F64F2B1C5BFF009D2721 /* ControlButton.swift in Sources */,
-				56C4F65B2B1D6E74009D2721 /* SimpleControl.swift in Sources */,
 				56A9987E2AF6730E000D5C99 /* SettingTimeTextField.swift in Sources */,
 				56AF0B412AEB9C33009AF8A2 /* StopWatchViewModel.swift in Sources */,
 				5621651F2B0B85F2008E472B /* InputManager+Movement.swift in Sources */,
 				56AF0B262AEB5B72009AF8A2 /* TimerNaviView.swift in Sources */,
+				562FC9222B2483630038731B /* AVManager.swift in Sources */,
 				5697A7DE2AFF56C200ADBBD1 /* MovementsSet.swift in Sources */,
 				56AC34162AF930EC00A100BF /* Extension+View.swift in Sources */,
 				56AF0AEE2AE8D198009AF8A2 /* WodView.swift in Sources */,
 				5697A7E02AFF56CE00ADBBD1 /* RestSet.swift in Sources */,
 				562165212B0B8CA6008E472B /* InputManager+Rest.swift in Sources */,
 				56AF0AFE2AEA4294009AF8A2 /* StopWatchView.swift in Sources */,
-				56C4F6572B1CBDDC009D2721 /* WodViewModel+Control.swift in Sources */,
+				56C4F6572B1CBDDC009D2721 /* SimpleViewModel+Control.swift in Sources */,
 				56AF0AFC2AEA3E95009AF8A2 /* PlayButton.swift in Sources */,
 				56C5A49B2B136BDE008ABCA0 /* TextLimiter.swift in Sources */,
 				56AF0AEA2AE8A867009AF8A2 /* MovementsViewModel.swift in Sources */,
@@ -435,14 +459,14 @@
 				56AF0AD92AE892B5009AF8A2 /* TimerApp.swift in Sources */,
 				56A998802AF6799A000D5C99 /* SettingPicker.swift in Sources */,
 				56AF0B002AEA4955009AF8A2 /* RecordButton.swift in Sources */,
-				5697A7D62AFF4B9B00ADBBD1 /* WodViewModel.swift in Sources */,
-				56C5A4BF2B14B570008ABCA0 /* WodViewModel+Update.swift in Sources */,
-				562164CF2B07AA5C008E472B /* WodModel.swift in Sources */,
+				5697A7D62AFF4B9B00ADBBD1 /* SimpleViewModel.swift in Sources */,
+				56C5A4BF2B14B570008ABCA0 /* SimpleViewModel+Update.swift in Sources */,
+				562164CF2B07AA5C008E472B /* SimpleModel.swift in Sources */,
 				562164DB2B08F9D7008E472B /* SimpleTimerView.swift in Sources */,
 				5697A7DA2AFF4E3400ADBBD1 /* SettingTextField.swift in Sources */,
+				562FC9202B245ECF0038731B /* ToolbarButton.swift in Sources */,
 				56C4F64D2B1B5A74009D2721 /* LabelView.swift in Sources */,
 				5621651D2B0B8561008E472B /* SettingTwoTextField.swift in Sources */,
-				56AF0B312AEB5F16009AF8A2 /* MainView.swift in Sources */,
 				5697A7D42AFF431400ADBBD1 /* InputManager.swift in Sources */,
 				56AF0AF22AE9F4B3009AF8A2 /* RealTime.swift in Sources */,
 				56AF0AF02AE9606F009AF8A2 /* TimeSettingView.swift in Sources */,
