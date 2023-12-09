@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RoundSet: View {
-    @EnvironmentObject var viewModel: WodViewModel
+    @EnvironmentObject var viewModel: SimpleViewModel
     @StateObject var manager = InputManager()
 
     @State private var isChange: Bool = false
