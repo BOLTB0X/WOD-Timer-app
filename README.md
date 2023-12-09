@@ -62,6 +62,21 @@
     [Orientation -2](https://developer.apple.com/forums/thread/126878)
     <br/>
 
+- Audio Toolbox
+    <br/>
+
+    [공식문서 - audiotoolbox](https://developer.apple.com/documentation/audiotoolbox/)
+    <br/>
+
+    [블로그 참조 - AVFoundation 개념](https://ios-development.tistory.com/927)
+    <br/>
+
+    [공식문서 - AVAudioSession](https://developer.apple.com/documentation/avfaudio/avaudiosession)
+    <br/>
+
+    [블로그 참조 - Audiotoolbox 활용](https://medium.com/the-swift-blog/play-short-sound-in-ios-using-audiotoolbox-5ec6a39bab1a)
+    <br/>
+
 - 기타
     <br/>
     [연산자 오버로딩 참고](https://kka7.tistory.com/73)
