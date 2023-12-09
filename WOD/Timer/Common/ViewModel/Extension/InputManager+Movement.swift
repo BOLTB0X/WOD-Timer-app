@@ -9,15 +9,21 @@ import Foundation
 
 // MARK: - InputManager: InputManager+Movement 입력 관련
 extension InputManager {
-    // 연산 프로퍼티s
+    // MARK: - 연산 프로퍼티s
+    // ..
+    // MARK: - moveTotalMinutes
     private var moveTotalMinutes: Int {
         selectedMovementAmount.hours * 60 + selectedMovementAmount.minutes
     }
     
+    // MARK: - moveTotalSeconds
     private var moveTotalSeconds: Int {
         moveTotalMinutes * 60 + selectedMovementAmount.seconds
     }
     
+    /*==================================================================================*/
+    // MARK: - Methods
+    // ..
     // MARK: - getHoursMinutes
     func getHoursMinutes(_ minutes: Int) -> (Int, Int) {
         let hours = minutes / 60
@@ -35,6 +41,8 @@ extension InputManager {
     }
     
     // MARK: - updateField Movements 관련
+    // ..
+    // MARK: - updateMovementValuesForField
     func updateMovementValuesForField(_ field: Field, newValue: Int) {
         if isCalculatedBtn {
             autoMovementCalculator(field, newValue)
@@ -43,6 +51,7 @@ extension InputManager {
         }
     }
     
+    // MARK: - nonAutoMovementCalculator
     private func nonAutoMovementCalculator(_ field: Field, _ newValue: Int) {
         switch field {
         case .hh:
@@ -66,6 +75,7 @@ extension InputManager {
         }
     }
     
+    // MARK: - autoMovementCalculator
     private func autoMovementCalculator(_ field: Field, _ newValue: Int) {
         switch field {
         case .hh:

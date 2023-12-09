@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RestSet: View {
-    @EnvironmentObject var viewModel: WodViewModel
+    @EnvironmentObject var viewModel: SimpleViewModel
     @StateObject var manager = InputManager()
     @Binding var showPopup: Bool
 
