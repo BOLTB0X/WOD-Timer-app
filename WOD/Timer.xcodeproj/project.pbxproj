@@ -57,6 +57,33 @@
 		56C4F6622B1D89E0009D2721 /* SimpleNextRealTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C4F6612B1D89E0009D2721 /* SimpleNextRealTime.swift */; };
 		56C5A49B2B136BDE008ABCA0 /* TextLimiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C5A49A2B136BDE008ABCA0 /* TextLimiter.swift */; };
 		56C5A4BF2B14B570008ABCA0 /* SimpleViewModel+Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C5A4BE2B14B570008ABCA0 /* SimpleViewModel+Update.swift */; };
+		56D2339F2B25E2F70077468D /* 0.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D2338F2B25E2DC0077468D /* 0.caf */; };
+		56D233A02B25E2F70077468D /* 1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D233842B25E2DB0077468D /* 1.caf */; };
+		56D233A12B25E2F70077468D /* 2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D233962B25E2DC0077468D /* 2.caf */; };
+		56D233A22B25E2F70077468D /* 3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D2339A2B25E2DC0077468D /* 3.caf */; };
+		56D233A32B25E2F70077468D /* 4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D233892B25E2DB0077468D /* 4.caf */; };
+		56D233A42B25E2F70077468D /* 5.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D233862B25E2DB0077468D /* 5.caf */; };
+		56D233A52B25E2F70077468D /* 6.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D233902B25E2DC0077468D /* 6.caf */; };
+		56D233A62B25E2F70077468D /* 7.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D233882B25E2DB0077468D /* 7.caf */; };
+		56D233A72B25E2F70077468D /* 8.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D233982B25E2DC0077468D /* 8.caf */; };
+		56D233A82B25E2F70077468D /* 9.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D2338B2B25E2DB0077468D /* 9.caf */; };
+		56D233A92B25E2F70077468D /* 10.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D233992B25E2DC0077468D /* 10.caf */; };
+		56D233AA2B25E2F70077468D /* 11.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D2339B2B25E2DC0077468D /* 11.caf */; };
+		56D233AB2B25E2F70077468D /* 12.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D233872B25E2DB0077468D /* 12.caf */; };
+		56D233AC2B25E2F70077468D /* 13.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D233852B25E2DB0077468D /* 13.caf */; };
+		56D233AD2B25E2F70077468D /* 14.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D2339C2B25E2DC0077468D /* 14.caf */; };
+		56D233AE2B25E2F70077468D /* 15.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D233922B25E2DC0077468D /* 15.caf */; };
+		56D233AF2B25E2F70077468D /* 16.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D2338D2B25E2DC0077468D /* 16.caf */; };
+		56D233B02B25E2F70077468D /* 17.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D233952B25E2DC0077468D /* 17.caf */; };
+		56D233B12B25E2F70077468D /* 18.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D233972B25E2DC0077468D /* 18.caf */; };
+		56D233B22B25E2F70077468D /* 19.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D2338C2B25E2DC0077468D /* 19.caf */; };
+		56D233B32B25E2F70077468D /* 20.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D233912B25E2DC0077468D /* 20.caf */; };
+		56D233B42B25E2F70077468D /* completed.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D2338E2B25E2DC0077468D /* completed.caf */; };
+		56D233B52B25E2F70077468D /* movement.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D233942B25E2DC0077468D /* movement.caf */; };
+		56D233B62B25E2F70077468D /* preparation.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D2339D2B25E2DC0077468D /* preparation.caf */; };
+		56D233B72B25E2F70077468D /* remaining.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D2339E2B25E2DC0077468D /* remaining.caf */; };
+		56D233B82B25E2F70077468D /* rest.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D2338A2B25E2DB0077468D /* rest.caf */; };
+		56D233B92B25E2F70077468D /* round.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D233932B25E2DC0077468D /* round.caf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,6 +139,33 @@
 		56C4F6612B1D89E0009D2721 /* SimpleNextRealTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleNextRealTime.swift; sourceTree = "<group>"; };
 		56C5A49A2B136BDE008ABCA0 /* TextLimiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLimiter.swift; sourceTree = "<group>"; };
 		56C5A4BE2B14B570008ABCA0 /* SimpleViewModel+Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleViewModel+Update.swift"; sourceTree = "<group>"; };
+		56D233842B25E2DB0077468D /* 1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 1.caf; sourceTree = "<group>"; };
+		56D233852B25E2DB0077468D /* 13.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 13.caf; sourceTree = "<group>"; };
+		56D233862B25E2DB0077468D /* 5.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 5.caf; sourceTree = "<group>"; };
+		56D233872B25E2DB0077468D /* 12.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 12.caf; sourceTree = "<group>"; };
+		56D233882B25E2DB0077468D /* 7.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 7.caf; sourceTree = "<group>"; };
+		56D233892B25E2DB0077468D /* 4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 4.caf; sourceTree = "<group>"; };
+		56D2338A2B25E2DB0077468D /* rest.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = rest.caf; sourceTree = "<group>"; };
+		56D2338B2B25E2DB0077468D /* 9.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 9.caf; sourceTree = "<group>"; };
+		56D2338C2B25E2DC0077468D /* 19.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 19.caf; sourceTree = "<group>"; };
+		56D2338D2B25E2DC0077468D /* 16.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 16.caf; sourceTree = "<group>"; };
+		56D2338E2B25E2DC0077468D /* completed.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = completed.caf; sourceTree = "<group>"; };
+		56D2338F2B25E2DC0077468D /* 0.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 0.caf; sourceTree = "<group>"; };
+		56D233902B25E2DC0077468D /* 6.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 6.caf; sourceTree = "<group>"; };
+		56D233912B25E2DC0077468D /* 20.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 20.caf; sourceTree = "<group>"; };
+		56D233922B25E2DC0077468D /* 15.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 15.caf; sourceTree = "<group>"; };
+		56D233932B25E2DC0077468D /* round.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = round.caf; sourceTree = "<group>"; };
+		56D233942B25E2DC0077468D /* movement.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = movement.caf; sourceTree = "<group>"; };
+		56D233952B25E2DC0077468D /* 17.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 17.caf; sourceTree = "<group>"; };
+		56D233962B25E2DC0077468D /* 2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 2.caf; sourceTree = "<group>"; };
+		56D233972B25E2DC0077468D /* 18.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 18.caf; sourceTree = "<group>"; };
+		56D233982B25E2DC0077468D /* 8.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 8.caf; sourceTree = "<group>"; };
+		56D233992B25E2DC0077468D /* 10.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 10.caf; sourceTree = "<group>"; };
+		56D2339A2B25E2DC0077468D /* 3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 3.caf; sourceTree = "<group>"; };
+		56D2339B2B25E2DC0077468D /* 11.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 11.caf; sourceTree = "<group>"; };
+		56D2339C2B25E2DC0077468D /* 14.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 14.caf; sourceTree = "<group>"; };
+		56D2339D2B25E2DC0077468D /* preparation.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = preparation.caf; sourceTree = "<group>"; };
+		56D2339E2B25E2DC0077468D /* remaining.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = remaining.caf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +229,33 @@
 			isa = PBXGroup;
 			children = (
 				56AF0ADC2AE892B8009AF8A2 /* Assets.xcassets */,
+				56D2338F2B25E2DC0077468D /* 0.caf */,
+				56D233842B25E2DB0077468D /* 1.caf */,
+				56D233962B25E2DC0077468D /* 2.caf */,
+				56D2339A2B25E2DC0077468D /* 3.caf */,
+				56D233892B25E2DB0077468D /* 4.caf */,
+				56D233862B25E2DB0077468D /* 5.caf */,
+				56D233902B25E2DC0077468D /* 6.caf */,
+				56D233882B25E2DB0077468D /* 7.caf */,
+				56D233982B25E2DC0077468D /* 8.caf */,
+				56D2338B2B25E2DB0077468D /* 9.caf */,
+				56D233992B25E2DC0077468D /* 10.caf */,
+				56D2339B2B25E2DC0077468D /* 11.caf */,
+				56D233872B25E2DB0077468D /* 12.caf */,
+				56D233852B25E2DB0077468D /* 13.caf */,
+				56D2339C2B25E2DC0077468D /* 14.caf */,
+				56D233922B25E2DC0077468D /* 15.caf */,
+				56D2338D2B25E2DC0077468D /* 16.caf */,
+				56D233952B25E2DC0077468D /* 17.caf */,
+				56D233972B25E2DC0077468D /* 18.caf */,
+				56D2338C2B25E2DC0077468D /* 19.caf */,
+				56D233912B25E2DC0077468D /* 20.caf */,
+				56D2338E2B25E2DC0077468D /* completed.caf */,
+				56D233942B25E2DC0077468D /* movement.caf */,
+				56D2339D2B25E2DC0077468D /* preparation.caf */,
+				56D2339E2B25E2DC0077468D /* remaining.caf */,
+				56D2338A2B25E2DB0077468D /* rest.caf */,
+				56D233932B25E2DC0077468D /* round.caf */,
 				562FC92F2B24A03A0038731B /* whistle_counting.caf */,
 				562FC9362B24A5A70038731B /* whistle_countComplete.caf */,
 			);
@@ -256,7 +337,7 @@
 				562164D02B08D67A008E472B /* Extension */,
 				56AF0AF82AEA35B5009AF8A2 /* CustomStyle */,
 				56C4F6532B1CABD7009D2721 /* View */,
-				56C4F6522B1CAB90009D2721 /* ViewModel */,
+				56C4F6522B1CAB90009D2721 /* Manager */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -290,7 +371,7 @@
 			path = Dommy;
 			sourceTree = "<group>";
 		};
-		56C4F6522B1CAB90009D2721 /* ViewModel */ = {
+		56C4F6522B1CAB90009D2721 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
 				5697A7D32AFF431400ADBBD1 /* InputManager.swift */,
@@ -298,7 +379,7 @@
 				562FC9212B2483630038731B /* AVManager.swift */,
 				56C4F65F2B1D6F3F009D2721 /* Extension */,
 			);
-			path = ViewModel;
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		56C4F6532B1CABD7009D2721 /* View */ = {
@@ -417,6 +498,33 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56D2339F2B25E2F70077468D /* 0.caf in Resources */,
+				56D233A02B25E2F70077468D /* 1.caf in Resources */,
+				56D233A12B25E2F70077468D /* 2.caf in Resources */,
+				56D233A22B25E2F70077468D /* 3.caf in Resources */,
+				56D233A32B25E2F70077468D /* 4.caf in Resources */,
+				56D233A42B25E2F70077468D /* 5.caf in Resources */,
+				56D233A52B25E2F70077468D /* 6.caf in Resources */,
+				56D233A62B25E2F70077468D /* 7.caf in Resources */,
+				56D233A72B25E2F70077468D /* 8.caf in Resources */,
+				56D233A82B25E2F70077468D /* 9.caf in Resources */,
+				56D233A92B25E2F70077468D /* 10.caf in Resources */,
+				56D233AA2B25E2F70077468D /* 11.caf in Resources */,
+				56D233AB2B25E2F70077468D /* 12.caf in Resources */,
+				56D233AC2B25E2F70077468D /* 13.caf in Resources */,
+				56D233AD2B25E2F70077468D /* 14.caf in Resources */,
+				56D233AE2B25E2F70077468D /* 15.caf in Resources */,
+				56D233AF2B25E2F70077468D /* 16.caf in Resources */,
+				56D233B02B25E2F70077468D /* 17.caf in Resources */,
+				56D233B12B25E2F70077468D /* 18.caf in Resources */,
+				56D233B22B25E2F70077468D /* 19.caf in Resources */,
+				56D233B32B25E2F70077468D /* 20.caf in Resources */,
+				56D233B42B25E2F70077468D /* completed.caf in Resources */,
+				56D233B52B25E2F70077468D /* movement.caf in Resources */,
+				56D233B62B25E2F70077468D /* preparation.caf in Resources */,
+				56D233B72B25E2F70077468D /* remaining.caf in Resources */,
+				56D233B82B25E2F70077468D /* rest.caf in Resources */,
+				56D233B92B25E2F70077468D /* round.caf in Resources */,
 				562FC9372B24A5AD0038731B /* whistle_countComplete.caf in Resources */,
 				562FC9312B24A0620038731B /* whistle_counting.caf in Resources */,
 				56AF0AE02AE892B8009AF8A2 /* Preview Assets.xcassets in Resources */,

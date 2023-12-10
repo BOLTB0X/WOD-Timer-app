@@ -110,4 +110,5 @@ struct SimpleView: View {
 
 #Preview {
     SimpleView()
+        .environment(\.colorScheme, .dark)
 }

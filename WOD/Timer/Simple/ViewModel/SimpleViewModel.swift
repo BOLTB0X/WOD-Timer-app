@@ -40,6 +40,9 @@ class SimpleViewModel: InputManager {
             case .resumed: // 재개
                 resumeSimpleTimer()
             }
+            
+            // simpleState가 변경될 때마다 음성 안내
+            UIAccessibility.post(notification: .announcement, argument: simpleRoundPhase?.phaseText ?? "??")
         }
     }
     

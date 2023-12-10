@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - TextMonitor
-class TextMonitor: ObservableObject {
+class TextManager: ObservableObject {
     private let limit: Int
     
     init(limit: Int) {

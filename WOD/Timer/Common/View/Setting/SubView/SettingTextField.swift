@@ -10,7 +10,7 @@ import SwiftUI
 struct SettingTextField: View {
     @Binding var setBinding: Int
     @FocusState private var focusedField: Bool
-    @ObservedObject var input = TextMonitor(limit: 2)
+    @ObservedObject var input = TextManager(limit: 2)
     
     let title: String
     let viewModel: InputManager
