@@ -18,7 +18,7 @@ class InputManager: ObservableObject {
     @Published var isCalculatedBtn: Bool = false
     
     // MARK: - Common property
-    let roundRange = Array(1...99)
+    let roundRange = Array(1...20)
     let preparationRange = Array(1...59)
     let hoursRange = Array(0...99)
     let minutesRange = Array(0...59)

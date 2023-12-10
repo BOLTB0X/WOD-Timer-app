@@ -32,9 +32,9 @@ extension Int {
 
 extension Color {
     // 배경색
-    static let preparationColors = ["lightYellow1", "lightYellow2", "lightYellow3"]
+    static let preparationColors = ["lightYellow1", "lightYellow2", "lightYellow3", "lightYellow4"]
     static let movementColors = ["lightBlue2", "lightBlue1", "lightBlue3", "lightBlue4"]
-    static let restColors = ["lightGreen1", "lightGreen2", "lightGreen3"]
+    static let restColors = ["lightGreen1", "lightGreen2", "lightGreen3", "lightGreen4"]
     
     static func randomPreparationColor() -> Color {
         guard let randomElement = preparationColors.randomElement() else {

@@ -76,6 +76,11 @@ extension SimpleViewModel {
         simpleRoundIdx ?? 0 < selectedRoundAmount ? "\((simpleRoundIdx ?? 0) + 1) Round" : "\(selectedRoundAmount) Round"
     }
     
+    // MARK: - currentRoundString
+    var currentRoundString: String {
+        simpleRoundIdx ?? 0 < selectedRoundAmount ? "\((simpleRoundIdx ?? 0) + 1)" : "\(selectedRoundAmount)"
+    }
+    
     // MARK: - currentPhaseText
     var currentPhaseText: String {
         simpleRoundPhase?.phaseText ?? ""
@@ -84,6 +89,11 @@ extension SimpleViewModel {
     // MARK: - currentDisplayTime
     var currentDisplayTime: String {
         simpleRoundIdx ?? 0 < selectedRoundAmount ? simpleDisplay.asTimestamp : "END"
+    }
+    
+    // MARK: - currentRemainingString
+    var currentRemainingString: String {
+        "\(selectedRoundAmount - ((simpleRoundIdx ?? 0) + 1))"
     }
     
     // MARK: - currentRemainingRounds
@@ -99,6 +109,10 @@ extension SimpleViewModel {
     // MARK: - isDisplayToolbarBtn
     var isDisplayToolbarBtn: Bool {
         simpleState == .paused || simpleRoundIdx ?? 0 == selectedRoundAmount
+    }
+    
+    var isEnd: Color {
+        simpleRoundIdx ?? 0 < simpleRounds.count ? Color(.black).opacity(0.3) : phaseBackgroundColor
     }
     
     /*==================================================================================*/
@@ -139,7 +153,25 @@ extension SimpleViewModel {
         case .rest:
             phaseBackgroundColor = Color.randomRestColor()
         case .completed:
-            phaseBackgroundColor = Color(.systemGray5)
+            phaseBackgroundColor = Color(.systemGray)
         }
+    }
+    
+    // MARK: - speakingProcessingRound
+    func speakingProcessingRound() {
+        DispatchQueue.global().async {
+            AVManager.shared.playSound(named: self.currentRoundString, fileExtension: "caf")
+            AVManager.shared.playSound(named: "round", fileExtension: "caf")
+        }
+        return
+    }
+    
+    // MARK: - speakingRemainingRound
+    func speakingRemainingRound() {
+        DispatchQueue.global().async {
+            AVManager.shared.playSound(named: self.currentRemainingString, fileExtension: "caf")
+            AVManager.shared.playSound(named: "round", fileExtension: "caf")
+        }
+        return
     }
 }

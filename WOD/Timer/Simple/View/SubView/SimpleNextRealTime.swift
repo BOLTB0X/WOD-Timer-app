@@ -19,7 +19,7 @@ struct SimpleNextRealTime: View {
             RealTime(time: viewModel.nextTimerTime, fontSize: viewModel.selectedMovementAmount.timerSmallFontSize)
 
         }
-        .foregroundColor(viewModel.simpleRoundIdx ?? 0 < viewModel.simpleRounds.count ? .secondary : viewModel.phaseBackgroundColor)
+        .foregroundColor(viewModel.isEnd)
     }
 }
 

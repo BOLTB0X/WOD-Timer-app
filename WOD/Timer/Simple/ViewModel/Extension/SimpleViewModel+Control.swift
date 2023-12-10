@@ -7,7 +7,7 @@
 
 import Foundation
 import Combine
-//import AudioToolbox
+import UIKit
 
 // MARK: - SimpleViewModel+Control: SimpleTimer Control
 // 제어관련 메소드들
@@ -22,6 +22,10 @@ extension SimpleViewModel {
         
         print("타이머 실행")
         print(simpleRoundPhase?.phaseText ?? "??")
+        
+        DispatchQueue.main.async {
+            self.speakingCurrentState()
+        }
         
         timerCancellable = Timer.publish(every: 1.0, on: .main, in: .common)
             .autoconnect()
@@ -52,7 +56,6 @@ extension SimpleViewModel {
                     self.completedCurrentTimer() // 완료
                 }
             }
-        
     }
     
     // MARK: - completedCurrentTimer
@@ -199,6 +202,21 @@ extension SimpleViewModel {
     /*==================================================================================*/
     // MARK: - in using
     // ...
+    private func speakingCurrentState() {
+        guard let phase = simpleRoundPhase else { return }
+        
+        switch phase {
+        case .preparation:
+            AVManager.shared.playSound(named: "preparation", fileExtension: "caf")
+        case .movement:
+            AVManager.shared.playSound(named: "movement", fileExtension: "caf")
+        case .rest:
+            AVManager.shared.playSound(named: "rest", fileExtension: "caf")
+        case .completed:
+            AVManager.shared.playSound(named: "completed", fileExtension: "caf")
+        }
+    }
+    
     // MARK: - updateBeforeSimpleTotalTime
     // 총 시간 업데이트
     private func updateBeforeSimpleTotalTime() {

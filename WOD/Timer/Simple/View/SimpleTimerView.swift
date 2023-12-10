@@ -10,6 +10,7 @@ import SwiftUI
 struct SimpleTimerView: View {
     @EnvironmentObject private var viewModel: SimpleViewModel
     @Binding var isBackRootView: Bool
+    var avManger = AVManager.shared
     
     var body: some View {
         NavigationView {
@@ -58,25 +59,34 @@ struct SimpleTimerView: View {
     private func displayTime() -> some View {
         VStack(alignment: .center, spacing: 10) {
             // 현재 라운드
-            Text(viewModel.currentRoundDisplay)
-                .font(.system(size: 60, weight: .bold))
-                .fontWeight(.bold)
-                .foregroundColor(.black)
+            
+            Button(action: {
+                viewModel.speakingProcessingRound()
+            }) {
+                Text(viewModel.currentRoundDisplay)
+                    .font(.system(size: 60, weight: .bold))
+                    .fontWeight(.bold)
+                    .foregroundColor(.black)
+            }
             .padding()
             
             
             SimpleRealTime()
                 .environmentObject(viewModel)
-            .padding()
+                .padding()
             
             SimpleNextRealTime()
                 .environmentObject(viewModel)
-            .padding()
-            
-            Text(viewModel.currentRemainingRounds)
-                .font(.system(size: 30, weight: .semibold))
-                .foregroundColor(viewModel.simpleRoundIdx ?? 0 < viewModel.simpleRounds.count ? .secondary : viewModel.phaseBackgroundColor)
                 .padding()
+            
+            Button(action: {
+                viewModel.speakingRemainingRound()
+            }) {
+                Text(viewModel.currentRemainingRounds)
+                    .font(.system(size: 30, weight: .semibold))
+                    .foregroundColor(viewModel.isEnd)
+                    .padding()
+            }
             
             Spacer()
         }
