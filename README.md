@@ -76,25 +76,15 @@
 
     [블로그 참조 - Audiotoolbox 활용](https://medium.com/the-swift-blog/play-short-sound-in-ios-using-audiotoolbox-5ec6a39bab1a)
     <br/>
-
-- MPRemoteCommandCenter
-    <br/>
-    [공식문서 - MPRemoteCommandCenter](https://developer.apple.com/documentation/mediaplayer/mpremotecommandcenter)
+    
+- Live Activities
     <br/>
 
-    [공식문서 - Remote command center events](https://developer.apple.com/documentation/mediaplayer/remote_command_center_events)
+    [Live Activities](https://developer.apple.com/design/human-interface-guidelines/live-activities)
     <br/>
 
-    [공식문서 - Media Player](https://developer.apple.com/documentation/mediaplayer/)
+    [블로그 참조 - Live Activities](https://velog.io/@maddie/iOS-Live-Activity-%EB%9D%BC%EC%9D%B4%EB%B8%8C-%EC%95%A1%ED%8B%B0%EB%B9%84%ED%8B%B0)
     <br/>
-
-    [블로그 참조 - Background Audio Player Sync Control Center](https://medium.com/@quangtqag/background-audio-player-sync-control-center-516243c2cdd1)
-    <br/>
-
-    [블로그 참조 -MPRemoteCommandCenter 사용하기](https://icksw.tistory.com/160)
-    <br/>
-
-
 
 - 기타
     <br/>
