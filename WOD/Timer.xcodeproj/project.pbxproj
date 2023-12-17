@@ -17,7 +17,6 @@
 		562165212B0B8CA6008E472B /* InputManager+Rest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562165202B0B8CA6008E472B /* InputManager+Rest.swift */; };
 		562FC9202B245ECF0038731B /* ToolbarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562FC91F2B245ECF0038731B /* ToolbarButton.swift */; };
 		562FC9222B2483630038731B /* AVManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562FC9212B2483630038731B /* AVManager.swift */; };
-		562FC9312B24A0620038731B /* whistle_counting.caf in Resources */ = {isa = PBXBuildFile; fileRef = 562FC92F2B24A03A0038731B /* whistle_counting.caf */; };
 		562FC9372B24A5AD0038731B /* whistle_countComplete.caf in Resources */ = {isa = PBXBuildFile; fileRef = 562FC9362B24A5A70038731B /* whistle_countComplete.caf */; };
 		5697A7CE2AFE59E200ADBBD1 /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697A7CD2AFE59E200ADBBD1 /* ButtonStyle.swift */; };
 		5697A7D02AFE73C300ADBBD1 /* RoundSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697A7CF2AFE73C300ADBBD1 /* RoundSet.swift */; };
@@ -84,6 +83,7 @@
 		56D233B72B25E2F70077468D /* remaining.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D2339E2B25E2DC0077468D /* remaining.caf */; };
 		56D233B82B25E2F70077468D /* rest.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D2338A2B25E2DB0077468D /* rest.caf */; };
 		56D233B92B25E2F70077468D /* round.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D233932B25E2DC0077468D /* round.caf */; };
+		BEA72DCE2B2F1B70004BC9D9 /* whistle_counting.caf in Resources */ = {isa = PBXBuildFile; fileRef = BEA72DCD2B2F1B2B004BC9D9 /* whistle_counting.caf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,7 +97,6 @@
 		562165202B0B8CA6008E472B /* InputManager+Rest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InputManager+Rest.swift"; sourceTree = "<group>"; };
 		562FC91F2B245ECF0038731B /* ToolbarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarButton.swift; sourceTree = "<group>"; };
 		562FC9212B2483630038731B /* AVManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVManager.swift; sourceTree = "<group>"; };
-		562FC92F2B24A03A0038731B /* whistle_counting.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = whistle_counting.caf; path = ../../../../../Downloads/whistle_counting.caf; sourceTree = "<group>"; };
 		562FC9362B24A5A70038731B /* whistle_countComplete.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = whistle_countComplete.caf; sourceTree = "<group>"; };
 		5697A7CD2AFE59E200ADBBD1 /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
 		5697A7CF2AFE73C300ADBBD1 /* RoundSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundSet.swift; sourceTree = "<group>"; };
@@ -166,6 +165,7 @@
 		56D2339C2B25E2DC0077468D /* 14.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 14.caf; sourceTree = "<group>"; };
 		56D2339D2B25E2DC0077468D /* preparation.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = preparation.caf; sourceTree = "<group>"; };
 		56D2339E2B25E2DC0077468D /* remaining.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = remaining.caf; sourceTree = "<group>"; };
+		BEA72DCD2B2F1B2B004BC9D9 /* whistle_counting.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = whistle_counting.caf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,7 +256,7 @@
 				56D2339E2B25E2DC0077468D /* remaining.caf */,
 				56D2338A2B25E2DB0077468D /* rest.caf */,
 				56D233932B25E2DC0077468D /* round.caf */,
-				562FC92F2B24A03A0038731B /* whistle_counting.caf */,
+				BEA72DCD2B2F1B2B004BC9D9 /* whistle_counting.caf */,
 				562FC9362B24A5A70038731B /* whistle_countComplete.caf */,
 			);
 			path = Resource;
@@ -498,6 +498,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEA72DCE2B2F1B70004BC9D9 /* whistle_counting.caf in Resources */,
 				56D2339F2B25E2F70077468D /* 0.caf in Resources */,
 				56D233A02B25E2F70077468D /* 1.caf in Resources */,
 				56D233A12B25E2F70077468D /* 2.caf in Resources */,
@@ -526,7 +527,6 @@
 				56D233B82B25E2F70077468D /* rest.caf in Resources */,
 				56D233B92B25E2F70077468D /* round.caf in Resources */,
 				562FC9372B24A5AD0038731B /* whistle_countComplete.caf in Resources */,
-				562FC9312B24A0620038731B /* whistle_counting.caf in Resources */,
 				56AF0AE02AE892B8009AF8A2 /* Preview Assets.xcassets in Resources */,
 				56AF0ADD2AE892B8009AF8A2 /* Assets.xcassets in Resources */,
 			);
@@ -643,7 +643,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -700,7 +700,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -727,7 +727,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -758,7 +758,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

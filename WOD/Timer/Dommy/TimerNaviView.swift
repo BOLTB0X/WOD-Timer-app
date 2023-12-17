@@ -86,7 +86,3 @@ struct TimerNaviView: View {
         vm.FirstStartPressed()
     }
 }
-
-#Preview {
-    TimerNaviView()
-}

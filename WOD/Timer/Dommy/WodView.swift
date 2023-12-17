@@ -65,7 +65,3 @@ struct WodView: View {
         vm.StartPressed()
     }
 }
-
-#Preview {
-    WodView()
-}

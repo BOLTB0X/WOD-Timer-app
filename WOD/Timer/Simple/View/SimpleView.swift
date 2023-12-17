@@ -108,7 +108,9 @@ struct SimpleView: View {
     }
 }
 
-#Preview {
-    SimpleView()
-        .environment(\.colorScheme, .dark)
+struct SimpleView_Previews: PreviewProvider {
+    static var previews: some View {
+        SimpleView()
+            .environment(\.colorScheme, .dark)
+    }
 }

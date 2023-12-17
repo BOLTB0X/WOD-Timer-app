@@ -19,11 +19,12 @@ struct SimpleRealTime: View {
             RealTime(time: viewModel.currentDisplayTime, fontSize: viewModel.selectedMovementAmount.timerBigFontSize)
         }
         .foregroundColor(.black)
-
+        
     }
 }
 
-#Preview {
-    SimpleRealTime()
-        .environmentObject(SimpleViewModel.shared)
+struct SimpleRealTime_Previews: PreviewProvider {
+    static var previews: some View {
+        SimpleRealTime()
+        .environmentObject(SimpleViewModel.shared)    }
 }

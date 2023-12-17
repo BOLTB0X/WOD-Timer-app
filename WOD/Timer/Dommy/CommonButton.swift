@@ -47,8 +47,3 @@ struct CommonButton: View {
         .scaledToFit()
     }
 }
-
-#Preview {
-    CommonButton(systemName: "play.circle", bgColor: .gray, imgColor: .blue, action: {})
-        //.previewLayout(.fixed(width: 400, height: 200))
-}

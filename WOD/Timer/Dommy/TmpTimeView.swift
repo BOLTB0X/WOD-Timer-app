@@ -31,7 +31,3 @@ struct TmpTimeView: View {
         .padding()
     }
 }
-
-#Preview {
-    TmpTimeView()
-}

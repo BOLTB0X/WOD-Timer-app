@@ -30,8 +30,3 @@ struct StopWatchView: View {
         }
     }
 }
-
-#Preview {
-    StopWatchView()
-
-}

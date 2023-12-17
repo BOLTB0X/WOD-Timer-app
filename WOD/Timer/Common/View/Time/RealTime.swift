@@ -22,17 +22,21 @@ struct RealTime: View {
     }
 }
 
-#Preview {
-    Group {
-        RealTime(time: "23:45")
-            .previewLayout(.sizeThatFits)
-        //.preferredColorScheme(.dark)
-        
-        RealTime(time: "01:23:45", fontSize: 85)
-            .previewLayout(.sizeThatFits)
-        //.preferredColorScheme(.dark)
-        
-        RealTime(time: "23:45", fontSize: 125)
-            .previewLayout(.sizeThatFits)
+struct RealTime_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            RealTime(time: "23:45")
+                .previewLayout(.sizeThatFits)
+            //.preferredColorScheme(.dark)
+            
+            RealTime(time: "01:23:45", fontSize: 85)
+                .previewLayout(.sizeThatFits)
+            //.preferredColorScheme(.dark)
+            
+            RealTime(time: "23:45", fontSize: 125)
+                .previewLayout(.sizeThatFits)
+        }
     }
+
 }
+

@@ -28,18 +28,3 @@ struct RecordButton: View {
     }
 }
 
-#Preview {
-    Group {
-        RecordButton(mode: .stopped)
-            .padding()
-            .previewLayout(.sizeThatFits)
-        
-        RecordButton(mode: .running)
-            .padding()
-            .previewLayout(.sizeThatFits)
-        
-        RecordButton(mode: .paused)
-            .padding()
-            .previewLayout(.sizeThatFits)
-    }
-}

@@ -29,22 +29,3 @@ struct PlayButton: View {
         CommonButton(systemName: systemName, bgColor: bgColor, imgColor: imgColor, action: action)
     }
 }
-
-#Preview {
-    Group {
-        PlayButton(mode: .stopped)
-            .padding()
-            .previewLayout(.sizeThatFits)
-            .previewDisplayName("Mode: Stopped")
-        
-        PlayButton(mode: .running)
-            .padding()
-            .previewLayout(.sizeThatFits)
-            .previewDisplayName("Mode: Stopped")
-        
-        PlayButton(mode: .paused)
-            .padding()
-            .previewLayout(.sizeThatFits)
-            .previewDisplayName("Mode: Stopped")
-    }
-}

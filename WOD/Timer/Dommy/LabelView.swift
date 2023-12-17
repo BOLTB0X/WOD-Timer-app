@@ -34,7 +34,3 @@ struct LabelView: View {
         }
     }
 }
-
-#Preview {
-    LabelView()
-}

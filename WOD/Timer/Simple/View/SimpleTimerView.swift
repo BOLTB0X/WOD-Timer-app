@@ -120,7 +120,9 @@ struct SimpleTimerView: View {
     }
 }
 
-#Preview {
-    SimpleTimerView(isBackRootView: .constant(true))
-        .environmentObject(SimpleViewModel())
+struct SimpleTimerView_Previews: PreviewProvider {
+    static var previews: some View {
+        SimpleTimerView(isBackRootView: .constant(true))
+            .environmentObject(SimpleViewModel())
+    }
 }

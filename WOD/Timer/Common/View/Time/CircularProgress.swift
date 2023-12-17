@@ -28,6 +28,10 @@ struct CircularProgress: View {
     }
 }
 
-#Preview {
-    CircularProgress(progress: .constant(0.0))
+
+struct CircularProgress_Previews: PreviewProvider {
+    static var previews: some View {
+        CircularProgress(progress: .constant(0.0))
+    }
+
 }
