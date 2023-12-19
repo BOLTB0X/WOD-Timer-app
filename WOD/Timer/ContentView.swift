@@ -25,16 +25,6 @@ struct ContentView: View {
     }
 }
 
-struct btnCustom: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .padding(8)
-            .background(Color.blue)
-            .cornerRadius(10)
-            .foregroundColor(.white)
-    }
-}
-
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()

@@ -18,7 +18,11 @@ class SimpleViewModel: InputManager {
     @Published var simpleTotalTime:Int = 0 // 심플 루틴 배열의 총 시간
     @Published var simpleRoundIdx: Int? //
     @Published var simpleCompletion: Date? // 완료일
-    @Published var simpleDisplay: Int = 0 // 뷰에 나타낼
+    @Published var simpleDisplay: Int = 0 {
+        didSet {
+            widgetManager.contentState.currentDisplayTime = simpleDisplay
+        }
+    }
     
     @Published var simpleUnitProgress: Float = 0.0
     @Published var simpleFullProgress: Float = 0.0
@@ -49,6 +53,9 @@ class SimpleViewModel: InputManager {
     @Published var simpleRoundPhase: SimpleRoundPhase?
     @Published var phaseBackgroundColor: Color = .clear
     @Published var controlBtn: Bool = false // 바인딩할 프로퍼티
+    
+    @Published var widgetManager = WidgetManager()
+
     
     // 타이머 메모리 날리기 용
     var timerCancellable: AnyCancellable?

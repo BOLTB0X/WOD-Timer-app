@@ -7,7 +7,6 @@
 
 import Foundation
 import Combine
-import UIKit
 
 // MARK: - SimpleViewModel+Control: SimpleTimer Control
 // 제어관련 메소드들
