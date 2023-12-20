@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// MAKR: - SimpleNextRealTime
 struct SimpleNextRealTime: View {
     @EnvironmentObject private var viewModel: SimpleViewModel
     
@@ -17,7 +18,6 @@ struct SimpleNextRealTime: View {
                 .font(.system(size: 20, weight: .regular))            
             // 현재 다음 라운드나 페이즈 타이머 시간 표시
             RealTime(time: viewModel.nextTimerTime, fontSize: viewModel.selectedMovementAmount.timerSmallFontSize)
-
         }
         .foregroundColor(viewModel.isEnd)
     }

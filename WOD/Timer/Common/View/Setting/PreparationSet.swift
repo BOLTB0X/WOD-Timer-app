@@ -7,63 +7,48 @@
 
 import SwiftUI
 
+// MARK: - PreparationSet
 struct PreparationSet: View {
-    @EnvironmentObject var viewModel: SimpleViewModel
-    @StateObject var manager = InputManager()
-    @State private var isChange: Bool = false
-    
+    @Binding var selectedPreparationAmount: Int
+    @Binding var isChange: Bool
     @Binding var showPopup: Bool
     
+    let manager: InputManager
+    
     var body: some View {
-        NavigationView {
-            GeometryReader { geometry in
-                VStack(alignment: .center, spacing: 0) {
-                    // MARK: - 초기화 & 전환
-                    HStack(alignment: .center, spacing: 0) {
-                        Button(action: {manager.selectedPreparationAmount = 3},
-                               label: {
-                            Image(systemName: "gobackward")
-                        })
-                        .padding(.horizontal)
-                        
-                        Spacer()
-
-                        Button(!isChange ? "keyboard": "wheel") {
-                            isChange.toggle()
-                        }
-                        .padding(.horizontal)
-                    }
-                    .foregroundColor(.secondary)
+        GeometryReader { geometry in
+            VStack(alignment: .center, spacing: 0) {
+                // MARK: - 초기화 & 전환
+                HStack(alignment: .center, spacing: 0) {
+                    Button(action: {selectedPreparationAmount = 3},
+                           label: {
+                        Image(systemName: "gobackward")
+                    })
+                    .padding(.horizontal)
                     
-                    // MARK: - set
-                    if isChange  {
-                        SettingTextField(setBinding: $manager.selectedPreparationAmount, title: "Preparation",viewModel: manager)
+                    Spacer()
+                    
+                    Button(!isChange ? "keyboard": "wheel") {
+                        isChange.toggle()
                     }
-                    else {
-                        SettingPicker(title: "Preparation",
-                                      range: manager.preparationRange,
-                                      binding: $manager.selectedPreparationAmount)
-                        .onTapGesture {
-                            isChange.toggle()
-                        }
+                    .padding(.horizontal)
+                } // HStack
+                .foregroundColor(.secondary)
+                
+                // MARK: - set
+                if isChange  {
+                    SettingTextField(setBinding: $selectedPreparationAmount, title: "Preparation",viewModel: manager)
+                }
+                else {
+                    SettingPicker(title: "Preparation",
+                                  range: manager.preparationRange,
+                                  binding: $selectedPreparationAmount)
+                    .onTapGesture {
+                        isChange.toggle()
                     }
                 }
-            }
-        }
-        .onAppear {
-            manager.selectedPreparationAmount = viewModel.selectedPreparationAmount
-        }
-        .navigationTitle("Preparation")
-        .navigationBarTitleDisplayMode(.inline)
-        .popupSettingToolbar(
-            cancelAction:  { showPopup.toggle() },
-            action:  { isChange.toggle() },
-            completeAction: { 
-                viewModel.selectedPreparationAmount = manager.selectedPreparationAmount
-                showPopup.toggle()
-            }
-        )
-        
-    }
+            } // VStack
+        } // GeometryReader
+    } // body
 }
 

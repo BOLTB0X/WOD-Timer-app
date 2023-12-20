@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// MARK: - SimpleRealTime
 struct SimpleRealTime: View {
     @EnvironmentObject private var viewModel: SimpleViewModel
     
@@ -19,7 +20,6 @@ struct SimpleRealTime: View {
             RealTime(time: viewModel.currentDisplayTime, fontSize: viewModel.selectedMovementAmount.timerBigFontSize)
         }
         .foregroundColor(.black)
-        
     }
 }
 

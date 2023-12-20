@@ -36,7 +36,7 @@ struct SettingTimeTextField: View {
                                 setHour = 0
                             }
                             viewModel.updateMovementValuesForField(.hh, newValue: newValue)
-                        }
+                        } // onChange
                     
                     TextField("mm", value: $setMinute, format: .number)
                         .textFieldStyle(CommonTextfieldStyle())
@@ -46,7 +46,7 @@ struct SettingTimeTextField: View {
                                 setMinute = 0
                             }
                             viewModel.updateMovementValuesForField(.mm, newValue: newValue)
-                        }
+                        } // onChange
                     
                     TextField("ss", value: $setSecond, format: .number)
                         .textFieldStyle(CommonTextfieldStyle())
@@ -56,10 +56,10 @@ struct SettingTimeTextField: View {
                                 setSecond = 0
                             }
                             viewModel.updateMovementValuesForField(.ss, newValue: newValue)
-                        }
-                }
+                        } // onChange
+                } // HSyack
                 .padding()
-            }
+            } // VStack
             .toolbar {
                 ToolbarItemGroup(placement: .keyboard) {
                     Button("before") {
@@ -74,13 +74,16 @@ struct SettingTimeTextField: View {
                         keyboardToolbar_NextBtn()
                     }
                 }
-            }
+            } // toolbar
             .onTapGesture {
                 focusedField = nil
             }
-        }
-    }
+        }// NavigationView
+    }// body
     
+    // MARK: - method
+    // ...
+    // MARK: - keyboardToolbar_BeforeBtn
     private func keyboardToolbar_BeforeBtn() {
         switch focusedField {
         case .hh:
@@ -94,6 +97,7 @@ struct SettingTimeTextField: View {
         }
     }
     
+    // MARK: - keyboardToolbar_BeforeBtn
     private func keyboardToolbar_NextBtn() {
         switch focusedField {
         case .hh:

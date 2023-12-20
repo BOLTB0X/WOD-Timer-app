@@ -30,10 +30,11 @@ struct SettingTextField: View {
                             } else {
                                 setBinding = newValue % 100
                             }
-                        }
+                        } // onChange
+                    
                     Spacer()
-                }
-            }
+                } // HStack
+            } // VStack
             .onTapGesture {
                 focusedField = false
             }
@@ -49,7 +50,7 @@ struct SettingTextField: View {
                         }
                     }
                 }
-            }
-        }
-    }
+            } // toolbar
+        } // NavigationView
+    } // body
 }

@@ -1,30 +1,36 @@
 //
-//  SimpleTimerView.swift
+//  SimpleStopWatchView.swift
 //  Timer
 //
-//  Created by lkh on 11/18/23.
+//  Created by lkh on 12/20/23.
 //
 
 import SwiftUI
 
-struct SimpleTimerView: View {
+// MARK: - SimpleStopWatchView
+struct SimpleStopWatchView: View {
     @EnvironmentObject private var viewModel: SimpleViewModel
     @Binding var isBackRootView: Bool
+    
     var avManger = AVManager.shared
     
     var body: some View {
         NavigationView {
-            // MARK: - View Main
             VStack(alignment: .center, spacing: 0) {
                 Spacer()
+                
                 // MARK: displayTime
                 displayTime()
                 
                 Spacer()
                 
-                // MARK: control
-                control()
-            }
+                Divider()
+                
+                // MARK: SimpleStopwatchControl
+//                SimpleStopwatchControl()
+                    //.environmentObject(viewModel)
+                
+            } // VStack
             
             // MARK: - side
             .navigationTitle(
@@ -32,29 +38,29 @@ struct SimpleTimerView: View {
                     .bold()
                     .foregroundColor(.black))
             .navigationBarTitleDisplayMode(.inline)
+            
             .toolbar {
                 // MARK: 왼쪽 뒤로가기
                 ToolbarItem(placement: .navigationBarLeading) {
                     ToolbarButton(action: {
-                        viewModel.simpleCanclled()
                         isBackRootView.toggle()
                     }, condition: viewModel.isDisplayToolbarBtn, systemName: "arrow.backward")
                 }
                 
                 // MARK: 오른쪽 새로고침
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    ToolbarButton(action: viewModel.simpleRestart, condition: viewModel.isDisplayToolbarBtn, systemName: "arrow.clockwise")
+                    ToolbarButton(action: viewModel.simpleTimerRestart, condition: viewModel.isDisplayToolbarBtn, systemName: "arrow.clockwise")
                 }
-            }
-        }
+            } // toolbar
+        } // NavigationView
         .onAppear {
-            viewModel.nextSimpleRound()
+            viewModel.nextSimpleStopwatchRound()
         }
-    }
+    } // body
     
     // MARK: - ViewBuilder
-    // ..
-    // MARK: - main
+    // ...
+    // MARK: - displayTime
     @ViewBuilder
     private func displayTime() -> some View {
         VStack(alignment: .center, spacing: 10) {
@@ -67,7 +73,7 @@ struct SimpleTimerView: View {
                     .font(.system(size: 60, weight: .bold))
                     .fontWeight(.bold)
                     .foregroundColor(.black)
-            }
+            } // Button
             .padding()
             
             
@@ -75,10 +81,14 @@ struct SimpleTimerView: View {
                 .environmentObject(viewModel)
                 .padding()
             
-            SimpleNextRealTime()
-                .environmentObject(viewModel)
-                .padding()
-            
+            VStack(alignment: .center, spacing: 0) {
+                Text(viewModel.nextTimerPhase)
+                    .font(.system(size: 24, weight: .regular))
+
+            }
+            .foregroundColor(viewModel.isEnd)
+            .padding()
+
             Button(action: {
                 viewModel.speakingRemainingRound()
             }) {
@@ -86,43 +96,20 @@ struct SimpleTimerView: View {
                     .font(.system(size: 30, weight: .semibold))
                     .foregroundColor(viewModel.isEnd)
                     .padding()
-            }
+            } // Button
             
             Spacer()
-        }
+                .frame(maxWidth: .infinity , maxHeight: .infinity)
+        } // VStack
         .frame(maxWidth: .infinity , maxHeight: .infinity)
         .background(viewModel.phaseBackgroundColor)
-    }
-    
-    // MARK: - control
-    @ViewBuilder
-    private func control() -> some View {
-        HStack(alignment: .center, spacing: 10) {
-            // before
-            ControlButton(isPaused: $viewModel.controlBtn ,action: viewModel.controlBefore, defaultImgName: "chevron.left.2")
-            
-            // start / pause
-            ZStack {
-                CircularProgress(progress: $viewModel.simpleUnitProgress)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                
-                if viewModel.simpleRoundPhase != .completed {
-                    ControlButton(isPaused: $viewModel.controlBtn, action:  viewModel.controlPausedOrResumed,
-                                  img1Name: "play.fill",
-                                  img2Name: "pause.fill")
-                }
-            }
-            
-            // next
-            ControlButton(isPaused: $viewModel.controlBtn, action: viewModel.controlNext, defaultImgName: "chevron.right.2")
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
+    } // displayTime
 }
 
-struct SimpleTimerView_Previews: PreviewProvider {
+struct SimpleStopWatchView_Previews: PreviewProvider {
     static var previews: some View {
-        SimpleTimerView(isBackRootView: .constant(true))
+        SimpleStopWatchView(isBackRootView: .constant(true))
             .environmentObject(SimpleViewModel())
     }
 }
+

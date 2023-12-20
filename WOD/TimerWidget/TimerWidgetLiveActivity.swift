@@ -9,16 +9,6 @@ import ActivityKit
 import WidgetKit
 import SwiftUI
 
-//struct TimerWidgetAttributes: ActivityAttributes {
-//    public struct ContentState: Codable, Hashable {
-//        // Dynamic stateful properties about your activity go here!
-//        var value: Int
-//    }
-//
-//    // Fixed non-changing properties about your activity go here!
-//    var name: String
-//}
-
 struct TimerWidgetLiveActivity: Widget {
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: TimerWidgetAttributes.self) { context in
@@ -50,9 +40,10 @@ struct TimerWidgetLiveActivity: Widget {
                 Text("B0X")
                 // MARK: - minimal
             } minimal: {
-                Text(context.state.currentDisplayTime.asTimestamp)
+                Image(systemName: "timer")
+                    .foregroundColor(.blue)
             }
-            .widgetURL(URL(string: "http://www.apple.com"))
+            //.widgetURL(URL(string: "http://www.apple.com"))
             //.keylineTint(Color.red)
         }
     }

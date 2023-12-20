@@ -21,11 +21,11 @@ struct SettingPicker: View {
                         .font(.system(size: 35))
                         .padding()
                     
-                }
-            }
+                } // ForEach
+            } // Picker
             .labelsHidden()
             .pickerStyle(InlinePickerStyle())
             Spacer()
-        }
-    }
+        } // VStack
+    } // body
 }

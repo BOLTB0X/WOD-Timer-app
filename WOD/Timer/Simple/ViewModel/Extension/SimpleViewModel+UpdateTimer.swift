@@ -8,11 +8,11 @@
 import SwiftUI
 import Combine
 
-// MARK: - SimpleViewModel+SimpleTimer: SimpleTimer Methods
+// MARK: - SimpleViewModel+SimpleTimer: SimpleTimer Update
 // 업데이트 관련 메소드들
 extension SimpleViewModel {
     // MARK: - Update Methods
-    /// .....
+    // .....
     // MARK: - updateCompletionDate
     func updateSimpleCompletionDate() {
         simpleCompletion = Date().addingTimeInterval(Double(simpleDisplay))
@@ -20,66 +20,83 @@ extension SimpleViewModel {
         return
     }
     
-    // MARK: - createSimpleRounds
+    // MARK: - createSimpleTimerRounds
     // 스타트 신호를 받으면 타이머을 돌린 배열에 넣어줌
-    func createSimpleRounds() {
-        simpleRounds = [] // 초기화
+    func createSimpleTimerRounds() {
+        simpleTmRounds = [] // 초기화
         
         for i in 0..<selectedRoundAmount {
             if i == selectedRoundAmount - 1 {
-                simpleRounds.append((selectedMovementAmount.totalSeconds, 0))
+                simpleTmRounds.append((selectedMovementAmount.totalSeconds, 0))
             } else {
-                simpleRounds.append((selectedMovementAmount.totalSeconds, selectedRestAmount.totalSeconds))
+                simpleTmRounds.append((selectedMovementAmount.totalSeconds, selectedRestAmount.totalSeconds))
             }
         }
         
-        simpleTotalTime = 0
-        simpleTotalTime = simpleRounds.reduce(0) { $0 + ($1.movement + $1.rest) }
+        simpleTotalTime = simpleTmRounds.reduce(0) { $0 + ($1.movement + $1.rest) }
         return
     }
     
     /*==================================================================================*/
     // MARK: - phase, Round Update Method
     // ...
-    // MARK: - moveToNextRound
+    // MARK: - nextSimpleTimerRound
     // 다음 라운드로 이동
-    func nextSimpleRound() {
-        if simpleRounds.isEmpty { return }
+    func nextSimpleTimerRound() {
+        if simpleTmRounds.isEmpty { return }
         
         // 첫 시작, 준비 카운트를 진행해야할지 판단
-        if isFirstStart() {
+        if isTimerFirstStart() {
             return
         }
         
         // 루틴배열(simpleRounds)의 인덱스를 변경
-        movingIndex_InSimpleRounds()
+        movingIndex_InSimpleTimerRounds()
         return
     }
     
     // MARK: - isFirstStart
     // 루틴 타이머가 첫 시작인지 체크 메소드
-    func isFirstStart() -> Bool {
+    func isTimerFirstStart() -> Bool {
         // 첫 시작, 준비 카운트부터
-        if simpleRoundIdx == nil {
-            simpleRoundIdx = 0
+        if simpleTmRoundIdx == nil {
+            simpleTmRoundIdx = 0
             simpleRoundPhase = .preparation
             updateBackgroundColor()
+            
             simpleDisplay = selectedPreparationAmount
             simpleState = controlBtn ? .paused : .active
+            
             return true
+        } else {
+            return false
         }
-        
-        return false
     }
-        
+    
+    // MARK: - isStopFirstStart
+    func isStopFirstStart() -> Bool {
+        // 첫 시작, 준비 카운트부터
+        if simpleTmRoundIdx == nil {
+            simpleTmRoundIdx = 0
+            simpleRoundPhase = .preparation
+            updateBackgroundColor()
+            simpleDisplay = selectedPreparationStop
+            simpleStopState = controlBtn ? .paused : .active
+            
+            return true
+        } else {
+            return false
+        }
+    }
+    
     // MARK: - movingIndex_In_simpleRounds
     // simpleRounds 루틴배열 인덱스가 움직일 때, update 메소드
-    func movingIndex_InSimpleRounds() {
-        guard let _ = simpleRoundIdx else { return }
+    func movingIndex_InSimpleTimerRounds() {
+        guard let _ = simpleTmRoundIdx else { return }
         
-        simpleRoundIdx! += 1
+        simpleTmRoundIdx! += 1
         
-        guard let idx = simpleRoundIdx, idx < simpleRounds.count else {
+        guard let idx = simpleTmRoundIdx, idx < simpleTmRounds.count else {
             // 더 이상 진행할 라운드가 없으면 완료 상태로 변경
             simpleRoundPhase = .completed
             simpleState = .completed
@@ -89,7 +106,7 @@ extension SimpleViewModel {
             return
         }
         
-        let currentRound = simpleRounds[idx]
+        let currentRound = simpleTmRounds[idx]
         simpleDisplay = currentRound.movement
         simpleRoundPhase = .movement
         updateBackgroundColor()
@@ -99,13 +116,13 @@ extension SimpleViewModel {
     
     // MARK: - nextSimpleRoundPhase
     // 라운드의 다음 단계로 이동
-    func nextSimpleRoundPhase() {
-        guard let idx = simpleRoundIdx, idx < simpleRounds.count else {
+    func nextSimpleTimerRoundPhase() {
+        guard let idx = simpleTmRoundIdx, idx < simpleTmRounds.count else {
             return
         }
         
         guard let currentPhase = simpleRoundPhase else { return }
-        let currentRound = simpleRounds[idx]
+        let currentRound = simpleTmRounds[idx]
         
         switch currentPhase {
         case .preparation:
@@ -116,28 +133,28 @@ extension SimpleViewModel {
             
         case .rest:
             // 현재 라운드의 모든 단계가 완료된 경우 -> 다음 라운드로 이동
-            nextSimpleRound()
-    
+            nextSimpleTimerRound()
+            
         default:
             break
-        }
+        } // switch
     }
     
     // MARK: - updateSimpleUnitProgress
-     // progress 업데이트
-     func updateSimpleUnitProgress() {
-         guard let idx = simpleRoundIdx, idx < simpleRounds.count else {
-             return
-         }
-         
-         guard let currentPhase = simpleRoundPhase else { return }
-         let currentRound = simpleRounds[idx]
-         
-         calculateProgress(currentPhase: currentPhase, currentRound: currentRound)
-         print(simpleUnitProgress)
-         
-         return
-     }
+    // progress 업데이트
+    func updateSimpleUnitProgress() {
+        guard let idx = simpleTmRoundIdx, idx < simpleTmRounds.count else {
+            return
+        }
+        
+        guard let currentPhase = simpleRoundPhase else { return }
+        let currentRound = simpleTmRounds[idx]
+        
+        calculateProgress(currentPhase: currentPhase, currentRound: currentRound)
+        print(simpleUnitProgress)
+        
+        return
+    }
     
     /*==================================================================================*/
     // MARK: - in using
@@ -148,7 +165,7 @@ extension SimpleViewModel {
         simpleDisplay = currentRound.movement
         simpleRoundPhase = .movement
         updateBackgroundColor()
-        simpleState = `controlBtn` ? .paused : .active
+        simpleState = controlBtn ? .paused : .active
         return
     }
     
@@ -161,7 +178,7 @@ extension SimpleViewModel {
             updateBackgroundColor()
             simpleState = controlBtn ? .paused : .active
         } else { // 마지막 라운드인 경우
-            nextSimpleRound()
+            nextSimpleTimerRound()
         }
         return
     }

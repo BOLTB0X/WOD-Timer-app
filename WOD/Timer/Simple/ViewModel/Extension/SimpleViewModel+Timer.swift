@@ -8,14 +8,14 @@
 import Foundation
 import Combine
 
-// MARK: - SimpleViewModel+Control: SimpleTimer Control
+// MARK: - SimpleViewModel+Timer: SimpleTimer Control
 // 제어관련 메소드들
 extension SimpleViewModel {
     // MARK: - basic Control
     // ....
     // MARK: - startTimer
     func startSimpleTimer() {
-        guard let idx = simpleRoundIdx, idx < simpleRounds.count else {
+        guard let idx = simpleTmRoundIdx, idx < simpleTmRounds.count else {
             return
         }
         
@@ -54,7 +54,7 @@ extension SimpleViewModel {
                 if self.simpleDisplay < 0 {
                     self.completedCurrentTimer() // 완료
                 }
-            }
+            } // sink
     }
     
     // MARK: - completedCurrentTimer
@@ -64,7 +64,7 @@ extension SimpleViewModel {
         simpleState = .completed
         simpleUnitProgress = 0.0
         // 다음 라운드 페이즈로 이동
-        nextSimpleRoundPhase()
+        nextSimpleTimerRoundPhase()
         return
     }
     
@@ -87,20 +87,20 @@ extension SimpleViewModel {
         return
     }
     
-    // MARK: - simpleRestart
+    // MARK: - simpleTimerRestart
     // 재시작
-    func simpleRestart() {
-        simpleRoundIdx = nil
-        simpleTotalTime = simpleRounds.reduce(0) {$0 + ($1.movement + $1.rest) }
-        nextSimpleRound()
+    func simpleTimerRestart() {
+        simpleTmRoundIdx = nil
+        simpleTotalTime = simpleTmRounds.reduce(0) {$0 + ($1.movement + $1.rest) }
+        nextSimpleTimerRound()
         return
     }
     
-    // MARK: - simpleCanclled
+    // MARK: - simpleTimerCanclled
     // 타이머 취소
-    func simpleCanclled() {
+    func simpleTimerCanclled() {
         simpleState = .cancelled
-        simpleRoundIdx = nil
+        simpleTmRoundIdx = nil
         controlBtn = false
         simpleUnitProgress = 0
         return
@@ -111,9 +111,9 @@ extension SimpleViewModel {
     // ...
     // MARK: - controlPausedOrResumed
     // 중지 또는 재개
-    func controlPausedOrResumed() {
+    func controlTmPausedOrResumed() {
         // 만약 셋팅받은 게 없을 때 막기
-        guard let _ = simpleRoundIdx, simpleRoundPhase != .completed else {
+        guard let _ = simpleTmRoundIdx, simpleRoundPhase != .completed else {
             return
         }
         
@@ -132,7 +132,7 @@ extension SimpleViewModel {
     // 그 이전으로 되돌아가기
     func controlBefore() {
         // 현재가 0일땐 Nothing
-        guard let roundIdx = simpleRoundIdx, roundIdx >= 0, simpleRoundPhase != .preparation else {
+        guard let roundIdx = simpleTmRoundIdx, roundIdx >= 0, simpleRoundPhase != .preparation else {
             return
         }
         
@@ -141,10 +141,10 @@ extension SimpleViewModel {
         simpleUnitProgress = 0
         
         if simpleRoundPhase == .completed {
-            simpleRoundIdx! -= 1
+            simpleTmRoundIdx! -= 1
             simpleRoundPhase = .movement
-            simpleDisplay = simpleRounds[roundIdx-1].movement
-            simpleTotalTime = simpleRounds[roundIdx-1].movement
+            simpleDisplay = simpleTmRounds[roundIdx-1].movement
+            simpleTotalTime = simpleTmRounds[roundIdx-1].movement
             updateBackgroundColor()
             
             controlBtn = controlBtn
@@ -160,19 +160,19 @@ extension SimpleViewModel {
                 simpleDisplay = selectedPreparationAmount
                 
             } else { // 현재가 첫번째이고 휴식인 경우 -> 운동으로
-                simpleDisplay = simpleRounds[roundIdx].movement
+                simpleDisplay = simpleTmRounds[roundIdx].movement
                 simpleRoundPhase = .movement
             }
         } else {
             if simpleRoundPhase == .movement { // 현재가 운동이면 라운드를 앞으로 당겨야함
                 // 이전 라운드로 이동
-                simpleRoundIdx! -= 1
-                let currentRound = simpleRounds[simpleRoundIdx!]
+                simpleTmRoundIdx! -= 1
+                let currentRound = simpleTmRounds[simpleTmRoundIdx!]
                 simpleRoundPhase = .rest
                 simpleDisplay = currentRound.rest
             } else { // 휴식인 경우
                 simpleRoundPhase = .movement
-                simpleDisplay = simpleRounds[simpleRoundIdx!].movement
+                simpleDisplay = simpleTmRounds[simpleTmRoundIdx!].movement
             }
         }
         
@@ -186,14 +186,14 @@ extension SimpleViewModel {
     // 뒤로(다음) 가기
     func controlNext() {
         // 현재가 마지막 라운드이고 운동 상태라면 nothing
-        guard let roundIdx = simpleRoundIdx, roundIdx < simpleRounds.count else {
+        guard let roundIdx = simpleTmRoundIdx, roundIdx < simpleTmRounds.count else {
             return
         }
         
         // 현재 타이머 중지
         simpleState = .paused
         simpleUnitProgress = 0
-        nextSimpleRoundPhase()
+        nextSimpleTimerRoundPhase()
         updateNextSimpleTotalTime()
         return
     }
@@ -219,7 +219,7 @@ extension SimpleViewModel {
     // MARK: - updateBeforeSimpleTotalTime
     // 총 시간 업데이트
     private func updateBeforeSimpleTotalTime() {
-        guard let idx = simpleRoundIdx, idx < simpleRounds.count else {
+        guard let idx = simpleTmRoundIdx, idx < simpleTmRounds.count else {
             return
         }
         
@@ -230,15 +230,15 @@ extension SimpleViewModel {
         if idx == 0 { // 맨 처음
             // 0번째 라운드에서는 초기 설정값으로 토탈시간 설정
             // 운동에서 준비, 휴식에서 운동을 가던 결국 초기 토탈시간으로 가야함
-            totalBeforeCurrentRound = simpleRounds.reduce(0) { $0 + ($1.movement + $1.rest) }
+            totalBeforeCurrentRound = simpleTmRounds.reduce(0) { $0 + ($1.movement + $1.rest) }
             if simpleRoundPhase == .rest {
-                totalBeforeCurrentRound -= simpleRounds[idx].movement
+                totalBeforeCurrentRound -= simpleTmRounds[idx].movement
             } else {
                 totalBeforeCurrentRound += 0
             }
-        } else if idx == simpleRounds.count - 1 { // 마지막
+        } else if idx == simpleTmRounds.count - 1 { // 마지막
             if simpleRoundPhase == .movement { // 운동 -> 전 라운드 휴식
-                totalBeforeCurrentRound = simpleRounds[idx].movement + simpleRounds[idx].rest
+                totalBeforeCurrentRound = simpleTmRounds[idx].movement + simpleTmRounds[idx].rest
             } else { // 마지막 라운드엔 휴식 X
                 return
             }
@@ -250,12 +250,12 @@ extension SimpleViewModel {
             /// 현재 라운드부터 총 토탈시간 계산해줌
             /// ex) idx = 1일때, totalBeforeCurrentRound = 36
             
-            totalBeforeCurrentRound = simpleRounds[idx...].reduce(0) { $0 + ($1.movement + $1.rest) }
+            totalBeforeCurrentRound = simpleTmRounds[idx...].reduce(0) { $0 + ($1.movement + $1.rest) }
             
             if simpleRoundPhase == .movement { // 운동으로 온경우
                 totalBeforeCurrentRound += 0
             } else { // 휴식으로 온 경우
-                totalBeforeCurrentRound -= (simpleRounds[idx].movement)
+                totalBeforeCurrentRound -= (simpleTmRounds[idx].movement)
             }
         }
         simpleTotalTime = totalBeforeCurrentRound
@@ -266,7 +266,7 @@ extension SimpleViewModel {
     // MARK: - updateNextSimpleTotalTime
     // 총 시간 업데이트
     private func updateNextSimpleTotalTime() {
-        guard let idx = simpleRoundIdx, idx < simpleRounds.count else {
+        guard let idx = simpleTmRoundIdx, idx < simpleTmRounds.count else {
             simpleTotalTime = 0
             return
         }
@@ -277,24 +277,24 @@ extension SimpleViewModel {
         
         if idx == 0 { // 맨 처음
             // 0번째 라운드에서는 초기 설정값으로 토탈시간 설정
-            totalNextCurrentRound = simpleRounds.reduce(0) { $0 + ($1.movement + $1.rest) }
+            totalNextCurrentRound = simpleTmRounds.reduce(0) { $0 + ($1.movement + $1.rest) }
             if simpleRoundPhase == .rest {
-                totalNextCurrentRound -= simpleRounds[idx].movement
+                totalNextCurrentRound -= simpleTmRounds[idx].movement
             } else {
             }
-        } else if idx == simpleRounds.count - 1 { // 마지막
+        } else if idx == simpleTmRounds.count - 1 { // 마지막
             if simpleRoundPhase == .movement {
-                totalNextCurrentRound = simpleRounds[idx].movement
+                totalNextCurrentRound = simpleTmRounds[idx].movement
             } else {
                 totalNextCurrentRound = 0
             }
         } else { // 중간
             // 다음 라운드부터 총 토탈시간 계산해줌
-            totalNextCurrentRound = simpleRounds[idx...].reduce(0) { $0 + ($1.movement + $1.rest) }
+            totalNextCurrentRound = simpleTmRounds[idx...].reduce(0) { $0 + ($1.movement + $1.rest) }
             
             if simpleRoundPhase == .rest {
                 // 휴식에서 다음 라운드로 간 경우
-                totalNextCurrentRound -= simpleRounds[idx].movement
+                totalNextCurrentRound -= simpleTmRounds[idx].movement
             } else {
             }
         }

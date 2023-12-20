@@ -7,62 +7,47 @@
 
 import SwiftUI
 
+// MARK: - RoundSet
 struct RoundSet: View {
-    @EnvironmentObject var viewModel: SimpleViewModel
-    @StateObject var manager = InputManager()
-
-    @State private var isChange: Bool = false
-    
+    @Binding var selectedRoundAmount: Int
+    @Binding var isChange: Bool
     @Binding var showPopup: Bool
     
+    let manager: InputManager
+    
     var body: some View {
-        NavigationView {
-            GeometryReader { geometry in
-                VStack(alignment: .center, spacing: 0) {
-                    // MARK: - 초기화 & 전환
-                    HStack(alignment: .center, spacing: 0) {
-                        Button(action: {manager.selectedRoundAmount = 3},
-                               label: {
-                            Image(systemName: "gobackward")
-                        })
-                        .padding(.horizontal)
-                        
-                        Spacer()
-
-                        Button(!isChange ? "keyboard": "wheel") {
-                            isChange.toggle()
-                        }
-                        .padding(.horizontal)
-                    }
-                    .foregroundColor(.secondary)
+        GeometryReader { geometry in
+            VStack(alignment: .center, spacing: 0) {
+                // MARK: - 초기화 & 전환
+                HStack(alignment: .center, spacing: 0) {
+                    Button(action: {selectedRoundAmount = 3},
+                           label: {
+                        Image(systemName: "gobackward")
+                    })
+                    .padding(.horizontal)
                     
-                    // MARK: - set
-                    if isChange  {
-                        SettingTextField(setBinding: $manager.selectedRoundAmount, title: "Round",viewModel: manager)
+                    Spacer()
+                    
+                    Button(!isChange ? "keyboard": "wheel") {
+                        isChange.toggle()
                     }
-                    else {
-                        SettingPicker(title: "round",
-                                      range: manager.roundRange,
-                                      binding: $manager.selectedRoundAmount)
-                        .onTapGesture {
-                            isChange.toggle()
-                        }
+                    .padding(.horizontal)
+                } // HStack
+                .foregroundColor(.secondary)
+                
+                // MARK: - set
+                if isChange  {
+                    SettingTextField(setBinding: $selectedRoundAmount, title: "Round", viewModel: manager)
+                }
+                else {
+                    SettingPicker(title: "round",
+                                  range: manager.roundRange,
+                                  binding: $selectedRoundAmount)
+                    .onTapGesture {
+                        isChange.toggle()
                     }
                 }
-            }
-        }
-        .onAppear {
-            manager.selectedRoundAmount = viewModel.selectedRoundAmount
-        }
-        .navigationTitle("Round")
-        .navigationBarTitleDisplayMode(.inline)
-        .popupSettingToolbar(
-            cancelAction:  { showPopup.toggle() },
-            action:  { isChange.toggle() },
-            completeAction: { 
-                viewModel.selectedRoundAmount = manager.selectedRoundAmount
-                showPopup.toggle()
-            }
-        )
-    }
+            } // VStack
+        } // GeometryReader
+    } // body
 }

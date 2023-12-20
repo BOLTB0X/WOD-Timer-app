@@ -9,7 +9,8 @@ import Foundation
 
 // MARK: - MovementTime
 // 타이머 카운트다운 할 때 쓸 모델
-struct MovementTime {
+struct MovementTime: Identifiable, Hashable {
+    let id = UUID()
     var hours: Int
     var minutes: Int
     var seconds: Int
@@ -77,16 +78,23 @@ struct MovementTime {
 }
 
 // MARK: - Round
-struct Round {
-    var preparationTime: MovementTime
-    var movementTime: MovementTime
-    var restTime: MovementTime
+struct Round: Identifiable, Hashable {
+    let id = UUID()
+    var movement: Int
+    var rest: Int
+    var complted: String
     
-    var elapsedPreparationTime: MovementTime = MovementTime(seconds: 0)
-    var elapsedMovementTime: MovementTime = MovementTime(seconds: 0)
-    var elapsedRestTime: MovementTime = MovementTime(seconds: 0)
+    init() {
+        self.movement = 0
+        self.rest = 0
+        self.complted = ""
+    }
     
-    var totalTime: Int {
-        preparationTime.totalSeconds + movementTime.totalSeconds + restTime.totalSeconds
+    init(movement: Int, rest: Int, complted: String) {
+        self.movement = movement
+        self.rest = rest
+        self.complted = complted
     }
 }
+
+

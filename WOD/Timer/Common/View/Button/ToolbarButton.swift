@@ -23,4 +23,3 @@ struct ToolbarButton: View {
         .buttonStyle(EffectButtonStyle())
     }
 }
-

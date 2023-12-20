@@ -33,9 +33,9 @@ struct SettingTwoTextField: View {
                         .onChange(of: setSecond) { newValue in
                             viewModel.updateRestValuesForField(.ss, newValue: newValue)
                         }
-                }
+                } // HStack
                 .padding()
-            }
+            } // VStack
             .toolbar {
                 ToolbarItemGroup(placement: .keyboard) {
                     Button("before") {
@@ -50,13 +50,16 @@ struct SettingTwoTextField: View {
                         keyboardToolbar_NextBtn()
                     }
                 }
-            }
+            } // toolbar
             .onTapGesture {
                 focusedField = nil
             }
-        }
-    }
+        } // NavigationView
+    } // body
     
+    // MARK: - method
+    // ...
+    // MARK: - keyboardToolbar_BeforeBtn
     private func keyboardToolbar_BeforeBtn() {
         switch focusedField {
         case .hh:
@@ -70,6 +73,7 @@ struct SettingTwoTextField: View {
         }
     }
     
+    // MARK: - keyboardToolbar_NextBtn
     private func keyboardToolbar_NextBtn() {
         switch focusedField {
         case .hh:

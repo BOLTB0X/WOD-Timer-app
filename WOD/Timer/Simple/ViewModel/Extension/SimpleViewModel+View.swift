@@ -25,10 +25,19 @@ extension SimpleViewModel {
             """
     }
     
+    // MARK: - confirmationStopMessage
+    var confirmationStopMessage: String {
+        return """
+            Are you sure you want to start?
+            Total Round: \(selectedRoundStop)
+            Select Preparation: \(selectedPreparationStop)
+            """
+    }
+    
     // MARK: - nextTimerPhase
     var nextTimerPhase: String {
-        guard let currentRoundIdx = simpleRoundIdx,
-              currentRoundIdx < simpleRounds.count else {
+        guard let currentRoundIdx = simpleTmRoundIdx,
+              currentRoundIdx < simpleTmRounds.count else {
             return "END"
         }
         
@@ -36,7 +45,7 @@ extension SimpleViewModel {
         case .preparation:
             return "Movement"
         case .movement:
-            return currentRoundIdx != simpleRounds.count - 1 ? "Rest" : "Rest X"
+            return currentRoundIdx != simpleTmRounds.count - 1 ? "Rest" : "Rest X"
         case .rest:
             return "Movement"
         default:
@@ -46,23 +55,23 @@ extension SimpleViewModel {
     
     // MARK: - nextTimerTime
     var nextTimerTime: String {
-        guard let currentRoundIdx = simpleRoundIdx,
-              currentRoundIdx < simpleRounds.count else {
+        guard let currentRoundIdx = simpleTmRoundIdx,
+              currentRoundIdx < simpleTmRounds.count else {
             return "00:00"
         }
         
         switch simpleRoundPhase {
         case .preparation:
-            return simpleRounds[currentRoundIdx].movement.asTimestamp
+            return simpleTmRounds[currentRoundIdx].movement.asTimestamp
         case .movement:
-            if simpleRounds[currentRoundIdx].rest > 0 {
-                return simpleRounds[currentRoundIdx].rest.asTimestamp
+            if simpleTmRounds[currentRoundIdx].rest > 0 {
+                return simpleTmRounds[currentRoundIdx].rest.asTimestamp
             } else {
                 return "END"
             }
         case .rest:
-            if currentRoundIdx + 1 < simpleRounds.count {
-                return simpleRounds[currentRoundIdx].movement.asTimestamp
+            if currentRoundIdx + 1 < simpleTmRounds.count {
+                return simpleTmRounds[currentRoundIdx].movement.asTimestamp
             } else {
                 return "NEXT"
             }
@@ -73,12 +82,12 @@ extension SimpleViewModel {
     
     // MARK: - currentRoundDisplay
     var currentRoundDisplay: String {
-        simpleRoundIdx ?? 0 < selectedRoundAmount ? "\((simpleRoundIdx ?? 0) + 1) Round" : "\(selectedRoundAmount) Round"
+        simpleTmRoundIdx ?? 0 < selectedRoundAmount ? "\((simpleTmRoundIdx ?? 0) + 1) Round" : "\(selectedRoundAmount) Round"
     }
     
     // MARK: - currentRoundString
     var currentRoundString: String {
-        simpleRoundIdx ?? 0 < selectedRoundAmount ? "\((simpleRoundIdx ?? 0) + 1)" : "\(selectedRoundAmount)"
+        simpleTmRoundIdx ?? 0 < selectedRoundAmount ? "\((simpleTmRoundIdx ?? 0) + 1)" : "\(selectedRoundAmount)"
     }
     
     // MARK: - currentPhaseText
@@ -88,12 +97,12 @@ extension SimpleViewModel {
     
     // MARK: - currentDisplayTime
     var currentDisplayTime: String {
-        simpleRoundIdx ?? 0 < selectedRoundAmount ? simpleDisplay.asTimestamp : "END"
+        simpleTmRoundIdx ?? 0 < selectedRoundAmount ? simpleDisplay.asTimestamp : "END"
     }
     
     // MARK: - currentRemainingString
     var currentRemainingString: String {
-        "\(selectedRoundAmount - ((simpleRoundIdx ?? 0) + 1))"
+        "\(selectedRoundAmount - ((simpleTmRoundIdx ?? 0) + 1))"
     }
     
     // MARK: - currentRemainingRounds
@@ -102,42 +111,51 @@ extension SimpleViewModel {
         case .preparation:
             return "Remaining: \(selectedRoundAmount) Round"
         default:
-            return "Remaining: \(selectedRoundAmount - ((simpleRoundIdx ?? 0) + 1)) Round"
+            return "Remaining: \(selectedRoundAmount - ((simpleTmRoundIdx ?? 0) + 1)) Round"
         }
     }
     
     // MARK: - isDisplayToolbarBtn
     var isDisplayToolbarBtn: Bool {
-        simpleState == .paused || simpleRoundIdx ?? 0 == selectedRoundAmount
+        simpleState == .paused || simpleTmRoundIdx ?? 0 == selectedRoundAmount
     }
     
     var isEnd: Color {
-        simpleRoundIdx ?? 0 < simpleRounds.count ? Color(.black).opacity(0.3) : phaseBackgroundColor
+        simpleTmRoundIdx ?? 0 < simpleTmRounds.count ? Color(.black).opacity(0.3) : phaseBackgroundColor
     }
     
     /*==================================================================================*/
     // MARK: - Methods
     // ..
     // MARK: - displaySetValue
-    func displaySimpleSetValue(_ state: String) -> String {
-        switch state {
-        case "Round":
-            return String(selectedRoundAmount)
-        case "Preparation":
-            return String(format: "00:%02d", selectedPreparationAmount)
-        case "Movements":
-            if selectedMovementAmount.hours > 0 {
-                return String(format: "%02d:%02d:%02d",
-                              selectedMovementAmount.hours,
-                              selectedMovementAmount.minutes,
-                              selectedMovementAmount.seconds)
-            } else {
-                return String(format: "%02d:%02d", selectedMovementAmount.minutes, selectedMovementAmount.seconds)
+    func displaySimpleSetValue(state: String, mode: Int) -> String {
+        if mode == 0 {
+            switch state {
+            case "Round":
+                return String(selectedRoundAmount)
+            case "Preparation":
+                return String(format: "00:%02d", selectedPreparationAmount)
+            case "Movements":
+                if selectedMovementAmount.hours > 0 {
+                    return String(format: "%02d:%02d:%02d",
+                                  selectedMovementAmount.hours,
+                                  selectedMovementAmount.minutes,
+                                  selectedMovementAmount.seconds)
+                } else {
+                    return String(format: "%02d:%02d", selectedMovementAmount.minutes, selectedMovementAmount.seconds)
+                }
+            case "Rest":
+                return String(format: "%02d:%02d", selectedRestAmount.minutes,selectedRestAmount.seconds)
+            default:
+                return ""
             }
-        case "Rest":
-            return String(format: "%02d:%02d", selectedRestAmount.minutes,selectedRestAmount.seconds)
-        default:
-            return ""
+        } else {
+            if state == "Round" {
+                return String(selectedRoundStop)
+            } else if state == "Preparation" {
+                return String(format: "00:%02d", selectedPreparationStop)
+            }
+            return "Yourself Stop"
         }
     }
             
