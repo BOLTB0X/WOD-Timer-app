@@ -28,8 +28,12 @@ struct SimpleView: View {
                     // MARK: - Routine
                     Section(header: SimpleHeader(idx: $isModeBtn)) {
                         ForEach(viewModel.simpleButtonType, id: \.self) { btn in
-                            SimpleButtonSetRow(simpleButton: $simpleButton, showPopup: $showPopup, isModeBtn: $isModeBtn, viewModel: viewModel, btn: btn)
-                        }
+                            SimpleButtonSetRow(simpleButton: $simpleButton, 
+                                               showPopup: $showPopup,
+                                               isModeBtn: $isModeBtn,
+                                               viewModel: viewModel,
+                                               btn: btn)
+                        } // ForEach
                         
                         Button("Start") {
                             isStartBtn.toggle()
@@ -61,7 +65,12 @@ struct SimpleView: View {
                     message: Text(isModeBtn == 0 ? viewModel.confirmationMessage: viewModel.confirmationStopMessage)
                         .font(.subheadline),
                     primaryButton: .default(Text("Start")) {
-                        alertBtnAction()
+                        if isModeBtn == 0 {
+                            viewModel.createSimpleTimerRounds()
+                        } else {
+                            viewModel.createSimpleStopRounds()
+                        }
+                        isSimpleStart.toggle()
                     },
                     secondaryButton: .cancel(Text("Cancel").foregroundColor(.secondary))
                 )
@@ -120,19 +129,6 @@ struct SimpleView: View {
                 .environmentObject(viewModel)
         }
     } // goFullScreenCover
-    
-    // MARK: - method
-    // ...
-    // MARK: - alertBtnAction
-    private func alertBtnAction() {
-        if isModeBtn == 0 {
-            viewModel.createSimpleTimerRounds()
-        } else {
-            viewModel.createSimpleStopRounds()
-        }
-        isSimpleStart.toggle()
-        return
-    } // alertBtnAction
     
 }
 

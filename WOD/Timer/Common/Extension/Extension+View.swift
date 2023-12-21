@@ -30,9 +30,9 @@ extension View {
                         .frame(width: size.width - horizontalPadding, height: size.height / 2.5, alignment: .top)
                         .cornerRadius(15)
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                    }
-                }
-            }
+                    } // GeometryReader
+                } // if
+            } // overlay
     }
     
     // MARK: - popupToolbar
@@ -50,7 +50,7 @@ extension View {
                     Text("complete")
                 }
             }
-        }
+        } // toolbar
     }
     
     // MARK: - hideKeyboard

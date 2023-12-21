@@ -7,12 +7,6 @@
 
 import SwiftUI
 
-enum Field {
-    case hh
-    case mm
-    case ss
-}
-
 // MARK: - SettingTimeTextField
 struct SettingTimeTextField: View {
     @Binding var setHour: Int

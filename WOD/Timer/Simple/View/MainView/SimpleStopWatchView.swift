@@ -20,15 +20,16 @@ struct SimpleStopWatchView: View {
                 Spacer()
                 
                 // MARK: displayTime
-                displayTime()
+                SimpleStopwatchDisplayTime()
+                    .environmentObject(viewModel)
                 
                 Spacer()
                 
                 Divider()
                 
                 // MARK: SimpleStopwatchControl
-//                SimpleStopwatchControl()
-                    //.environmentObject(viewModel)
+                SimpleStopwatchControl()
+                    .environmentObject(viewModel)
                 
             } // VStack
             
@@ -44,12 +45,12 @@ struct SimpleStopWatchView: View {
                 ToolbarItem(placement: .navigationBarLeading) {
                     ToolbarButton(action: {
                         isBackRootView.toggle()
-                    }, condition: viewModel.isDisplayToolbarBtn, systemName: "arrow.backward")
+                    }, condition: viewModel.isDisplayToolbarSwBtn, systemName: "arrow.backward")
                 }
                 
                 // MARK: 오른쪽 새로고침
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    ToolbarButton(action: viewModel.simpleTimerRestart, condition: viewModel.isDisplayToolbarBtn, systemName: "arrow.clockwise")
+                    ToolbarButton(action: viewModel.simpleStopRestart, condition: viewModel.isDisplayToolbarSwBtn, systemName: "arrow.clockwise")
                 }
             } // toolbar
         } // NavigationView
@@ -57,53 +58,7 @@ struct SimpleStopWatchView: View {
             viewModel.nextSimpleStopwatchRound()
         }
     } // body
-    
-    // MARK: - ViewBuilder
-    // ...
-    // MARK: - displayTime
-    @ViewBuilder
-    private func displayTime() -> some View {
-        VStack(alignment: .center, spacing: 10) {
-            // 현재 라운드
-            
-            Button(action: {
-                viewModel.speakingProcessingRound()
-            }) {
-                Text(viewModel.currentRoundDisplay)
-                    .font(.system(size: 60, weight: .bold))
-                    .fontWeight(.bold)
-                    .foregroundColor(.black)
-            } // Button
-            .padding()
-            
-            
-            SimpleRealTime()
-                .environmentObject(viewModel)
-                .padding()
-            
-            VStack(alignment: .center, spacing: 0) {
-                Text(viewModel.nextTimerPhase)
-                    .font(.system(size: 24, weight: .regular))
 
-            }
-            .foregroundColor(viewModel.isEnd)
-            .padding()
-
-            Button(action: {
-                viewModel.speakingRemainingRound()
-            }) {
-                Text(viewModel.currentRemainingRounds)
-                    .font(.system(size: 30, weight: .semibold))
-                    .foregroundColor(viewModel.isEnd)
-                    .padding()
-            } // Button
-            
-            Spacer()
-                .frame(maxWidth: .infinity , maxHeight: .infinity)
-        } // VStack
-        .frame(maxWidth: .infinity , maxHeight: .infinity)
-        .background(viewModel.phaseBackgroundColor)
-    } // displayTime
 }
 
 struct SimpleStopWatchView_Previews: PreviewProvider {

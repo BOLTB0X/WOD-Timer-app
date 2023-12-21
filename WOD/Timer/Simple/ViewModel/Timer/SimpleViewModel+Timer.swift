@@ -15,12 +15,14 @@ extension SimpleViewModel {
     // ....
     // MARK: - startTimer
     func startSimpleTimer() {
-        guard let idx = simpleTmRoundIdx, idx < simpleTmRounds.count else {
+        guard let idx = simpleTmRoundIdx, idx < simpleTmRounds.count, let currentPhase = simpleRoundPhase else {
             return
         }
         
         print("타이머 실행")
         print(simpleRoundPhase?.phaseText ?? "??")
+        
+        updateTimerPhaseStart(idx: idx, currentPhase: currentPhase)
         
         DispatchQueue.main.async {
             self.speakingCurrentState()
@@ -62,6 +64,7 @@ extension SimpleViewModel {
     func completedCurrentTimer() {
         timerCancellable?.cancel()
         simpleState = .completed
+        updateSimpleTimerCompletion() // 기록
         simpleUnitProgress = 0.0
         // 다음 라운드 페이즈로 이동
         nextSimpleTimerRoundPhase()

@@ -10,7 +10,7 @@
 		562164CF2B07AA5C008E472B /* SimpleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562164CE2B07AA5C008E472B /* SimpleModel.swift */; };
 		562164D22B08D6E5008E472B /* Extension+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562164D12B08D6E5008E472B /* Extension+Type.swift */; };
 		562164D42B08D7F1008E472B /* TextfieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562164D32B08D7F1008E472B /* TextfieldStyle.swift */; };
-		562164D92B08DA26008E472B /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562164D82B08DA26008E472B /* Enum.swift */; };
+		562164D92B08DA26008E472B /* SimpleEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562164D82B08DA26008E472B /* SimpleEnum.swift */; };
 		562164DB2B08F9D7008E472B /* SimpleTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562164DA2B08F9D7008E472B /* SimpleTimerView.swift */; };
 		5621651D2B0B8561008E472B /* SettingTwoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5621651C2B0B8561008E472B /* SettingTwoTextField.swift */; };
 		5621651F2B0B85F2008E472B /* InputManager+Movement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5621651E2B0B85F2008E472B /* InputManager+Movement.swift */; };
@@ -24,10 +24,17 @@
 		568F1CF92B32B72700E1D58A /* SimpleHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568F1CF82B32B72700E1D58A /* SimpleHeader.swift */; };
 		568F1CFB2B32CD1B00E1D58A /* SimpleButtonSetRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568F1CFA2B32CD1B00E1D58A /* SimpleButtonSetRow.swift */; };
 		568F1CFD2B32DA1400E1D58A /* SimpleStopWatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568F1CFC2B32DA1400E1D58A /* SimpleStopWatchView.swift */; };
-		568F1CFF2B32DDB100E1D58A /* SimpleViewModel+StopWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568F1CFE2B32DDB100E1D58A /* SimpleViewModel+StopWatch.swift */; };
+		568F1CFF2B32DDB100E1D58A /* SimpleViewModel+Stopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568F1CFE2B32DDB100E1D58A /* SimpleViewModel+Stopwatch.swift */; };
 		568F1D042B32F8EC00E1D58A /* SimpleTimerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568F1D032B32F8EC00E1D58A /* SimpleTimerControl.swift */; };
 		568F1D062B32F9ED00E1D58A /* SimpleStopwatchControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568F1D052B32F9ED00E1D58A /* SimpleStopwatchControl.swift */; };
-		568F1D0A2B33211400E1D58A /* SimpleViewModel+UpdateStopWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568F1D092B33211400E1D58A /* SimpleViewModel+UpdateStopWatch.swift */; };
+		568F1D0A2B33211400E1D58A /* SimpleViewModel+UpdateStopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568F1D092B33211400E1D58A /* SimpleViewModel+UpdateStopwatch.swift */; };
+		568F1D0C2B33D70F00E1D58A /* SimpleViewModel+ViewStopwatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568F1D0B2B33D70F00E1D58A /* SimpleViewModel+ViewStopwatch.swift */; };
+		568F1D102B33DA5100E1D58A /* SimpleViewModel+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568F1D0F2B33DA5100E1D58A /* SimpleViewModel+Common.swift */; };
+		568F1D132B33DE9C00E1D58A /* SimpleTimerDisplayTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568F1D122B33DE9C00E1D58A /* SimpleTimerDisplayTime.swift */; };
+		568F1D152B33DEB800E1D58A /* SimpleStopwatchDisplayTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568F1D142B33DEB800E1D58A /* SimpleStopwatchDisplayTime.swift */; };
+		568F1D182B33F80700E1D58A /* CommonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568F1D172B33F80700E1D58A /* CommonModel.swift */; };
+		568F1D1A2B33F88400E1D58A /* CommonEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568F1D192B33F88400E1D58A /* CommonEnum.swift */; };
+		568F1D1D2B341E1700E1D58A /* ScrollTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568F1D1C2B341E1700E1D58A /* ScrollTestView.swift */; };
 		5697A7CE2AFE59E200ADBBD1 /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697A7CD2AFE59E200ADBBD1 /* ButtonStyle.swift */; };
 		5697A7D02AFE73C300ADBBD1 /* RoundSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697A7CF2AFE73C300ADBBD1 /* RoundSet.swift */; };
 		5697A7D42AFF431400ADBBD1 /* InputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697A7D32AFF431400ADBBD1 /* InputManager.swift */; };
@@ -51,7 +58,7 @@
 		56AF0B002AEA4955009AF8A2 /* RecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF0AFF2AEA4955009AF8A2 /* RecordButton.swift */; };
 		56AF0B292AEB5CEA009AF8A2 /* SimpleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF0B282AEB5CEA009AF8A2 /* SimpleView.swift */; };
 		56AF0B412AEB9C33009AF8A2 /* StopWatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF0B402AEB9C33009AF8A2 /* StopWatchViewModel.swift */; };
-		56C4F6242B184195009D2721 /* SimpleViewModel+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C4F6232B184195009D2721 /* SimpleViewModel+View.swift */; };
+		56C4F6242B184195009D2721 /* SimpleViewModel+ViewTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C4F6232B184195009D2721 /* SimpleViewModel+ViewTimer.swift */; };
 		56C4F64D2B1B5A74009D2721 /* LabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C4F64C2B1B5A74009D2721 /* LabelView.swift */; };
 		56C4F64F2B1C5BFF009D2721 /* ControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C4F64E2B1C5BFF009D2721 /* ControlButton.swift */; };
 		56C4F6552B1CABFF009D2721 /* CircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C4F6542B1CABFF009D2721 /* CircularProgress.swift */; };
@@ -132,7 +139,7 @@
 		562164CE2B07AA5C008E472B /* SimpleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleModel.swift; sourceTree = "<group>"; };
 		562164D12B08D6E5008E472B /* Extension+Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Type.swift"; sourceTree = "<group>"; };
 		562164D32B08D7F1008E472B /* TextfieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextfieldStyle.swift; sourceTree = "<group>"; };
-		562164D82B08DA26008E472B /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
+		562164D82B08DA26008E472B /* SimpleEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleEnum.swift; sourceTree = "<group>"; };
 		562164DA2B08F9D7008E472B /* SimpleTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTimerView.swift; sourceTree = "<group>"; };
 		5621651C2B0B8561008E472B /* SettingTwoTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTwoTextField.swift; sourceTree = "<group>"; };
 		5621651E2B0B85F2008E472B /* InputManager+Movement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InputManager+Movement.swift"; sourceTree = "<group>"; };
@@ -146,10 +153,17 @@
 		568F1CF82B32B72700E1D58A /* SimpleHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleHeader.swift; sourceTree = "<group>"; };
 		568F1CFA2B32CD1B00E1D58A /* SimpleButtonSetRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleButtonSetRow.swift; sourceTree = "<group>"; };
 		568F1CFC2B32DA1400E1D58A /* SimpleStopWatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleStopWatchView.swift; sourceTree = "<group>"; };
-		568F1CFE2B32DDB100E1D58A /* SimpleViewModel+StopWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleViewModel+StopWatch.swift"; sourceTree = "<group>"; };
+		568F1CFE2B32DDB100E1D58A /* SimpleViewModel+Stopwatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleViewModel+Stopwatch.swift"; sourceTree = "<group>"; };
 		568F1D032B32F8EC00E1D58A /* SimpleTimerControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTimerControl.swift; sourceTree = "<group>"; };
 		568F1D052B32F9ED00E1D58A /* SimpleStopwatchControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleStopwatchControl.swift; sourceTree = "<group>"; };
-		568F1D092B33211400E1D58A /* SimpleViewModel+UpdateStopWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleViewModel+UpdateStopWatch.swift"; sourceTree = "<group>"; };
+		568F1D092B33211400E1D58A /* SimpleViewModel+UpdateStopwatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleViewModel+UpdateStopwatch.swift"; sourceTree = "<group>"; };
+		568F1D0B2B33D70F00E1D58A /* SimpleViewModel+ViewStopwatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleViewModel+ViewStopwatch.swift"; sourceTree = "<group>"; };
+		568F1D0F2B33DA5100E1D58A /* SimpleViewModel+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleViewModel+Common.swift"; sourceTree = "<group>"; };
+		568F1D122B33DE9C00E1D58A /* SimpleTimerDisplayTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTimerDisplayTime.swift; sourceTree = "<group>"; };
+		568F1D142B33DEB800E1D58A /* SimpleStopwatchDisplayTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleStopwatchDisplayTime.swift; sourceTree = "<group>"; };
+		568F1D172B33F80700E1D58A /* CommonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonModel.swift; sourceTree = "<group>"; };
+		568F1D192B33F88400E1D58A /* CommonEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonEnum.swift; sourceTree = "<group>"; };
+		568F1D1C2B341E1700E1D58A /* ScrollTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollTestView.swift; sourceTree = "<group>"; };
 		5697A7CD2AFE59E200ADBBD1 /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
 		5697A7CF2AFE73C300ADBBD1 /* RoundSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundSet.swift; sourceTree = "<group>"; };
 		5697A7D32AFF431400ADBBD1 /* InputManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputManager.swift; sourceTree = "<group>"; };
@@ -175,7 +189,7 @@
 		56AF0AFF2AEA4955009AF8A2 /* RecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButton.swift; sourceTree = "<group>"; };
 		56AF0B282AEB5CEA009AF8A2 /* SimpleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleView.swift; sourceTree = "<group>"; };
 		56AF0B402AEB9C33009AF8A2 /* StopWatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchViewModel.swift; sourceTree = "<group>"; };
-		56C4F6232B184195009D2721 /* SimpleViewModel+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleViewModel+View.swift"; sourceTree = "<group>"; };
+		56C4F6232B184195009D2721 /* SimpleViewModel+ViewTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleViewModel+ViewTimer.swift"; sourceTree = "<group>"; };
 		56C4F64C2B1B5A74009D2721 /* LabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelView.swift; sourceTree = "<group>"; };
 		56C4F64E2B1C5BFF009D2721 /* ControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlButton.swift; sourceTree = "<group>"; };
 		56C4F6542B1CABFF009D2721 /* CircularProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgress.swift; sourceTree = "<group>"; };
@@ -257,7 +271,7 @@
 		562164D52B08D861008E472B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				562164D82B08DA26008E472B /* Enum.swift */,
+				562164D82B08DA26008E472B /* SimpleEnum.swift */,
 				562164CE2B07AA5C008E472B /* SimpleModel.swift */,
 			);
 			path = Model;
@@ -275,8 +289,9 @@
 		562164D72B08D881008E472B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				5697A7D52AFF4B9B00ADBBD1 /* SimpleViewModel.swift */,
-				56C4F65D2B1D6E9F009D2721 /* Extension */,
+				568F1D112B33DAE200E1D58A /* MainViewModel */,
+				568F1D0D2B33D91100E1D58A /* Timer */,
+				568F1D0E2B33D91800E1D58A /* Stopwatch */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -339,13 +354,15 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
-		568F1CF42B3289F200E1D58A /* RealTime */ = {
+		568F1CF42B3289F200E1D58A /* DisplayTime */ = {
 			isa = PBXGroup;
 			children = (
 				56C4F6582B1D64C2009D2721 /* SimpleRealTime.swift */,
 				56C4F6612B1D89E0009D2721 /* SimpleNextRealTime.swift */,
+				568F1D122B33DE9C00E1D58A /* SimpleTimerDisplayTime.swift */,
+				568F1D142B33DEB800E1D58A /* SimpleStopwatchDisplayTime.swift */,
 			);
-			path = RealTime;
+			path = DisplayTime;
 			sourceTree = "<group>";
 		};
 		568F1CF52B328B0300E1D58A /* MainView */ = {
@@ -365,6 +382,44 @@
 				568F1D052B32F9ED00E1D58A /* SimpleStopwatchControl.swift */,
 			);
 			path = Control;
+			sourceTree = "<group>";
+		};
+		568F1D0D2B33D91100E1D58A /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				56C4F6562B1CBDDC009D2721 /* SimpleViewModel+Timer.swift */,
+				56C5A4BE2B14B570008ABCA0 /* SimpleViewModel+UpdateTimer.swift */,
+				56C4F6232B184195009D2721 /* SimpleViewModel+ViewTimer.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
+		568F1D0E2B33D91800E1D58A /* Stopwatch */ = {
+			isa = PBXGroup;
+			children = (
+				568F1CFE2B32DDB100E1D58A /* SimpleViewModel+Stopwatch.swift */,
+				568F1D092B33211400E1D58A /* SimpleViewModel+UpdateStopwatch.swift */,
+				568F1D0B2B33D70F00E1D58A /* SimpleViewModel+ViewStopwatch.swift */,
+			);
+			path = Stopwatch;
+			sourceTree = "<group>";
+		};
+		568F1D112B33DAE200E1D58A /* MainViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5697A7D52AFF4B9B00ADBBD1 /* SimpleViewModel.swift */,
+				568F1D0F2B33DA5100E1D58A /* SimpleViewModel+Common.swift */,
+			);
+			path = MainViewModel;
+			sourceTree = "<group>";
+		};
+		568F1D162B33F7F200E1D58A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				568F1D192B33F88400E1D58A /* CommonEnum.swift */,
+				568F1D172B33F80700E1D58A /* CommonModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		5697A7E12AFF5D9100ADBBD1 /* Setting */ = {
@@ -442,6 +497,7 @@
 		56AF0AF72AEA354F009AF8A2 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				568F1D162B33F7F200E1D58A /* Model */,
 				562164D02B08D67A008E472B /* Extension */,
 				56AF0AF82AEA35B5009AF8A2 /* CustomStyle */,
 				56C4F6532B1CABD7009D2721 /* View */,
@@ -469,6 +525,7 @@
 				56AF0AFB2AEA3E95009AF8A2 /* PlayButton.swift */,
 				56AF0AFF2AEA4955009AF8A2 /* RecordButton.swift */,
 				56C4F64C2B1B5A74009D2721 /* LabelView.swift */,
+				568F1D1C2B341E1700E1D58A /* ScrollTestView.swift */,
 			);
 			path = Dommy;
 			sourceTree = "<group>";
@@ -498,22 +555,10 @@
 			isa = PBXGroup;
 			children = (
 				568F1CF32B3289D000E1D58A /* Setting */,
-				568F1CF42B3289F200E1D58A /* RealTime */,
+				568F1CF42B3289F200E1D58A /* DisplayTime */,
 				568F1D022B32F8D300E1D58A /* Control */,
 			);
 			path = SubView;
-			sourceTree = "<group>";
-		};
-		56C4F65D2B1D6E9F009D2721 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				56C4F6562B1CBDDC009D2721 /* SimpleViewModel+Timer.swift */,
-				56C5A4BE2B14B570008ABCA0 /* SimpleViewModel+UpdateTimer.swift */,
-				568F1CFE2B32DDB100E1D58A /* SimpleViewModel+StopWatch.swift */,
-				568F1D092B33211400E1D58A /* SimpleViewModel+UpdateStopWatch.swift */,
-				56C4F6232B184195009D2721 /* SimpleViewModel+View.swift */,
-			);
-			path = Extension;
 			sourceTree = "<group>";
 		};
 		56C4F65E2B1D6F13009D2721 /* Components */ = {
@@ -713,8 +758,9 @@
 				56AF0ADB2AE892B5009AF8A2 /* ContentView.swift in Sources */,
 				5697A7CE2AFE59E200ADBBD1 /* ButtonStyle.swift in Sources */,
 				56AF0B292AEB5CEA009AF8A2 /* SimpleView.swift in Sources */,
+				568F1D1A2B33F88400E1D58A /* CommonEnum.swift in Sources */,
 				5697A7DC2AFF569100ADBBD1 /* PreparationSet.swift in Sources */,
-				56C4F6242B184195009D2721 /* SimpleViewModel+View.swift in Sources */,
+				56C4F6242B184195009D2721 /* SimpleViewModel+ViewTimer.swift in Sources */,
 				56C4F64F2B1C5BFF009D2721 /* ControlButton.swift in Sources */,
 				56A9987E2AF6730E000D5C99 /* SettingTimeTextField.swift in Sources */,
 				56AF0B412AEB9C33009AF8A2 /* StopWatchViewModel.swift in Sources */,
@@ -737,8 +783,9 @@
 				56A998802AF6799A000D5C99 /* SettingPicker.swift in Sources */,
 				56AF0B002AEA4955009AF8A2 /* RecordButton.swift in Sources */,
 				5697A7D62AFF4B9B00ADBBD1 /* SimpleViewModel.swift in Sources */,
-				568F1D0A2B33211400E1D58A /* SimpleViewModel+UpdateStopWatch.swift in Sources */,
-				568F1CFF2B32DDB100E1D58A /* SimpleViewModel+StopWatch.swift in Sources */,
+				568F1D0A2B33211400E1D58A /* SimpleViewModel+UpdateStopwatch.swift in Sources */,
+				568F1D132B33DE9C00E1D58A /* SimpleTimerDisplayTime.swift in Sources */,
+				568F1CFF2B32DDB100E1D58A /* SimpleViewModel+Stopwatch.swift in Sources */,
 				56C5A4BF2B14B570008ABCA0 /* SimpleViewModel+UpdateTimer.swift in Sources */,
 				562164CF2B07AA5C008E472B /* SimpleModel.swift in Sources */,
 				568F1CF22B3283DC00E1D58A /* SimpleStopwatchSet.swift in Sources */,
@@ -746,20 +793,25 @@
 				5697A7DA2AFF4E3400ADBBD1 /* SettingTextField.swift in Sources */,
 				568F1CF92B32B72700E1D58A /* SimpleHeader.swift in Sources */,
 				BE62D16E2B3173A400E1B233 /* WidgetManager.swift in Sources */,
+				568F1D1D2B341E1700E1D58A /* ScrollTestView.swift in Sources */,
 				562FC9202B245ECF0038731B /* ToolbarButton.swift in Sources */,
+				568F1D102B33DA5100E1D58A /* SimpleViewModel+Common.swift in Sources */,
 				BE62D1712B3173D800E1B233 /* TimerWidgetAttributes.swift in Sources */,
 				56C4F64D2B1B5A74009D2721 /* LabelView.swift in Sources */,
 				5621651D2B0B8561008E472B /* SettingTwoTextField.swift in Sources */,
+				568F1D182B33F80700E1D58A /* CommonModel.swift in Sources */,
 				5697A7D42AFF431400ADBBD1 /* InputManager.swift in Sources */,
 				56AF0AF22AE9F4B3009AF8A2 /* RealTime.swift in Sources */,
 				BE62D1642B312C2600E1B233 /* TimerWidget.intentdefinition in Sources */,
-				562164D92B08DA26008E472B /* Enum.swift in Sources */,
+				562164D92B08DA26008E472B /* SimpleEnum.swift in Sources */,
 				56C4F6552B1CABFF009D2721 /* CircularProgress.swift in Sources */,
 				562164D22B08D6E5008E472B /* Extension+Type.swift in Sources */,
 				56C4F6592B1D64C2009D2721 /* SimpleRealTime.swift in Sources */,
 				568F1CFB2B32CD1B00E1D58A /* SimpleButtonSetRow.swift in Sources */,
 				5697A7D02AFE73C300ADBBD1 /* RoundSet.swift in Sources */,
 				562164D42B08D7F1008E472B /* TextfieldStyle.swift in Sources */,
+				568F1D152B33DEB800E1D58A /* SimpleStopwatchDisplayTime.swift in Sources */,
+				568F1D0C2B33D70F00E1D58A /* SimpleViewModel+ViewStopwatch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

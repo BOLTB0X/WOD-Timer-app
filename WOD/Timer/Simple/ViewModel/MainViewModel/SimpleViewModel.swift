@@ -11,33 +11,26 @@ import Combine
 // MARK: - WodViewModel
 class SimpleViewModel: InputManager {
     // MARK: - 프로퍼티s
-    static let shared = SimpleViewModel() // 싱글톤 패턴
-    
-    // MARK: - Publisheds
     // ...
-    // 심플 타이머루틴 배열
-    @Published var simpleTmRounds: [(movement: Int, rest: Int)] = []
-    @Published var simpleTotalTime:Int = 0 // 심플 루틴 배열의 총 시간
-    @Published var simpleTmRoundIdx: Int? //
-    
-    // 심플 스톱워치 루틴 배열
-    @Published var simpleSwRounds: [Round] = []  // 심플 루틴 배열
-    @Published var simpleSwRoundIdx: Int? //
+    static let shared = SimpleViewModel() // 싱글톤 패턴
     
     // etc
     @Published var simpleCompletion: Date? // 완료일
-    @Published var simpleDisplay: Int = 0 
-//    {
-//        didSet {
-//            widgetManager.contentState.currentDisplayTime = simpleDisplay
-//        }
-//    }
+    @Published var simpleDisplay: Int = 0
     
+    // MARK: - Timer
+    @Published var simpleTmRounds: [TmRound] = [] // 심플 타이머루틴 배열
+    @Published var simpleTotalTime:Int = 0 // 심플 루틴 배열의 총 시간
+    @Published var simpleTmRoundIdx: Int? //
+    @Published var simpleTimerCompletion: String = "X" // 완료일
+    @Published var simpleTimerHistory: RoundHistory = RoundHistory() // 히스토리
+
+
     // 진행률 -> 타이머
     @Published var simpleUnitProgress: Float = 0.0
     @Published var simpleFullProgress: Float = 0.0
 
-    // MARK: 타이머 상태 관련
+    // 타이머 상태 관련
     @Published var simpleState: TimerState = .cancelled {
         didSet {
             switch simpleState {
@@ -54,13 +47,17 @@ class SimpleViewModel: InputManager {
             case .resumed: // 재개
                 resumeSimpleTimer()
             }
-            
-            // simpleState가 변경될 때마다 음성 안내
-            //UIAccessibility.post(notification: .announcement, argument: simpleRoundPhase?.phaseText ?? "??")
         }
     }
     
-    // MARK: 스톱워치 상태 관련
+    // MARK: - Stopwatch
+    // 심플 스톱워치 루틴 배열
+    @Published var simpleSwRounds: [SwRound] = []  // 심플 루틴 배열
+    @Published var simpleSwRoundIdx: Int? //
+    @Published var simpleSwCompletion: String = "X" // 완료일
+    @Published var simpleSwHistory: RoundHistory = RoundHistory() // 히스토리
+    
+    // 스톱워치 상태 관련
     @Published var simpleStopState: TimerState = .cancelled {
         didSet {
             switch simpleStopState {
@@ -81,6 +78,7 @@ class SimpleViewModel: InputManager {
         }
     }
     
+    // MARK: - 공통
     @Published var simpleRoundPhase: SimpleRoundPhase?
     @Published var phaseBackgroundColor: Color = .clear
     @Published var controlBtn: Bool = false // 바인딩할 프로퍼티

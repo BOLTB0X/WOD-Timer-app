@@ -12,21 +12,32 @@ struct SimpleStopwatchControl: View {
     @EnvironmentObject private var viewModel: SimpleViewModel
     
     var body: some View {
-        HStack(alignment: .center, spacing: 10) {
-            // before
-            ControlButton(isPaused: $viewModel.controlBtn ,action: viewModel.controlBefore, defaultImgName: "chevron.left.2")
+        HStack(alignment: .center, spacing: 50) {
+            ZStack {
+                Circle()
+                    .stroke(lineWidth: 8.0)
+                    .opacity(0.3)
+                    .foregroundColor(viewModel.phaseBackgroundColor)
+                
+                // start / pause
+                if viewModel.simpleRoundPhase != .completed {
+                    ControlButton(isPaused: $viewModel.controlBtn, action:  viewModel.controlSwPausedOrResumed,
+                                  img1Name: "play.fill",
+                                  img2Name: "pause.fill")
+                }
+            } // ZStack
             
-            // start / pause
-            
-            if viewModel.simpleRoundPhase != .completed {
-                ControlButton(isPaused: $viewModel.controlBtn, action:  viewModel.controlTmPausedOrResumed,
-                              img1Name: "play.fill",
-                              img2Name: "pause.fill")
-            }
-            
-            // next
-            ControlButton(isPaused: $viewModel.controlBtn, action: viewModel.controlNext, defaultImgName: "chevron.right.2")
+            ZStack {
+                Circle()
+                    .stroke(lineWidth: 8.0)
+                    .opacity(0.3)
+                    .foregroundColor(viewModel.phaseBackgroundColor)
+                
+                // check & and
+                ControlButton(isPaused: $viewModel.controlBtn, action: viewModel.controlStopwatchCheck, defaultImgName: "checkmark")
+            } // ZStack
         } // HStack
+        .padding(.horizontal)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }

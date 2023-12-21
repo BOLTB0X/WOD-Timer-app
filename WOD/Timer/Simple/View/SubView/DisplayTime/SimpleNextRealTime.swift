@@ -19,7 +19,7 @@ struct SimpleNextRealTime: View {
             // 현재 다음 라운드나 페이즈 타이머 시간 표시
             RealTime(time: viewModel.nextTimerTime, fontSize: viewModel.selectedMovementAmount.timerSmallFontSize)
         }
-        .foregroundColor(viewModel.isEnd)
+        .foregroundColor(viewModel.isTmEnd)
     }
 }
 

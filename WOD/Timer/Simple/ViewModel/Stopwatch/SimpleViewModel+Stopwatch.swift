@@ -13,12 +13,14 @@ import Combine
 extension SimpleViewModel {
     // MARK: - startSimpleStopWatch
     func startSimpleStopWatch() {
-        guard let idx = simpleSwRoundIdx, idx < simpleSwRounds.count else {
+        guard let idx = simpleSwRoundIdx, idx < simpleSwRounds.count, let currentPhase = simpleRoundPhase else {
             return
         }
         
         print("스톱워치 실행")
         print(simpleRoundPhase?.phaseText ?? "??")
+        
+        updateStopPhaseStart(idx: idx, currentPhase: currentPhase)
         
         timerCancellable = Timer.publish(every: 1.0, on: .main, in: .common)
             .autoconnect()
@@ -30,6 +32,9 @@ extension SimpleViewModel {
                 // 준비일 때만 감소
                 if self.simpleRoundPhase == .preparation {
                     self.simpleDisplay -= 1
+                    if self.simpleDisplay < 0 {
+                        self.completedCurrentStop()
+                    }
                 } else { // 나머진 그냥 증가
                     self.simpleDisplay += 1
                 }
@@ -39,7 +44,7 @@ extension SimpleViewModel {
                     DispatchQueue.global().async {
                         AVManager.shared.playSound(named: "whistle_counting", fileExtension: "caf")
                     }
-                } else if self.simpleDisplay == 0 {
+                } else if self.simpleDisplay == 0 && self.simpleRoundPhase == .preparation {
                     DispatchQueue.global().async {
                         AVManager.shared.playSound(named: "whistle_countComplete", fileExtension: "caf")
                     }
@@ -101,5 +106,43 @@ extension SimpleViewModel {
     // 중지 또는 재개
     func controlSwPausedOrResumed() {
         // 만약 셋팅받은 게 없을 때 막기
+        guard let _ = simpleSwRoundIdx, simpleRoundPhase != .completed else {
+            return
+        }
+        
+        controlBtn.toggle()
+        
+        if simpleStopState == .paused {
+            controlBtn = false
+            simpleStopState = .resumed
+        } else if simpleStopState == .active {
+            controlBtn = true
+            simpleStopState = .paused
+        }
+    }
+    
+    
+    // MARK: - controlStopwatchCheck
+    // 기록 후 다음으로 가기
+    func controlStopwatchCheck() {
+        // 현재가 마지막 라운드이고 운동 상태라면 nothing
+        guard let roundIdx = simpleSwRoundIdx, roundIdx < simpleSwRounds.count else {
+            return
+        }
+        
+        // 현재 타이머 중지
+        simpleStopState = .paused
+        print("체크")
+        
+        if simpleRoundPhase == .movement {
+            simpleSwRounds[roundIdx].movement = simpleDisplay
+            simpleSwRounds[roundIdx].date.movementComplted = simpleDisplay.asTimestamp
+        } else if simpleRoundPhase == .rest {
+            simpleSwRounds[roundIdx].rest = simpleDisplay
+            simpleSwRounds[roundIdx].date.restComplted = simpleDisplay.asTimestamp
+        }
+        
+        nextSimpleStopRoundPhase()
+        return
     }
 }

@@ -6,20 +6,12 @@
 //
 
 import SwiftUI
-import Combine
 
 // MARK: - SimpleViewModel+SimpleTimer: SimpleTimer Update
 // 업데이트 관련 메소드들
 extension SimpleViewModel {
     // MARK: - Update Methods
     // .....
-    // MARK: - updateCompletionDate
-    func updateSimpleCompletionDate() {
-        simpleCompletion = Date().addingTimeInterval(Double(simpleDisplay))
-        print("완료", simpleCompletion ?? "")
-        return
-    }
-    
     // MARK: - createSimpleTimerRounds
     // 스타트 신호를 받으면 타이머을 돌린 배열에 넣어줌
     func createSimpleTimerRounds() {
@@ -27,13 +19,26 @@ extension SimpleViewModel {
         
         for i in 0..<selectedRoundAmount {
             if i == selectedRoundAmount - 1 {
-                simpleTmRounds.append((selectedMovementAmount.totalSeconds, 0))
+                simpleTmRounds.append(TmRound(movement: selectedMovementAmount.totalSeconds, rest: 0, date: StartComplted()))
             } else {
-                simpleTmRounds.append((selectedMovementAmount.totalSeconds, selectedRestAmount.totalSeconds))
+                simpleTmRounds.append(TmRound(movement: selectedMovementAmount.totalSeconds, rest: selectedRestAmount.totalSeconds, date: StartComplted()))
             }
-        }
+        } // for
         
         simpleTotalTime = simpleTmRounds.reduce(0) { $0 + ($1.movement + $1.rest) }
+        return
+    }
+    
+    // MARK: - updateSimpleTimerCompletion
+    func updateSimpleTimerCompletion() {
+        guard let idx = simpleTmRoundIdx, let currentPhase = simpleRoundPhase else { return }
+        
+        if currentPhase == .movement {
+            simpleTmRounds[idx].date.movementComplted = Date().formatted("yyyy-MM-dd HH:mm:ss")
+        } else if currentPhase == .rest {
+            simpleTmRounds[idx].date.restComplted = Date().formatted("yyyy-MM-dd HH:mm:ss")
+        }
+        
         return
     }
     
@@ -73,22 +78,6 @@ extension SimpleViewModel {
         }
     }
     
-    // MARK: - isStopFirstStart
-    func isStopFirstStart() -> Bool {
-        // 첫 시작, 준비 카운트부터
-        if simpleTmRoundIdx == nil {
-            simpleTmRoundIdx = 0
-            simpleRoundPhase = .preparation
-            updateBackgroundColor()
-            simpleDisplay = selectedPreparationStop
-            simpleStopState = controlBtn ? .paused : .active
-            
-            return true
-        } else {
-            return false
-        }
-    }
-    
     // MARK: - movingIndex_In_simpleRounds
     // simpleRounds 루틴배열 인덱스가 움직일 때, update 메소드
     func movingIndex_InSimpleTimerRounds() {
@@ -102,7 +91,17 @@ extension SimpleViewModel {
             simpleState = .completed
             simpleDisplay = 0
             updateBackgroundColor()
-            print("완료")
+            simpleTimerCompletion = Date().formatted("yyyy-MM-dd HH:mm:ss")
+            
+            // 테스트
+            for tm in simpleTmRounds {
+                print("운동 시작 시간: ", tm.date.movementStart)
+                print("운동 완료 시간: ", tm.date.movementComplted)
+                print("휴식 시작 시간: ", tm.date.restStart)
+                print("휴식 완료 시간: ", tm.date.restComplted)
+                print("===================================================")
+            }
+            print("총 타이머 완료", simpleTimerCompletion)
             return
         }
         
@@ -156,12 +155,23 @@ extension SimpleViewModel {
         return
     }
     
+    // MARK: - updateTimerPhaseStart
+    // 각 루틴 실행 기록 업데이트
+    func updateTimerPhaseStart(idx: Int, currentPhase: SimpleRoundPhase) {
+        if currentPhase == .movement && simpleTmRounds[idx].date.movementStart == "" {
+            simpleTmRounds[idx].date.movementStart = Date().formatted("yyyy-MM-dd HH:mm:ss")
+        } else if currentPhase == .rest && simpleTmRounds[idx].date.restStart == "" {
+            simpleTmRounds[idx].date.restStart = Date().formatted("yyyy-MM-dd HH:mm:ss")
+        }
+        return
+    }
+    
     /*==================================================================================*/
     // MARK: - in using
     // ...
     // MARK: - movementFromPreparation
     // 준비 -> 운동
-    private func movementFromPreparation(currentRound: (movement: Int, rest: Int)) {
+    private func movementFromPreparation(currentRound: TmRound) {
         simpleDisplay = currentRound.movement
         simpleRoundPhase = .movement
         updateBackgroundColor()
@@ -171,7 +181,7 @@ extension SimpleViewModel {
     
     // MARK: - restFromMovement
     // 운동 -> 휴식
-    private func restFromMovement(currentRound: (movement: Int, rest: Int), idx: Int) {
+    private func restFromMovement(currentRound: TmRound, idx: Int) {
         if currentRound.rest > 0 || idx < selectedRoundAmount - 1 {
             simpleDisplay = currentRound.rest
             simpleRoundPhase = .rest
@@ -185,7 +195,7 @@ extension SimpleViewModel {
     
     // MARK: - calculateProgress
     // 현재 단계별 프로그래스 계산
-    private func calculateProgress(currentPhase: SimpleRoundPhase, currentRound: (movement: Int, rest: Int)) {
+    private func calculateProgress(currentPhase: SimpleRoundPhase, currentRound: TmRound) {
         switch currentPhase {
         case .preparation:
             let elapsedTime = selectedPreparationAmount - simpleDisplay
