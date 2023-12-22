@@ -17,7 +17,7 @@ struct SimpleStopwatchControl: View {
                 Circle()
                     .stroke(lineWidth: 8.0)
                     .opacity(0.3)
-                    .foregroundColor(viewModel.phaseBackgroundColor)
+                    .foregroundColor(.blue)
                 
                 // start / pause
                 if viewModel.simpleRoundPhase != .completed {
@@ -31,7 +31,7 @@ struct SimpleStopwatchControl: View {
                 Circle()
                     .stroke(lineWidth: 8.0)
                     .opacity(0.3)
-                    .foregroundColor(viewModel.phaseBackgroundColor)
+                    .foregroundColor(.blue)
                 
                 // check & and
                 ControlButton(isPaused: $viewModel.controlBtn, action: viewModel.controlStopwatchCheck, defaultImgName: "checkmark")

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SimpleHeader: View {
+struct SectionHeader: View {
     @Binding var idx: Int
     
     var body: some View {
@@ -34,6 +34,6 @@ struct SimpleHeader: View {
 
 struct SimpleHeader_Previews: PreviewProvider {
     static var previews: some View {
-        SimpleHeader(idx: .constant(0))
+        SectionHeader(idx: .constant(0))
     }
 }

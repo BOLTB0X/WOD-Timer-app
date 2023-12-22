@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// MARK: - SimpleStopwatchDisplayTime
 struct SimpleStopwatchDisplayTime: View {
     @EnvironmentObject private var viewModel: SimpleViewModel
 
@@ -46,18 +47,13 @@ struct SimpleStopwatchDisplayTime: View {
                     .padding()
             } // Button
             
-            Spacer()
-                .frame(maxWidth: .infinity , maxHeight: .infinity)
+            Text("Do it yourself")
+                .font(.system(size: 40, weight: .bold))
+                .padding()
+
         } // VStack
         .frame(maxWidth: .infinity , maxHeight: .infinity)
         .background(viewModel.phaseBackgroundColor)
-    }
-}
-
-struct SimpleStopwatchDisplayTime_Previews: PreviewProvider {
-    static var previews: some View {
-        SimpleStopwatchDisplayTime()
-            .environmentObject(SimpleViewModel.shared)
-    }
+    } // body
 }
 

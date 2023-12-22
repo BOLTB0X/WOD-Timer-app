@@ -30,9 +30,9 @@ struct StartComplted {
 }
 
 
-// MARK: - TmRound
-// 타이머
-struct TmRound: Identifiable, Equatable {
+// MARK: - SimpleRound
+// 타이머, 스톱워치
+struct SimpleRound: Identifiable, Equatable {
     let id = UUID()
     var movement: Int
     var rest: Int
@@ -50,32 +50,7 @@ struct TmRound: Identifiable, Equatable {
         self.date = date
     }
     
-    static func == (lhs: TmRound, rhs: TmRound) -> Bool {
-        return lhs.id == rhs.id
-    }
-}
-
-// MARK: - SwRound
-// 스톱워치
-struct SwRound: Identifiable, Equatable {
-    let id = UUID()
-    var movement: Int
-    var rest: Int
-    var date: StartComplted
-    
-    init() {
-        self.movement = 0
-        self.rest = 0
-        self.date = StartComplted()
-    }
-    
-    init(movement: Int, rest: Int, date: StartComplted) {
-        self.movement = movement
-        self.rest = rest
-        self.date = date
-    }
-    
-    static func == (lhs: SwRound, rhs: SwRound) -> Bool {
+    static func == (lhs: SimpleRound, rhs: SimpleRound) -> Bool {
         return lhs.id == rhs.id
     }
 }

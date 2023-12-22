@@ -8,23 +8,22 @@
 import SwiftUI
 import Combine
 
-// MARK: - WodViewModel
+// MARK: - SimpleViewModel
 class SimpleViewModel: InputManager {
+    static let shared = SimpleViewModel() // 싱글톤 패턴
+
     // MARK: - 프로퍼티s
     // ...
-    static let shared = SimpleViewModel() // 싱글톤 패턴
-    
     // etc
     @Published var simpleCompletion: Date? // 완료일
     @Published var simpleDisplay: Int = 0
     
     // MARK: - Timer
-    @Published var simpleTmRounds: [TmRound] = [] // 심플 타이머루틴 배열
+    @Published var simpleTmRounds: [SimpleRound] = [] // 심플 타이머루틴 배열
     @Published var simpleTotalTime:Int = 0 // 심플 루틴 배열의 총 시간
     @Published var simpleTmRoundIdx: Int? //
     @Published var simpleTimerCompletion: String = "X" // 완료일
     @Published var simpleTimerHistory: RoundHistory = RoundHistory() // 히스토리
-
 
     // 진행률 -> 타이머
     @Published var simpleUnitProgress: Float = 0.0
@@ -46,13 +45,13 @@ class SimpleViewModel: InputManager {
                 
             case .resumed: // 재개
                 resumeSimpleTimer()
-            }
-        }
+            } // switch
+        } // didSet
     }
     
     // MARK: - Stopwatch
     // 심플 스톱워치 루틴 배열
-    @Published var simpleSwRounds: [SwRound] = []  // 심플 루틴 배열
+    @Published var simpleSwRounds: [SimpleRound] = []  // 심플 루틴 배열
     @Published var simpleSwRoundIdx: Int? //
     @Published var simpleSwCompletion: String = "X" // 완료일
     @Published var simpleSwHistory: RoundHistory = RoundHistory() // 히스토리
@@ -74,8 +73,8 @@ class SimpleViewModel: InputManager {
                 
             case .resumed: // 재개
                 resumeSimpleStop()
-            }
-        }
+            } // switch
+        } // didSet
     }
     
     // MARK: - 공통
@@ -86,5 +85,5 @@ class SimpleViewModel: InputManager {
     @Published var widgetManager = WidgetManager()
 
     var timerCancellable: AnyCancellable? //   // 타이머 메모리 날리기 용
-    let simpleButtonType: [SimpleButton] = [.round, .preparation, .movements, .rest]
+    let simpleButtonType: [SimpleButton] = [.preparation, .round, .movements, .rest]
 }

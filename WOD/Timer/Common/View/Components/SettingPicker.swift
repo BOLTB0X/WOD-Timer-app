@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// MARK: - SettingPicker
 struct SettingPicker: View {
     let title: String
     let range: [Int]

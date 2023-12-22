@@ -26,7 +26,7 @@ struct SimpleView: View {
             VStack(alignment: .leading, spacing: 0) {
                 Form {
                     // MARK: - Routine
-                    Section(header: SimpleHeader(idx: $isModeBtn)) {
+                    Section(header: SectionHeader(idx: $isModeBtn)) {
                         ForEach(viewModel.simpleButtonType, id: \.self) { btn in
                             SimpleButtonSetRow(simpleButton: $simpleButton, 
                                                showPopup: $showPopup,
@@ -112,7 +112,7 @@ struct SimpleView: View {
                 SimpleRoundStopSet(showPopup: $showPopup)
                     .environmentObject(viewModel)
             } else if simpleButton == .preparation {
-                SimpleTimerPreparationStopSet(showPopup: $showPopup)
+                SimpleStopwatchPreparationSet(showPopup: $showPopup)
                     .environmentObject(viewModel)
             }
         }

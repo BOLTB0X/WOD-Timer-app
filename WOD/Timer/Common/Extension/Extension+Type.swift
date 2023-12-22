@@ -47,6 +47,13 @@ extension Date {
     }
 }
 
+// MARK: - Array
+extension Array {
+    subscript(safe index: Index) -> Element? {
+        return indices.contains(index) ? self[index] : nil
+    }
+}
+
 // MARK: - Color
 extension Color {
     // 배경색

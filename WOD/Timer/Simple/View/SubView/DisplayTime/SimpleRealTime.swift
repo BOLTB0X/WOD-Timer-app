@@ -16,11 +16,15 @@ struct SimpleRealTime: View {
         VStack(alignment: .center, spacing: 0) {
             Text(viewModel.currentPhaseText)
                 .font(.system(size: 30, weight: .semibold))
-            // 현재 라운드의 진행 중인 타이머 시간 표시
-            RealTime(time: viewModel.currentTimerDisplayTime, fontSize: viewModel.selectedMovementAmount.timerBigFontSize)
+            
+            VStack {
+                // 현재 라운드의 진행 중인 타이머 시간 표시
+                RealTime(time: viewModel.currentTimerDisplayTime, fontSize: viewModel.selectedMovementAmount.timerBigFontSize)
+            } // VStack
+            .fixedSize(horizontal: false, vertical: true)
         }
         .foregroundColor(.black)
-    }
+    } // body
 }
 
 struct SimpleRealTime_Previews: PreviewProvider {

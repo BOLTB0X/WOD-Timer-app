@@ -19,9 +19,9 @@ extension SimpleViewModel {
         
         for i in 0..<selectedRoundAmount {
             if i == selectedRoundAmount - 1 {
-                simpleTmRounds.append(TmRound(movement: selectedMovementAmount.totalSeconds, rest: 0, date: StartComplted()))
+                simpleTmRounds.append(SimpleRound(movement: selectedMovementAmount.totalSeconds, rest: 0, date: StartComplted()))
             } else {
-                simpleTmRounds.append(TmRound(movement: selectedMovementAmount.totalSeconds, rest: selectedRestAmount.totalSeconds, date: StartComplted()))
+                simpleTmRounds.append(SimpleRound(movement: selectedMovementAmount.totalSeconds, rest: selectedRestAmount.totalSeconds, date: StartComplted()))
             }
         } // for
         
@@ -171,7 +171,7 @@ extension SimpleViewModel {
     // ...
     // MARK: - movementFromPreparation
     // 준비 -> 운동
-    private func movementFromPreparation(currentRound: TmRound) {
+    private func movementFromPreparation(currentRound: SimpleRound) {
         simpleDisplay = currentRound.movement
         simpleRoundPhase = .movement
         updateBackgroundColor()
@@ -181,7 +181,7 @@ extension SimpleViewModel {
     
     // MARK: - restFromMovement
     // 운동 -> 휴식
-    private func restFromMovement(currentRound: TmRound, idx: Int) {
+    private func restFromMovement(currentRound: SimpleRound, idx: Int) {
         if currentRound.rest > 0 || idx < selectedRoundAmount - 1 {
             simpleDisplay = currentRound.rest
             simpleRoundPhase = .rest
@@ -195,7 +195,7 @@ extension SimpleViewModel {
     
     // MARK: - calculateProgress
     // 현재 단계별 프로그래스 계산
-    private func calculateProgress(currentPhase: SimpleRoundPhase, currentRound: TmRound) {
+    private func calculateProgress(currentPhase: SimpleRoundPhase, currentRound: SimpleRound) {
         switch currentPhase {
         case .preparation:
             let elapsedTime = selectedPreparationAmount - simpleDisplay

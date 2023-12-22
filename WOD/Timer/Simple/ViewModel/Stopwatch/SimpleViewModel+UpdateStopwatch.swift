@@ -19,9 +19,9 @@ extension SimpleViewModel {
         
         for i in 0..<selectedRoundStop {
             if i == selectedRoundStop - 1 {
-                simpleSwRounds.append(SwRound(movement: 0, rest: -1, date: StartComplted()))
+                simpleSwRounds.append(SimpleRound(movement: 0, rest: -1, date: StartComplted()))
             } else {
-                simpleSwRounds.append(SwRound())
+                simpleSwRounds.append(SimpleRound())
             }
         }
         
@@ -33,8 +33,10 @@ extension SimpleViewModel {
     // 각 루틴 실행 기록 업데이트
     func updateStopPhaseStart(idx: Int, currentPhase: SimpleRoundPhase) {
         if currentPhase == .movement && simpleSwRounds[idx].date.movementStart == "" {
+            simpleSwRounds[idx].movement = simpleDisplay
             simpleSwRounds[idx].date.movementStart = Date().formatted("yyyy-MM-dd HH:mm:ss")
         } else if currentPhase == .rest && simpleSwRounds[idx].date.restStart == "" {
+            simpleSwRounds[idx].rest = simpleDisplay
             simpleSwRounds[idx].date.restStart = Date().formatted("yyyy-MM-dd HH:mm:ss")
         }
         return
@@ -105,7 +107,7 @@ extension SimpleViewModel {
             print("완료")
             return
         }
-    
+        
         simpleDisplay = 0
         simpleRoundPhase = .movement
         updateBackgroundColor()
@@ -127,7 +129,7 @@ extension SimpleViewModel {
         switch currentPhase {
         case .preparation:
             movementFromPreparation(currentRound: currentRound)
-
+            
         case .movement:
             restFromMovement(currentRound: currentRound, idx: idx)
             
@@ -140,12 +142,13 @@ extension SimpleViewModel {
         } // switch
     }
     
+    
     /*==================================================================================*/
     // MARK: - in using
     // ...
     // MARK: - movementFromPreparation
     // 준비 -> 운동
-    private func movementFromPreparation(currentRound: SwRound) {
+    private func movementFromPreparation(currentRound: SimpleRound) {
         simpleRoundPhase = .movement
         updateBackgroundColor()
         simpleStopState = controlBtn ? .paused : .active
@@ -154,7 +157,7 @@ extension SimpleViewModel {
     
     // MARK: - restFromMovement
     // 운동 -> 휴식
-    private func restFromMovement(currentRound: SwRound, idx: Int) {
+    private func restFromMovement(currentRound: SimpleRound, idx: Int) {
         if currentRound.rest != -1 && idx < selectedRoundStop - 1 {
             simpleRoundPhase = .rest
             updateBackgroundColor()

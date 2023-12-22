@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// MARK: - SettingTwoTextField
 struct SettingTwoTextField: View {
     @Binding var setMinute: Int
     @Binding var setSecond: Int

@@ -38,8 +38,8 @@ struct SimpleRoundStopSet: View {
     } // body
 }
 
-// MARK: - SimpleTimerPreparationStopSet
-struct SimpleTimerPreparationStopSet: View {
+// MARK: - SimpleStopwatchPreparationSet
+struct SimpleStopwatchPreparationSet: View {
     @EnvironmentObject var viewModel: SimpleViewModel
     @StateObject var manager = InputManager()
     

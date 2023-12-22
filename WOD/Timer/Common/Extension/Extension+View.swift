@@ -35,6 +35,31 @@ extension View {
             } // overlay
     }
     
+    func popupNavigationFullView<Content: View>(show: Binding<Bool>, @ViewBuilder content: @escaping ()->Content) -> some View {
+        return self
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            .overlay {
+                if show .wrappedValue {
+                    GeometryReader { proxy in
+                        Color.primary
+                            .opacity(0.15)
+                            .ignoresSafeArea()
+                        
+                        let size = proxy.size
+                        
+                        NavigationView {
+                            VStack(alignment: .center, spacing: 0) {
+                                content()
+                                Spacer()
+                            }
+                        }
+                        .cornerRadius(15)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                    } // GeometryReader
+                } // if
+            } // overlay
+    }
+    
     // MARK: - popupToolbar
     func popupSettingToolbar(cancelAction: @escaping () -> Void, action: @escaping () -> Void, completeAction: @escaping () -> Void) -> some View {
         toolbar {
