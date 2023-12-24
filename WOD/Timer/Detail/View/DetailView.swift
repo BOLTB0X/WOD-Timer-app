@@ -33,16 +33,16 @@ struct DetailView: View {
                 } // Form
                 
                 NavigationLink(
-                            destination: DetailTimerCycleSet()
-                                .environmentObject(viewModel),
-                            isActive: $rootView) {
-                                EmptyView()
-                          }
+                    destination: DetailTimerCycleSet( rootView: $rootView)
+                        .environmentObject(viewModel),
+                    isActive: $rootView) {
+                        EmptyView()
+                    }
             }
             .navigationTitle("Detail Routine")
             .navigationBarTitleDisplayMode(.inline)
             
-        
+            
             // MARK: - popupNavigationView
             // 팝업
             .popupNavigationView(show: $showPopup) {
@@ -50,6 +50,9 @@ struct DetailView: View {
             }
             
         } // NavigationView
+        .onTapGesture {
+            self.hideKeyboard()
+        }
     }// body
 }
 

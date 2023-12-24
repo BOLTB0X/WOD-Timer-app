@@ -60,7 +60,7 @@ extension View {
             } // overlay
     }
     
-    // MARK: - popupToolbar
+    // MARK: - popupSettingToolbar
     func popupSettingToolbar(cancelAction: @escaping () -> Void, action: @escaping () -> Void, completeAction: @escaping () -> Void) -> some View {
         toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
@@ -75,6 +75,28 @@ extension View {
                     Text("complete")
                 }
             }
+        } // toolbar
+    }
+    
+    // MARK: - navigationBasicToolbar
+    func navigationBasicToolbar(backAction: @escaping () -> Void, title: String) -> some View {
+        toolbar {
+            // Leading
+            ToolbarItem(placement: .navigationBarLeading) {
+                HStack(alignment: .center, spacing: 0) {
+                    Button(action: {
+                        backAction()
+                    }, label: {
+                        Image(systemName: "chevron.backward.2")
+                            .resizable()
+                            .foregroundColor(.secondary)
+                    })
+                    
+                    Text(title)
+                    Spacer()
+                } // HStack
+                .padding(.horizontal)
+            } // ToolbarItem
         } // toolbar
     }
     
