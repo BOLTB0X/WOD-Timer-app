@@ -17,7 +17,7 @@ struct TextFieldBackground<Content: View>: View {
     
     var body: some View {
         Color.clear
-            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+            //.frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
             .overlay(content)
     }
 }

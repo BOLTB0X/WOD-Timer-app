@@ -7,15 +7,19 @@
 
 import SwiftUI
 
+// MARK: - DetailButtonSetRow
 struct DetailButtonSetRow: View {
+    // MARK: Binding
     @Binding var detailButton: DetailButton?
     @Binding var showPopup: Bool
     @Binding var rootView: Bool
     @Binding var isModeBtn: Int
     
+    // MARK: 프로퍼티
     let viewModel: DetailViewModel
     let btn: DetailButton
     
+    // MARK: View
     var body: some View {
         Button(action: {
             buttonAction()

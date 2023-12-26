@@ -33,7 +33,8 @@ struct DetailView: View {
                 } // Form
                 
                 NavigationLink(
-                    destination: DetailTimerCycleSet( rootView: $rootView)
+                    destination: DetailTimerCycleSet( rootView: $rootView)                .navigationBarBackButtonHidden()
+
                         .environmentObject(viewModel),
                     isActive: $rootView) {
                         EmptyView()

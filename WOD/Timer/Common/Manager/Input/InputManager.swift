@@ -37,5 +37,6 @@ class InputManager: ObservableObject {
     @Published var movementText: String = ""
     @Published var selectedCycleAmount = 3
     @Published var selectedCycleRestAmount = MovementTime(hours: 0, minutes: 0, seconds: 10)
+    @Published var isSelectedColor: Int = 0
     
 }

@@ -46,6 +46,8 @@
 		568F1D332B35720A00E1D58A /* DetailTimerSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568F1D322B35720900E1D58A /* DetailTimerSet.swift */; };
 		568F1D492B35B30500E1D58A /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568F1D482B35B30500E1D58A /* CustomTextField.swift */; };
 		568F1D4B2B35C53600E1D58A /* DetailTimerCycleSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568F1D4A2B35C53600E1D58A /* DetailTimerCycleSet.swift */; };
+		568F1D4D2B3A65DC00E1D58A /* BasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568F1D4C2B3A65DC00E1D58A /* BasicButton.swift */; };
+		568F1D512B3A911C00E1D58A /* ColorSegmentedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568F1D502B3A911C00E1D58A /* ColorSegmentedButton.swift */; };
 		5697A7CE2AFE59E200ADBBD1 /* ButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697A7CD2AFE59E200ADBBD1 /* ButtonStyle.swift */; };
 		5697A7D02AFE73C300ADBBD1 /* RoundSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697A7CF2AFE73C300ADBBD1 /* RoundSet.swift */; };
 		5697A7D42AFF431400ADBBD1 /* InputManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697A7D32AFF431400ADBBD1 /* InputManager.swift */; };
@@ -186,6 +188,8 @@
 		568F1D322B35720900E1D58A /* DetailTimerSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTimerSet.swift; sourceTree = "<group>"; };
 		568F1D482B35B30500E1D58A /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		568F1D4A2B35C53600E1D58A /* DetailTimerCycleSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTimerCycleSet.swift; sourceTree = "<group>"; };
+		568F1D4C2B3A65DC00E1D58A /* BasicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicButton.swift; sourceTree = "<group>"; };
+		568F1D502B3A911C00E1D58A /* ColorSegmentedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSegmentedButton.swift; sourceTree = "<group>"; };
 		5697A7CD2AFE59E200ADBBD1 /* ButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyle.swift; sourceTree = "<group>"; };
 		5697A7CF2AFE73C300ADBBD1 /* RoundSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundSet.swift; sourceTree = "<group>"; };
 		5697A7D32AFF431400ADBBD1 /* InputManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputManager.swift; sourceTree = "<group>"; };
@@ -324,6 +328,8 @@
 				56C4F64E2B1C5BFF009D2721 /* ControlButton.swift */,
 				562FC91F2B245ECF0038731B /* ToolbarButton.swift */,
 				568F1CF62B32ADAC00E1D58A /* SegmentedButton.swift */,
+				568F1D4C2B3A65DC00E1D58A /* BasicButton.swift */,
+				568F1D502B3A911C00E1D58A /* ColorSegmentedButton.swift */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -464,10 +470,8 @@
 		568F1D262B3563D600E1D58A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				568F1D282B35640800E1D58A /* DetailView.swift */,
-				568F1D2E2B35680400E1D58A /* DetailButtonSetRow.swift */,
-				568F1D322B35720900E1D58A /* DetailTimerSet.swift */,
-				568F1D4A2B35C53600E1D58A /* DetailTimerCycleSet.swift */,
+				568F1D4E2B3A8DBD00E1D58A /* MainView */,
+				568F1D4F2B3A8DCB00E1D58A /* SubView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -478,6 +482,24 @@
 				568F1D2A2B35648F00E1D58A /* DetailViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		568F1D4E2B3A8DBD00E1D58A /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				568F1D282B35640800E1D58A /* DetailView.swift */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		568F1D4F2B3A8DCB00E1D58A /* SubView */ = {
+			isa = PBXGroup;
+			children = (
+				568F1D2E2B35680400E1D58A /* DetailButtonSetRow.swift */,
+				568F1D322B35720900E1D58A /* DetailTimerSet.swift */,
+				568F1D4A2B35C53600E1D58A /* DetailTimerCycleSet.swift */,
+			);
+			path = SubView;
 			sourceTree = "<group>";
 		};
 		5697A7E12AFF5D9100ADBBD1 /* Setting */ = {
@@ -827,6 +849,7 @@
 				5697A7DC2AFF569100ADBBD1 /* PreparationSet.swift in Sources */,
 				56C4F6242B184195009D2721 /* SimpleViewModel+ViewTimer.swift in Sources */,
 				56C4F64F2B1C5BFF009D2721 /* ControlButton.swift in Sources */,
+				568F1D4D2B3A65DC00E1D58A /* BasicButton.swift in Sources */,
 				56A9987E2AF6730E000D5C99 /* SettingTimeTextField.swift in Sources */,
 				56AF0B412AEB9C33009AF8A2 /* StopWatchViewModel.swift in Sources */,
 				568F1D062B32F9ED00E1D58A /* SimpleStopwatchControl.swift in Sources */,
@@ -849,6 +872,7 @@
 				568F1D202B3510D400E1D58A /* SimpleHorizontalScroll.swift in Sources */,
 				56AF0AFC2AEA3E95009AF8A2 /* PlayButton.swift in Sources */,
 				56C5A49B2B136BDE008ABCA0 /* TextLimiter.swift in Sources */,
+				568F1D512B3A911C00E1D58A /* ColorSegmentedButton.swift in Sources */,
 				568F1D242B35552D00E1D58A /* CardCell.swift in Sources */,
 				56AF0AD92AE892B5009AF8A2 /* TimerApp.swift in Sources */,
 				56A998802AF6799A000D5C99 /* SettingPicker.swift in Sources */,

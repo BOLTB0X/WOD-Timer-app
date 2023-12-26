@@ -9,9 +9,11 @@ import SwiftUI
 
 // MARK: - SimpleTimerRoundSet
 struct SimpleTimerRoundSet: View {
+    // MARK: Object
     @EnvironmentObject var viewModel: SimpleViewModel
     @StateObject var manager = InputManager()
     
+    // MARK: State/Binding
     @State private var isChange: Bool = false
     @Binding var showPopup: Bool
     
@@ -40,9 +42,11 @@ struct SimpleTimerRoundSet: View {
 
 // MARK: - SimpleTimerPreparationSet
 struct SimpleTimerPreparationSet: View {
+    // MARK: Object
     @EnvironmentObject var viewModel: SimpleViewModel
     @StateObject var manager = InputManager()
     
+    // MARK: State/Binding
     @State private var isChange: Bool = false
     @Binding var showPopup: Bool
     
@@ -71,9 +75,11 @@ struct SimpleTimerPreparationSet: View {
 
 // MARK: - SimpleTimerMovementsSet
 struct SimpleTimerMovementsSet: View {
+    // MARK: Object
     @EnvironmentObject var viewModel: SimpleViewModel
     @StateObject var manager = InputManager()
     
+    // MARK: State/Binding
     @State private var isChange: Bool = false
     @Binding var showPopup: Bool
     
@@ -102,9 +108,11 @@ struct SimpleTimerMovementsSet: View {
 
 // MARK: - SimpleTimerRestSet
 struct SimpleTimerRestSet: View {
+    // MARK: Object
     @EnvironmentObject var viewModel: SimpleViewModel
     @StateObject var manager = InputManager()
     
+    // MARK: State/Binding
     @State private var isChange: Bool = false
     @Binding var showPopup: Bool
     

@@ -28,11 +28,12 @@ struct SimpleView: View {
                     // MARK: - Routine
                     Section(header: SectionHeader(idx: $isModeBtn)) {
                         ForEach(viewModel.simpleButtonType, id: \.self) { btn in
-                            SimpleButtonSetRow(simpleButton: $simpleButton, 
-                                               showPopup: $showPopup,
-                                               isModeBtn: $isModeBtn,
-                                               viewModel: viewModel,
-                                               btn: btn)
+                            SimpleButtonSetRow(
+                                simpleButton: $simpleButton,
+                                showPopup: $showPopup,
+                                isModeBtn: $isModeBtn,
+                                viewModel: viewModel,
+                                btn: btn)
                         } // ForEach
                         
                         Button("Start") {

@@ -19,7 +19,6 @@ struct SegmentedButton: View {
     @Binding var selectedIndex: Int
     
     var options: [String]
-    
     let color = Color("lightBlue1")
     
     var body: some View {

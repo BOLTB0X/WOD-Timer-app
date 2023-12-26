@@ -34,3 +34,10 @@ enum DetailButton {
         }
     }
 }
+
+enum SelectedSetting {
+    case color
+    case time
+    case text
+}
+
