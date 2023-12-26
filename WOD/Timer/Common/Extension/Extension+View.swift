@@ -30,27 +30,49 @@ extension View {
                         .frame(width: size.width - horizontalPadding, height: size.height / 2.5, alignment: .top)
                         .cornerRadius(15)
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                    }
-                }
-            }
+                    } // GeometryReader
+                } // if
+            } // overlay
     }
-    
-    // MARK: - popupToolbar
+        
+    // MARK: - popupSettingToolbar
     func popupSettingToolbar(cancelAction: @escaping () -> Void, action: @escaping () -> Void, completeAction: @escaping () -> Void) -> some View {
         toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button(action: { withAnimation { cancelAction() } }) {
                     Text("cancel")
-                    .foregroundColor(.secondary)
+                        .foregroundColor(.secondary)
                 }
             }
-                        
+            
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: { withAnimation { completeAction() } }) {
                     Text("complete")
                 }
             }
-        }
+        } // toolbar
+    }
+    
+    // MARK: - navigationBasicToolbar
+    func navigationBasicToolbar(backAction: @escaping () -> Void, title: String) -> some View {
+        toolbar {
+            // Leading
+            ToolbarItem(placement: .navigationBarLeading) {
+                HStack(alignment: .center, spacing: 0) {
+                    Button(action: {
+                        backAction()
+                    }, label: {
+                        Image(systemName: "chevron.backward")
+                            .resizable()
+                            .foregroundColor(.secondary)
+                    })
+                    
+                    Text(title)
+                    Spacer()
+                } // HStack
+                .padding(.horizontal)
+            } // ToolbarItem
+        } // toolbar
     }
     
     // MARK: - hideKeyboard
