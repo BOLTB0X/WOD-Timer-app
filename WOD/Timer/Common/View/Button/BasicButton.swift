@@ -9,10 +9,12 @@ import SwiftUI
 
 // MARK: - BasicButton
 struct BasicButton: View {
+    // MARK: 프로퍼티s
     var action: () -> Void
     let systemName: String?
     let text: String?
     
+    // MARK: init
     init(action: (@escaping () -> Void), systemName: String, text: String? = nil) {
         self.action = action
         self.systemName = systemName
@@ -25,6 +27,7 @@ struct BasicButton: View {
         self.text = text
     }
     
+    // MARK: View
     var body: some View {
         Button(action: {
             action()
@@ -38,6 +41,7 @@ struct BasicButton: View {
                 Text(text ?? "")
             }
         })
+        .buttonStyle(EffectButtonStyle())
         
     }
 }

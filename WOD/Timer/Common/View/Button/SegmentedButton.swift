@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SegmentedButtonTest: View {
     @State var preselectedIndex = 0
+    
     var body: some View {
         SegmentedButton(selectedIndex: $preselectedIndex, options: ["hourglass", "stopwatch"])
     }
@@ -16,11 +17,14 @@ struct SegmentedButtonTest: View {
 
 // MARK: - SegmentedButton
 struct SegmentedButton: View {
+    // MARK: Binding
     @Binding var selectedIndex: Int
     
+    // MARK: 프로퍼티s
     var options: [String]
     let color = Color("lightBlue1")
     
+    // MARK: View
     var body: some View {
         HStack(spacing: 0) {
             ForEach(options.indices, id:\.self) { index in

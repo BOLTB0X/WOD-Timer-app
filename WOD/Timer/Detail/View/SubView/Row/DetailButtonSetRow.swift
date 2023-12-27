@@ -15,7 +15,7 @@ struct DetailButtonSetRow: View {
     @Binding var rootView: Bool
     @Binding var isModeBtn: Int
     
-    // MARK: 프로퍼티
+    // MARK: 프로퍼티s
     let viewModel: DetailViewModel
     let btn: DetailButton
     
@@ -25,10 +25,11 @@ struct DetailButtonSetRow: View {
             buttonAction()
         }, label: {
             HStack(alignment: .center, spacing: 0) {
-                
                 Text(btn.buttonText)
                 
                 Spacer()
+                
+                Text(viewModel.displayDetailSetValue(state: btn.buttonText, mode: isModeBtn))
             }
             .contentShape(Rectangle())
         }) // Button

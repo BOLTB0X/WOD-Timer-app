@@ -1,18 +1,18 @@
 //
-//  SimpleTimerSet.swift
+//  DetailTimerSet.swift
 //  Timer
 //
-//  Created by lkh on 12/20/23.
+//  Created by lkh on 12/22/23.
 //
 
 import SwiftUI
 
-// MARK: - SimpleTimerSet
+// MARK: - DetailTimerSet
 // ...
-// MARK: - SimpleTimerRoundSet
-struct SimpleTimerRoundSet: View {
+// MARK: - DeatilTimerPreparationSet
+struct DeatilTimerPreparationSet: View {
     // MARK: Object
-    @EnvironmentObject var viewModel: SimpleViewModel
+    @EnvironmentObject var viewModel: DetailViewModel
     @StateObject var manager = InputManager()
     
     // MARK: State/Binding
@@ -22,48 +22,17 @@ struct SimpleTimerRoundSet: View {
     var body: some View {
         // MARK: view
         NavigationView {
-            RoundSet(selectedRoundAmount: $manager.selectedRoundAmount, 
-                     isChange: $isChange, showPopup: $showPopup,  manager: manager)
-        }
-        // MARK: side
-        .onAppear {
-            manager.selectedRoundAmount = viewModel.selectedRoundAmount
-        }
-        .navigationTitle("Round")
-        .navigationBarTitleDisplayMode(.inline)
-        .popupSettingToolbar(
-            cancelAction:  { showPopup.toggle() },
-            action:  { isChange.toggle() },
-            completeAction: {
-                viewModel.selectedRoundAmount = manager.selectedRoundAmount
-                showPopup.toggle()
-            }
-        ) // popupSettingToolbar
-    } // body
-}
-
-// MARK: - SimpleTimerPreparationSet
-struct SimpleTimerPreparationSet: View {
-    // MARK: Object
-    @EnvironmentObject var viewModel: SimpleViewModel
-    @StateObject var manager = InputManager()
-    
-    // MARK: State/Binding
-    @State private var isChange: Bool = false
-    @Binding var showPopup: Bool
-    
-    var body: some View {
-        // MARK: view
-        NavigationView {
-            PreparationSet(selectedPreparationAmount: $manager.selectedPreparationAmount, 
+            PreparationSet(selectedPreparationAmount: $manager.selectedPreparationAmount,
                            isChange: $isChange, showPopup: $showPopup, manager: manager)
         }
         // MARK: side
         .onAppear {
             manager.selectedPreparationAmount = viewModel.selectedPreparationAmount
         }
+        
         .navigationTitle("Preparation")
         .navigationBarTitleDisplayMode(.inline)
+        
         .popupSettingToolbar(
             cancelAction:  { showPopup.toggle() },
             action:  { isChange.toggle() },
@@ -75,51 +44,55 @@ struct SimpleTimerPreparationSet: View {
     }
 }
 
-// MARK: - SimpleTimerMovementsSet
-struct SimpleTimerMovementsSet: View {
+// MARK: - DetailTimerRoundSet
+struct DetailTimerRoundSet: View {
     // MARK: Object
-    @EnvironmentObject var viewModel: SimpleViewModel
+    @EnvironmentObject var viewModel: DetailViewModel
     @StateObject var manager = InputManager()
     
     // MARK: State/Binding
     @State private var isChange: Bool = false
     @Binding var showPopup: Bool
     
+    // MARK: - View
     var body: some View {
-        // MARK: view
+        // MARK: main
         NavigationView {
-            MovementsSet(selectedMovementAmount: $manager.selectedMovementAmount, isChange: $isChange,
-                         showPopup: $showPopup, isCalculatedBtn: $manager.isCalculatedBtn, manager: manager)
+            RoundSet(selectedRoundAmount: $manager.selectedRoundAmount,
+                     isChange: $isChange, showPopup: $showPopup,  manager: manager)
         }
         // MARK: side
         .onAppear {
-            manager.selectedMovementAmount = viewModel.selectedMovementAmount
+            manager.selectedRoundAmount = viewModel.selectedRoundAmount
         }
-        .navigationTitle("Movements")
+        
+        .navigationTitle("Round")
         .navigationBarTitleDisplayMode(.inline)
+        
         .popupSettingToolbar(
             cancelAction:  { showPopup.toggle() },
             action:  { isChange.toggle() },
             completeAction: {
-                viewModel.selectedMovementAmount = manager.selectedMovementAmount
+                viewModel.selectedRoundAmount = manager.selectedRoundAmount
                 showPopup.toggle()
             }
         ) // popupSettingToolbar
-    }
+    } // body
 }
 
 // MARK: - SimpleTimerRestSet
-struct SimpleTimerRestSet: View {
+struct DetailTimerRestSet: View {
     // MARK: Object
-    @EnvironmentObject var viewModel: SimpleViewModel
+    @EnvironmentObject var viewModel: DetailViewModel
     @StateObject var manager = InputManager()
     
     // MARK: State/Binding
     @State private var isChange: Bool = false
     @Binding var showPopup: Bool
     
+    // MARK: - View
     var body: some View {
-        // MARK: view
+        // MARK: main
         NavigationView {
             RestSet(selectedRestAmount: $manager.selectedRestAmount, isChange: $isChange,
                     showPopup: $showPopup, isCalculatedBtn: $manager.isCalculatedBtn, manager: manager)
@@ -128,8 +101,10 @@ struct SimpleTimerRestSet: View {
         .onAppear {
             manager.selectedRestAmount = viewModel.selectedRestAmount
         }
+        
         .navigationTitle("Rest")
         .navigationBarTitleDisplayMode(.inline)
+        
         .popupSettingToolbar(
             cancelAction:  { showPopup.toggle() },
             action:  { isChange.toggle() },

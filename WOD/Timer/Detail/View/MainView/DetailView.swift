@@ -9,19 +9,20 @@ import SwiftUI
 
 // MARK: - DetailView
 struct DetailView: View {
-    // MARK: - class 프로퍼티
+    // MARK: Object
     @ObservedObject private var viewModel = DetailViewModel.shared
     
-    // MARK: - only View 프로퍼티s
+    // MARK: State
     @State private var detailButton: DetailButton?
     @State private var isDetailStart: Bool = false
     @State private var showPopup: Bool = false
     @State private var rootView: Bool = false
     @State private var isModeBtn: Int = 0 // 0 = timer, 1 = stopwatch
     
+    // MARK: - View
     var body: some View {
         NavigationView {
-            VStack {
+            VStack(alignment: .center, spacing: 0) {
                 Form {
                     // MARK: - Routine
                     Section(header: SectionHeader(idx: $isModeBtn)) {
@@ -30,31 +31,54 @@ struct DetailView: View {
                         } // ForEach
                         .listStyle(SidebarListStyle())
                     } // Section
+                    
+                    // TODO: - My Set, Coredata
+                    Section(header: Text("My Set").font(.headline)) {
+                        
+                    } // Routine(My Set)
                 } // Form
                 
+                // 이동
                 NavigationLink(
-                    destination: DetailTimerCycleSet( rootView: $rootView)                .navigationBarBackButtonHidden()
-
-                        .environmentObject(viewModel),
+                    destination: DetailTimerCycleSet(rootView: $rootView)
+                        .environmentObject(viewModel)
+                        .navigationBarBackButtonHidden(),
                     isActive: $rootView) {
                         EmptyView()
                     }
-            }
+                
+            } // VStack
             .navigationTitle("Detail Routine")
             .navigationBarTitleDisplayMode(.inline)
-            
             
             // MARK: - popupNavigationView
             // 팝업
             .popupNavigationView(show: $showPopup) {
-                
+                displayPopup()
             }
             
         } // NavigationView
+        
         .onTapGesture {
             self.hideKeyboard()
         }
     }// body
+    
+    // MARK: - displayPopup
+    @ViewBuilder
+    private func displayPopup() -> some View {
+        switch detailButton {
+        case .preparation:
+            DeatilTimerPreparationSet(showPopup: $showPopup)
+                .environmentObject(viewModel)
+        case .round:
+            DetailTimerRoundSet(showPopup: $showPopup)
+                .environmentObject(viewModel)
+        default:
+            DetailTimerRestSet(showPopup: $showPopup)
+                .environmentObject(viewModel)
+        }
+    }
 }
 
 

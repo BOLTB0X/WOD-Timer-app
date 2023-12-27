@@ -9,6 +9,7 @@ import SwiftUI
 
 // MARK: - MovementsSet
 struct MovementsSet: View {
+    // MARK: Binding
     @Binding var selectedMovementAmount: MovementTime
     @Binding var isChange: Bool
     @Binding var showPopup: Bool

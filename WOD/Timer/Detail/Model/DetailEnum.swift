@@ -14,7 +14,7 @@ enum DetailButton {
     case cycle
     case preparation
     case movements
-    case rest
+    case moverest
     case cycleRest
 
     var buttonText: String {
@@ -27,17 +27,23 @@ enum DetailButton {
             return "Preparation"
         case .movements:
             return "Movements"
-        case .rest:
-            return "Rest"
+        case .moverest:
+            return "moveRest"
         case .cycleRest:
-            return "Rest between cycles"
+            return "Rest"
         }
     }
 }
 
+// MARK: - SelectedSetting
 enum SelectedSetting {
     case color
     case time
     case text
 }
 
+// MARK: - DetailItemType
+enum DetailItemType {
+    case movement
+    case rest
+}

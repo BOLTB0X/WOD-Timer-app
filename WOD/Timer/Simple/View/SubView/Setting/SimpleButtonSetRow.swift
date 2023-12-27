@@ -9,13 +9,16 @@ import SwiftUI
 
 // MARK: - SimpleButtonSetRow
 struct SimpleButtonSetRow: View {
+    // MARK: Binding
     @Binding var simpleButton: SimpleButton?
     @Binding var showPopup: Bool
     @Binding var isModeBtn: Int
     
+    // MARK: 프로퍼티
     let viewModel: SimpleViewModel
     let btn: SimpleButton
     
+    // MARK: View
     var body: some View {
         Button(action: {
             buttonAction()

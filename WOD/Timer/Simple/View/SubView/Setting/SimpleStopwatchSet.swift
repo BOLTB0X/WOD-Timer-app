@@ -7,16 +7,21 @@
 
 import SwiftUI
 
+// MARK: - SimpleStopwatchSet
+// ...
 // MARK: - SimpleRoundStopSet
 struct SimpleRoundStopSet: View {
+    // MARK: Object
     @EnvironmentObject var viewModel: SimpleViewModel
     @StateObject var manager = InputManager()
     
+    // MARK: State / Binding
     @State private var isChange: Bool = false
     @Binding var showPopup: Bool
     
+    // MARK: - View
     var body: some View {
-        // MARK: view
+        // MARK: main
         NavigationView {
             RoundSet(selectedRoundAmount: $manager.selectedRoundStop, isChange: $isChange,
                      showPopup: $showPopup, manager: manager)
@@ -40,14 +45,17 @@ struct SimpleRoundStopSet: View {
 
 // MARK: - SimpleStopwatchPreparationSet
 struct SimpleStopwatchPreparationSet: View {
+    // MARK: Object
     @EnvironmentObject var viewModel: SimpleViewModel
     @StateObject var manager = InputManager()
     
+    // MARK: State / Binding
     @State private var isChange: Bool = false
     @Binding var showPopup: Bool
     
+    // MARK: - View
     var body: some View {
-        // MARK: view
+        // MARK: main
         NavigationView {
             PreparationSet(selectedPreparationAmount: $manager.selectedPreparationStop,
                            isChange: $isChange, showPopup: $showPopup, manager: manager)

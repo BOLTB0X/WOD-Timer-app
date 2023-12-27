@@ -11,28 +11,28 @@ import SwiftUI
 struct DetailItem: Identifiable, Equatable {
     let id = UUID()
     var title: String
-    var time: Int
-    var color: String
+    var time: MovementTime
+    var color: Int
     
     init() {
         self.title = ""
-        self.time = 0
-        self.color = "lightBlue1"
+        self.time = MovementTime(seconds: 30)
+        self.color = 0
     }
     
     init(title: String) {
         self.title = title
-        self.time = 30
-        self.color = "lightBlue1"
+        self.time = MovementTime(seconds: 30)
+        self.color = 0
     }
     
-    init(title: String, time: Int) {
+    init(title: String, time: MovementTime) {
         self.title = title
         self.time = time
-        self.color = "lightBlue1"
+        self.color = 0
     }
     
-    init(title: String, time: Int, color: String) {
+    init(title: String, time: MovementTime, color: Int) {
         self.title = title
         self.time = time
         self.color = color
@@ -49,18 +49,18 @@ struct DetailItem: Identifiable, Equatable {
 struct DetailRound: Identifiable, Equatable {
     let id = UUID()
     var movement: [DetailItem]
-    var rest: [DetailItem]
-    var cycleRest: DetailItem
+    var rest: [MovementTime]
+    var cycleRest: MovementTime
     var date: StartComplted
     
     init() {
         self.movement = [DetailItem()]
-        self.rest = [DetailItem()]
-        self.cycleRest = DetailItem()
+        self.rest = [MovementTime(seconds: 10)]
+        self.cycleRest = MovementTime(seconds: 10)
         self.date = StartComplted()
     }
     
-    init(movement: [DetailItem], rest: [DetailItem], cycleRest: DetailItem, date: StartComplted) {
+    init(movement: [DetailItem], rest: [MovementTime], cycleRest: MovementTime, date: StartComplted) {
         self.movement = movement
         self.rest = rest
         self.cycleRest = cycleRest

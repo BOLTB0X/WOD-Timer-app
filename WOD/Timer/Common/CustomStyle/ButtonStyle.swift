@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// MARK: - EffectButtonStyle
 struct EffectButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
@@ -15,19 +16,9 @@ struct EffectButtonStyle: ButtonStyle {
     }
 }
 
-struct InsetRoundScaleButton: ButtonStyle {
-    var labelColor = Color.white
-    var backgroundColor = Color.blue
-    
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .foregroundColor(labelColor)
-            .padding()
-            .background(Capsule().fill(backgroundColor))
-            .scaleEffect(configuration.isPressed ? 0.88 : 1.0)
-    }
-}
 
+
+// MARK: - BlueButtonStyle
 struct BlueButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
@@ -38,3 +29,4 @@ struct BlueButtonStyle: ButtonStyle {
             .scaleEffect(configuration.isPressed ? 0.88 : 1.0)
     }
 }
+
