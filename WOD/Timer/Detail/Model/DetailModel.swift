@@ -10,29 +10,35 @@ import SwiftUI
 // MARK: - DetailItem
 struct DetailItem: Identifiable, Equatable {
     let id = UUID()
+    let type: DetailItemType
     var title: String
     var time: MovementTime
     var color: Int
     
-    init() {
+    // MARK: init
+    init(type: DetailItemType) {
+        self.type = type
         self.title = ""
-        self.time = MovementTime(seconds: 30)
+        self.time = MovementTime(seconds: type == .movement ? 30 : 10)
         self.color = 0
     }
     
-    init(title: String) {
+    init(type: DetailItemType, title: String) {
+        self.type = type
         self.title = title
-        self.time = MovementTime(seconds: 30)
+        self.time = MovementTime(seconds: type == .movement ? 30 : 10)
         self.color = 0
     }
     
-    init(title: String, time: MovementTime) {
+    init(type: DetailItemType, title: String, time: MovementTime) {
+        self.type = type
         self.title = title
         self.time = time
         self.color = 0
     }
     
-    init(title: String, time: MovementTime, color: Int) {
+    init(type: DetailItemType, title: String, time: MovementTime, color: Int) {
+        self.type = type
         self.title = title
         self.time = time
         self.color = color
@@ -43,26 +49,23 @@ struct DetailItem: Identifiable, Equatable {
     }
 }
 
-
 // MARK: - SimpleRound
 // 타이머, 스톱워치
 struct DetailRound: Identifiable, Equatable {
     let id = UUID()
     var movement: [DetailItem]
-    var rest: [MovementTime]
     var cycleRest: MovementTime
     var date: StartComplted
     
+    // MARK: init
     init() {
-        self.movement = [DetailItem()]
-        self.rest = [MovementTime(seconds: 10)]
+        self.movement = [DetailItem(type: .movement)]
         self.cycleRest = MovementTime(seconds: 10)
         self.date = StartComplted()
     }
     
-    init(movement: [DetailItem], rest: [MovementTime], cycleRest: MovementTime, date: StartComplted) {
+    init(movement: [DetailItem], cycleRest: MovementTime, date: StartComplted) {
         self.movement = movement
-        self.rest = rest
         self.cycleRest = cycleRest
         self.date = date
     }

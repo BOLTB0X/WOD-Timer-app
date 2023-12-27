@@ -11,7 +11,7 @@ import SwiftUI
 struct DetailTimerCycleSet: View {
     // MARK: Environment
     @EnvironmentObject private var viewModel: DetailViewModel
-    //@Environment(\.editMode) var editMode
+    @Environment(\.editMode) var editMode
     
     // MARK: State
     // 뷰 관련
@@ -31,42 +31,7 @@ struct DetailTimerCycleSet: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .center,spacing: 0) {
-                DetailButtonTopRow(
-                    tableType: $tableType,
-                    betweenRest: $viewModel.betweenRest,
-                    createAction: viewModel.createCycleItem)
-//                HStack(alignment: .center,spacing: 10) {
-//                    BasicButton(action: {
-//                        viewModel.createCycleItem()
-//                    }, systemName: "plus.circle")
-//                    .foregroundColor(.blue)
-//
-//                    Spacer()
-//
-//                    Text("Rest in between")
-//                        .font(.subheadline)
-//                    
-//                    CheckButton(click: $betweenRest, systemName: "checkmark.square")
-//                    
-//                    Spacer()
-//                    
-//                    if tableType == 0 {
-//                        BasicButton(action: {
-//                            tableType = 1
-////                            editMode?.wrappedValue = .active
-//                            //isActionSheet.toggle()
-//                        },systemName: "gearshape")
-//                        .foregroundColor(.blue)
-//                    } else {
-//                        BasicButton(action: {
-//                            tableType = 0
-////                            editMode?.wrappedValue = .inactive
-//                        },systemName: "checkmark.circle")
-//                        .foregroundColor(.blue)
-//                    }
-//                } // HStack
-//                .padding(.horizontal)
-//                .padding()
+                topRow()
                 
                 Divider()
                 
@@ -89,6 +54,42 @@ struct DetailTimerCycleSet: View {
     
     // MARK: - ViewBuilder
     // ...
+    // MARK: - topRow
+    @ViewBuilder
+    private func topRow() -> some View {
+        HStack(alignment: .center,spacing: 10) {
+            BasicButton(action: {
+                viewModel.createCycleItem()
+            }, systemName: "plus.circle")
+            .foregroundColor(.blue)
+
+            Spacer()
+
+            Text("Rest in between")
+            
+            CheckButton(click: $viewModel.betweenRest, systemName: "checkmark.square")
+            
+            Spacer()
+            
+            if tableType == 0 {
+                BasicButton(action: {
+                    tableType = 1
+                    editMode?.wrappedValue = .active
+                    //isActionSheet.toggle()
+                },systemName: "gearshape")
+                .foregroundColor(.blue)
+            } else {
+                BasicButton(action: {
+                    tableType = 0
+                    editMode?.wrappedValue = .inactive
+                },systemName: "checkmark.circle")
+                .foregroundColor(.blue)
+            }
+        } // HStack
+        .padding(.horizontal)
+        .padding()
+    }
+    
     // MARK: - cycleList
     @ViewBuilder
     private func cycleList() -> some View {
@@ -106,16 +107,9 @@ struct DetailTimerCycleSet: View {
         } // List
         
         // MARK: side
-        .onAppear {
-            UITableView.appearance().isEditing = true
-        }
-        
-        .onDisappear {
-            UITableView.appearance().isEditing = false
-        }
         
         .listStyle(PlainListStyle())
-        //.environment(\.editMode, editMode)
+        .environment(\.editMode, editMode)
     }
     
     // MARK: - cycleScroll
@@ -162,9 +156,9 @@ struct DetailTimerCycleSet: View {
     }
 }
 
-//struct DetailTimerCycleSet_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DetailTimerCycleSet(rootView: .constant(false))
-//            .environmentObject(DetailViewModel.shared)
-//    }
-//}
+struct DetailTimerCycleSet_Previews: PreviewProvider {
+    static var previews: some View {
+        DetailTimerCycleSet(rootView: .constant(false))
+            .environmentObject(DetailViewModel.shared)
+    }
+}

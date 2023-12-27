@@ -14,7 +14,12 @@ extension DetailViewModel {
     // ...
     // MARK: - createCycleItem
     func createCycleItem() {
-        timerCycleList.append(DetailItem(title: "Movement\(timerCycleList.count + 1)"))
+        if !betweenRest {
+            timerCycleList.append(DetailItem(type: .movement, title: "Movement\(timerCycleList.count + 1)"))
+        } else {
+            timerCycleList.append(DetailItem(type: .rest, title: "Rest"))
+            timerCycleList.append(DetailItem(type: .movement, title: "Movement\(timerCycleList.count + 1)"))
+        }
         return
     }
     
@@ -28,6 +33,28 @@ extension DetailViewModel {
     func moveCycleItem(from source: IndexSet, to destination: Int) {
         timerCycleList.move(fromOffsets: source, toOffset: destination)
         return
+    }
+    
+    // MARK: - insertRestBetweenMovements
+    func insertRestBetweenMovements() {
+        var newList: [DetailItem] = []
+        
+        for (index, item) in timerCycleList.enumerated() {
+            newList.append(item)
+            
+            if index < timerCycleList.count - 1 {
+                newList.append(DetailItem(type: .rest, title: "Rest"))
+            }
+        }
+        
+        timerCycleList = newList
+        return
+    }
+    
+    // MARK: - removeRestBetweenMovements
+    func removeRestBetweenMovements() {
+        // 휴식을 나타내는 DetailItem을 제거
+        timerCycleList = timerCycleList.filter { $0.type != .rest }
     }
 }
 
