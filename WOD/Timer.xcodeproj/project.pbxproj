@@ -80,6 +80,8 @@
 		56AF0B002AEA4955009AF8A2 /* RecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF0AFF2AEA4955009AF8A2 /* RecordButton.swift */; };
 		56AF0B292AEB5CEA009AF8A2 /* SimpleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF0B282AEB5CEA009AF8A2 /* SimpleView.swift */; };
 		56AF0B412AEB9C33009AF8A2 /* StopWatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF0B402AEB9C33009AF8A2 /* StopWatchViewModel.swift */; };
+		56B741D82B3C620A00F369CA /* DetailTopRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B741D72B3C620A00F369CA /* DetailTopRow.swift */; };
+		56B741DA2B3D069C00F369CA /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B741D92B3D069C00F369CA /* RadioButton.swift */; };
 		56C4F6242B184195009D2721 /* SimpleViewModel+ViewTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C4F6232B184195009D2721 /* SimpleViewModel+ViewTimer.swift */; };
 		56C4F64D2B1B5A74009D2721 /* LabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C4F64C2B1B5A74009D2721 /* LabelView.swift */; };
 		56C4F64F2B1C5BFF009D2721 /* ControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C4F64E2B1C5BFF009D2721 /* ControlButton.swift */; };
@@ -233,6 +235,8 @@
 		56AF0AFF2AEA4955009AF8A2 /* RecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButton.swift; sourceTree = "<group>"; };
 		56AF0B282AEB5CEA009AF8A2 /* SimpleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleView.swift; sourceTree = "<group>"; };
 		56AF0B402AEB9C33009AF8A2 /* StopWatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchViewModel.swift; sourceTree = "<group>"; };
+		56B741D72B3C620A00F369CA /* DetailTopRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTopRow.swift; sourceTree = "<group>"; };
+		56B741D92B3D069C00F369CA /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		56C4F6232B184195009D2721 /* SimpleViewModel+ViewTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleViewModel+ViewTimer.swift"; sourceTree = "<group>"; };
 		56C4F64C2B1B5A74009D2721 /* LabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelView.swift; sourceTree = "<group>"; };
 		56C4F64E2B1C5BFF009D2721 /* ControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlButton.swift; sourceTree = "<group>"; };
@@ -348,6 +352,7 @@
 				568F1CF62B32ADAC00E1D58A /* SegmentedButton.swift */,
 				568F1D4C2B3A65DC00E1D58A /* BasicButton.swift */,
 				568F1D552B3BC07B00E1D58A /* CheckButton.swift */,
+				56B741D92B3D069C00F369CA /* RadioButton.swift */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -534,6 +539,7 @@
 			isa = PBXGroup;
 			children = (
 				568F1D2E2B35680400E1D58A /* DetailButtonSetRow.swift */,
+				56B741D72B3C620A00F369CA /* DetailTopRow.swift */,
 				568F1D5A2B3BDEC300E1D58A /* TimerCycleListRow.swift */,
 				568F1D5C2B3BDEE700E1D58A /* TimerCycleScrollRow.swift */,
 			);
@@ -913,6 +919,7 @@
 				56C4F64F2B1C5BFF009D2721 /* ControlButton.swift in Sources */,
 				568F1D4D2B3A65DC00E1D58A /* BasicButton.swift in Sources */,
 				56A9987E2AF6730E000D5C99 /* SettingTimeTextField.swift in Sources */,
+				56B741DA2B3D069C00F369CA /* RadioButton.swift in Sources */,
 				56AF0B412AEB9C33009AF8A2 /* StopWatchViewModel.swift in Sources */,
 				568F1D062B32F9ED00E1D58A /* SimpleStopwatchControl.swift in Sources */,
 				5621651F2B0B85F2008E472B /* InputManager+Movement.swift in Sources */,
@@ -934,6 +941,7 @@
 				56C4F6572B1CBDDC009D2721 /* SimpleViewModel+Timer.swift in Sources */,
 				568F1D292B35640800E1D58A /* DetailView.swift in Sources */,
 				568F1D202B3510D400E1D58A /* SimpleHorizontalScroll.swift in Sources */,
+				56B741D82B3C620A00F369CA /* DetailTopRow.swift in Sources */,
 				56AF0AFC2AEA3E95009AF8A2 /* PlayButton.swift in Sources */,
 				56C5A49B2B136BDE008ABCA0 /* TextLimiter.swift in Sources */,
 				568F1D512B3A911C00E1D58A /* ColorSegment.swift in Sources */,

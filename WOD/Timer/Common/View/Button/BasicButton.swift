@@ -10,7 +10,7 @@ import SwiftUI
 // MARK: - BasicButton
 struct BasicButton: View {
     // MARK: 프로퍼티s
-    var action: () -> Void
+    let action: () -> Void
     let systemName: String?
     let text: String?
     

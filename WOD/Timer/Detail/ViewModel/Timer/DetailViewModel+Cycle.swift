@@ -5,7 +5,7 @@
 //  Created by lkh on 12/27/23.
 //
 
-import Foundation
+import SwiftUI
 
 // MARK: - DetailViewModel + Cycle
 // 사이클 셋팅 관련
@@ -13,29 +13,26 @@ extension DetailViewModel {
     // MARK: Methods
     // ...
     // MARK: - createCycleItem
+    // 운동 이나 휴식 추가
     func createCycleItem() {
         if !betweenRest {
-            timerCycleList.append(DetailItem(type: .movement, title: "Movement\(timerCycleList.count + 1)"))
+            timerCycleList.append(DetailItem(type: .movement, title: "Movement"))
         } else {
-            timerCycleList.append(DetailItem(type: .rest, title: "Rest"))
-            timerCycleList.append(DetailItem(type: .movement, title: "Movement\(timerCycleList.count + 1)"))
+            timerCycleList.append(DetailItem(type: .rest, title: "Rest", time: MovementTime(seconds: 10), color: 6))
+            timerCycleList.append(DetailItem(type: .movement, title: "Movement"))
         }
         return
     }
     
-    // MARK: - removeCycleItem
-    func removeCycleItem(at offsets: IndexSet) {
-        timerCycleList.remove(atOffsets: offsets)
-        return
-    }
-    
     // MARK: - moveCycleItem
+    // 이동
     func moveCycleItem(from source: IndexSet, to destination: Int) {
         timerCycleList.move(fromOffsets: source, toOffset: destination)
         return
     }
     
     // MARK: - insertRestBetweenMovements
+    // 휴식 중간에 넣어주기
     func insertRestBetweenMovements() {
         var newList: [DetailItem] = []
         
@@ -43,7 +40,7 @@ extension DetailViewModel {
             newList.append(item)
             
             if index < timerCycleList.count - 1 {
-                newList.append(DetailItem(type: .rest, title: "Rest"))
+                newList.append(DetailItem(type: .rest, title: "Rest", time: MovementTime(seconds: 10), color: 6))
             }
         }
         
@@ -52,9 +49,44 @@ extension DetailViewModel {
     }
     
     // MARK: - removeRestBetweenMovements
+    // 휴식 제거
     func removeRestBetweenMovements() {
-        // 휴식을 나타내는 DetailItem을 제거
         timerCycleList = timerCycleList.filter { $0.type != .rest }
+    }
+    
+    // MARK: - removeSelectedItems
+    // 선택된 item 삭제
+    func removeSelectedItems() {
+        guard !multiSelection.isEmpty, !timerCycleList.isEmpty, timerCycleList.count > 1 else { return }
+        
+        timerCycleList.removeAll { multiSelection.contains($0.id) }
+        multiSelection.removeAll()
+        return
+    }
+    
+    // MARK: - sortTimerCycleList
+    // 재정렬
+    func sortTimerCycleList() {
+        guard timerCycleList.count > 1 else { return }
+        
+        let movements = timerCycleList.filter { $0.type == .movement }
+        let rests = timerCycleList.filter { $0.type == .rest }
+        
+        var reorderedList: [DetailItem] = []
+        
+        for i in 0..<(max(movements.count, rests.count)) {
+            if i < movements.count {
+                reorderedList.append(movements[i])
+            }
+            
+            if i < movements.count - 1 && i < rests.count {
+                reorderedList.append(rests[i])
+            }
+        }
+        
+        // 업데이트
+        timerCycleList = reorderedList
+        return
     }
 }
 

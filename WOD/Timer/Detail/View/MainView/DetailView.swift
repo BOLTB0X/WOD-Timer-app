@@ -64,6 +64,8 @@ struct DetailView: View {
         }
     }// body
     
+    // MARK: - ViewBuilder
+    // ...
     // MARK: - displayPopup
     @ViewBuilder
     private func displayPopup() -> some View {

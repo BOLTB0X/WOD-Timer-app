@@ -68,7 +68,9 @@ struct DetailTimerSetItemText: View {
             cancelAction:  { showPopup.toggle() },
             action:  { },
             completeAction: {
-                viewModel.timerCycleList[viewModel.selectedTimerCycleIndex].title = manager.movementText
+                if !manager.movementText.isEmpty {
+                    viewModel.timerCycleList[viewModel.selectedTimerCycleIndex].title = manager.movementText
+                }
                 showPopup.toggle()
             }
         ) // popupSettingToolbar

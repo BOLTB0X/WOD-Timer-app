@@ -24,7 +24,6 @@ struct TimerCycleScrollRow: View {
     var body: some View {
         HStack(alignment: .center, spacing: 0) {
             Button(action: {
-                viewModel.selectedTimerCycleItem = viewModel.timerCycleList[idx]
                 viewModel.selectedTimerCycleIndex = idx
                 selectType = .color
                 isPopup.toggle()
@@ -39,7 +38,6 @@ struct TimerCycleScrollRow: View {
                 .frame(width: 15)
             
             Button(action: {
-                viewModel.selectedTimerCycleItem = viewModel.timerCycleList[idx]
                 viewModel.selectedTimerCycleIndex = idx
                 selectType = .text
                 isPopup.toggle()
@@ -52,7 +50,6 @@ struct TimerCycleScrollRow: View {
             Spacer()
 
             Button(action: {
-                viewModel.selectedTimerCycleItem = viewModel.timerCycleList[idx]
                 viewModel.selectedTimerCycleIndex = idx
                 selectType = .time
                 isPopup.toggle()

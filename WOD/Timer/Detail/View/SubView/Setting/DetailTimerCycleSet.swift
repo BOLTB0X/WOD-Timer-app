@@ -11,18 +11,14 @@ import SwiftUI
 struct DetailTimerCycleSet: View {
     // MARK: Environment
     @EnvironmentObject private var viewModel: DetailViewModel
-    @Environment(\.editMode) var editMode
     
     // MARK: State
     // 뷰 관련
     @State private var showPopup: Bool = false
-    
+    @State private var showAlert = false
     // 컴포넌트 관련
     @State private var tableType: Int = 0 // 0 Scroll, 1 List
     @State private var selectType: SelectedSetting?
-    
-    // edit 관련
-    @State private var betweenRest: Bool = false
     
     // MARK: Binding
     @Binding var rootView: Bool
@@ -31,7 +27,19 @@ struct DetailTimerCycleSet: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .center,spacing: 0) {
-                topRow()
+                DetailTopRow(
+                    tableType: $tableType,
+                    betweenRest: $viewModel.betweenRest,
+                    action1: {
+                        if tableType == 0 {
+                            viewModel.createCycleItem()
+                        } else {
+                            viewModel.removeSelectedItems()
+                        }},
+                    action2: {
+                        viewModel.sortTimerCycleList()
+                    }
+                ) // DetailTopRow
                 
                 Divider()
                 
@@ -41,102 +49,59 @@ struct DetailTimerCycleSet: View {
                 // 팝업
                     .popupNavigationView(show: $showPopup) {
                         displayPopup()
-                    }
+                    } // popupNavigationView
                 
                 // MARK: - navigationBasicToolbar
                     .navigationBasicToolbar(
-                        backAction: { rootView.toggle() },
+                        backAction: {
+                            rootView.toggle()
+                        },
                         title: "Cycle Set"
                     ) // navigationBasicToolbar
             } // VStack
         } // NavigationView
+        // MARK: - alert
+        // 경고창
+            .alert(isPresented: $showAlert) {
+                return Alert(title: Text("The maximum number of movements that can be set is 15"))
+            }
     } // body
     
     // MARK: - ViewBuilder
     // ...
-    // MARK: - topRow
-    @ViewBuilder
-    private func topRow() -> some View {
-        HStack(alignment: .center,spacing: 10) {
-            BasicButton(action: {
-                viewModel.createCycleItem()
-            }, systemName: "plus.circle")
-            .foregroundColor(.blue)
-
-            Spacer()
-
-            Text("Rest in between")
-            
-            CheckButton(click: $viewModel.betweenRest, systemName: "checkmark.square")
-            
-            Spacer()
-            
-            if tableType == 0 {
-                BasicButton(action: {
-                    tableType = 1
-                    editMode?.wrappedValue = .active
-                    //isActionSheet.toggle()
-                },systemName: "gearshape")
-                .foregroundColor(.blue)
-            } else {
-                BasicButton(action: {
-                    tableType = 0
-                    editMode?.wrappedValue = .inactive
-                },systemName: "checkmark.circle")
-                .foregroundColor(.blue)
-            }
-        } // HStack
-        .padding(.horizontal)
-        .padding()
-    }
-    
-    // MARK: - cycleList
-    @ViewBuilder
-    private func cycleList() -> some View {
-        // MARK: main
-        List {
-            ForEach(viewModel.timerCycleList.indices, id: \.self) { i in
-                TimerCycleListRow(
-                    row: $viewModel.timerCycleList[i],
-                    idx: i)
-                .environmentObject(viewModel)
-            } // ForEach
-            .onDelete(perform: viewModel.removeCycleItem)
-            .onMove(perform: viewModel.moveCycleItem)
-            .padding(.horizontal)
-        } // List
-        
-        // MARK: side
-        
-        .listStyle(PlainListStyle())
-        .environment(\.editMode, editMode)
-    }
-    
-    // MARK: - cycleScroll
-    @ViewBuilder
-    private func cycleScroll() -> some View {
-        ScrollView {
-            ForEach(viewModel.timerCycleList.indices, id: \.self) { i in
-                TimerCycleScrollRow(
-                    row: $viewModel.timerCycleList[i],
-                    isPopup: $showPopup,
-                    selectType: $selectType,
-                    idx: i)
-                .environmentObject(viewModel)
-                Divider()
-            } // ForEach
-            .padding()
-        } // ScrollView
-    }
-    
     // MARK: - displayCycle
     @ViewBuilder
     private func displayCycle() -> some View {
         if tableType == 1 {
-            cycleList()
+            // MARK: main
+            List {
+                ForEach(viewModel.timerCycleList.indices, id: \.self) { i in
+                    if viewModel.timerCycleList[i].type == .movement {
+                        TimerCycleListRow(
+                            isSelected: $viewModel.multiSelection,
+                            row: viewModel.timerCycleList[i],
+                            idx: i
+                        )
+                    }
+                } // ForEach
+                .onMove(perform: viewModel.moveCycleItem)
+            } // List
+            .listStyle(PlainListStyle())
+            .environment(\.editMode, .constant(.active))
         } else {
-            cycleScroll()
-        }
+            ScrollView {
+                ForEach(viewModel.timerCycleList.indices, id: \.self) { i in
+                    TimerCycleScrollRow(
+                        row: $viewModel.timerCycleList[i],
+                        isPopup: $showPopup,
+                        selectType: $selectType,
+                        idx: i)
+                    .environmentObject(viewModel)
+                    Divider()
+                } // ForEach
+                .padding()
+            } // ScrollView
+        } // if - else
     }
     
     // MARK: - displayPopup
@@ -152,7 +117,7 @@ struct DetailTimerCycleSet: View {
         default:
             DetailTimerSetItemMovement(showPopup: $showPopup)
                 .environmentObject(viewModel)
-        }
+        } // switch
     }
 }
 
