@@ -20,9 +20,10 @@ struct SimpleView: View {
     @State private var isStartBtn: Bool = false
     @State private var isModeBtn: Int = 0 // 0 = timer, 1 = stopwatch
     
+    // MARK: - View
     var body: some View {
         NavigationView { // for navigationTitle 이용 및 뷰 구성
-            // MARK: - main
+            // MARK: main
             VStack(alignment: .leading, spacing: 0) {
                 Form {
                     // MARK: - Routine
@@ -35,7 +36,6 @@ struct SimpleView: View {
                                 viewModel: viewModel,
                                 btn: btn)
                         } // ForEach
-                        
                         Button("Start") {
                             isStartBtn.toggle()
                         }

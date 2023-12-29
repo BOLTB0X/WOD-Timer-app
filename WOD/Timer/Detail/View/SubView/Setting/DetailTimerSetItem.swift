@@ -26,7 +26,7 @@ struct DetailTimerSetItemColor: View {
         }
         // MARK: side
         .onAppear {
-            manager.selectedPreparationAmount = viewModel.selectedPreparationAmount
+            manager.isSelectedColor = viewModel.timerCycleList[viewModel.selectedTimerCycleIndex].color
         }
         .navigationTitle("Color")
         .navigationBarTitleDisplayMode(.inline)
@@ -59,7 +59,7 @@ struct DetailTimerSetItemText: View {
         }
         // MARK: side
         .onAppear {
-            manager.selectedPreparationAmount = viewModel.selectedPreparationAmount
+            manager.movementText = viewModel.timerCycleList[viewModel.selectedTimerCycleIndex].title
         }
         .navigationTitle("Movement name")
         .navigationBarTitleDisplayMode(.inline)

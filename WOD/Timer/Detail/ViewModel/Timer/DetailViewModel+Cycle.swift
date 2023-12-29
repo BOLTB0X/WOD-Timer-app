@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - DetailViewModel + Cycle
 // 사이클 셋팅 관련
-extension DetailViewModel {
+extension DetailViewModel {    
     // MARK: Methods
     // ...
     // MARK: - createCycleItem
@@ -88,5 +88,33 @@ extension DetailViewModel {
         timerCycleList = reorderedList
         return
     }
+    
+    // MARK: - createRemoveButtonAction
+    func createRemoveButtonAction(tableType: Binding<Int>, alret: Binding<Bool>) {
+        if tableType.wrappedValue == 0 {
+            let timerCycleListMove = timerCycleList.filter { $0.type == .movement }.count
+            if timerCycleListMove < 15 {
+                createCycleItem()
+                alretMoniter = .general
+            } else {
+                alretMoniter = .limitMax
+                alret.wrappedValue.toggle()
+            }
+        } else { // edit 모드
+            let timerCycleListMove = timerCycleList.filter { $0.type == .movement }.count
+            if multiSelection.isEmpty {
+                alretMoniter = .empty
+                alret.wrappedValue.toggle()
+            } else if timerCycleListMove > 1 && timerCycleListMove > multiSelection.count {
+                removeSelectedItems()
+                alretMoniter = .general
+            } else {
+                alretMoniter = .limitOne
+                alret.wrappedValue.toggle()
+            }
+        }
+    }
+    
+    
 }
 

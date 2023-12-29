@@ -9,26 +9,19 @@ import SwiftUI
 
 // MARK: - TimerCycleLisButtontRow
 struct TimerCycleListRow: View {
-    // MARK: State / Binding
+    // MARK: State
     @State private var isTouch: Bool = false
+    
+    // MARK: Binding
     @Binding var isSelected: Set<UUID>
     
     // MARK: 프로퍼티
     let row: DetailItem
-    let idx: Int
     
     // MARK: View
     var body: some View {
         HStack(alignment: .center, spacing: 0) {
-            RadioButton(
-                isTouch: $isTouch,
-                action: {
-                    if isTouch {
-                        isSelected.insert(row.id)
-                    } else {
-                        isSelected.remove(row.id)
-                    }
-                })
+            RadioButton(isTouch: $isTouch)
             
             Spacer()
                 .frame(width: 25)
@@ -48,6 +41,15 @@ struct TimerCycleListRow: View {
             
             Text(row.time.totalSeconds.asTimestamp)
         } // HStack
+        
+        .onTapGesture {
+            isTouch.toggle()
+            if isTouch {
+                isSelected.insert(row.id)
+            } else {
+                isSelected.remove(row.id)
+            }
+        }
         
         .onChange(of: isSelected) { _ in
             isTouch = isSelected.contains(row.id)

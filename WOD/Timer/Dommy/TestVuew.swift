@@ -8,23 +8,23 @@
 import SwiftUI
 
 struct TestView: View {
-    let items = [1,2]
     var body: some View {
-        List {
-            ForEach(items, id:\.self) { item in
-                HStack {
-                    
-                    Text("버튼 1")
-                        .onTapGesture {
-                            print("1")
-                        }
-                    
-                    Text("버튼 2")
-                        .onTapGesture {
-                            print("1")
-                        }
-                }
+        ZStack {
+            Path { path in
+                path.move(to: CGPoint(x: 187, y: 187)) // 1
+                path.addArc(center: CGPoint(x: 187, y: 187), radius: 150, startAngle: Angle(degrees: 90), endAngle: Angle(degrees: 0), clockwise: true) // 2
             }
+            .fill(.purple)
+            .offset(x: 20, y: 20)
+            
+            Path { path in
+                path.move(to: CGPoint(x: 187, y: 187)) // 3
+                path.addArc(center: CGPoint(x: 187, y: 187), radius: 150, startAngle: Angle(degrees: 90), endAngle: Angle(degrees: 0), clockwise: true) //4
+                
+                path.closeSubpath()
+            }
+            .stroke(.black, lineWidth: 10)
+            .offset(x: 20, y: 20)
         }
     }
 }

@@ -41,7 +41,7 @@ struct DeatilTimerPreparationSet: View {
                 showPopup.toggle()
             }
         ) // popupSettingToolbar
-    }
+    } // body
 }
 
 // MARK: - DetailTimerRoundSet
@@ -113,5 +113,5 @@ struct DetailTimerRestSet: View {
                 showPopup.toggle()
             }
         ) // popupSettingToolbar
-    }
+    } // body
 }

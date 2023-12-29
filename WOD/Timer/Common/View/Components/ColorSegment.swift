@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-// MARK: - ColorSegmentedButton
+// MARK: - ColorSegment
 struct ColorSegment: View {
-    // MARK: Biding
+    // MARK: Binding
     @Binding var selectedIndex: Int
     
     // MARK: 프로퍼티
@@ -18,27 +18,49 @@ struct ColorSegment: View {
     // MARK: View
     var body: some View {
         ScrollView(.horizontal) {
-            HStack(spacing: 0) {
-                ForEach(colorOptions.indices, id:\.self) { index in
-                    ZStack {
-                        Rectangle()
-                            .fill(Color(colorOptions[index]))
-                            .frame(width: 80, height: 80)
-                    } // ZStack
-                    .overlay(
-                        Button(action: {
-                            selectedIndex = index
-                        }, label: {
-                            Image(systemName: "checkmark")
-                                .foregroundColor(selectedIndex == index ? .black : Color(colorOptions[index]))
-                        })
-                    ) // overlay
-                } // ForEach
-            } // HStack
+            ScrollViewReader { scrollView in
+                HStack(spacing: 0) {
+                    ForEach(colorOptions.indices, id:\.self) { index in
+                        ZStack {
+                            Rectangle()
+                                .fill(Color(colorOptions[index]))
+                                .frame(width: 80, height: 80)
+                        } // ZStack
+                        .overlay(
+                            Button(action: {
+                                withAnimation(.spring()) {
+                                    selectedIndex = index
+                                    //scrollView.scrollTo(index)
+                                }
+                            }, label: {
+                                Image(systemName: "checkmark")
+                                    .resizable()
+                                    .frame(width: 50, height: 50)
+                                    .foregroundColor(selectedIndex == index ? .black : Color(colorOptions[index]))
+                            }) // Button
+                        ) // overlay
+                    } // ForEach
+                } // HStack
+                
+                .onChange(of: selectedIndex, perform: { value in
+                    withAnimation(.spring()) {
+                        scrollView.scrollTo(value, anchor: .center)
+                    }
+                  })
+                
+                .onAppear {
+                    withAnimation(.spring()) {
+                        scrollView.scrollTo(selectedIndex, anchor: .center)
+                    }
+                }
+                
+            } // ScrollViewReader
         } // ScrollView
+        
         .onAppear {
             UIScrollView.appearance().isPagingEnabled = true
         }
+        
     } // body
 }
 

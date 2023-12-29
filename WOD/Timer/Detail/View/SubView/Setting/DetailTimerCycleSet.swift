@@ -25,17 +25,15 @@ struct DetailTimerCycleSet: View {
     
     // MARK: - View
     var body: some View {
+        // MARK: main
         NavigationView {
             VStack(alignment: .center,spacing: 0) {
                 DetailTopRow(
                     tableType: $tableType,
                     betweenRest: $viewModel.betweenRest,
                     action1: {
-                        if tableType == 0 {
-                            viewModel.createCycleItem()
-                        } else {
-                            viewModel.removeSelectedItems()
-                        }},
+                        viewModel.createRemoveButtonAction(tableType: $tableType, alret: $showAlert)
+                    },
                     action2: {
                         viewModel.sortTimerCycleList()
                     }
@@ -45,6 +43,7 @@ struct DetailTimerCycleSet: View {
                 
                 displayCycle()
                 
+                // MARK: side
                 // MARK: - popupNavigationView
                 // 팝업
                     .popupNavigationView(show: $showPopup) {
@@ -63,7 +62,7 @@ struct DetailTimerCycleSet: View {
         // MARK: - alert
         // 경고창
             .alert(isPresented: $showAlert) {
-                return Alert(title: Text("The maximum number of movements that can be set is 15"))
+                return Alert(title: Text(viewModel.alretMessage))
             }
     } // body
     
@@ -79,8 +78,7 @@ struct DetailTimerCycleSet: View {
                     if viewModel.timerCycleList[i].type == .movement {
                         TimerCycleListRow(
                             isSelected: $viewModel.multiSelection,
-                            row: viewModel.timerCycleList[i],
-                            idx: i
+                            row: viewModel.timerCycleList[i]
                         )
                     }
                 } // ForEach

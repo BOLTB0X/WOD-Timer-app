@@ -20,7 +20,8 @@ class DetailViewModel: InputManager {
     @Published var detailTmRoundIdx: Int? // 진행
     @Published var detailUnitProgress: Float = 0.0
     
-    // MARK: - 공통
+    // MARK: - Common
+    @Published var alretMoniter: AlertType = .general
     @Published var multiSelection: Set<UUID> = []
     @Published var betweenRest: Bool = false {
         didSet {
@@ -31,6 +32,7 @@ class DetailViewModel: InputManager {
             }
         }
     }
+    
     
     let detailButtonType: [DetailButton] = [.preparation, .round, .cycle, .cycleRest]
     

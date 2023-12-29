@@ -11,6 +11,26 @@ import Foundation
 // MARK: - DetailViewModel + Common
 // 공통적으로 사용할 메세지(Color, AV 등)
 extension DetailViewModel {
+    // MARK: - 연산 프로퍼티s
+    // ...
+    // MARK: - alretMessage
+    var alretMessage: String {
+        switch alretMoniter {
+        case .limitOne:
+            "At least 1 required"
+        case .limitMax:
+            "Up to 15 can be added"
+        case .quit:
+            "Are you sure you want to quit?"
+        case .save:
+            "Do you want to save it as My set?"
+        case .empty:
+            "Nothing"
+        default:
+            "~~"
+        }
+    }
+    
     // MARK: - Methods
     // ..
     // MARK: - displaySetValue
@@ -22,7 +42,7 @@ extension DetailViewModel {
             case "Preparation":
                 return String(format: "00:%02d", selectedPreparationAmount)
             case "Cycle":
-                return "\(timerCycleList.count)"
+                return "Set Yourself"
             case "Rest":
                 return String(format: "%02d:%02d", selectedRestAmount.minutes,selectedRestAmount.seconds)
             default:
@@ -34,7 +54,7 @@ extension DetailViewModel {
             } else if state == "Preparation" {
                 return String(format: "00:%02d", selectedPreparationStop)
             } else if state == "Cycle" {
-                return "\(timerCycleList.count)"
+                return "Set Yourself, Yourself Stop"
             }
             return "Yourself Stop"
         }

@@ -31,21 +31,6 @@ struct DetailTopRow: View {
                 .contentShape(Rectangle())
 
             buttonView()
-//            CheckButton(click: $betweenRest, systemName: "checkmark.square")
-//            
-//            Spacer()
-//            
-//            if tableType == 0 {
-//                BasicButton(action: {
-//                    tableType = 1
-//                },systemName: "gearshape")
-//                .foregroundColor(.blue)
-//            } else {
-//                BasicButton(action: {
-//                    tableType = 0
-//                },systemName: "checkmark.circle")
-//                .foregroundColor(.blue)
-//            }
         } // HStack
         
         .onChange(of: tableType) { _ in
@@ -54,7 +39,7 @@ struct DetailTopRow: View {
         
         .padding(.horizontal)
         .padding()
-    }
+    } // body
     
     // MARK: - ViewBuilder
     // ..
