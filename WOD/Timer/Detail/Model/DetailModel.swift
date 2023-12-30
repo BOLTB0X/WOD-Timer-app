@@ -27,7 +27,7 @@ struct DetailItem: Identifiable, Equatable {
         self.type = type
         self.title = title
         self.time = MovementTime(seconds: type == .movement ? 30 : 10)
-        self.color = 2
+        self.color = type == .movement ? 2 : 5
     }
     
     init(type: DetailItemType, title: String, time: MovementTime) {

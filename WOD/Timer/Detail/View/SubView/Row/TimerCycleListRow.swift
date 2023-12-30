@@ -58,4 +58,3 @@ struct TimerCycleListRow: View {
     } // body
 }
 
-

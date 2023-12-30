@@ -17,6 +17,7 @@ struct ColorSegment: View {
     
     // MARK: View
     var body: some View {
+        // MARK: main
         ScrollView(.horizontal) {
             ScrollViewReader { scrollView in
                 HStack(spacing: 0) {
@@ -42,6 +43,7 @@ struct ColorSegment: View {
                     } // ForEach
                 } // HStack
                 
+                // MARK: side
                 .onChange(of: selectedIndex, perform: { value in
                     withAnimation(.spring()) {
                         scrollView.scrollTo(value, anchor: .center)
@@ -49,9 +51,9 @@ struct ColorSegment: View {
                   })
                 
                 .onAppear {
-                    withAnimation(.spring()) {
+                    //withAnimation(.spring()) {
                         scrollView.scrollTo(selectedIndex, anchor: .center)
-                    }
+                    //}
                 }
                 
             } // ScrollViewReader

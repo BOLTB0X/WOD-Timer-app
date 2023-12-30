@@ -42,13 +42,12 @@ struct DetailView: View {
                     // TODO: - My Set, Coredata
                     Section(header: Text("My Set").font(.headline)) {
                         
-                    } // Routine(My Set)
+                    } // WOD(My Set)
                     
                     
                 } // Form
                 .listStyle(SidebarListStyle())
 
-                
                 // 이동
                 NavigationLink(
                     destination: DetailTimerCycleSet(rootView: $rootView)

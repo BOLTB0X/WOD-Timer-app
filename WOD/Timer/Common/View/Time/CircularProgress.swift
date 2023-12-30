@@ -7,10 +7,14 @@
 
 import SwiftUI
 
+// MARK: - CircularProgress
 struct CircularProgress: View {
+    // MARK: Binding
     @Binding var progress: Float
-
+    
+    // MARK: - View
     var body: some View {
+        // MARK: main
         ZStack {
             Circle()
                 .stroke(lineWidth: 8.0)
@@ -22,7 +26,9 @@ struct CircularProgress: View {
                     lineCap: .round, lineJoin: .round))
                 .rotationEffect(Angle(degrees: 270))
                 .foregroundColor(Color(.systemBlue))
-        }
+        } // ZStack
+        
+        // MARK: side
         .animation(progress == 0.0 ? nil : .linear(duration: 1.0), value: progress)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }

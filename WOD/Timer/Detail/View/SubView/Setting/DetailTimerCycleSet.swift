@@ -31,10 +31,18 @@ struct DetailTimerCycleSet: View {
                 DetailTopRow(
                     tableType: $tableType,
                     betweenRest: $viewModel.betweenRest,
-                    action1: {
+                    createMoveAction: {
+                        viewModel.createType = .movement
                         viewModel.createRemoveButtonAction(tableType: $tableType, alret: $showAlert)
                     },
-                    action2: {
+                    createRestAction: {
+                        viewModel.createType = .rest
+                        viewModel.createRemoveButtonAction(tableType: $tableType, alret: $showAlert)
+                    },
+                    removeAction: {
+                        viewModel.createRemoveButtonAction(tableType: $tableType, alret: $showAlert)
+                    },
+                    sortAction: {
                         viewModel.sortTimerCycleList()
                     }
                 ) // DetailTopRow
@@ -100,7 +108,7 @@ struct DetailTimerCycleSet: View {
                 .padding()
             } // ScrollView
         } // if - else
-    }
+    } // displayCycle
     
     // MARK: - displayPopup
     @ViewBuilder
@@ -116,7 +124,7 @@ struct DetailTimerCycleSet: View {
             DetailTimerSetItemMovement(showPopup: $showPopup)
                 .environmentObject(viewModel)
         } // switch
-    }
+    } // displayPopup
 }
 
 struct DetailTimerCycleSet_Previews: PreviewProvider {

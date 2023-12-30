@@ -22,14 +22,36 @@ extension DetailViewModel {
             timerCycleList.append(DetailItem(type: .movement, title: "Movement"))
         }
         return
-    }
+    } // createCycleItem
+    
+    // MARK: - createMovementItem
+    // 운동 추가
+    func createMovementItem() {
+        if !betweenRest {
+            timerCycleList.append(DetailItem(type: .movement, title: "Movement"))
+        } else {
+            timerCycleList.append(DetailItem(type: .rest, title: "Rest", time: MovementTime(seconds: 10), color: 6))
+            timerCycleList.append(DetailItem(type: .movement, title: "Movement"))
+        }
+        return
+    } // createMovementItem
+    
+    // MARK: - createRestItem
+    // 휴식 추가
+    func createRestItem() {
+        if !betweenRest {
+            timerCycleList.append(DetailItem(type: .rest, title: "Rest", time: MovementTime(seconds: 10), color: 6))
+        }
+        return
+    } // createRestItem
+    
     
     // MARK: - moveCycleItem
     // 이동
     func moveCycleItem(from source: IndexSet, to destination: Int) {
         timerCycleList.move(fromOffsets: source, toOffset: destination)
         return
-    }
+    } // moveCycleItem
     
     // MARK: - insertRestBetweenMovements
     // 휴식 중간에 넣어주기
@@ -39,6 +61,14 @@ extension DetailViewModel {
         for (index, item) in timerCycleList.enumerated() {
             newList.append(item)
             
+            if timerCycleList[index].type == .rest {
+                continue
+            }
+            
+            if index < timerCycleList.count - 1 && timerCycleList[index+1].type == .rest {
+                continue
+            }
+            
             if index < timerCycleList.count - 1 {
                 newList.append(DetailItem(type: .rest, title: "Rest", time: MovementTime(seconds: 10), color: 6))
             }
@@ -46,13 +76,13 @@ extension DetailViewModel {
         
         timerCycleList = newList
         return
-    }
+    } // insertRestBetweenMovements
     
     // MARK: - removeRestBetweenMovements
     // 휴식 제거
     func removeRestBetweenMovements() {
         timerCycleList = timerCycleList.filter { $0.type != .rest }
-    }
+    } // removeRestBetweenMovements
     
     // MARK: - removeSelectedItems
     // 선택된 item 삭제
@@ -62,7 +92,7 @@ extension DetailViewModel {
         timerCycleList.removeAll { multiSelection.contains($0.id) }
         multiSelection.removeAll()
         return
-    }
+    } // removeSelectedItems
     
     // MARK: - sortTimerCycleList
     // 재정렬
@@ -87,18 +117,15 @@ extension DetailViewModel {
         // 업데이트
         timerCycleList = reorderedList
         return
-    }
+    } // sortTimerCycleList
     
     // MARK: - createRemoveButtonAction
     func createRemoveButtonAction(tableType: Binding<Int>, alret: Binding<Bool>) {
         if tableType.wrappedValue == 0 {
-            let timerCycleListMove = timerCycleList.filter { $0.type == .movement }.count
-            if timerCycleListMove < 15 {
-                createCycleItem()
-                alretMoniter = .general
+            if createType == .movement {
+                isCreatetypeMove(tableType: tableType, alret: alret)
             } else {
-                alretMoniter = .limitMax
-                alret.wrappedValue.toggle()
+                isCreatetypeRest(tableType: tableType, alret: alret)
             }
         } else { // edit 모드
             let timerCycleListMove = timerCycleList.filter { $0.type == .movement }.count
@@ -113,8 +140,36 @@ extension DetailViewModel {
                 alret.wrappedValue.toggle()
             }
         }
-    }
+    } // createRemoveButtonAction
     
+    // MARK: - isCreatetypeMove
+    private func isCreatetypeMove(tableType: Binding<Int>, alret: Binding<Bool>) {
+        let timerCycleListMove = timerCycleList.filter { $0.type == .movement }.count
+        
+        if timerCycleListMove < 15 {
+            createMovementItem()
+            alretMoniter = .general
+        }
+        else {
+            alretMoniter = .limitMoveMax
+            alret.wrappedValue.toggle()
+        }
+    } // isCreatetypeMove
+    
+    // MARK: - isCreatetypeRest
+    private func isCreatetypeRest(tableType: Binding<Int>, alret: Binding<Bool>) {
+        let timerCycleListMove = timerCycleList.filter { $0.type == .movement }.count
+        let timerCycleListRest = timerCycleList.filter { $0.type == .rest }.count
+        
+        if timerCycleListMove - 1 > timerCycleListRest {
+            createRestItem()
+            alretMoniter = .general
+            sortTimerCycleList()
+        } else {
+            alretMoniter = .limitRestMax
+            alret.wrappedValue.toggle()
+        }
+    } // isCreatetypeRest
     
 }
 

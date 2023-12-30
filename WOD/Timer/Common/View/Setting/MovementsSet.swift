@@ -15,8 +15,10 @@ struct MovementsSet: View {
     @Binding var showPopup: Bool
     @Binding var isCalculatedBtn: Bool
     
+    // MARK: 프로퍼티
     let manager: InputManager
     
+    // MARK: - View
     var body: some View {
         GeometryReader { geometry in
             VStack(alignment: .center, spacing: 0) {

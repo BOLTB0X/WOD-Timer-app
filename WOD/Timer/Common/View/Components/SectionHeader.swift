@@ -7,9 +7,12 @@
 
 import SwiftUI
 
+// MARK: - SectionHeader
 struct SectionHeader: View {
+    // MARK: Binding
     @Binding var idx: Int
     
+    // MARK: View
     var body: some View {
         HStack(alignment: .center, spacing: 30) {
             VStack {

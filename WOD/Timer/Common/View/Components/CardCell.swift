@@ -7,13 +7,16 @@
 
 import SwiftUI
 
+// MARK: - CardCell
 struct CardCell: View {
+    // MARK: 프로퍼티
     let title: String
     let text1: String
     let subText1: String
     let text2: String
     let subText2: String
     
+    // MARK: - View
     var body: some View{
         VStack(alignment: .center, spacing: 0) {
             Text(title)
@@ -55,8 +58,7 @@ struct CardCell: View {
                 .stroke(Color(.sRGB,red: 150/255, green: 150/255, blue: 150/255, opacity: 0.5), lineWidth: 1)
         ) // overlay
         //.padding([.top, .horizontal])
-        
-    }
+    } // body
 }
 
 struct CardView_Previews: PreviewProvider {

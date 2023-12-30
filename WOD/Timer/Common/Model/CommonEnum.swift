@@ -22,32 +22,6 @@ enum Field {
     case ss
 }
 
-// MARK: - ModeType
-enum ModeType {
-    case timer
-    case stopwatch
-    
-    var modeTypeIdx: Int {
-        switch self {
-        case .timer:
-            0
-        case .stopwatch:
-            1
-        }
-    }
-    
-    var bindingIdx: Binding<Int> {
-        Binding<Int>(
-            get: {
-                self.modeTypeIdx
-            },
-            set: { _ in
-               
-            }
-        )
-    }
-}
-
 // MARK: - TimerState
 // 타이머 실행 단계
 enum TimerState {
@@ -77,9 +51,11 @@ enum TimerState {
 // MARK: - AlertType
 enum AlertType{
     case limitOne // 셋팅 1개
-    case limitMax // 셋팅 초과
+    case limitMoveMax // 셋팅 휴식 초과
+    case limitRestMax // 셋팅 휴식 초과
     case save // 저장 메세지
     case quit // 뒤로 가기
+    case restAdd // 휴식 초과 경고
     case empty // 비어있음
     case general // 일반
     case ready // 준비

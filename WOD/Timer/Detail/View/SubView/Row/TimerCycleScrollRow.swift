@@ -28,9 +28,15 @@ struct TimerCycleScrollRow: View {
                 selectType = .color
                 isPopup.toggle()
             }, label: {
-                Circle()
-                    .fill(Color(row.color.IndexToColor))
-                    .frame(width: 40, height: 50)
+                ZStack {
+                    Circle()
+                        .fill(Color(row.color.IndexToColor))
+                        .frame(width: 40, height: 50)
+                    
+                    Circle()
+                        .stroke(Color.secondary)
+                        .frame(width: 40, height: 50)
+                }
             })  // Button
             .buttonStyle(EffectButtonStyle())
             

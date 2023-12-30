@@ -16,7 +16,7 @@ struct TextSet: View {
     // MARK: 프로퍼티s
     let defaultText: String
     
-    // MARK: View
+    // MARK: - View
     var body: some View {
         GeometryReader { _ in
             VStack(alignment: .center, spacing: 0) {

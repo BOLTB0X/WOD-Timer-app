@@ -17,17 +17,17 @@ extension DetailViewModel {
     var alretMessage: String {
         switch alretMoniter {
         case .limitOne:
-            "At least 1 required"
-        case .limitMax:
-            "Up to 15 can be added"
+            return "At least 1 required"
+        case .limitMoveMax:
+            return "Up to 15 can be added"
         case .quit:
-            "Are you sure you want to quit?"
+            return "Are you sure you want to quit?"
         case .save:
-            "Do you want to save it as My set?"
+            return "Do you want to save it as My set?"
         case .empty:
-            "Nothing"
+            return "Nothing"
         default:
-            "~~"
+            return "~~"
         }
     }
     

@@ -9,13 +9,17 @@ import SwiftUI
 
 // MARK: - RoundSet
 struct RoundSet: View {
+    // MARK: Binding
     @Binding var selectedRoundAmount: Int
     @Binding var isChange: Bool
     @Binding var showPopup: Bool
     
+    // MARK: 프로퍼티
     let manager: InputManager
     
+    // MARK: View
     var body: some View {
+        // MARK: main
         GeometryReader { geometry in
             VStack(alignment: .center, spacing: 0) {
                 // MARK: - 초기화 & 전환

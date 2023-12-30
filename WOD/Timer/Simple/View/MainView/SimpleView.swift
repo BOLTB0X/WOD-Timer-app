@@ -10,10 +10,10 @@ import SwiftUI
 // MARK: - SimpleView
 // 간단하게 타이머 루틴 or 스톱워치 루틴을 설정하는 뷰
 struct SimpleView: View {
-    // MARK: - class 프로퍼티
+    // MARK: Object
     @ObservedObject private var viewModel = SimpleViewModel.shared
     
-    // MARK: - only View 프로퍼티s
+    // MARK: State
     @State private var simpleButton: SimpleButton?
     @State private var isSimpleStart: Bool = false
     @State private var showPopup: Bool = false
@@ -22,11 +22,11 @@ struct SimpleView: View {
     
     // MARK: - View
     var body: some View {
-        NavigationView { // for navigationTitle 이용 및 뷰 구성
-            // MARK: main
+        // MARK: main
+        NavigationView {
             VStack(alignment: .leading, spacing: 0) {
                 Form {
-                    // MARK: - Routine
+                    // MARK: - Routine & WOD
                     Section(header: SectionHeader(idx: $isModeBtn)) {
                         ForEach(viewModel.simpleButtonType, id: \.self) { btn in
                             SimpleButtonSetRow(
@@ -51,6 +51,7 @@ struct SimpleView: View {
             .navigationTitle("Simple Routine")
             .navigationBarTitleDisplayMode(.inline)
             
+            // MARK: side
             // MARK: - popupNavigationView
             // 팝업
             .popupNavigationView(show: $showPopup) {
