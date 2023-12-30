@@ -3,94 +3,100 @@
 ![naruto-shippuden-op](https://github.com/BOLTB0X/WOD-Timer-app/assets/83914919/46390356-0983-4b42-917b-5a44cbbffbd4)
 
 ## current - ing
-![으아아아아아가](https://github.com/BOLTB0X/WOD-Timer-app/blob/main/history/%ED%98%84%EC%9E%AC_%EB%82%A8%EC%9D%80_%EB%9D%BC%EC%9A%B4%EB%93%9C_%ED%99%95%EC%9D%B8_%EC%B6%94%EA%B0%80.gif?raw=true)
+
+![으아아아아아가](https://github.com/BOLTB0X/WOD-Timer-app/blob/main/history/detail_demo.gif?raw=true) ![으아아아아아](https://github.com/BOLTB0X/WOD-Timer-app/blob/main/history/detail_cycle_demo.gif?raw=true)
+<br/>
+
+![으아아아](https://github.com/BOLTB0X/WOD-Timer-app/blob/main/history/detail_cycle_demoMove.gif?raw=true) ![으아아](https://github.com/BOLTB0X/WOD-Timer-app/blob/main/history/detail_cycle_demoRemove.gif?raw=true)
 <br/>
 
 ## Reference
 
 - TextField
-    <br/>
-    [TextField 공식문서](https://engineering.linecorp.com/ko/blog/line-pay-swiftui-textfield)
-    <br/>
+  <br/>
+  [TextField 공식문서](https://engineering.linecorp.com/ko/blog/line-pay-swiftui-textfield)
+  <br/>
 
-    [FocusState](https://developer.apple.com/documentation/swiftui/focusstate)
-    <br/>
+  [FocusState](https://developer.apple.com/documentation/swiftui/focusstate)
+  <br/>
 
-    [텍스트필드 관련 블로그 1](https://velog.io/@tmdckd232/SwiftUI-TextField-Dismissing-keyboard)
-    <br/>
+  [텍스트필드 관련 블로그 1](https://velog.io/@tmdckd232/SwiftUI-TextField-Dismissing-keyboard)
+  <br/>
 
-    [텍스트필드 관련 블로그 2](https://engineering.linecorp.com/ko/blog/line-pay-swiftui-textfield)
-    <br/>
+  [텍스트필드 관련 블로그 2](https://engineering.linecorp.com/ko/blog/line-pay-swiftui-textfield)
+  <br/>
 
 - Picker
-    <br/>
-    [Picker 공식문서](https://developer.apple.com/documentation/swiftui/picker)
-    <br/>
+  <br/>
+  [Picker 공식문서](https://developer.apple.com/documentation/swiftui/picker)
+  <br/>
 
-    [Picker 관련 블로그 ](https://seons-dev.tistory.com/entry/Picker-%EC%99%80-DatePicker)
-    <br/>
+  [Picker 관련 블로그 ](https://seons-dev.tistory.com/entry/Picker-%EC%99%80-DatePicker)
+  <br/>
 
 - Keyboard
-    <br/>
-    [키보드 관련](https://ios-development.tistory.com/1068)
-    <br/>
+  <br/>
+  [키보드 관련](https://ios-development.tistory.com/1068)
+  <br/>
 
 - Combine
-    <br/>
-    [combine 정리 블로그 참고](https://icksw.tistory.com/category/iOS/Combine?page=3)
-    <br/>
+  <br/>
+  [combine 정리 블로그 참고](https://icksw.tistory.com/category/iOS/Combine?page=3)
+  <br/>
 
-    [multiple Combine publishers 블로그](https://swiftwithmajid.com/2021/05/12/combining-multiple-combine-publishers-in-swift/)
-    <br/>
+  [multiple Combine publishers 블로그](https://swiftwithmajid.com/2021/05/12/combining-multiple-combine-publishers-in-swift/)
+  <br/>
 
 - Timer
-    <br/>
-    [참고 타이머 프로젝트 1](https://digitalbunker.dev/recreating-the-ios-timer-in-swiftui/)
-    <br/>
+  <br/>
+  [참고 타이머 프로젝트 1](https://digitalbunker.dev/recreating-the-ios-timer-in-swiftui/)
+  <br/>
 
-    [참고 타이머 프로젝트 2](https://programmingwithswift.com/build-a-stopwatch-app-with-swiftui/)
-    <br/>
+  [참고 타이머 프로젝트 2](https://programmingwithswift.com/build-a-stopwatch-app-with-swiftui/)
+  <br/>
 
-    [Combine Timers](https://cozzin.tistory.com/34)
-    <br/>
+  [Combine Timers](https://cozzin.tistory.com/34)
+  <br/>
 
 - Orientation
-    <br/>
-    [Orientation - 1](https://sarunw.com/posts/how-to-preview-a-device-in-landscape-orientation-with-swiftui-previews/)
-    <br/>
+  <br/>
+  [Orientation - 1](https://sarunw.com/posts/how-to-preview-a-device-in-landscape-orientation-with-swiftui-previews/)
+  <br/>
 
-    [Orientation -2](https://developer.apple.com/forums/thread/126878)
-    <br/>
+  [Orientation -2](https://developer.apple.com/forums/thread/126878)
+  <br/>
 
 - Audio Toolbox
-    <br/>
+  <br/>
 
-    [공식문서 - audiotoolbox](https://developer.apple.com/documentation/audiotoolbox/)
-    <br/>
+  [공식문서 - audiotoolbox](https://developer.apple.com/documentation/audiotoolbox/)
+  <br/>
 
-    [블로그 참조 - AVFoundation 개념](https://ios-development.tistory.com/927)
-    <br/>
+  [블로그 참조 - AVFoundation 개념](https://ios-development.tistory.com/927)
+  <br/>
 
-    [공식문서 - AVAudioSession](https://developer.apple.com/documentation/avfaudio/avaudiosession)
-    <br/>
+  [공식문서 - AVAudioSession](https://developer.apple.com/documentation/avfaudio/avaudiosession)
+  <br/>
 
-    [블로그 참조 - Audiotoolbox 활용](https://medium.com/the-swift-blog/play-short-sound-in-ios-using-audiotoolbox-5ec6a39bab1a)
-    <br/>
-    
+  [블로그 참조 - Audiotoolbox 활용](https://medium.com/the-swift-blog/play-short-sound-in-ios-using-audiotoolbox-5ec6a39bab1a)
+  <br/>
+
 - Live Activities
-    <br/>
+  <br/>
 
-    [Live Activities](https://developer.apple.com/design/human-interface-guidelines/live-activities)
-    <br/>
+  [Live Activities](https://developer.apple.com/design/human-interface-guidelines/live-activities)
+  <br/>
 
-    [블로그 참조 - Live Activities](https://velog.io/@maddie/iOS-Live-Activity-%EB%9D%BC%EC%9D%B4%EB%B8%8C-%EC%95%A1%ED%8B%B0%EB%B9%84%ED%8B%B0)
-    <br/>
+  [블로그 참조 - Live Activities](https://velog.io/@maddie/iOS-Live-Activity-%EB%9D%BC%EC%9D%B4%EB%B8%8C-%EC%95%A1%ED%8B%B0%EB%B9%84%ED%8B%B0)
+  <br/>
 
 - 기타
-    <br/>
-    [연산자 오버로딩 참고](https://kka7.tistory.com/73)
-    <br/>
+  <br/>
+  [연산자 오버로딩 참고](https://kka7.tistory.com/73)
+  <br/>
 
-    [async/await](https://azamsharp.medium.com/beginning-async-await-in-ios-15-and-swift-5-5-1086b50b8f3d)
-    <br/>
-    
+  [async/await](https://azamsharp.medium.com/beginning-async-await-in-ios-15-and-swift-5-5-1086b50b8f3d)
+  <br/>
+
+  [스택오버플로우 참고 - EditButton](https://stackoverflow.com/questions/57344305/swiftui-button-as-editbutton)
+  <br/>
