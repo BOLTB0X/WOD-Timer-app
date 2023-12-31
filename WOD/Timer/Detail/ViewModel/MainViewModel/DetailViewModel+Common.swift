@@ -18,14 +18,12 @@ extension DetailViewModel {
         switch alretMoniter {
         case .limitOne:
             return "At least 1 required"
-        case .limitMoveMax:
-            return "Up to 15 can be added"
         case .quit:
             return "Are you sure you want to quit?"
         case .save:
             return "Do you want to save it as My set?"
         case .empty:
-            return "Nothing"
+            return "Nothing currently selected"
         default:
             return "~~"
         }

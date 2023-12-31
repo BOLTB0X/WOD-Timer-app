@@ -35,7 +35,8 @@ class DetailViewModel: InputManager {
             if betweenRest {
                 insertRestBetweenMovements()
             } else {
-                timerCycleList = timerCycleList.filter { $0.type != .rest }
+                removeRestBetweenMovements()
+                //timerCycleList = timerCycleList.filter { $0.type != .rest }
             }
         }
     }

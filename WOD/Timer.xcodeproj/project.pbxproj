@@ -37,7 +37,7 @@
 		568F1D1D2B341E1700E1D58A /* ScrollTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568F1D1C2B341E1700E1D58A /* ScrollTestView.swift */; };
 		568F1D202B3510D400E1D58A /* SimpleHorizontalScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568F1D1F2B3510D400E1D58A /* SimpleHorizontalScroll.swift */; };
 		568F1D222B351C9E00E1D58A /* SimpleRecordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568F1D212B351C9E00E1D58A /* SimpleRecordCell.swift */; };
-		568F1D242B35552D00E1D58A /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568F1D232B35552D00E1D58A /* CardCell.swift */; };
+		568F1D242B35552D00E1D58A /* CardCellRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568F1D232B35552D00E1D58A /* CardCellRow.swift */; };
 		568F1D292B35640800E1D58A /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568F1D282B35640800E1D58A /* DetailView.swift */; };
 		568F1D2B2B35648F00E1D58A /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568F1D2A2B35648F00E1D58A /* DetailViewModel.swift */; };
 		568F1D2D2B35652300E1D58A /* DetailEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 568F1D2C2B35652300E1D58A /* DetailEnum.swift */; };
@@ -82,6 +82,8 @@
 		56AF0B412AEB9C33009AF8A2 /* StopWatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56AF0B402AEB9C33009AF8A2 /* StopWatchViewModel.swift */; };
 		56B741D82B3C620A00F369CA /* DetailTopRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B741D72B3C620A00F369CA /* DetailTopRow.swift */; };
 		56B741DA2B3D069C00F369CA /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B741D92B3D069C00F369CA /* RadioButton.swift */; };
+		56B741DC2B41137C00F369CA /* DetailCycleGeneralState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B741DB2B41137C00F369CA /* DetailCycleGeneralState.swift */; };
+		56B741DE2B4116E600F369CA /* DetailCycleEditState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B741DD2B4116E600F369CA /* DetailCycleEditState.swift */; };
 		56C4F6242B184195009D2721 /* SimpleViewModel+ViewTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C4F6232B184195009D2721 /* SimpleViewModel+ViewTimer.swift */; };
 		56C4F64D2B1B5A74009D2721 /* LabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C4F64C2B1B5A74009D2721 /* LabelView.swift */; };
 		56C4F64F2B1C5BFF009D2721 /* ControlButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C4F64E2B1C5BFF009D2721 /* ControlButton.swift */; };
@@ -190,7 +192,7 @@
 		568F1D1C2B341E1700E1D58A /* ScrollTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollTestView.swift; sourceTree = "<group>"; };
 		568F1D1F2B3510D400E1D58A /* SimpleHorizontalScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleHorizontalScroll.swift; sourceTree = "<group>"; };
 		568F1D212B351C9E00E1D58A /* SimpleRecordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleRecordCell.swift; sourceTree = "<group>"; };
-		568F1D232B35552D00E1D58A /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
+		568F1D232B35552D00E1D58A /* CardCellRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCellRow.swift; sourceTree = "<group>"; };
 		568F1D282B35640800E1D58A /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		568F1D2A2B35648F00E1D58A /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		568F1D2C2B35652300E1D58A /* DetailEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEnum.swift; sourceTree = "<group>"; };
@@ -237,6 +239,8 @@
 		56AF0B402AEB9C33009AF8A2 /* StopWatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopWatchViewModel.swift; sourceTree = "<group>"; };
 		56B741D72B3C620A00F369CA /* DetailTopRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTopRow.swift; sourceTree = "<group>"; };
 		56B741D92B3D069C00F369CA /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
+		56B741DB2B41137C00F369CA /* DetailCycleGeneralState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCycleGeneralState.swift; sourceTree = "<group>"; };
+		56B741DD2B4116E600F369CA /* DetailCycleEditState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCycleEditState.swift; sourceTree = "<group>"; };
 		56C4F6232B184195009D2721 /* SimpleViewModel+ViewTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimpleViewModel+ViewTimer.swift"; sourceTree = "<group>"; };
 		56C4F64C2B1B5A74009D2721 /* LabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelView.swift; sourceTree = "<group>"; };
 		56C4F64E2B1C5BFF009D2721 /* ControlButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlButton.swift; sourceTree = "<group>"; };
@@ -540,6 +544,8 @@
 			children = (
 				568F1D2E2B35680400E1D58A /* DetailButtonSetRow.swift */,
 				56B741D72B3C620A00F369CA /* DetailTopRow.swift */,
+				56B741DB2B41137C00F369CA /* DetailCycleGeneralState.swift */,
+				56B741DD2B4116E600F369CA /* DetailCycleEditState.swift */,
 				568F1D5A2B3BDEC300E1D58A /* TimerCycleListRow.swift */,
 				568F1D5C2B3BDEE700E1D58A /* TimerCycleScrollRow.swift */,
 			);
@@ -716,7 +722,7 @@
 				5697A7D92AFF4E3400ADBBD1 /* SettingTextField.swift */,
 				5621651C2B0B8561008E472B /* SettingTwoTextField.swift */,
 				56A9987D2AF6730E000D5C99 /* SettingTimeTextField.swift */,
-				568F1D232B35552D00E1D58A /* CardCell.swift */,
+				568F1D232B35552D00E1D58A /* CardCellRow.swift */,
 				568F1D502B3A911C00E1D58A /* ColorSegment.swift */,
 				568F1CF82B32B72700E1D58A /* SectionHeader.swift */,
 				568F1D482B35B30500E1D58A /* CustomTextField.swift */,
@@ -910,6 +916,7 @@
 				568F1D5F2B3BE16900E1D58A /* DetailTimerSetItem.swift in Sources */,
 				568F1D612B3BE2D100E1D58A /* ColorSet.swift in Sources */,
 				56AF0ADB2AE892B5009AF8A2 /* ContentView.swift in Sources */,
+				56B741DC2B41137C00F369CA /* DetailCycleGeneralState.swift in Sources */,
 				5697A7CE2AFE59E200ADBBD1 /* ButtonStyle.swift in Sources */,
 				56AF0B292AEB5CEA009AF8A2 /* SimpleView.swift in Sources */,
 				568F1D5D2B3BDEE700E1D58A /* TimerCycleScrollRow.swift in Sources */,
@@ -945,7 +952,7 @@
 				56AF0AFC2AEA3E95009AF8A2 /* PlayButton.swift in Sources */,
 				56C5A49B2B136BDE008ABCA0 /* TextLimiter.swift in Sources */,
 				568F1D512B3A911C00E1D58A /* ColorSegment.swift in Sources */,
-				568F1D242B35552D00E1D58A /* CardCell.swift in Sources */,
+				568F1D242B35552D00E1D58A /* CardCellRow.swift in Sources */,
 				56AF0AD92AE892B5009AF8A2 /* TimerApp.swift in Sources */,
 				56A998802AF6799A000D5C99 /* SettingPicker.swift in Sources */,
 				56AF0B002AEA4955009AF8A2 /* RecordButton.swift in Sources */,
@@ -954,6 +961,7 @@
 				568F1D542B3BB31E00E1D58A /* TestVuew.swift in Sources */,
 				568F1D632B3BE3F600E1D58A /* TextSet.swift in Sources */,
 				568F1D132B33DE9C00E1D58A /* SimpleTimerDisplayTime.swift in Sources */,
+				56B741DE2B4116E600F369CA /* DetailCycleEditState.swift in Sources */,
 				568F1D582B3BDB5C00E1D58A /* DetailViewModel+Common.swift in Sources */,
 				568F1CFF2B32DDB100E1D58A /* SimpleViewModel+Stopwatch.swift in Sources */,
 				568F1D562B3BC07B00E1D58A /* CheckButton.swift in Sources */,

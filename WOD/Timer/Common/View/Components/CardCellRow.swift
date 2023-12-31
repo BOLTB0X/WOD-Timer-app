@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-// MARK: - CardCell
-struct CardCell: View {
+// MARK: - CardCellRow
+struct CardCellRow: View {
     // MARK: 프로퍼티
     let title: String
     let text1: String
@@ -57,12 +57,11 @@ struct CardCell: View {
             RoundedRectangle(cornerRadius: 10)
                 .stroke(Color(.sRGB,red: 150/255, green: 150/255, blue: 150/255, opacity: 0.5), lineWidth: 1)
         ) // overlay
-        //.padding([.top, .horizontal])
     } // body
 }
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardCell(title: "1 Round", text1: "movements", subText1: "00:30", text2: "Rest", subText2: "00:12")
+        CardCellRow(title: "1 Round", text1: "movements", subText1: "00:30", text2: "Rest", subText2: "00:12")
     }
 }

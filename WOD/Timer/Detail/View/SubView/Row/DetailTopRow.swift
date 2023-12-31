@@ -14,19 +14,17 @@ struct DetailTopRow: View {
     @Binding var betweenRest: Bool
     
     // MARK: 프로퍼티
-    let createMoveAction: () -> Void
-    let createRestAction: () -> Void
-    let removeAction: () -> Void
+    let createRemoveAction: () -> Void
     let sortAction: () -> Void
 
     // MARK: - View
     var body: some View {
         HStack(alignment: .center,spacing: 10) {
-            typeForButton()
-//            BasicButton(action: {
-//                removeAction()
-//            }, systemName: tableType == 0 ? "plus.circle" : "trash")
-//            .foregroundColor(.blue)
+            //typeForButton()
+            BasicButton(action: {
+                createRemoveAction()
+            }, systemName: tableType == 0 ? "plus.circle" : "trash")
+            .foregroundColor(.blue)
 
             Spacer()
             
@@ -46,38 +44,6 @@ struct DetailTopRow: View {
     
     // MARK: - ViewBuilder
     // ..
-    @ViewBuilder
-    private func typeForButton() -> some View {
-        if tableType == 0 {
-            if !betweenRest {
-                Menu {
-                    Button("Movement") {
-                        createMoveAction()
-                    }
-                    
-                    Button("Rest") {
-                        createRestAction()
-                    }
-                } label : {
-                    Image(systemName: "plus.circle")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .foregroundColor(.blue)
-                }
-            } else {
-                BasicButton(action: {
-                    createMoveAction()
-                }, systemName: "plus.circle")
-                .foregroundColor(.blue)
-            }
-        } else {
-            BasicButton(action: {
-                removeAction()
-            }, systemName: "trash")
-            .foregroundColor(.blue)
-        }
-    } // typeForButton
-    
     // MARK: - buttonView
     @ViewBuilder
     private func editButton() -> some View {

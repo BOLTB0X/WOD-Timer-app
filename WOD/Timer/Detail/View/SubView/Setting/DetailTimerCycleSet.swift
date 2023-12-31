@@ -31,25 +31,16 @@ struct DetailTimerCycleSet: View {
                 DetailTopRow(
                     tableType: $tableType,
                     betweenRest: $viewModel.betweenRest,
-                    createMoveAction: {
-                        viewModel.createType = .movement
+                    createRemoveAction: {
                         viewModel.createRemoveButtonAction(tableType: $tableType, alret: $showAlert)
                     },
-                    createRestAction: {
-                        viewModel.createType = .rest
-                        viewModel.createRemoveButtonAction(tableType: $tableType, alret: $showAlert)
-                    },
-                    removeAction: {
-                        viewModel.createRemoveButtonAction(tableType: $tableType, alret: $showAlert)
-                    },
-                    sortAction: {
-                        viewModel.sortTimerCycleList()
-                    }
+                    sortAction: viewModel.sortTimerCycleList
                 ) // DetailTopRow
                 
                 Divider()
                 
                 displayCycle()
+                
                 
                 // MARK: side
                 // MARK: - popupNavigationView
@@ -65,6 +56,8 @@ struct DetailTimerCycleSet: View {
                         },
                         title: "Cycle Set"
                     ) // navigationBasicToolbar
+                
+                
             } // VStack
         } // NavigationView
         // MARK: - alert
