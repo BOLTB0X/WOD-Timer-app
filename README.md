@@ -90,6 +90,18 @@
   [블로그 참조 - Live Activities](https://velog.io/@maddie/iOS-Live-Activity-%EB%9D%BC%EC%9D%B4%EB%B8%8C-%EC%95%A1%ED%8B%B0%EB%B9%84%ED%8B%B0)
   <br/>
 
+- Alert
+  <br/>
+
+  [Medium 참조 1 - Custom Alert](https://levelup.gitconnected.com/custom-alerts-in-swift-using-swiftentrykit-fcb729a69f9ac)
+  <br/>
+
+  [CustomAlertView Github - Custom Alert](https://github.com/devendrabhumca12/CustomAlertView/tree/main)
+  <br/>
+
+  [Custom Dialog Github - Custom Alert](https://github.com/mikina/SwiftUICustomDialog)
+  <br/>
+
 - 기타
   <br/>
   [연산자 오버로딩 참고](https://kka7.tistory.com/73)
