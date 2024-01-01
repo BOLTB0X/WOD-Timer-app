@@ -8,7 +8,7 @@
 import SwiftUI
 
 // MARK: - DetailTopRow
-struct DetailTopRow: View {
+struct DetailCycleTop: View {
     // MARK: Binding
     @Binding var tableType: Int
     @Binding var betweenRest: Bool

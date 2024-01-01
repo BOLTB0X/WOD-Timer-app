@@ -40,6 +40,12 @@ enum SelectedSetting {
     case color
     case time
     case text
+    case defaultMoveColor
+    case defaultMoveTime
+    case defaultMoveText
+    case defaultRestColor
+    case defaultRestTime
+    case defaultRestText
 }
 
 // MARK: - DetailItemType

@@ -9,8 +9,10 @@ import SwiftUI
 
 // MARK: - SimpleTimerControl
 struct SimpleTimerControl: View {
+    // MARK: Object
     @EnvironmentObject private var viewModel: SimpleViewModel
 
+    // MARK: - View
     var body: some View {
         HStack(alignment: .center, spacing: 10) {
             // before

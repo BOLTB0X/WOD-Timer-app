@@ -16,10 +16,10 @@ extension DetailViewModel {
     // 운동 추가
     func createMovementItem() {
         if !betweenRest {
-            timerCycleList.append(DetailItem(type: .movement, title: "Movement"))
+            timerCycleList.append(defaultMove)
         } else {
-            timerCycleList.append(DetailItem(type: .rest, title: "Rest", time: MovementTime(seconds: 10), color: 6))
-            timerCycleList.append(DetailItem(type: .movement, title: "Movement"))
+            timerCycleList.append(defaultRest)
+            timerCycleList.append(defaultMove)
         }
         return
     } // createMovementItem
@@ -49,7 +49,7 @@ extension DetailViewModel {
             }
             
             if index < timerCycleList.count - 1 {
-                newList.append(DetailItem(type: .rest, title: "Rest", time: MovementTime(seconds: 10), color: 6))
+                newList.append(defaultRest)
             }
         }
         

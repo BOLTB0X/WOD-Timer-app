@@ -8,7 +8,7 @@
 import SwiftUI
 
 // MARK: - DetailTimerCycleSet
-struct DetailTimerCycleSet: View {
+struct DetailTimerCycleView: View {
     // MARK: Environment
     @EnvironmentObject private var viewModel: DetailViewModel
     
@@ -28,7 +28,7 @@ struct DetailTimerCycleSet: View {
         // MARK: main
         NavigationView {
             VStack(alignment: .center,spacing: 0) {
-                DetailTopRow(
+                DetailCycleTop(
                     tableType: $tableType,
                     betweenRest: $viewModel.betweenRest,
                     createRemoveAction: {
@@ -40,25 +40,22 @@ struct DetailTimerCycleSet: View {
                 Divider()
                 
                 displayCycle()
-                
-                
-                // MARK: side
-                // MARK: - popupNavigationView
-                // 팝업
-                    .popupNavigationView(show: $showPopup) {
-                        displayPopup()
-                    } // popupNavigationView
-                
-                // MARK: - navigationBasicToolbar
-                    .navigationBasicToolbar(
-                        backAction: {
-                            rootView.toggle()
-                        },
-                        title: "Cycle Set"
-                    ) // navigationBasicToolbar
-                
-                
+            
             } // VStack
+            // MARK: side
+            // MARK: - popupNavigationView
+            // 팝업
+                .popupNavigationView(show: $showPopup) {
+                    displayPopup()
+                } // popupNavigationView
+            
+            // MARK: - navigationBasicToolbar
+                .navigationBasicToolbar(
+                    backAction: {
+                        rootView.toggle()
+                    },
+                    title: "Cycle Set"
+                ) // navigationBasicToolbar
         } // NavigationView
         // MARK: - alert
         // 경고창
@@ -87,6 +84,14 @@ struct DetailTimerCycleSet: View {
             } // List
             .listStyle(PlainListStyle())
             .environment(\.editMode, .constant(.active))
+            
+            Divider()
+            
+            DetailDefaultState(
+                defaultMove: $viewModel.defaultMove,
+                defaultRest: $viewModel.defaultRest,
+                isPopup: $showPopup,
+                selectType: $selectType)
         } else {
             ScrollView {
                 ForEach(viewModel.timerCycleList.indices, id: \.self) { i in
@@ -106,23 +111,30 @@ struct DetailTimerCycleSet: View {
     // MARK: - displayPopup
     @ViewBuilder
     private func displayPopup() -> some View {
-        switch selectType {
-        case .color:
-            DetailTimerSetItemColor(showPopup: $showPopup)
-                .environmentObject(viewModel)
-        case .text:
-            DetailTimerSetItemText(showPopup: $showPopup)
-                .environmentObject(viewModel)
-        default:
-            DetailTimerSetItemMovement(showPopup: $showPopup)
-                .environmentObject(viewModel)
-        } // switch
+        if let type = selectType {
+            switch type {
+            case .color, .defaultMoveColor, .defaultRestColor:
+                DetailTimeColorSet(showPopup: $showPopup, selectType: $selectType)
+                    .environmentObject(viewModel)
+            case .text, .defaultMoveText, .defaultRestText:
+                DetailTimerTextSet(showPopup: $showPopup, selectType: $selectType)
+                    .environmentObject(viewModel)
+                
+            case .defaultMoveTime, .defaultRestTime:
+                DetailTimerMovementSet(showPopup: $showPopup, selectType: $selectType)
+                    .environmentObject(viewModel)
+                
+            default:
+                DetailTimerMovementSet(showPopup: $showPopup, selectType: $selectType)
+                    .environmentObject(viewModel)
+            } // switch
+        }
     } // displayPopup
 }
 
 struct DetailTimerCycleSet_Previews: PreviewProvider {
     static var previews: some View {
-        DetailTimerCycleSet(rootView: .constant(false))
+        DetailTimerCycleView(rootView: .constant(false))
             .environmentObject(DetailViewModel.shared)
     }
 }

@@ -27,6 +27,8 @@ class DetailViewModel: InputManager {
     @Published var detailSwRoundIdx: Int? // 진행
     
     // MARK: - Common
+    @Published var defaultMove: DetailItem = DetailItem(type: .movement, title: "Movement")
+    @Published var defaultRest: DetailItem = DetailItem(type: .rest, title: "Rest", time: MovementTime(seconds: 10), color: 6)
     @Published var alretMoniter: AlertType = .general
     @Published var multiSelection: Set<UUID> = []
     @Published var createType: DetailItemType = .movement

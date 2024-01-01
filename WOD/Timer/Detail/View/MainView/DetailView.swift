@@ -50,7 +50,7 @@ struct DetailView: View {
 
                 // 이동
                 NavigationLink(
-                    destination: DetailTimerCycleSet(rootView: $rootView)
+                    destination: DetailTimerCycleView(rootView: $rootView)
                         .environmentObject(viewModel)
                         .navigationBarBackButtonHidden(),
                     isActive: $rootView) {
