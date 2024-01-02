@@ -13,7 +13,7 @@ import Combine
 extension SimpleViewModel {
     // MARK: - basic Control
     // ....
-    // MARK: - startTimer
+    // MARK: - startSimpleTimer
     func startSimpleTimer() {
         guard let idx = simpleTmRoundIdx, idx < simpleTmRounds.count, let currentPhase = simpleRoundPhase else {
             return

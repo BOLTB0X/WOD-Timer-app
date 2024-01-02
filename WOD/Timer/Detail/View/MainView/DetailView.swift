@@ -30,7 +30,9 @@ struct DetailView: View {
                     // MARK: - Routine
                     Section(header: SectionHeader(idx: $isModeBtn)) {
                         ForEach(viewModel.detailButtonType, id: \.self) { btn in
-                            DetailButtonSetRow(detailButton: $detailButton, showPopup: $showPopup, rootView: $rootView, isModeBtn: $isModeBtn, viewModel: viewModel, btn: btn)
+                            DetailButtonSetRow(detailButton: $detailButton, showPopup: $showPopup, rootView: $rootView, isModeBtn: $isModeBtn, 
+                                viewModel: viewModel,
+                                btn: btn)
                         } // ForEach
                         
                         Button("Start") {
@@ -68,7 +70,6 @@ struct DetailView: View {
             .popupNavigationView(show: $showPopup) {
                 displayPopup()
             }
-            
             // MARK: - alert
             // 경고창
             .alert(isPresented: $isStartBtn) {
@@ -82,10 +83,17 @@ struct DetailView: View {
                         } else {
                             //viewModel.createSimpleStopRounds()
                         }
-                        //isSimpleStart.toggle()
+                        isDetailStart.toggle()
                     },
                     secondaryButton: .cancel(Text("Cancel").foregroundColor(.secondary))
                 )
+            }
+            
+            // MARK: - fullScreenCover
+            // 모달뷰
+            .fullScreenCover(isPresented: $isDetailStart) {
+                DetailTimerView()
+                //goFullScreenCover()
             }
         } // NavigationView
         

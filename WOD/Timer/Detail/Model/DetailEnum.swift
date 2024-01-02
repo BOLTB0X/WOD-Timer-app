@@ -53,3 +53,25 @@ enum DetailItemType {
     case movement
     case rest
 }
+
+// MARK: - SimpleRoundPhase
+enum DetailRoundPhase {
+    case preparation
+    case movement
+    case rest
+    case completed
+    
+    // 현재 라운드 단계를 문자열로
+    var phaseText: String {
+        switch self {
+        case .preparation:
+            return "Preparation"
+        case .movement:
+            return "Movement"
+        case .rest:
+            return "Rest"
+        case .completed:
+            return "Completed"
+        }
+    }
+}
