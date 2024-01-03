@@ -28,7 +28,7 @@ struct DetailTimeColorSet: View {
         // MARK: side
         .onAppear {
             if selectType == .color {
-                manager.isSelectedColor = viewModel.timerCycleList[viewModel.selectedTimerCycleIndex].color
+                manager.isSelectedColor = viewModel.timerLoopList[viewModel.selectedTimerLoopIndex].color
             } else if selectType == .defaultMoveColor {
                 manager.isSelectedColor = viewModel.defaultMove.color
             } else if selectType == .defaultRestColor {
@@ -43,7 +43,7 @@ struct DetailTimeColorSet: View {
             action:  { },
             completeAction: {
                 if selectType == .color {
-                    viewModel.timerCycleList[viewModel.selectedTimerCycleIndex].color = manager.isSelectedColor
+                    viewModel.timerLoopList[viewModel.selectedTimerLoopIndex].color = manager.isSelectedColor
                 }  else if selectType == .defaultMoveColor {
                     viewModel.defaultMove.color = manager.isSelectedColor
                 } else if selectType == .defaultRestColor {

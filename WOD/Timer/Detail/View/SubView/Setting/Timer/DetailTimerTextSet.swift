@@ -28,7 +28,7 @@ struct DetailTimerTextSet: View {
             } else if selectType == .defaultRestText {
                 TextSet(inputText: $manager.movementText, showPopup: $showPopup, defaultText: viewModel.defaultRest.title)
             } else {
-                TextSet(inputText: $manager.movementText, showPopup: $showPopup, defaultText: viewModel.timerCycleList[viewModel.selectedTimerCycleIndex].title)
+                TextSet(inputText: $manager.movementText, showPopup: $showPopup, defaultText: viewModel.timerLoopList[viewModel.selectedTimerLoopIndex].title)
             }
         }
         // MARK: side
@@ -38,7 +38,7 @@ struct DetailTimerTextSet: View {
             } else if selectType == .defaultRestText {
                 manager.movementText = viewModel.defaultRest.title
             } else {
-                manager.movementText = viewModel.timerCycleList[viewModel.selectedTimerCycleIndex].title
+                manager.movementText = viewModel.timerLoopList[viewModel.selectedTimerLoopIndex].title
             }
         }
         .navigationTitle("Movement name")
@@ -58,7 +58,7 @@ struct DetailTimerTextSet: View {
                     }
                 } else {
                     if !manager.movementText.isEmpty {
-                        viewModel.timerCycleList[viewModel.selectedTimerCycleIndex].title = manager.movementText
+                        viewModel.timerLoopList[viewModel.selectedTimerLoopIndex].title = manager.movementText
                     }
                 }
                 

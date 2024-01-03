@@ -26,7 +26,7 @@ struct SimpleView: View {
         NavigationView {
             VStack(alignment: .leading, spacing: 0) {
                 Form {
-                    // MARK: - Routine & WOD
+                    // MARK: - Set
                     Section(header: SectionHeader(idx: $isModeBtn)) {
                         ForEach(viewModel.simpleButtonType, id: \.self) { btn in
                             SimpleButtonSetRow(
@@ -48,7 +48,7 @@ struct SimpleView: View {
                     } // Routine(My Set)
                 } // Form
             } // VStack
-            .navigationTitle("Simple Routine")
+            .navigationTitle("Simple Set")
             .navigationBarTitleDisplayMode(.inline)
             
             // MARK: side
@@ -67,14 +67,9 @@ struct SimpleView: View {
                     message: Text(isModeBtn == 0 ? viewModel.confirmationMessage: viewModel.confirmationStopMessage)
                         .font(.subheadline),
                     primaryButton: .default(Text("Start")) {
-                        if isModeBtn == 0 {
-                            viewModel.createSimpleTimerRounds()
-                        } else {
-                            viewModel.createSimpleStopRounds()
-                        }
-                        isSimpleStart.toggle()
+                        buttonAction()
                     },
-                    secondaryButton: .cancel(Text("Cancel").foregroundColor(.secondary))
+                    secondaryButton: .destructive(Text("Cancel").foregroundColor(.secondary))
                 )
             }
             
@@ -117,7 +112,7 @@ struct SimpleView: View {
                 SimpleStopwatchPreparationSet(showPopup: $showPopup)
                     .environmentObject(viewModel)
             }
-        }
+        } // if - else
     } // displayPopup
     
     // MARK: - goFullScreenCover
@@ -129,9 +124,20 @@ struct SimpleView: View {
         } else {
             SimpleStopWatchView(isBackRootView: $isSimpleStart)
                 .environmentObject(viewModel)
-        }
+        } // if - else
     } // goFullScreenCover
     
+    // MARK: - Methods
+    // ...
+    // MARK: - buttonAction
+    private func buttonAction() {
+        if isModeBtn == 0 {
+            viewModel.createSimpleTimerRounds()
+        } else {
+            viewModel.createSimpleStopRounds()
+        }
+        isSimpleStart.toggle()
+    } // buttonAction
 }
 
 struct SimpleView_Previews: PreviewProvider {

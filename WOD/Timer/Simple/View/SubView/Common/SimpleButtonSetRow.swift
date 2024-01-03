@@ -24,9 +24,16 @@ struct SimpleButtonSetRow: View {
             buttonAction()
         }, label: {
             HStack(alignment: .center, spacing: 0) {
-                Text(btn.buttonText)
+                VStack(alignment: .leading, spacing: 0) {
+                    Text(btn.buttonText)
+                        .font(.headline)
+                    Text(viewModel.displaySubText(state: btn.buttonText))
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
                 Spacer()
                 Text(viewModel.displaySimpleSetValue(state: btn.buttonText, mode: isModeBtn))
+                    .monospacedDigit()
             }
             .contentShape(Rectangle())
         } // label

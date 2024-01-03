@@ -1,47 +1,41 @@
 //
-//  DetailTimerRoundSet.swift
+//  DetailTimerRestColorSet.swift
 //  Timer
 //
-//  Created by lkh on 1/1/24.
+//  Created by lkh on 1/3/24.
 //
 
 import SwiftUI
 
-// MARK: - DetailTimerRoundSet
-struct DetailTimerRoundSet: View {
+// MARK: - DetailTimerRestColorSet
+struct DetailTimerRestColorSet: View {
     // MARK: Object
     @EnvironmentObject var viewModel: DetailViewModel
     @StateObject var manager = InputManager()
     
-    // MARK: State/Binding
-    @State private var isChange: Bool = false
+    // MARK: Binding
     @Binding var showPopup: Bool
     
     // MARK: - View
     var body: some View {
         // MARK: main
         NavigationView {
-            
-                RoundSet(selectedRoundAmount: $manager.selectedRoundAmount,
-                         isChange: $isChange, showPopup: $showPopup,  manager: manager)
-       
+            ColorSet(selectedColor: $manager.isSelectedColor, showPopup: $showPopup)
         }
         // MARK: side
         .onAppear {
-            manager.selectedRoundAmount = viewModel.selectedRoundAmount
+            manager.isSelectedColor = viewModel.timerLoopRestColor
         }
-        
-        .navigationTitle("Round")
+        .navigationTitle("Color")
         .navigationBarTitleDisplayMode(.inline)
         
         .popupSettingToolbar(
             cancelAction:  { showPopup.toggle() },
-            action:  { isChange.toggle() },
+            action:  { },
             completeAction: {
-                viewModel.selectedRoundAmount = manager.selectedRoundAmount
+                viewModel.timerLoopRestColor = manager.isSelectedColor
                 showPopup.toggle()
             }
         ) // popupSettingToolbar
     } // body
 }
-

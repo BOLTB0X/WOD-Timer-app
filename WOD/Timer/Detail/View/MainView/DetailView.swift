@@ -19,7 +19,7 @@ struct DetailView: View {
     @State private var rootView: Bool = false
     @State private var isModeBtn: Int = 0
     @State private var isStartBtn: Bool = false
-
+    
     // MARK: - View
     var body: some View {
         NavigationView {
@@ -27,12 +27,21 @@ struct DetailView: View {
             // ...
             VStack(alignment: .center, spacing: 0) {
                 Form {
-                    // MARK: - Routine
+                    // MARK: - Set
                     Section(header: SectionHeader(idx: $isModeBtn)) {
                         ForEach(viewModel.detailButtonType, id: \.self) { btn in
-                            DetailButtonSetRow(detailButton: $detailButton, showPopup: $showPopup, rootView: $rootView, isModeBtn: $isModeBtn, 
-                                viewModel: viewModel,
-                                btn: btn)
+                            HStack(alignment: .center, spacing: 15) {
+                                DetailImageSetRow(detailButton: $detailButton, showPopup: $showPopup, isMode: $isModeBtn, preparationColor: $viewModel.timerPreparationColor, loopRestColor: $viewModel.timerLoopRestColor,
+                                                  btn: btn)
+                                
+                                DetailButtonSetRow(
+                                    detailButton: $detailButton,
+                                    showPopup: $showPopup,
+                                    rootView: $rootView,
+                                    isModeBtn: $isModeBtn,
+                                    viewModel: viewModel,
+                                    btn: btn)
+                            } // HStack
                         } // ForEach
                         
                         Button("Start") {
@@ -49,18 +58,18 @@ struct DetailView: View {
                     
                 } // Form
                 .listStyle(SidebarListStyle())
-
+                
                 // 이동
                 NavigationLink(
-                    destination: DetailTimerCycleView(rootView: $rootView)
+                    destination: DetailTimerLoopView(rootView: $rootView)
                         .environmentObject(viewModel)
                         .navigationBarBackButtonHidden(),
-                    isActive: $rootView) {
-                        EmptyView()
-                    }
-                
+                    isActive: $rootView
+                ) {
+                    EmptyView()
+                }
             } // VStack
-            .navigationTitle("Detail Routine")
+            .navigationTitle("Detail Set")
             .navigationBarTitleDisplayMode(.inline)
             
             // MARK: side
@@ -70,30 +79,25 @@ struct DetailView: View {
             .popupNavigationView(show: $showPopup) {
                 displayPopup()
             }
+            
             // MARK: - alert
             // 경고창
             .alert(isPresented: $isStartBtn) {
                 Alert(
                     title: Text("Confirm").bold(),
-                    message: Text(""/*isModeBtn == 0 ? viewModel.confirmationMessage: viewModel.confirmationStopMessage)
-                        .font(.subheadline)*/),
+                    message: Text(viewModel.confirmationMessage)
+                        .font(.subheadline),
                     primaryButton: .default(Text("Start")) {
-                        if isModeBtn == 0 {
-                            //viewModel.createSimpleTimerRounds()
-                        } else {
-                            //viewModel.createSimpleStopRounds()
-                        }
-                        isDetailStart.toggle()
+                        buttonAction()
                     },
-                    secondaryButton: .cancel(Text("Cancel").foregroundColor(.secondary))
+                    secondaryButton: .destructive(Text("Cancel"))
                 )
             }
             
             // MARK: - fullScreenCover
             // 모달뷰
             .fullScreenCover(isPresented: $isDetailStart) {
-                DetailTimerView()
-                //goFullScreenCover()
+                goFullScreenCover()
             }
         } // NavigationView
         
@@ -114,11 +118,40 @@ struct DetailView: View {
         case .round:
             DetailTimerRoundSet(showPopup: $showPopup)
                 .environmentObject(viewModel)
+        case .preparationColor:
+            DeatilTimerPreparationColorSet(showPopup: $showPopup)
+                .environmentObject(viewModel)
+        case .loopRestColor:
+            DetailTimerRestColorSet(showPopup: $showPopup)
+                .environmentObject(viewModel)
         default:
             DetailTimerRestSet(showPopup: $showPopup)
                 .environmentObject(viewModel)
         }
-    }
+    } // displayPopup
+    
+    // MARK: - goFullScreenCover
+    @ViewBuilder
+    private func goFullScreenCover() -> some View {
+        if isModeBtn == 0 { // Timer
+            DetailTimerView(isBackRootView: $isDetailStart)
+                .environmentObject(viewModel)
+        } else {
+            
+        } // if - else
+    } // goFullScreenCover
+    
+    // MARK: - Methods
+    // ...
+    // MARK: - buttonAction
+    private func buttonAction() {
+        if isModeBtn == 0 {
+            viewModel.createDetailTimerRounds()
+        } else {
+            
+        }
+        isDetailStart.toggle()
+    } // buttonAction
 }
 
 

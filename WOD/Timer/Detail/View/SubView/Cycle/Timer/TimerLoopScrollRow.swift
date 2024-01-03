@@ -8,7 +8,7 @@
 import SwiftUI
 
 // MARK: - TimerCycleScrollRow
-struct TimerCycleScrollRow: View {
+struct TimerLoopScrollRow: View {
     // MARK: Object
     @EnvironmentObject private var viewModel: DetailViewModel
     
@@ -24,7 +24,7 @@ struct TimerCycleScrollRow: View {
     var body: some View {
         HStack(alignment: .center, spacing: 0) {
             Button(action: {
-                viewModel.selectedTimerCycleIndex = idx
+                viewModel.selectedTimerLoopIndex = idx
                 selectType = .color
                 isPopup.toggle()
             }, label: {
@@ -44,7 +44,7 @@ struct TimerCycleScrollRow: View {
                 .frame(width: 15)
             
             Button(action: {
-                viewModel.selectedTimerCycleIndex = idx
+                viewModel.selectedTimerLoopIndex = idx
                 selectType = .text
                 isPopup.toggle()
             }, label: {
@@ -56,7 +56,7 @@ struct TimerCycleScrollRow: View {
             Spacer()
 
             Button(action: {
-                viewModel.selectedTimerCycleIndex = idx
+                viewModel.selectedTimerLoopIndex = idx
                 selectType = .time
                 isPopup.toggle()
             }, label: {

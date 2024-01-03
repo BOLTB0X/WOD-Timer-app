@@ -85,5 +85,5 @@ class SimpleViewModel: InputManager {
     @Published var widgetManager = WidgetManager()
 
     var timerCancellable: AnyCancellable? //   // 타이머 메모리 날리기 용
-    let simpleButtonType: [SimpleButton] = [.preparation, .round, .movements, .rest]
+    let simpleButtonType: [SimpleButton] = [.preparation, .movements, .rest, .round]
 }

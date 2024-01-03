@@ -93,7 +93,7 @@ extension DetailViewModel {
     // 재시작
     func detailTimerRestart() {
         detailTmRoundIdx = nil
-        //detailTotalTime = detailTmRounds.reduce(0) {$0 + ($1.movement + $1.rest) }
+        detailTotalTime = detailTmRounds.reduce(0) { $0 + ($1.totalMovementTime + $1.loopRest) }
         //nextSimpleTimerRound()
         return
     }

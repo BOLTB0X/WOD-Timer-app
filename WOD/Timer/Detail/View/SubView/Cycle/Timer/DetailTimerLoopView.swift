@@ -8,7 +8,7 @@
 import SwiftUI
 
 // MARK: - DetailTimerCycleSet
-struct DetailTimerCycleView: View {
+struct DetailTimerLoopView: View {
     // MARK: Environment
     @EnvironmentObject private var viewModel: DetailViewModel
     
@@ -54,7 +54,7 @@ struct DetailTimerCycleView: View {
                     backAction: {
                         rootView.toggle()
                     },
-                    title: "Cycle Set"
+                    title: "Movement loop"
                 ) // navigationBasicToolbar
         } // NavigationView
         // MARK: - alert
@@ -72,11 +72,11 @@ struct DetailTimerCycleView: View {
         if tableType == 1 {
             // MARK: main
             List {
-                ForEach(viewModel.timerCycleList.indices, id: \.self) { i in
-                    if viewModel.timerCycleList[i].type == .movement {
-                        TimerCycleListRow(
+                ForEach(viewModel.timerLoopList.indices, id: \.self) { i in
+                    if viewModel.timerLoopList[i].type == .movement {
+                        TimerLoopListRow(
                             isSelected: $viewModel.multiSelection,
-                            row: viewModel.timerCycleList[i]
+                            row: viewModel.timerLoopList[i]
                         )
                     }
                 } // ForEach
@@ -94,9 +94,9 @@ struct DetailTimerCycleView: View {
                 selectType: $selectType)
         } else {
             ScrollView {
-                ForEach(viewModel.timerCycleList.indices, id: \.self) { i in
-                    TimerCycleScrollRow(
-                        row: $viewModel.timerCycleList[i],
+                ForEach(viewModel.timerLoopList.indices, id: \.self) { i in
+                    TimerLoopScrollRow(
+                        row: $viewModel.timerLoopList[i],
                         isPopup: $showPopup,
                         selectType: $selectType,
                         idx: i)
@@ -134,7 +134,7 @@ struct DetailTimerCycleView: View {
 
 struct DetailTimerCycleSet_Previews: PreviewProvider {
     static var previews: some View {
-        DetailTimerCycleView(rootView: .constant(false))
+        DetailTimerLoopView(rootView: .constant(false))
             .environmentObject(DetailViewModel.shared)
     }
 }

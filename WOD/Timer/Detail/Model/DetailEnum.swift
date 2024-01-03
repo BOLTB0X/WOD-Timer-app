@@ -11,26 +11,25 @@ import Foundation
 // 각 버튼 별
 enum DetailButton {
     case round
-    case cycle
+    case loop
     case preparation
-    case movements
-    case moverest
-    case cycleRest
+    case loopRestColor
+    case preparationColor
+    case loopRest
 
     var buttonText: String {
         switch self {
         case .round:
             return "Round"
-        case .cycle:
-            return "Cycle"
+        case .loop:
+            return "Movement loop"
         case .preparation:
             return "Preparation"
-        case .movements:
-            return "Movements"
-        case .moverest:
-            return "moveRest"
-        case .cycleRest:
+        case .loopRest:
             return "Rest"
+            
+        default:
+            return "Color"
         }
     }
 }

@@ -24,13 +24,39 @@ struct DetailButtonSetRow: View {
         Button(action: {
             buttonAction()
         }, label: {
-            HStack(alignment: .center, spacing: 0) {
-                Text(btn.buttonText)
+            HStack(alignment: .center, spacing: 15) {
+                if btn == .loop || btn == .round {
+                    if btn == .loop {
+                        Image(systemName: "clock.arrow.circlepath")
+                            .resizable()
+                            .foregroundColor(Color("lightBlue1"))
+                            .frame(width: 30, height: 30)
+                    } else {
+                        Image(systemName: "clock.arrow.2.circlepath")
+                            .resizable()
+                            .foregroundColor(Color("lightBlue1"))
+                            .frame(width: 30, height: 30)
+                    }
+                }
                 
+                VStack(alignment: .leading, spacing: 0) {
+                    Text(btn.buttonText)
+                        .font(.headline)
+
+                    Text("\(viewModel.displaySubText(state: btn.buttonText))")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                } // VStack
                 Spacer()
                 
-                Text(viewModel.displayDetailSetValue(state: btn.buttonText, mode: isModeBtn))
-            }
+                if btn != .loop {
+                    Text(viewModel.displayDetailSetValue(state: btn.buttonText, mode: isModeBtn))
+                        .monospacedDigit()
+                } else {
+                    Image(systemName: "chevron.right")
+                        .foregroundColor(.secondary)
+                } // if - else
+            } // HStack
             .contentShape(Rectangle())
         }) // Button
         .buttonStyle(EffectButtonStyle())
@@ -41,9 +67,9 @@ struct DetailButtonSetRow: View {
     // MARK: - buttonAction
     private func buttonAction() {
         detailButton = btn
-        if btn == .preparation || btn == .cycleRest || btn == .round {
+        if btn == .preparation || btn == .loopRest || btn == .round {
             showPopup.toggle()
-        } else if btn == .cycle {
+        } else if btn == .loop {
             rootView.toggle()
         }
         return

@@ -38,7 +38,7 @@ struct DetailTimerMovementSet: View {
             } else if selectType == .defaultRestTime {
                 manager.selectedMovementAmount = viewModel.defaultRest.time
             } else {
-                manager.selectedMovementAmount = viewModel.timerCycleList[viewModel.selectedTimerCycleIndex].time
+                manager.selectedMovementAmount = viewModel.timerLoopList[viewModel.selectedTimerLoopIndex].time
             }
         }
         .navigationTitle("Movements")
@@ -53,7 +53,7 @@ struct DetailTimerMovementSet: View {
                 } else if selectType == .defaultRestTime {
                     viewModel.defaultRest.time = manager.selectedMovementAmount
                 } else {
-                    viewModel.timerCycleList[viewModel.selectedTimerCycleIndex].time = manager.selectedMovementAmount
+                    viewModel.timerLoopList[viewModel.selectedTimerLoopIndex].time = manager.selectedMovementAmount
                 }
                 showPopup.toggle()
             }

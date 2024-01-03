@@ -8,7 +8,7 @@
 import SwiftUI
 
 // MARK: - TimerCycleLisButtontRow
-struct TimerCycleListRow: View {
+struct TimerLoopListRow: View {
     // MARK: State
     @State private var isTouch: Bool = false
     

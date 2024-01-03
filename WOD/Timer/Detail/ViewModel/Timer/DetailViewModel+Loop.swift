@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - DetailViewModel + Cycle
+// MARK: - DetailViewModel + Loop
 // 사이클 셋팅 관련
 extension DetailViewModel {
     // MARK: Methods
@@ -16,10 +16,10 @@ extension DetailViewModel {
     // 운동 추가
     func createMovementItem() {
         if !betweenRest {
-            timerCycleList.append(defaultMove)
+            timerLoopList.append(defaultMove)
         } else {
-            timerCycleList.append(defaultRest)
-            timerCycleList.append(defaultMove)
+            timerLoopList.append(defaultRest)
+            timerLoopList.append(defaultMove)
         }
         return
     } // createMovementItem
@@ -27,7 +27,7 @@ extension DetailViewModel {
     // MARK: - moveCycleItem
     // 이동
     func moveCycleItem(from source: IndexSet, to destination: Int) {
-        timerCycleList.move(fromOffsets: source, toOffset: destination)
+        timerLoopList.move(fromOffsets: source, toOffset: destination)
      
         return
     } // moveCycleItem
@@ -37,39 +37,39 @@ extension DetailViewModel {
     func insertRestBetweenMovements() {
         var newList: [DetailItem] = []
         
-        for (index, item) in timerCycleList.enumerated() {
+        for (index, item) in timerLoopList.enumerated() {
             newList.append(item)
             
-            if timerCycleList[index].type == .rest {
+            if timerLoopList[index].type == .rest {
                 continue
             }
             
-            if index < timerCycleList.count - 1 && timerCycleList[index+1].type == .rest {
+            if index < timerLoopList.count - 1 && timerLoopList[index+1].type == .rest {
                 continue
             }
             
-            if index < timerCycleList.count - 1 {
+            if index < timerLoopList.count - 1 {
                 newList.append(defaultRest)
             }
         }
         
-        timerCycleList = newList
+        timerLoopList = newList
         return
     } // insertRestBetweenMovements
     
     // MARK: - removeRestBetweenMovements
     // 휴식 제거
     func removeRestBetweenMovements() {
-        timerCycleList = timerCycleList.filter { $0.type == .movement }
+        timerLoopList = timerLoopList.filter { $0.type == .movement }
         return
     } // removeRestBetweenMovements
     
     // MARK: - removeSelectedItems
     // 선택된 item 삭제
     func removeSelectedItems() {
-        guard !multiSelection.isEmpty, !timerCycleList.isEmpty, timerCycleList.count > 1 else { return }
+        guard !multiSelection.isEmpty, !timerLoopList.isEmpty, timerLoopList.count > 1 else { return }
         
-        timerCycleList.removeAll { multiSelection.contains($0.id) }
+        timerLoopList.removeAll { multiSelection.contains($0.id) }
         multiSelection.removeAll()
         return
     } // removeSelectedItems
@@ -77,10 +77,10 @@ extension DetailViewModel {
     // MARK: - sortTimerCycleList
     // 재정렬
     func sortTimerCycleList() {
-        guard timerCycleList.count > 1 else { return }
+        guard timerLoopList.count > 1 else { return }
         
-        let movements = timerCycleList.filter { $0.type == .movement }
-        let rests = timerCycleList.filter { $0.type == .rest }
+        let movements = timerLoopList.filter { $0.type == .movement }
+        let rests = timerLoopList.filter { $0.type == .rest }
         
         var reorderedList: [DetailItem] = []
         
@@ -95,7 +95,7 @@ extension DetailViewModel {
         }
         
         // 업데이트
-        timerCycleList = reorderedList
+        timerLoopList = reorderedList
         return
     } // sortTimerCycleList
     
@@ -104,7 +104,7 @@ extension DetailViewModel {
         if tableType.wrappedValue == 0 {
             createMovementItem()
         } else { // edit 모드
-            let timerCycleListMove = timerCycleList.filter { $0.type == .movement }.count
+            let timerCycleListMove = timerLoopList.filter { $0.type == .movement }.count
 
             if multiSelection.isEmpty {
                 alretMoniter = .empty

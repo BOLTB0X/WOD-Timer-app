@@ -29,6 +29,7 @@ extension DetailViewModel {
         }
     }
     
+    
     // MARK: - Methods
     // ..
     // MARK: - displaySetValue
@@ -39,8 +40,8 @@ extension DetailViewModel {
                 return String(selectedRoundAmount)
             case "Preparation":
                 return String(format: "00:%02d", selectedPreparationAmount)
-            case "Cycle":
-                return "Set Yourself"
+            case "Movement loop":
+                return ">"
             case "Rest":
                 return String(format: "%02d:%02d", selectedRestAmount.minutes,selectedRestAmount.seconds)
             default:
@@ -51,10 +52,24 @@ extension DetailViewModel {
                 return String(selectedRoundAmount)
             } else if state == "Preparation" {
                 return String(format: "00:%02d", selectedPreparationStop)
-            } else if state == "Cycle" {
+            } else if state == "Self section" {
                 return "Set Yourself, Yourself Stop"
             }
             return "Yourself Stop"
         }
+    }
+    
+    // MARK: - displaySubText
+    func displaySubText(state: String) -> String {
+        if state == "Preparation" {
+            return "Countdown before start"
+        } else if state == "Round" {
+            return "1Round = Loop + Rest"
+        } else if state == "Rest" {
+            return "Breaktime after loop"
+        } else if state == "Movement loop" {
+            return "Your exercises + opional Rest"
+        }
+        return ""
     }
 }

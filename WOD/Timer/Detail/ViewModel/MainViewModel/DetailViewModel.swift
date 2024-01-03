@@ -30,18 +30,19 @@ class DetailViewModel: InputManager {
                 insertRestBetweenMovements()
             } else {
                 removeRestBetweenMovements()
-                //timerCycleList = timerCycleList.filter { $0.type != .rest }
             }
-        }
+        } // didSet
     }
     
-    let detailButtonType: [DetailButton] = [.preparation, .round, .cycle, .cycleRest]
+    let detailButtonType: [DetailButton] = [.preparation, .loop, .loopRest, .round]
     var timerCancellable: AnyCancellable? //   // 타이머 메모리 날리기 용
 
     // ...
     // MARK: - Timer
-    @Published var timerCycleList: [DetailItem] = [DetailItem(type: .movement, title: "Movement1"), DetailItem(type: .movement, title: "Movement2")]
-    @Published var selectedTimerCycleIndex: Int = 0
+    @Published var timerPreparationColor: Int  = 15
+    @Published var timerLoopRestColor: Int = 8
+    @Published var timerLoopList: [DetailItem] = [DetailItem(type: .movement, title: "Movement1"), DetailItem(type: .movement, title: "Movement2")]
+    @Published var selectedTimerLoopIndex: Int = 0
     @Published var detailTmRounds: [DetailRound] = [] // 디테일 타이머 배열
     @Published var detailTmRoundIdx: Int? // 진행
     @Published var detailTimerCompletion: String = "X" // 완료일
@@ -74,6 +75,5 @@ class DetailViewModel: InputManager {
     @Published var selectedStopCycleIndex: Int = 0
     @Published var detailSwRounds: [DetailRound] = [] // 디테일 스톱워치 배열
     @Published var detailSwRoundIdx: Int? // 진행
-    
     // ...
 }
