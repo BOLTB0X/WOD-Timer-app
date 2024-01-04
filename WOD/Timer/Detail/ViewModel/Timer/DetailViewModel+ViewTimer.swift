@@ -5,6 +5,7 @@
 //  Created by lkh on 1/3/24.
 //
 
+import SwiftUI
 import Foundation
 
 // MARK: - DetailViewModel+View Timer
@@ -14,13 +15,13 @@ extension DetailViewModel {
     // ..
     // MARK: - confirmationMessage
     var confirmationMessage: String {
-        return """
-            Are you sure you want to start?
-            Total Round: \(selectedRoundAmount)
+        """
+            Starting with current settings?\n
             Select Preparation: \(selectedPreparationAmount)
-            Select Movement: \(timerLoopList.count)
+            Select Loop: \(setViewTempTotalLoopState())
             Select Rest: \(selectedRestAmount.totalSeconds)
-            Total Second: \(detailTotalTime)
+            Total Round: \(selectedRoundAmount)\n
+            Total Second: \(setViewTempTotalTime)
         """
     }
     
@@ -38,6 +39,33 @@ extension DetailViewModel {
             return currentRoundIdx != detailTmRounds.count - 1 ? "Rest" : "Rest X"
         case .rest:
             return "Movement"
+        default:
+            return "END"
+        }
+    }
+    
+    // MARK: - nextTimerTime
+    var nextTimerTime: String {
+        guard let currentRoundIdx = detailTmRoundIdx,
+              currentRoundIdx < detailTmRounds.count else {
+            return "00:00"
+        }
+        
+        switch detailRoundPhase {
+        case .preparation:
+            return detailTmRounds[currentRoundIdx].movement[selectedTimerLoopIndex].time.totalSeconds.asTimestamp
+        case .movement:
+            if detailTmRounds[currentRoundIdx].movement[selectedTimerLoopIndex].time.totalSeconds > 0 {
+                return detailTmRounds[currentRoundIdx].movement[selectedTimerLoopIndex].time.totalSeconds.asTimestamp
+            } else {
+                return "END"
+            }
+        case .rest:
+            if currentRoundIdx + 1 < detailTmRounds.count {
+                return detailTmRounds[currentRoundIdx].movement[selectedTimerLoopIndex].time.totalSeconds.asTimestamp
+            } else {
+                return "NEXT"
+            }
         default:
             return "END"
         }
@@ -81,5 +109,25 @@ extension DetailViewModel {
     // MARK: - isDisplayToolbarTmBtn
     var isDisplayToolbarTmBtn: Bool {
         detailState == .paused || detailTmRoundIdx ?? 0 == selectedRoundAmount
+    }
+    
+    // MARK: - isTmEnd
+    var isTmEnd: Color {
+        detailTmRoundIdx ?? 0 < detailTmRounds.count ? Color(.black).opacity(0.3) : phaseBackgroundColor
+    }
+        
+    // MARK: - setViewTempTotalTime
+    private var setViewTempTotalTime: Int {
+        timerLoopList.reduce(0) { $0 + $1.time.totalSeconds } * selectedRoundAmount + selectedLoopRestAmount.totalSeconds * (selectedRoundAmount - 1)
+    }
+    
+    private func setViewTempTotalLoopState() -> String {
+        var ret: String = "Exercise: \(timerLoopList.filter {$0.type == .movement}.count)"
+        
+        if timerLoopList.filter {$0.type == .rest}.count > 0 {
+            ret += " Rest: \(timerLoopList.filter {$0.type == .rest}.count)"
+        }
+        
+        return ret
     }
 }

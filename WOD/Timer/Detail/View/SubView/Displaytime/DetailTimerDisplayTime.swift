@@ -1,17 +1,16 @@
 //
-//  SimpleTimerDisplayTime.swift
+//  DetailTimerDisplayTime.swift
 //  Timer
 //
-//  Created by lkh on 12/21/23.
+//  Created by KyungHeon Lee on 2024/01/04.
 //
 
 import SwiftUI
 
-// MARK: - SimpleTimerDisplayTime
-struct SimpleTimerDisplayTime: View {
+struct DetailTimerDisplayTime: View {
     // MARK: Object
-    @EnvironmentObject private var viewModel: SimpleViewModel
-
+    @EnvironmentObject private var viewModel: DetailViewModel
+    
     // MARK: - View
     var body: some View {
         // MARK: main
@@ -19,7 +18,7 @@ struct SimpleTimerDisplayTime: View {
             // 현재 라운드
             
             Button(action: {
-                viewModel.speakingProcessingRound()
+//                viewModel.speakingProcessingRound()
             }) {
                 Text(viewModel.currentTimerRoundDisplay)
                     .font(.system(size: 60, weight: .bold))
@@ -29,16 +28,16 @@ struct SimpleTimerDisplayTime: View {
             .padding()
             
             
-            SimpleRealTime()
+            DetailRealTime()
                 .environmentObject(viewModel)
                 .padding()
             
-            SimpleNextRealTime()
+            DetailNextRealTime()
                 .environmentObject(viewModel)
                 .padding()
             
             Button(action: {
-                viewModel.speakingRemainingRound()
+                //viewModel.speakingRemainingRound()
             }) {
                 Text(viewModel.currentTimerRemainingRounds)
                     .font(.system(size: 30, weight: .semibold))
@@ -53,9 +52,9 @@ struct SimpleTimerDisplayTime: View {
     }
 }
 
-struct SimpleTimerDisplayTime_Previews: PreviewProvider {
+struct DetailTimerDisplayTime_Previews: PreviewProvider {
     static var previews: some View {
-        SimpleTimerDisplayTime()
-            .environmentObject(SimpleViewModel.shared)
+        DetailTimerDisplayTime()
+            .environmentObject(DetailViewModel.shared)
     }
 }

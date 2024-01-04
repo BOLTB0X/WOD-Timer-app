@@ -14,6 +14,7 @@ class DetailViewModel: InputManager {
     // MARK: - 프로퍼티s
     // ...
     // MARK: - Common
+    @Published var detailCompletion: Date? // 완료일
     @Published var detailDisplay: Int = 0
     @Published var detailTotalTime:Int = 0 // 디테일 셋 배열의 총 시간
     @Published var detailRoundPhase: DetailRoundPhase?

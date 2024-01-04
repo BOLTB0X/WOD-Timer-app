@@ -23,6 +23,20 @@ struct DetailTimerView: View {
         NavigationView {
             // MARK: main
             VStack(alignment: .center, spacing: 0) {
+                Spacer()
+                
+                // MARK: DetailTimerDisplayTime
+                DetailTimerDisplayTime()
+                    .environmentObject(viewModel)
+                
+                Spacer()
+                
+                Divider()
+                
+                // MARK: DetailTimerControl
+                DetailTimerControl()
+                    .environmentObject(viewModel)
+                
             } // VStack
             
             // MARK: - side
@@ -48,7 +62,7 @@ struct DetailTimerView: View {
             } // toolbar
         } // NavigationView
         .onAppear {
-            //viewModel.nextDetailTimerRound()
+            viewModel.nextDetailTimerRound()
         }
     } // body
 }

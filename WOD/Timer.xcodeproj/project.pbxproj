@@ -149,6 +149,10 @@
 		BE62D1712B3173D800E1B233 /* TimerWidgetAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE62D1702B3173D800E1B233 /* TimerWidgetAttributes.swift */; };
 		BE62D1722B31741700E1B233 /* TimerWidgetAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE62D1702B3173D800E1B233 /* TimerWidgetAttributes.swift */; };
 		BE62D1732B31747200E1B233 /* Extension+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562164D12B08D6E5008E472B /* Extension+Type.swift */; };
+		BE7E91AB2B46ACD200F200B5 /* DetailTimerDisplayTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7E91AA2B46ACD200F200B5 /* DetailTimerDisplayTime.swift */; };
+		BE7E91AD2B46ADAA00F200B5 /* DetailRealTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7E91AC2B46ADAA00F200B5 /* DetailRealTime.swift */; };
+		BE7E91AF2B46ADC100F200B5 /* DetailNextRealTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7E91AE2B46ADC100F200B5 /* DetailNextRealTime.swift */; };
+		BE7E91B12B46B50000F200B5 /* DetailTimerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7E91B02B46B50000F200B5 /* DetailTimerControl.swift */; };
 		BEA72DCE2B2F1B70004BC9D9 /* whistle_counting.caf in Resources */ = {isa = PBXBuildFile; fileRef = BEA72DCD2B2F1B2B004BC9D9 /* whistle_counting.caf */; };
 /* End PBXBuildFile section */
 
@@ -318,6 +322,10 @@
 		BE62D1622B312C2600E1B233 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE62D16D2B3173A400E1B233 /* WidgetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetManager.swift; sourceTree = "<group>"; };
 		BE62D1702B3173D800E1B233 /* TimerWidgetAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWidgetAttributes.swift; sourceTree = "<group>"; };
+		BE7E91AA2B46ACD200F200B5 /* DetailTimerDisplayTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTimerDisplayTime.swift; sourceTree = "<group>"; };
+		BE7E91AC2B46ADAA00F200B5 /* DetailRealTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRealTime.swift; sourceTree = "<group>"; };
+		BE7E91AE2B46ADC100F200B5 /* DetailNextRealTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNextRealTime.swift; sourceTree = "<group>"; };
+		BE7E91B02B46B50000F200B5 /* DetailTimerControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTimerControl.swift; sourceTree = "<group>"; };
 		BEA72DCD2B2F1B2B004BC9D9 /* whistle_counting.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = whistle_counting.caf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -551,9 +559,11 @@
 		568F1D4F2B3A8DCB00E1D58A /* SubView */ = {
 			isa = PBXGroup;
 			children = (
+				BE7E91A92B46ACA900F200B5 /* Displaytime */,
 				568F1D592B3BDEA100E1D58A /* Common */,
 				56B741DF2B42D5F300F369CA /* Cycle */,
 				568F1D522B3BA74400E1D58A /* Setting */,
+				BE7E91B02B46B50000F200B5 /* DetailTimerControl.swift */,
 			);
 			path = SubView;
 			sourceTree = "<group>";
@@ -574,6 +584,7 @@
 				56B741D72B3C620A00F369CA /* DetailCycleTop.swift */,
 				56B741DD2B4116E600F369CA /* DetailDefaultState.swift */,
 				56B741F02B42DE7600F369CA /* DetailDefaultRow.swift */,
+				BE7E91AC2B46ADAA00F200B5 /* DetailRealTime.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -873,6 +884,15 @@
 			path = Widget;
 			sourceTree = "<group>";
 		};
+		BE7E91A92B46ACA900F200B5 /* Displaytime */ = {
+			isa = PBXGroup;
+			children = (
+				BE7E91AA2B46ACD200F200B5 /* DetailTimerDisplayTime.swift */,
+				BE7E91AE2B46ADC100F200B5 /* DetailNextRealTime.swift */,
+			);
+			path = Displaytime;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1035,6 +1055,7 @@
 				56B741E52B42DB5500F369CA /* DeatilTimerPreparationSet.swift in Sources */,
 				568F1D042B32F8EC00E1D58A /* SimpleTimerControl.swift in Sources */,
 				568F1CF72B32ADAC00E1D58A /* SegmentedButton.swift in Sources */,
+				BE7E91AF2B46ADC100F200B5 /* DetailNextRealTime.swift in Sources */,
 				568F1D672B3BF8C000E1D58A /* DetailViewModel+Loop.swift in Sources */,
 				568F1D2F2B35680400E1D58A /* DetailButtonSetRow.swift in Sources */,
 				568F1CF02B3283C700E1D58A /* SimpleTimerRestSet.swift in Sources */,
@@ -1055,6 +1076,7 @@
 				568F1D512B3A911C00E1D58A /* ColorSegment.swift in Sources */,
 				56B741FB2B42E04E00F369CA /* SimpleRoundStopSet.swift in Sources */,
 				568F1D242B35552D00E1D58A /* CardCellRow.swift in Sources */,
+				BE7E91B12B46B50000F200B5 /* DetailTimerControl.swift in Sources */,
 				56B742062B44506E00F369CA /* DetailTimerView.swift in Sources */,
 				56AF0AD92AE892B5009AF8A2 /* TimerApp.swift in Sources */,
 				56A998802AF6799A000D5C99 /* SettingPicker.swift in Sources */,
@@ -1078,6 +1100,7 @@
 				56B7420C2B4548EC00F369CA /* DeatilTimerPreparationColorSet.swift in Sources */,
 				568F1CF92B32B72700E1D58A /* SectionHeader.swift in Sources */,
 				BE62D16E2B3173A400E1B233 /* WidgetManager.swift in Sources */,
+				BE7E91AD2B46ADAA00F200B5 /* DetailRealTime.swift in Sources */,
 				568F1D1D2B341E1700E1D58A /* ScrollTestView.swift in Sources */,
 				56B742002B4394C200F369CA /* DetailViewModel+Timer.swift in Sources */,
 				562FC9202B245ECF0038731B /* ToolbarButton.swift in Sources */,
@@ -1091,6 +1114,7 @@
 				568F1D182B33F80700E1D58A /* CommonModel.swift in Sources */,
 				5697A7D42AFF431400ADBBD1 /* InputManager.swift in Sources */,
 				56AF0AF22AE9F4B3009AF8A2 /* RealTime.swift in Sources */,
+				BE7E91AB2B46ACD200F200B5 /* DetailTimerDisplayTime.swift in Sources */,
 				56B741E72B42DB7800F369CA /* DetailTimerRoundSet.swift in Sources */,
 				BE62D1642B312C2600E1B233 /* TimerWidget.intentdefinition in Sources */,
 				562164D92B08DA26008E472B /* SimpleEnum.swift in Sources */,

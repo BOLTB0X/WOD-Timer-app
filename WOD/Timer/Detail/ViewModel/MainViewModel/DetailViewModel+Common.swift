@@ -72,4 +72,27 @@ extension DetailViewModel {
         }
         return ""
     }
+    
+    // MARK: - updateDetailCompletionDate
+    func updateDetailCompletionDate() {
+        detailCompletion = Date().addingTimeInterval(Double(detailDisplay))
+        print("완료", detailCompletion ?? "")
+        return
+    }
+    
+    // MARK: - updateBackgroundColor
+    func updateBackgroundColor() {
+        guard let phase = detailRoundPhase, let idx = detailTmRoundIdx else { return }
+        
+        switch phase {
+        case .preparation:
+            phaseBackgroundColor = Color(timerPreparationColor.IndexToColor)
+        case .movement:
+            phaseBackgroundColor = Color(detailTmRounds[idx].movement[selectedTimerLoopIndex].color.IndexToColor)
+        case .rest:
+            phaseBackgroundColor = Color(timerLoopRestColor.IndexToColor)
+        case .completed:
+            phaseBackgroundColor = Color(.systemGray)
+        }
+    }
 }

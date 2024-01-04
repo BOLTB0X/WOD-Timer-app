@@ -42,12 +42,13 @@ extension DetailViewModel {
         return
     }
     
+    
     /*==================================================================================*/
     // MARK: - phase, Round Update Method
     // ...
-    // MARK: - nextSimpleTimerRound
+    // MARK: - nextDetailTimerRound
     // 다음 라운드로 이동
-    func nextSimpleTimerRound() {
+    func nextDetailTimerRound() {
         if detailTmRounds.isEmpty { return }
         
         // 첫 시작, 준비 카운트를 진행해야할지 판단
@@ -133,7 +134,7 @@ extension DetailViewModel {
             
         case .rest:
             // 현재 라운드의 모든 단계가 완료된 경우 -> 다음 라운드로 이동
-            nextSimpleTimerRound()
+            nextDetailTimerRound()
             
         default:
             break
@@ -155,4 +156,16 @@ extension DetailViewModel {
         
         return
     }
+    
+    // MARK: - updateTimerPhaseStart
+    // 각 루틴 실행 기록 업데이트
+    func updateTimerPhaseStart(idx: Int, currentPhase: SimpleRoundPhase) {
+//        if currentPhase == .movement && detailTmRounds[idx].date.movementStart == "" {
+//            simpleTmRounds[idx].date.movementStart = Date().formatted("yyyy-MM-dd HH:mm:ss")
+//        } else if currentPhase == .rest && simpleTmRounds[idx].date.restStart == "" {
+//            simpleTmRounds[idx].date.restStart = Date().formatted("yyyy-MM-dd HH:mm:ss")
+//        }
+        return
+    }
+    
 }

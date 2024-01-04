@@ -63,10 +63,10 @@ extension DetailViewModel {
     func completedCurrentTimer() {
         timerCancellable?.cancel()
         detailState = .completed
-        //updateSimpleTimerCompletion() // 기록
+        updateDetailTimerCompletion() // 기록
         detailUnitProgress = 0.0
         // 다음 라운드 페이즈로 이동
-        //nextSimpleTimerRoundPhase()
+        nextDetailTimerRoundPhase()
         return
     }
     
