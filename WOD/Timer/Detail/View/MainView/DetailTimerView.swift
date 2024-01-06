@@ -41,7 +41,7 @@ struct DetailTimerView: View {
             
             // MARK: - side
             .navigationTitle(
-                Text("\(viewModel.detailTotalTime.asTimestamp)")
+                Text("\(viewModel.detailRTotalTime.asTimestamp)")
                     .bold()
                     .foregroundColor(.black))
             .navigationBarTitleDisplayMode(.inline)
@@ -52,7 +52,8 @@ struct DetailTimerView: View {
                     ToolbarButton(action: {
                         viewModel.detailTimerCanclled()
                         isBackRootView.toggle()},
-                        condition:  viewModel.isDisplayToolbarTmBtn, systemName: "arrow.backward")
+                        condition:  viewModel.isDisplayToolbarTmBtn,
+                        systemName: "arrow.backward")
                 }
                 
                 // MARK: 오른쪽 새로고침

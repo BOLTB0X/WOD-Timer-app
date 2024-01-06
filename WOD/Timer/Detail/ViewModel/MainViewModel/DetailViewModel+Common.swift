@@ -87,12 +87,12 @@ extension DetailViewModel {
         switch phase {
         case .preparation:
             phaseBackgroundColor = Color(timerPreparationColor.IndexToColor)
-        case .loopMovement:
-            phaseBackgroundColor = Color(detailTmRounds[idx].movement[selectedTimerLoopIndex].color.IndexToColor)
-        case .loopRest:
-            phaseBackgroundColor = Color(detailTmRounds[idx].movement[selectedTimerLoopIndex].color.IndexToColor)
+        case .loopMovement, .loopRest:
+            if let color = detailTmRounds[idx].color {
+                phaseBackgroundColor = Color(color.IndexToColor)
+            }
         case .rest:
-            phaseBackgroundColor = Color(timerLoopRestColor.IndexToColor)
+            phaseBackgroundColor = Color(timerRestColor.IndexToColor)
         case .completed:
             phaseBackgroundColor = Color(.systemGray)
         }

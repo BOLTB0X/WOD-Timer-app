@@ -52,11 +52,12 @@ extension SimpleViewModel {
                     self.updateSimpleUnitProgress()
                 }
                 
-                
                 if self.simpleDisplay < 0 {
                     self.completedCurrentTimer() // 완료
                 }
             } // sink
+        
+        return
     }
     
     // MARK: - completedCurrentTimer

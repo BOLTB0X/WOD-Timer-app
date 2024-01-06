@@ -37,6 +37,7 @@ struct ControlButton: View {
     
     // MARK: View
     var body: some View {
+        // MARK: main
         GeometryReader { geometry in
             ZStack {
                 Button(action: {
@@ -63,6 +64,6 @@ struct ControlButton: View {
                 .buttonStyle(EffectButtonStyle())
             } // ZStack
         } // GeometryReader
-    }
+    } // body
 }
 

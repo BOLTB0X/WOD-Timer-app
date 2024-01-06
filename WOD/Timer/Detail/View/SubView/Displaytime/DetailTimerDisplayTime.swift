@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// MARK: - DetailTimerDisplayTime
 struct DetailTimerDisplayTime: View {
     // MARK: Object
     @EnvironmentObject private var viewModel: DetailViewModel

@@ -16,7 +16,8 @@ class DetailViewModel: InputManager {
     // MARK: - Common
     @Published var detailCompletion: Date? // 완료일
     @Published var detailDisplay: Int = 0
-    @Published var detailTotalTime:Int = 0 // 디테일 셋 배열의 총 시간
+    @Published var detailRTotalTime:Int = 0 // 디테일 셋 배열의 총 시간
+    @Published var detailSTotalTime:Int = 0 // 디테일 셋 배열의 총 시간
     @Published var detailRoundPhase: DetailRoundPhase?
     @Published var phaseBackgroundColor: Color = .clear
     @Published var controlBtn: Bool = false // 바인딩할 프로퍼티
@@ -41,10 +42,10 @@ class DetailViewModel: InputManager {
     // ...
     // MARK: - Timer
     @Published var timerPreparationColor: Int  = 15
-    @Published var timerLoopRestColor: Int = 8
+    @Published var timerRestColor: Int = 8
     @Published var timerLoopList: [DetailItem] = [DetailItem(type: .movement, title: "Movement1"), DetailItem(type: .movement, title: "Movement2")]
     @Published var selectedTimerLoopIndex: Int = 0
-    @Published var detailTmRounds: [DetailRound] = [] // 디테일 타이머 배열
+    @Published var detailTmRounds: [DetailTmRound] = [] // 디테일 타이머 배열
     @Published var detailTmRoundIdx: Int? // 진행
     @Published var detailTimerCompletion: String = "X" // 완료일
     @Published var detailUnitProgress: Float = 0.0

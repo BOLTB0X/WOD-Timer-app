@@ -27,53 +27,51 @@ extension DetailViewModel {
     
     // MARK: - nextTimerPhase
     var nextTimerPhase: String {
-        guard let currentRoundIdx = detailTmRoundIdx,
-              currentRoundIdx < detailTmRounds.count else {
-            return "END"
+        guard let idx = detailTmRoundIdx, let phase = detailRoundPhase else {
+            return "Nothing"
         }
         
-        switch detailRoundPhase {
-        case .preparation:
-            return "Movement"
-        case .loopMovement, .loopRest:
-            return currentRoundIdx != detailTmRounds.count - 1 ? "Rest" : "Rest X"
-        case .rest:
-            return "Movement"
-        default:
-            return "END"
+        if idx + 1 < detailTmRounds.count && detailTmRounds[idx + 1].currentRound <= selectedRoundAmount {
+            switch phase {
+            case .preparation:
+                return phase.phaseText
+            case .loopMovement:
+                return detailTmRounds[idx+1].title ?? "Movement"
+            case .loopRest:
+                return detailTmRounds[idx+1].title ?? "Rest in loop"
+            case .rest:
+                return phase.phaseText
+            case .completed:
+                return "END"
+            }
+            //return detailTmRounds[idx + 1].currentPhase.phaseText
         }
+        
+        return "END"
     }
     
     // MARK: - nextTimerTime
     var nextTimerTime: String {
-        guard let currentRoundIdx = detailTmRoundIdx,
-              currentRoundIdx < detailTmRounds.count else {
+        guard let idx = detailTmRoundIdx else {
             return "00:00"
         }
         
-        switch detailRoundPhase {
-        case .preparation:
-            return detailTmRounds[currentRoundIdx].movement[selectedTimerLoopIndex].time.totalSeconds.asTimestamp
-        case .loopMovement, .loopRest:
-            if detailTmRounds[currentRoundIdx].movement[selectedTimerLoopIndex].time.totalSeconds > 0 {
-                return detailTmRounds[currentRoundIdx].movement[selectedTimerLoopIndex].time.totalSeconds.asTimestamp
-            } else {
-                return "END"
-            }
-        case .rest:
-            if currentRoundIdx + 1 < detailTmRounds.count {
-                return detailTmRounds[currentRoundIdx].movement[selectedTimerLoopIndex].time.totalSeconds.asTimestamp
-            } else {
-                return "NEXT"
-            }
-        default:
-            return "END"
+        if idx + 1 < detailTmRounds.count &&  detailTmRounds[idx + 1].currentRound <= selectedRoundAmount {
+            return detailTmRounds[idx + 1].time.totalSeconds.asTimestamp
         }
+        
+        return "END"
     }
     
     // MARK: - currentTimerRoundDisplay
     var currentTimerRoundDisplay: String {
-        detailTmRoundIdx ?? 0 < selectedRoundAmount ? "\((detailTmRoundIdx ?? 0) + 1) Round" : "\(selectedRoundAmount) Round"
+        guard let idx = detailTmRoundIdx else {
+            return "Nothing"
+        }
+        if idx < detailTmRounds.count {
+            return "\(detailTmRounds[idx].currentRound) Round"
+        }
+        return "Completed"
     }
     
     // MARK: - currentTimerRoundString
@@ -82,13 +80,35 @@ extension DetailViewModel {
     }
     
     // MARK: - currentPhaseText
-    var currentPhaseText: String {
-        detailRoundPhase?.phaseText ?? ""
+    var currentTitle: String {
+        guard let idx = detailTmRoundIdx, let phase = detailRoundPhase else {
+            return "Nothing"
+        }
+        
+        switch phase {
+        case .preparation:
+            return phase.phaseText
+        case .loopMovement:
+            return detailTmRounds[idx].title ?? "Movement"
+        case .loopRest:
+            return detailTmRounds[idx].title ?? "Rest in loop"
+        case .rest:
+            return phase.phaseText
+        case .completed:
+            return "END"
+        }
     }
     
     // MARK: - currentTimerDisplayTime
     var currentTimerDisplayTime: String {
-        detailTmRoundIdx ?? 0 < selectedRoundAmount ? detailDisplay.asTimestamp : "END"
+        guard let idx = detailTmRoundIdx else {
+            return "END"
+        }
+        
+        if detailTmRounds[idx].currentRound <= selectedRoundAmount {
+            return detailDisplay.asTimestamp
+        }
+        return "END"
     }
     
     // MARK: - currentTimerRemainingString
@@ -98,22 +118,25 @@ extension DetailViewModel {
     
     // MARK: - currentRemainingRounds
     var currentTimerRemainingRounds: String {
-        switch detailRoundPhase {
-        case .preparation:
-            return "Remaining: \(selectedRoundAmount) Round"
-        default:
-            return "Remaining: \(selectedRoundAmount - ((detailTmRoundIdx ?? 0) + 1)) Round"
+        guard let idx = detailTmRoundIdx else {
+            return "Nothing"
         }
+        
+        return "Remaining \(selectedRoundAmount - detailTmRounds[idx].currentRound)"
     }
     
     // MARK: - isDisplayToolbarTmBtn
     var isDisplayToolbarTmBtn: Bool {
-        detailState == .paused || detailTmRoundIdx ?? 0 == selectedRoundAmount
+        guard let idx = detailTmRoundIdx else { return true }
+        
+        return detailState == .paused || idx == detailTmRounds.count || detailState == .completed
     }
     
     // MARK: - isTmEnd
     var isTmEnd: Color {
-        detailTmRoundIdx ?? 0 < detailTmRounds.count ? Color(.black).opacity(0.3) : phaseBackgroundColor
+        guard let phase = detailRoundPhase else { return .clear }
+        
+        return phase != .completed ? Color(.black).opacity(0.3) : phaseBackgroundColor
     }
     
     // MARK: - in using

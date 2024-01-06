@@ -17,28 +17,39 @@ extension DetailViewModel {
     func createDetailTimerRounds() {
         detailTmRounds = [] // 초기화
         
-        for i in 0..<selectedRoundAmount {
-            if i == selectedRoundAmount - 1 {
-                detailTmRounds.append(DetailRound(movement: timerLoopList, loopRest: 0, date: StartComplted()))
-            } else {
-                detailTmRounds.append(DetailRound(movement: timerLoopList, loopRest: selectedLoopRestAmount.totalSeconds, date: StartComplted()))
-            } // if - else
-        } // for
+        // 준비
+        detailTmRounds.append(DetailTmRound(currentRound: 0, currentPhase: .preparation, time: MovementTime(seconds: selectedPreparationAmount)))
         
-        detailTotalTime = detailTmRounds.reduce(0) { $0 + ($1.totalMovementTime + $1.roundRest) }
+        for i in 0..<selectedRoundAmount {
+            // Loop
+            for j in 0..<timerLoopList.count {
+                let round = i + 1
+                let curPhase: DetailRoundPhase = timerLoopList[j].type == .movement ? .loopMovement : .loopRest
+                let title = timerLoopList[j].title
+                let time = timerLoopList[j].time
+                let color = timerLoopList[j].color
+
+                detailTmRounds.append(DetailTmRound(currentRound: round, currentPhase: curPhase, currentLoop: j+1, lengthLoop: timerLoopList.count, title: title, time: time, color: color))
+            }
+            
+            // Rest
+            if i == selectedRoundAmount - 1 {
+                continue
+            } else {
+                detailTmRounds.append(DetailTmRound(currentRound: i+1, currentPhase: .rest, time: selectedRestAmount))
+            }
+        }
+        
+        detailRTotalTime = detailTmRounds.reduce(0) { $0 + $1.time.totalSeconds } - selectedPreparationAmount
+        detailSTotalTime = 0
         return
     }
     
     // MARK: - updateDetailTimerCompletion
     func updateDetailTimerCompletion() {
-        guard let idx = detailTmRoundIdx, let currentPhase = detailRoundPhase else { return }
+        guard let idx = detailTmRoundIdx else { return }
         
-        if currentPhase == .loopMovement || currentPhase == .loopRest {
-            detailTmRounds[idx].date.movementComplted = Date().formatted("yyyy-MM-dd HH:mm:ss")
-        } else if currentPhase == .rest {
-            detailTmRounds[idx].date.restComplted = Date().formatted("yyyy-MM-dd HH:mm:ss")
-        }
-        
+        detailTmRounds[idx].endDate = Date().formatted("yyyy-MM-dd HH:mm:ss")
         return
     }
     
@@ -54,91 +65,52 @@ extension DetailViewModel {
         // 첫 시작, 준비 카운트를 진행해야할지 판단
         if isTimerFirstStart() { return }
       
-        movingIndex_InDetailTimerRounds()
-        
+        nextTimer()
         return
     }
     
     // MARK: - isFirstStart
     // 루틴 타이머가 첫 시작인지 체크 메소드
     func isTimerFirstStart() -> Bool {
-        // 첫 시작, 준비 카운트부터
+        // 첫 시작, 준비 카운트 셋팅
         if detailTmRoundIdx == nil {
             detailTmRoundIdx = 0
             detailRoundPhase = .preparation
             updateBackgroundColor()
-            
-            detailDisplay = selectedPreparationAmount
+            detailDisplay = detailTmRounds[0].time.totalSeconds
             detailState = controlBtn ? .paused : .active
             return true
-        } else {
-            return false
         }
+        
+        return false
     }
     
-    // MARK: - movingIndex_InDetailTimerRounds
-    // detailRounds 배열 인덱스가 움직일 때, update 메소드
-    func movingIndex_InDetailTimerRounds() {
-        guard let _ = detailTmRoundIdx else { return }
+    // MARK: - nextTimer
+    // 타이머 진행 메소드
+    func nextTimer() {
+        guard var idx = detailTmRoundIdx else { return }
         
-        detailTmRoundIdx! += 1
+        idx += 1
         
-        // 완료
-        guard let idx = detailTmRoundIdx, idx < detailTmRounds.count else {
-            // 더 이상 진행할 라운드가 없으면 완료 상태로 변경
+        // 타이머 셋팅 값을 다 순회했는지 가드
+        guard idx < detailTmRounds.count else {
             detailRoundPhase = .completed
             detailState = .completed
             detailDisplay = 0
             updateBackgroundColor()
             detailTimerCompletion = Date().formatted("yyyy-MM-dd HH:mm:ss")
-            
-            // 테스트
-            for tm in detailTmRounds {
-                print("운동 시작 시간: ", tm.date.movementStart)
-                print("운동 완료 시간: ", tm.date.movementComplted)
-                print("휴식 시작 시간: ", tm.date.restStart)
-                print("휴식 완료 시간: ", tm.date.restComplted)
-                print("===================================================")
-            }
-            print("총 타이머 완료", detailTimerCompletion)
             return
         }
         
-        let currentRound = detailTmRounds[idx]
-        detailDisplay = currentRound.movement[selectedTimerLoopIndex].time.totalSeconds
-        detailRoundPhase = .loopMovement
-        
+        // 인덱스 증가 -> 다음 타이머 셋팅으로
+        detailTmRoundIdx! += 1
+        detailRoundPhase = detailTmRounds[idx].currentPhase
+        detailDisplay = detailTmRounds[idx].time.totalSeconds
         updateBackgroundColor()
         detailState = controlBtn ? .paused : .active
         return
     }
-        
-    // MARK: - nextDetailTimerRoundPhase
-    // 라운드의 다음 단계로 이동
-    func nextDetailTimerRoundPhase() {
-        guard let idx = detailTmRoundIdx, idx < detailTmRounds.count else {
-            return
-        }
-        
-        guard let currentPhase = detailRoundPhase else { return }
-        let currentRound = detailTmRounds[idx]
-        
-        switch currentPhase {
-        case .preparation:
-            movementFromPreparation(currentRound: currentRound)
-            
-        case .loopMovement, .loopRest:
-            timerLoopIndexing(currentRound: currentRound)
-            //restFromMovement(currentRound: currentRound, idx: idx)
-            
-        case .rest:
-            // 현재 라운드의 모든 단계가 완료된 경우 -> 다음 라운드로 이동
-            nextDetailTimerRound()
-            
-        default:
-            break
-        } // switch
-    }
+
     
     // MARK: - updateDetailUnitProgress
     // progress 업데이트
@@ -150,97 +122,33 @@ extension DetailViewModel {
         guard let currentPhase = detailRoundPhase else { return }
         let currentRound = detailTmRounds[idx]
         
-        calculateProgress(currentPhase: currentPhase, currentRound: currentRound)
-        //print(detailUnitProgress)
-        
+        calculateProgress(currentPhase: currentPhase)
         return
     }
     
     // MARK: - updateTimerPhaseStart
     // 각 루틴 실행 기록 업데이트
-    func updateTimerPhaseStart(idx: Int, currentPhase: DetailRoundPhase) {
-        if currentPhase == .loopMovement && detailTmRounds[idx].date.movementStart == "" {
-            detailTmRounds[idx].date.movementStart = Date().formatted("yyyy-MM-dd HH:mm:ss")
-        } else if currentPhase == .rest && detailTmRounds[idx].date.restStart == "" {
-            detailTmRounds[idx].date.restStart = Date().formatted("yyyy-MM-dd HH:mm:ss")
-        }
+    func updateTimerPhaseStart(idx: Int) {
+        detailTmRounds[idx].startDate = Date().formatted("yyyy-MM-dd HH:mm:ss")
         return
     }
     
     /*==================================================================================*/
     // MARK: - in using
-    // ...
-    // MARK: - movementFromPreparation
-    // 준비 -> 운동
-    private func movementFromPreparation(currentRound: DetailRound) {
-        guard let currentLoop = currentRound.movement.first else { return }
-        
-        detailDisplay = currentLoop.time.totalSeconds
-        detailRoundPhase = .loopMovement
-        updateBackgroundColor()
-        detailState = controlBtn ? .paused : .active
-        return
-    }
-    
-    // MARK: - timerLoopIndexing
-    private func timerLoopIndexing(currentRound: DetailRound) {
-        selectedTimerLoopIndex += 1
-        
-        if selectedTimerLoopIndex < timerLoopList.count {
-            let timerLoop = currentRound.movement[selectedTimerLoopIndex]
-            detailDisplay = timerLoop.time.totalSeconds
-            detailRoundPhase = timerLoop.type == .movement ? .loopMovement : .loopRest
-            updateBackgroundColor()
-            detailState = controlBtn ? .paused : .active
-        } else {
-            selectedTimerLoopIndex = 0
-            nextDetailTimerRound()
-        }
-        return
-    }
-    
-    // MARK: - restFromMovement
-    // 운동 -> 휴식
-    private func restFromMovement(currentRound: DetailRound, idx: Int) {
-        let currentLoop = currentRound.movement
-        selectedTimerLoopIndex += 1
-
-        if selectedTimerLoopIndex < currentLoop.count {
-            detailDisplay = currentLoop[selectedTimerLoopIndex].time.totalSeconds
-            if currentLoop[selectedTimerLoopIndex].type == .movement {
-                detailRoundPhase = .loopMovement
-            } else {
-                detailRoundPhase = .loopRest
-            }
-            updateBackgroundColor()
-            detailState = controlBtn ? .paused : .active
-        } else {
-            if currentRound.roundRest > 0 || idx < selectedRoundAmount - 1 {
-                detailDisplay = currentRound.roundRest
-                detailRoundPhase = .rest
-                updateBackgroundColor()
-                detailState = controlBtn ? .paused : .active
-            } else { // 마지막 라운드인 경우
-                selectedTimerLoopIndex = 0
-                nextDetailTimerRound()
-            }
-        }
-        return
-    }
-    
+    // ..
     // MARK: - calculateProgress
     // 현재 단계별 프로그래스 계산
-    private func calculateProgress(currentPhase: DetailRoundPhase, currentRound: DetailRound) {
+    private func calculateProgress(currentPhase: DetailRoundPhase) {
         switch currentPhase {
         case .preparation:
             let elapsedTime = selectedPreparationAmount - detailDisplay
             detailUnitProgress = Float(elapsedTime) / Float(selectedPreparationAmount)
         case .loopMovement, .loopRest:
-            let totalSeconds = currentRound.movement[selectedTimerLoopIndex].time.totalSeconds
-            let elapsedTime = selectedMovementAmount.totalSeconds - detailDisplay
+            let totalSeconds = detailTmRounds[detailTmRoundIdx ?? 0].time.totalSeconds
+            let elapsedTime = totalSeconds - detailDisplay
             detailUnitProgress = Float(elapsedTime) / Float(totalSeconds)
         case .rest:
-            let totalSeconds = currentRound.roundRest
+            let totalSeconds = detailTmRounds[detailTmRoundIdx ?? 0].time.totalSeconds
             let elapsedTime = selectedRestAmount.totalSeconds - detailDisplay
             detailUnitProgress = Float(elapsedTime) / Float(totalSeconds)
         default:

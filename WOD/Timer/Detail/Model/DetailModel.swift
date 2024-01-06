@@ -80,3 +80,51 @@ struct DetailRound: Identifiable, Equatable {
         return lhs.id == rhs.id
     }
 }
+
+// MARK: - SimpleRound
+// 타이머
+struct DetailTmRound: Identifiable, Equatable {
+    let id = UUID()
+    let currentRound: Int
+    let currentPhase: DetailRoundPhase
+    let currentLoop: Int?
+    let lengthLoop: Int?
+    let title: String?
+    let time: MovementTime
+    let color: Int?
+    var startDate: String
+    var history: [String]
+    var endDate: String
+    
+    // 준비, 휴식 용 init
+    init(currentRound: Int, currentPhase: DetailRoundPhase, currentLoop: Int? = nil, lengthLoop: Int? = nil, title: String? = nil, time: MovementTime, color: Int? = nil) {
+        self.currentRound = currentRound
+        self.currentPhase = currentPhase
+        self.currentLoop = nil
+        self.lengthLoop = nil
+        self.title = nil
+        self.time = time
+        self.color = nil
+        self.startDate = ""
+        self.history = []
+        self.endDate = ""
+    }
+    
+    // 사이클 용 init
+    init(currentRound: Int, currentPhase: DetailRoundPhase, currentLoop: Int, lengthLoop: Int ,title: String, time: MovementTime, color: Int) {
+        self.currentRound = currentRound
+        self.currentPhase = currentPhase
+        self.currentLoop = currentLoop
+        self.lengthLoop = lengthLoop
+        self.title = title
+        self.time = time
+        self.color = color
+        self.startDate = ""
+        self.history = []
+        self.endDate = ""
+    }
+
+    static func == (lhs: DetailTmRound, rhs: DetailTmRound) -> Bool {
+        return lhs.id == rhs.id
+    }
+}

@@ -31,7 +31,7 @@ struct DetailView: View {
                     Section(header: SectionHeader(idx: $isModeBtn)) {
                         ForEach(viewModel.detailButtonType, id: \.self) { btn in
                             HStack(alignment: .center, spacing: 15) {
-                                DetailImageSetRow(detailButton: $detailButton, showPopup: $showPopup, isMode: $isModeBtn, preparationColor: $viewModel.timerPreparationColor, loopRestColor: $viewModel.timerLoopRestColor,
+                                DetailImageSetRow(detailButton: $detailButton, showPopup: $showPopup, isMode: $isModeBtn, preparationColor: $viewModel.timerPreparationColor, loopRestColor: $viewModel.timerRestColor,
                                                   btn: btn)
                                 
                                 DetailButtonSetRow(

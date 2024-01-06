@@ -13,7 +13,7 @@ struct DetailRealTime: View {
     var body: some View {
         // MARK: 현재 타이머
         VStack(alignment: .center, spacing: 0) {
-            Text(viewModel.currentPhaseText)
+            Text(viewModel.currentTitle)
                 .font(.system(size: 30, weight: .semibold))
             
             VStack {

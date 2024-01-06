@@ -24,7 +24,7 @@ struct DetailTimerRestColorSet: View {
         }
         // MARK: side
         .onAppear {
-            manager.isSelectedColor = viewModel.timerLoopRestColor
+            manager.isSelectedColor = viewModel.timerRestColor
         }
         .navigationTitle("Color")
         .navigationBarTitleDisplayMode(.inline)
@@ -33,7 +33,7 @@ struct DetailTimerRestColorSet: View {
             cancelAction:  { showPopup.toggle() },
             action:  { },
             completeAction: {
-                viewModel.timerLoopRestColor = manager.isSelectedColor
+                viewModel.timerRestColor = manager.isSelectedColor
                 showPopup.toggle()
             }
         ) // popupSettingToolbar
