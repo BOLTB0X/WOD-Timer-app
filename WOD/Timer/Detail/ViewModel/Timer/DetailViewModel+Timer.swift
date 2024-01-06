@@ -22,11 +22,11 @@ extension DetailViewModel {
         print("타이머 실행")
         print(detailRoundPhase?.phaseText ?? "??")
         
-        //updateTimerPhaseStart(idx: idx, currentPhase: currentPhase)
+        updateTimerPhaseStart(idx: idx, currentPhase: currentPhase)
         
-//        DispatchQueue.main.async {
-//            self.speakingCurrentState()
-//        }
+        DispatchQueue.main.async {
+            self.speakingCurrentState()
+        }
         
         timerCancellable = Timer.publish(every: 1.0, on: .main, in: .common)
             .autoconnect()
@@ -75,7 +75,7 @@ extension DetailViewModel {
     func pauseDetailTimer() {
         timerCancellable?.cancel()
         print("일시중지")
-        //updateSimpleCompletionDate()
+        updateDetailCompletionDate()
         return
     }
     
@@ -83,7 +83,6 @@ extension DetailViewModel {
     // 재개
     func resumeDetailTimer() {
         print("재개")
-        //updateSimpleCompletionDate()
         detailState = .active
         controlBtn = false
         return
@@ -93,8 +92,8 @@ extension DetailViewModel {
     // 재시작
     func detailTimerRestart() {
         detailTmRoundIdx = nil
-        detailTotalTime = detailTmRounds.reduce(0) { $0 + ($1.totalMovementTime + $1.loopRest) }
-        //nextSimpleTimerRound()
+        detailTotalTime = detailTmRounds.reduce(0) { $0 + ($1.totalMovementTime + $1.roundRest) }
+        nextDetailTimerRound()
         return
     }
     
@@ -144,10 +143,16 @@ extension DetailViewModel {
         
         if detailRoundPhase == .completed {
             detailTmRoundIdx! -= 1
-            detailRoundPhase = .movement
-//            detailDisplay = detailTmRounds[roundIdx-1].movement
-//            detailTotalTime = detailTmRounds[roundIdx-1].movement
-//            updateBackgroundColor()
+            let current = detailTmRounds[detailTmRoundIdx!].movement[timerLoopList.count - 1]
+            
+            if current.type == .movement {
+                detailRoundPhase = .loopMovement
+            } else  {
+                detailRoundPhase = .loopRest
+            }
+            detailDisplay = current.time.totalSeconds
+            detailTotalTime = current.time.totalSeconds
+            updateBackgroundColor()
             
             controlBtn = controlBtn
             
@@ -157,29 +162,44 @@ extension DetailViewModel {
         
         // 현재가 완전 맨 처음인 경우
         if roundIdx == 0 {
-            if detailRoundPhase == .movement { // 운동인 경우 -> 준비 단계로
+            if detailRoundPhase == .loopMovement { // 운동인 경우 -> 준비 단계로
                 detailRoundPhase = .preparation
                 detailDisplay = selectedPreparationAmount
                 
             } else { // 현재가 첫번째이고 휴식인 경우 -> 운동으로
-                //detailDisplay = simpleTmRounds[roundIdx].movement
-                detailRoundPhase = .movement
+                guard selectedTimerLoopIndex > 0 else { return }
+                selectedTimerLoopIndex -= 1
+                
+                detailDisplay = detailTmRounds[roundIdx].movement[selectedTimerLoopIndex].time.totalSeconds
+                detailRoundPhase = .loopMovement
             }
         } else {
-            if detailRoundPhase == .movement { // 현재가 운동이면 라운드를 앞으로 당겨야함
+            if detailRoundPhase == .loopMovement { // 현재가 loop 운동이면 라운드를 앞으로 당겨야함
                 // 이전 라운드로 이동
                 detailTmRoundIdx! -= 1
                 let currentRound = detailTmRounds[detailTmRoundIdx!]
                 detailRoundPhase = .rest
-                //detailDisplay = currentRound.rest
-            } else { // 휴식인 경우
-                detailRoundPhase = .movement
-                //detailDisplay = simpleTmRounds[simpleTmRoundIdx!].movement
+                detailDisplay = currentRound.roundRest
+            } else if detailRoundPhase == .loopRest { // loop 휴식인 경우
+                detailRoundPhase = .loopMovement
+                selectedTimerLoopIndex -= 1
+                detailDisplay = detailTmRounds[detailTmRoundIdx!].movement[selectedTimerLoopIndex].time.totalSeconds
+            } else { // 라운드 휴식
+                let current = detailTmRounds[detailTmRoundIdx!].movement[timerLoopList.count-1]
+                
+                if current.type == .movement {
+                    detailRoundPhase = .loopMovement
+                } else {
+                    detailRoundPhase = .loopRest
+                }
+                
+                detailDisplay = current.time.totalSeconds
             }
+            return
         }
         
         //updateBeforeSimpleTotalTime()
-        //updateBackgroundColor()
+        updateBackgroundColor()
         detailState = controlBtn ? .paused : .active
         return
     }
@@ -209,9 +229,9 @@ extension DetailViewModel {
         switch phase {
         case .preparation:
             AVManager.shared.playSound(named: "preparation", fileExtension: "caf")
-        case .movement:
+        case .loopMovement:
             AVManager.shared.playSound(named: "movement", fileExtension: "caf")
-        case .rest:
+        case .rest, .loopRest:
             AVManager.shared.playSound(named: "rest", fileExtension: "caf")
         case .completed:
             AVManager.shared.playSound(named: "completed", fileExtension: "caf")
@@ -232,18 +252,30 @@ extension DetailViewModel {
         if idx == 0 { // 맨 처음
             // 0번째 라운드에서는 초기 설정값으로 토탈시간 설정
             // 운동에서 준비, 휴식에서 운동을 가던 결국 초기 토탈시간으로 가야함
-//            totalBeforeCurrentRound = simpleTmRounds.reduce(0) { $0 + ($1.movement + $1.rest) }
-//            if simpleRoundPhase == .rest {
-//                totalBeforeCurrentRound -= simpleTmRounds[idx].movement
-//            } else {
-//                totalBeforeCurrentRound += 0
-            //}
+            totalBeforeCurrentRound = detailTmRounds.reduce(0) { $0 + ($1.totalMovementTime + $1.roundRest) }
+            
+            if detailRoundPhase == .rest {
+                let current = detailTmRounds[idx].movement[timerLoopList.count - 1]
+                
+                totalBeforeCurrentRound -= current.time.totalSeconds
+            } else {
+                if selectedTimerLoopIndex < timerLoopList.count {
+                    let current = detailTmRounds[idx].movement[selectedTimerLoopIndex]
+                    
+                    totalBeforeCurrentRound -= current.time.totalSeconds
+                } else {
+                    totalBeforeCurrentRound += 0
+                }
+            }
+            
         } else if idx == detailTmRounds.count - 1 { // 마지막
-//            if simpleRoundPhase == .movement { // 운동 -> 전 라운드 휴식
-//                totalBeforeCurrentRound = simpleTmRounds[idx].movement + simpleTmRounds[idx].rest
-//            } else { // 마지막 라운드엔 휴식 X
-//                return
-//            }
+            if detailRoundPhase == .loopMovement { // 운동 -> 전 라운드 휴식
+                totalBeforeCurrentRound = detailTmRounds[idx].totalMovementTime
+            } else if detailRoundPhase == .loopRest {
+                totalBeforeCurrentRound = detailTmRounds[idx].totalMovementTime - detailTmRounds[idx].movement[timerLoopList.count - 1].time.totalSeconds
+            } else { // 마지막 라운드엔 휴식 X
+                return
+            }
         } else { // 중간
             ///    (10 3) - (10 3) - (10 3) - (10 0)
             ///    49 39 - 36 26  -  23 13   10
@@ -252,13 +284,15 @@ extension DetailViewModel {
             /// 현재 라운드부터 총 토탈시간 계산해줌
             /// ex) idx = 1일때, totalBeforeCurrentRound = 36
             
-//            totalBeforeCurrentRound = simpleTmRounds[idx...].reduce(0) { $0 + ($1.movement + $1.rest) }
-//            
-//            if simpleRoundPhase == .movement { // 운동으로 온경우
-//                totalBeforeCurrentRound += 0
-//            } else { // 휴식으로 온 경우
-//                totalBeforeCurrentRound -= (simpleTmRounds[idx].movement)
-//            }
+            totalBeforeCurrentRound = detailTmRounds.reduce(0) { $0 + ($1.totalMovementTime + $1.roundRest) }
+            
+            if detailRoundPhase == .loopMovement { // 운동으로 온경우
+                totalBeforeCurrentRound += 0
+            } else if detailRoundPhase == .loopRest {
+                
+            } else { // 휴식으로 온 경우
+                totalBeforeCurrentRound -= (detailTmRounds[idx].totalMovementTime)
+            }
         }
         detailTotalTime = totalBeforeCurrentRound
         

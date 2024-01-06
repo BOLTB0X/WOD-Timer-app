@@ -54,19 +54,19 @@ struct DetailItem: Identifiable, Equatable {
 struct DetailRound: Identifiable, Equatable {
     let id = UUID()
     var movement: [DetailItem]
-    var loopRest: Int
+    var roundRest: Int
     var date: StartComplted
     
     // MARK: init
     init() {
         self.movement = [DetailItem(type: .movement)]
-        self.loopRest = 0
+        self.roundRest = 0
         self.date = StartComplted()
     }
     
     init(movement: [DetailItem], loopRest: Int, date: StartComplted) {
         self.movement = movement
-        self.loopRest = loopRest
+        self.roundRest = loopRest
         self.date = date
     }
     

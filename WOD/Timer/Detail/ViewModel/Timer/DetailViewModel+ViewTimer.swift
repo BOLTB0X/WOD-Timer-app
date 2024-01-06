@@ -35,7 +35,7 @@ extension DetailViewModel {
         switch detailRoundPhase {
         case .preparation:
             return "Movement"
-        case .movement:
+        case .loopMovement, .loopRest:
             return currentRoundIdx != detailTmRounds.count - 1 ? "Rest" : "Rest X"
         case .rest:
             return "Movement"
@@ -54,7 +54,7 @@ extension DetailViewModel {
         switch detailRoundPhase {
         case .preparation:
             return detailTmRounds[currentRoundIdx].movement[selectedTimerLoopIndex].time.totalSeconds.asTimestamp
-        case .movement:
+        case .loopMovement, .loopRest:
             if detailTmRounds[currentRoundIdx].movement[selectedTimerLoopIndex].time.totalSeconds > 0 {
                 return detailTmRounds[currentRoundIdx].movement[selectedTimerLoopIndex].time.totalSeconds.asTimestamp
             } else {
@@ -115,18 +115,20 @@ extension DetailViewModel {
     var isTmEnd: Color {
         detailTmRoundIdx ?? 0 < detailTmRounds.count ? Color(.black).opacity(0.3) : phaseBackgroundColor
     }
-        
+    
+    // MARK: - in using
+    // ...
     // MARK: - setViewTempTotalTime
     private var setViewTempTotalTime: Int {
         timerLoopList.reduce(0) { $0 + $1.time.totalSeconds } * selectedRoundAmount + selectedLoopRestAmount.totalSeconds * (selectedRoundAmount - 1)
     }
     
+    // MARK: - setViewTempTotalLoopState
     private func setViewTempTotalLoopState() -> String {
         var ret: String = "Exercise: \(timerLoopList.filter {$0.type == .movement}.count)"
         
-        if timerLoopList.filter {$0.type == .rest}.count > 0 {
-            ret += " Rest: \(timerLoopList.filter {$0.type == .rest}.count)"
-        }
+        let inLoopRestCount = timerLoopList.filter { $0.type == .rest }.count
+        if inLoopRestCount > 0 { ret += " Rest: \(inLoopRestCount)" }
         
         return ret
     }

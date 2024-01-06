@@ -56,7 +56,7 @@ class DetailViewModel: InputManager {
             case .cancelled, .completed: // 취소 또는 완료
                 timerCancellable?.cancel()
                 detailDisplay = 0
-//                updateSimpleCompletionDate()
+                updateDetailCompletionDate()
             case .active: // 실행
                 startDetailTimer()
 

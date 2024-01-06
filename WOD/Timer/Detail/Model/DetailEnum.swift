@@ -56,7 +56,8 @@ enum DetailItemType {
 // MARK: - SimpleRoundPhase
 enum DetailRoundPhase {
     case preparation
-    case movement
+    case loopMovement
+    case loopRest
     case rest
     case completed
     
@@ -65,8 +66,10 @@ enum DetailRoundPhase {
         switch self {
         case .preparation:
             return "Preparation"
-        case .movement:
+        case .loopMovement:
             return "Movement"
+        case .loopRest:
+            return "Rest"
         case .rest:
             return "Rest"
         case .completed:
