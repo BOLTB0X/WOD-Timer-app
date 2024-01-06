@@ -8,7 +8,7 @@
 import SwiftUI
 
 // MARK: - DetailEditState
-struct DetailDefaultState: View {
+struct EditDefaultState: View {
     // MARK: Binding
     @Binding var defaultMove: DetailItem
     @Binding var defaultRest: DetailItem
@@ -29,7 +29,7 @@ struct DetailDefaultState: View {
             HStack(alignment: .center, spacing: 0) {
                 VStack(alignment: .leading, spacing: 0) {
 
-                    DetailDefaultRow(
+                    EditDefaultRow(
                         row: $defaultMove,
                         isPopup: $isPopup,
                         selectType: $selectType,
@@ -39,7 +39,7 @@ struct DetailDefaultState: View {
                     Spacer()
                         .frame(height: 30)
 
-                    DetailDefaultRow(
+                    EditDefaultRow(
                         row: $defaultRest,
                         isPopup: $isPopup,
                         selectType: $selectType,
@@ -58,9 +58,9 @@ struct DetailDefaultState: View {
     } // body
 }
 
-struct DetailCycleEditState_Previews: PreviewProvider {
+struct EditDefaultState_Previews: PreviewProvider {
     static var previews: some View {
-        DetailDefaultState(
+        EditDefaultState(
             defaultMove: .constant(DetailItem(type: .movement, title: "test")),
             defaultRest: .constant(DetailItem(type: .rest, title: "test")),
             isPopup: .constant(false),

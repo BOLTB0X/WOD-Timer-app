@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-// MARK: - DetailDefaultRow
-struct DetailDefaultRow: View {
+// MARK: - EditDefaultRow
+struct EditDefaultRow: View {
     // MARK: Binding
     @Binding var row: DetailItem
     @Binding var isPopup: Bool

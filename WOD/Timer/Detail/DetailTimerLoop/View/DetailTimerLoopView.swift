@@ -87,7 +87,7 @@ struct DetailTimerLoopView: View {
             
             Divider()
             
-            DetailDefaultState(
+            EditDefaultState(
                 defaultMove: $viewModel.defaultMove,
                 defaultRest: $viewModel.defaultRest,
                 isPopup: $showPopup,
