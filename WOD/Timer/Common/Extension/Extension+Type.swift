@@ -10,12 +10,13 @@ import SwiftUI
 // MARK: - String
 extension String {
     // MARK: - timeToString
-    static func timeToString(_ t: Double) -> String {
+    public func timeToString(_ t: Double) -> String {
         let sec = Int(t)
         let minu = sec / 60
         let frac = Int((t - Double(sec)) * 100)
         return String(format: "%02d:%02d.%02d", minu, sec % 60, frac)
     }
+    
 }
 
 // MARK: - Int
@@ -30,6 +31,45 @@ extension Int {
             return String(format: "%02i:%02i:%02i", hour, minute, second)
         } else {
             return String(format: "%02i:%02i", minute, second)
+        }
+    }
+    
+    var IndexToColor: String {
+        switch self {
+        case 0:
+            return "lightBlue2"
+        case 1:
+            return "lightBlue3"
+        case 2:
+            return "lightBlue4"
+        case 3:
+            return "lightBlue1"
+        case 4:
+            return "lightGreen1"
+        case 5:
+            return "lightGreen2"
+        case 6:
+            return "lightGreen3"
+        case 7:
+            return "lightGreen4"
+        case 8:
+            return "lightYellow1"
+        case 9:
+            return "lightYellow3"
+        case 10:
+            return "lightYellow2"
+        case 11:
+            return "lightYellow4"
+        case 12:
+            return "lightRed1"
+        case 13:
+            return "lightRed2"
+        case 14:
+            return "lightRed3"
+        case 15:
+            return "lightRed4"
+        default:
+            return "lightWhite"
         }
     }
 }

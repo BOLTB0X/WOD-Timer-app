@@ -29,7 +29,6 @@ struct StartComplted {
     }
 }
 
-
 // MARK: - SimpleRound
 // 타이머, 스톱워치
 struct SimpleRound: Identifiable, Equatable {

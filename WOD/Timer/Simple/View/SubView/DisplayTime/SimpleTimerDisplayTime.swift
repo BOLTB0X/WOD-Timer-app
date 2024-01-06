@@ -9,9 +9,12 @@ import SwiftUI
 
 // MARK: - SimpleTimerDisplayTime
 struct SimpleTimerDisplayTime: View {
+    // MARK: Object
     @EnvironmentObject private var viewModel: SimpleViewModel
 
+    // MARK: - View
     var body: some View {
+        // MARK: main
         VStack(alignment: .center, spacing: 10) {
             // 현재 라운드
             

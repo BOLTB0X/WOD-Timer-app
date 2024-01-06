@@ -22,7 +22,7 @@ enum SimpleButton {
         case .preparation:
             return "Preparation"
         case .movements:
-            return "Movements"
+            return "Movement"
         case .rest:
             return "Rest"
         }

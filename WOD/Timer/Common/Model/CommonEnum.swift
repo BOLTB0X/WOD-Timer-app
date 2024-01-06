@@ -5,7 +5,7 @@
 //  Created by lkh on 12/21/23.
 //
 
-import Foundation
+import SwiftUI
 
 // MARK: - ScenePhase
 // 앱이 어디서 실행되는지 구분
@@ -22,10 +22,6 @@ enum Field {
     case ss
 }
 
-enum Focused {
-    case on
-}
-
 // MARK: - TimerState
 // 타이머 실행 단계
 enum TimerState {
@@ -37,17 +33,28 @@ enum TimerState {
     
     // 현재 타이머 상태를 문자열로
     var statusText: String {
-         switch self {
-         case .active:
-             return "Active"
-         case .paused:
-             return "Paused"
-         case .resumed:
-             return "Resumed"
-         case .cancelled:
-             return "Cancelled"
-         case .completed:
-             return "Completed"
-         }
-     }
+        switch self {
+        case .active:
+            return "Active"
+        case .paused:
+            return "Paused"
+        case .resumed:
+            return "Resumed"
+        case .cancelled:
+            return "Cancelled"
+        case .completed:
+            return "Completed"
+        }
+    }
 }
+
+// MARK: - AlertType
+enum AlertType{
+    case limitOne // 셋팅 1개
+    case save // 저장 메세지
+    case quit // 뒤로 가기
+    case empty // 비어있음
+    case general // 일반
+    case ready // 준비
+}
+

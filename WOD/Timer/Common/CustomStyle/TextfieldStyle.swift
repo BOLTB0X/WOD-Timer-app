@@ -9,7 +9,6 @@ import SwiftUI
 
 // MARK: - CommonTextfieldStyle
 struct CommonTextfieldStyle: TextFieldStyle {
-    
     func _body(configuration: TextField<Self._Label>) -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20, style: .circular)
@@ -24,26 +23,34 @@ struct CommonTextfieldStyle: TextFieldStyle {
                 .font(.system(size: 50))
                 .multilineTextAlignment(.center)
                 .padding()
-        }
-    }
+        } // ZStack
+    } // body
 }
 
 // MARK: titleTextfieldStyle
 struct titleTextfieldStyle: TextFieldStyle {
+    // MARK: Binding
     @Binding var input: String
     
+    // MARK: 연산 프로퍼티s
     private var strokeWidth: CGFloat {
         if input.count >= 20 {
-            2.0
-        } else { 1.0 }
+            return 2.0
+        } else {
+            return 1.0
+            
+        }
     }
     
     private var strokeColor: Color {
         if input.count >= 20 {
-                Color(.red)
-            } else { Color(.gray) }
+            return Color(.red)
+        } else {
+            return Color(.gray)
         }
+    }
     
+    // MARK: - View
     func _body(configuration: TextField<Self._Label>) -> some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20, style: .circular)
@@ -59,7 +66,7 @@ struct titleTextfieldStyle: TextFieldStyle {
                     .disableAutocorrection(true)
                     .font(.system(size: 50))
                     .multilineTextAlignment(.leading)
-                    
+                
                 if input.count > 0 {
                     Button(action: {
                         self.input = ""

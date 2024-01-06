@@ -10,22 +10,23 @@ import SwiftUI
 // MARK: - SimpleView
 // 간단하게 타이머 루틴 or 스톱워치 루틴을 설정하는 뷰
 struct SimpleView: View {
-    // MARK: - class 프로퍼티
+    // MARK: Object
     @ObservedObject private var viewModel = SimpleViewModel.shared
     
-    // MARK: - only View 프로퍼티s
+    // MARK: State
     @State private var simpleButton: SimpleButton?
     @State private var isSimpleStart: Bool = false
     @State private var showPopup: Bool = false
     @State private var isStartBtn: Bool = false
     @State private var isModeBtn: Int = 0 // 0 = timer, 1 = stopwatch
     
+    // MARK: - View
     var body: some View {
-        NavigationView { // for navigationTitle 이용 및 뷰 구성
-            // MARK: - main
+        // MARK: main
+        NavigationView {
             VStack(alignment: .leading, spacing: 0) {
                 Form {
-                    // MARK: - Routine
+                    // MARK: - Set
                     Section(header: SectionHeader(idx: $isModeBtn)) {
                         ForEach(viewModel.simpleButtonType, id: \.self) { btn in
                             SimpleButtonSetRow(
@@ -35,7 +36,6 @@ struct SimpleView: View {
                                 viewModel: viewModel,
                                 btn: btn)
                         } // ForEach
-                        
                         Button("Start") {
                             isStartBtn.toggle()
                         }
@@ -48,9 +48,10 @@ struct SimpleView: View {
                     } // Routine(My Set)
                 } // Form
             } // VStack
-            .navigationTitle("Simple Routine")
+            .navigationTitle("Simple Set")
             .navigationBarTitleDisplayMode(.inline)
             
+            // MARK: side
             // MARK: - popupNavigationView
             // 팝업
             .popupNavigationView(show: $showPopup) {
@@ -66,14 +67,9 @@ struct SimpleView: View {
                     message: Text(isModeBtn == 0 ? viewModel.confirmationMessage: viewModel.confirmationStopMessage)
                         .font(.subheadline),
                     primaryButton: .default(Text("Start")) {
-                        if isModeBtn == 0 {
-                            viewModel.createSimpleTimerRounds()
-                        } else {
-                            viewModel.createSimpleStopRounds()
-                        }
-                        isSimpleStart.toggle()
+                        buttonAction()
                     },
-                    secondaryButton: .cancel(Text("Cancel").foregroundColor(.secondary))
+                    secondaryButton: .destructive(Text("Cancel").foregroundColor(.secondary))
                 )
             }
             
@@ -116,7 +112,7 @@ struct SimpleView: View {
                 SimpleStopwatchPreparationSet(showPopup: $showPopup)
                     .environmentObject(viewModel)
             }
-        }
+        } // if - else
     } // displayPopup
     
     // MARK: - goFullScreenCover
@@ -128,9 +124,20 @@ struct SimpleView: View {
         } else {
             SimpleStopWatchView(isBackRootView: $isSimpleStart)
                 .environmentObject(viewModel)
-        }
+        } // if - else
     } // goFullScreenCover
     
+    // MARK: - Methods
+    // ...
+    // MARK: - buttonAction
+    private func buttonAction() {
+        if isModeBtn == 0 {
+            viewModel.createSimpleTimerRounds()
+        } else {
+            viewModel.createSimpleStopRounds()
+        }
+        isSimpleStart.toggle()
+    } // buttonAction
 }
 
 struct SimpleView_Previews: PreviewProvider {

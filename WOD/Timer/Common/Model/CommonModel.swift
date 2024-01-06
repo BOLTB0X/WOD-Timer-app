@@ -91,6 +91,7 @@ struct RecordHistory: Identifiable, Equatable {
     var phase: String?
     var date: String?
     
+    // MARK: init
     init(round: Int, phase: String, date: String) {
         self.round = round
         self.phase = phase

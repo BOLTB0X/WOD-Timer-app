@@ -19,7 +19,7 @@ struct SimpleHorizontalScroll: View {
                     ScrollViewReader { proxy in
                         LazyHStack {
                             ForEach(scrollList.indices) { idx in
-                                CardCell(title: "\(idx) Round", text1: "Movements", subText1: scrollList[idx].movement.asTimestamp, text2: "Rest", subText2: scrollList[idx].rest.asTimestamp)
+                                CardCellRow(title: "\(idx) Round", text1: "Movements", subText1: scrollList[idx].movement.asTimestamp, text2: "Rest", subText2: scrollList[idx].rest.asTimestamp)
                                 //                            VStack(alignment: .center, spacing: 0) {
                                 //                                Text("\(idx) Round")
                                 //                                    .font(.title)

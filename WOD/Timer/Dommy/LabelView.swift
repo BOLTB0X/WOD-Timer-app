@@ -29,7 +29,7 @@ struct LabelView: View {
     var body: some View {
         VStack {
             CustomLabel(text: "HelloSwiftUI!", fontSize: 60)
-                .frame(width: 200, height: 500)
+                //.frame(width: 200, height: 500)
                 .background(Color.gray)
         }
     }

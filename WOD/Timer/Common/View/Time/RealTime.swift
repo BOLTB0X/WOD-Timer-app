@@ -7,18 +7,20 @@
 
 import SwiftUI
 
+// MARK: - RealTime
 struct RealTime: View {
+    // MARK: 프로퍼티
     var time: String
     var fontSize: CGFloat?
     
+    // MARK: - View
     var body: some View {
         Text(time)
-            //.frame(maxWidth: .infinity, maxHeight: .infinity)
+        //.frame(maxWidth: .infinity, maxHeight: .infinity)
             .font(
                 .system(size: fontSize ?? 24, weight: .heavy)
             )
             .monospacedDigit()
-        
     }
 }
 
@@ -37,6 +39,6 @@ struct RealTime_Previews: PreviewProvider {
                 .previewLayout(.sizeThatFits)
         }
     }
-
+    
 }
 

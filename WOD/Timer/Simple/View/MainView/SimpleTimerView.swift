@@ -9,13 +9,17 @@ import SwiftUI
 
 // MARK: - SimpleTimerView
 struct SimpleTimerView: View {
+    // MARK: Object
     @EnvironmentObject private var viewModel: SimpleViewModel
-    @Binding var isBackRootView: Bool
     var avManger = AVManager.shared
+
+    // MARK: Binding
+    @Binding var isBackRootView: Bool
     
+    // MARK: - View
     var body: some View {
         NavigationView {
-            // MARK: - View Main
+            // MARK: main
             VStack(alignment: .center, spacing: 0) {
                 Spacer()
                 // MARK: SimpleTimerDisplayTime

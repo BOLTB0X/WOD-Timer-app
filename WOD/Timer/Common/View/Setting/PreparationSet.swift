@@ -9,12 +9,15 @@ import SwiftUI
 
 // MARK: - PreparationSet
 struct PreparationSet: View {
+    // MARK: Binding
     @Binding var selectedPreparationAmount: Int
     @Binding var isChange: Bool
     @Binding var showPopup: Bool
     
+    // MARK: 프로퍼티
     let manager: InputManager
     
+    // MARK: - View
     var body: some View {
         GeometryReader { geometry in
             VStack(alignment: .center, spacing: 0) {

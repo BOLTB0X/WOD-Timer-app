@@ -21,7 +21,7 @@ extension SimpleViewModel {
                 return String(selectedRoundAmount)
             case "Preparation":
                 return String(format: "00:%02d", selectedPreparationAmount)
-            case "Movements":
+            case "Movement":
                 if selectedMovementAmount.hours > 0 {
                     return String(format: "%02d:%02d:%02d",
                                   selectedMovementAmount.hours,
@@ -43,6 +43,18 @@ extension SimpleViewModel {
             }
             return "Yourself Stop"
         }
+    }
+    
+    // MARK: - displaySubText
+    func displaySubText(state: String) -> String {
+        if state == "Preparation" {
+            return "Countdown before start"
+        } else if state == "Round" {
+            return "1Round = Exercise + Rest"
+        } else if state == "Movement" {
+            return "Exercise Time"
+        }
+        return "Breaktime after Round"
     }
     
     // MARK: - updateCompletionDate

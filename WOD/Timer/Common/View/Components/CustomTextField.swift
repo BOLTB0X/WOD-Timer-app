@@ -11,6 +11,7 @@ import SwiftUI
 struct TextFieldBackground<Content: View>: View {
     private var content: Content
     
+    // init
     init(@ViewBuilder content: @escaping () -> Content) {
         self.content = content()
     }
@@ -24,17 +25,27 @@ struct TextFieldBackground<Content: View>: View {
 
 // MARK: - CustomTextField
 struct CustomTextField: View {
+    // MARK: Binding
     @Binding var text: String
+    
+    // MARK: FocusState
     @FocusState private var focusedField: Bool
     
+    // MARK: 프로퍼티
     let defaultText: String
     
+    // MARK: - View
     var body: some View {
         TextFieldBackground {
             TextField(defaultText, text: $text)
                 .focused($focusedField)
                 .textFieldStyle(titleTextfieldStyle(input: $text))
                 .padding(.horizontal)
+                .onChange(of: text) { newValue in
+                    if newValue.count > 20 {
+                        text = String(newValue.prefix(20))
+                    }
+                } // onChange
         } // TextFieldBackground
         .onTapGesture {
             focusedField = false

@@ -7,22 +7,25 @@
 
 import SwiftUI
 
+// MARK: - ContentView
 struct ContentView: View {
+    // MARK: State
     @State var selectedTab = 0
     
+    // MARK: - View
     var body: some View {
         TabView {
             SimpleView()
                 .tabItem {
-                    Image(systemName: "figure.highintensity.intervaltraining")
+                    Text("Simple")
                 }
             
             DetailView()
                 .tabItem {
-                    Image(systemName: "timer")
+                    Text("Detail")
                 }
-        }
-    }
+        } // TabView
+    } // body
 }
 
 struct ContentView_Previews: PreviewProvider {

@@ -9,14 +9,22 @@ import SwiftUI
 
 // MARK: - SettingTextField
 struct SettingTextField: View {
-    @Binding var setBinding: Int
-    @FocusState private var focusedField: Bool
+    // MARK: Object
     @ObservedObject var input = TextManager(limit: 2)
     
+    // MARK: Binding
+    @Binding var setBinding: Int
+    
+    // MARK: FocusState
+    @FocusState private var focusedField: Bool
+    
+    // MARK: 프로퍼티s
     let title: String
     let viewModel: InputManager
 
+    // MARK: - View
     var body: some View {
+        // MARK: main
         NavigationView {
             VStack(alignment: .center, spacing: 0) {
                 HStack {
@@ -36,6 +44,8 @@ struct SettingTextField: View {
                     Spacer()
                 } // HStack
             } // VStack
+            
+            // MARK: side
             .onTapGesture {
                 focusedField = false
             }

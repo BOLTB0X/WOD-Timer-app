@@ -11,6 +11,7 @@ import SwiftUI
 struct SettingPicker: View {
     let title: String
     let range: [Int]
+    
     @Binding var binding: Int
     
     var body: some View {

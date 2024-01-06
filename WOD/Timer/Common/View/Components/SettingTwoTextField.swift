@@ -9,15 +9,20 @@ import SwiftUI
 
 // MARK: - SettingTwoTextField
 struct SettingTwoTextField: View {
+    // MARK: Binding
     @Binding var setMinute: Int
     @Binding var setSecond: Int
     @Binding var isUsedAuto: Bool
-
+    
+    // MARK: FocusState
     @FocusState private var focusedField: Field?
     
+    // MARK: 프로퍼티
     let viewModel: InputManager
     
+    // MARK: - View
     var body: some View {
+        // MARK: main
         NavigationView {
             VStack(alignment: .center, spacing: 0) {
                 HStack(alignment: .center, spacing: 10) {
@@ -37,6 +42,7 @@ struct SettingTwoTextField: View {
                 } // HStack
                 .padding()
             } // VStack
+            // MARK: side
             .toolbar {
                 ToolbarItemGroup(placement: .keyboard) {
                     Button("before") {

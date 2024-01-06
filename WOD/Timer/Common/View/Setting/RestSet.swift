@@ -9,13 +9,16 @@ import SwiftUI
 
 // MARK: - RestSet
 struct RestSet: View {
+    // MARK: Binding
     @Binding var selectedRestAmount: MovementTime
     @Binding var isChange: Bool
     @Binding var showPopup: Bool
     @Binding var isCalculatedBtn: Bool
     
+    // MARK: 프로퍼티
     let manager: InputManager
     
+    // MARK: - View
     var body: some View {
         GeometryReader { geometry in
             VStack(alignment: .center, spacing: 0) {

@@ -11,33 +11,69 @@ import Foundation
 // 각 버튼 별
 enum DetailButton {
     case round
-    case cycle
+    case loop
     case preparation
-    case movements
-    case rest
-    case cycleRest
+    case loopRestColor
+    case preparationColor
+    case loopRest
 
     var buttonText: String {
         switch self {
         case .round:
             return "Round"
-        case .cycle:
-            return "Cycle"
+        case .loop:
+            return "Movement loop"
         case .preparation:
             return "Preparation"
-        case .movements:
-            return "Movements"
-        case .rest:
+        case .loopRest:
             return "Rest"
-        case .cycleRest:
-            return "Rest between cycles"
+            
+        default:
+            return "Color"
         }
     }
 }
 
+// MARK: - SelectedSetting
 enum SelectedSetting {
     case color
     case time
     case text
+    case defaultMoveColor
+    case defaultMoveTime
+    case defaultMoveText
+    case defaultRestColor
+    case defaultRestTime
+    case defaultRestText
 }
 
+// MARK: - DetailItemType
+enum DetailItemType {
+    case movement
+    case rest
+}
+
+// MARK: - SimpleRoundPhase
+enum DetailRoundPhase {
+    case preparation
+    case loopMovement
+    case loopRest
+    case rest
+    case completed
+    
+    // 현재 라운드 단계를 문자열로
+    var phaseText: String {
+        switch self {
+        case .preparation:
+            return "Preparation"
+        case .loopMovement:
+            return "Movement"
+        case .loopRest:
+            return "Rest"
+        case .rest:
+            return "Rest"
+        case .completed:
+            return "Completed"
+        }
+    }
+}

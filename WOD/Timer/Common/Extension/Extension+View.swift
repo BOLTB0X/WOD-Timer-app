@@ -26,7 +26,7 @@ extension View {
                                 content()
                                 Spacer()
                             }
-                        }
+                        } // NavigationView
                         .frame(width: size.width - horizontalPadding, height: size.height / 2.5, alignment: .top)
                         .cornerRadius(15)
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)

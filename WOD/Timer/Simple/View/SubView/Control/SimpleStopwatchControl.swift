@@ -9,8 +9,10 @@ import SwiftUI
 
 // MARK: - SimpleStopwatchControl
 struct SimpleStopwatchControl: View {
+    // MARK: Object
     @EnvironmentObject private var viewModel: SimpleViewModel
     
+    // MARK: - View
     var body: some View {
         HStack(alignment: .center, spacing: 50) {
             ZStack {
