@@ -4,10 +4,7 @@
 
 ## current - ing
 
-![으아아아아아가](https://github.com/BOLTB0X/WOD-Timer-app/blob/main/history/detail_demo.gif?raw=true) ![으아아아아아](https://github.com/BOLTB0X/WOD-Timer-app/blob/main/history/detail_cycle_demo.gif?raw=true)
-<br/>
-
-![으아아아](https://github.com/BOLTB0X/WOD-Timer-app/blob/main/history/detail_cycle_demoMove.gif?raw=true) ![으아아](https://github.com/BOLTB0X/WOD-Timer-app/blob/main/history/detail_cycle_demoRemove.gif?raw=true)
+![으아아아아아가](https://github.com/BOLTB0X/WOD-Timer-app/blob/main/history/detail_%ED%83%80%EC%9D%B4%EB%A8%B8.gif?raw=true) ![으아아아아아]https://github.com/BOLTB0X/WOD-Timer-app/blob/main/history/detail_%EC%9A%B4%EB%8F%99%EB%A3%A8%ED%94%84%20%EC%84%A4%EC%A0%95.gif?raw=true)
 <br/>
 
 ## Reference
