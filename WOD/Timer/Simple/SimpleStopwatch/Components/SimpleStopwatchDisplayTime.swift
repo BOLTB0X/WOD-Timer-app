@@ -9,8 +9,10 @@ import SwiftUI
 
 // MARK: - SimpleStopwatchDisplayTime
 struct SimpleStopwatchDisplayTime: View {
+    // MARK: Object
     @EnvironmentObject private var viewModel: SimpleViewModel
 
+    // MARK: - View
     var body: some View {
         VStack(alignment: .center, spacing: 10) {
             // 현재 라운드

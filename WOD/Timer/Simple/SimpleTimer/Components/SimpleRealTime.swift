@@ -9,8 +9,10 @@ import SwiftUI
 
 // MARK: - SimpleRealTime
 struct SimpleRealTime: View {
+    // MARK: Object
     @EnvironmentObject private var viewModel: SimpleViewModel
     
+    // MARK: - View
     var body: some View {
         // MARK: 현재 타이머
         VStack(alignment: .center, spacing: 0) {
