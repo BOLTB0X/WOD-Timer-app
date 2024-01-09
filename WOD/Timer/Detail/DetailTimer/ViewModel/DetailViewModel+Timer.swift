@@ -15,7 +15,7 @@ extension DetailViewModel {
     // ....
     // MARK: - startDetailTimer
     func startDetailTimer() {
-        guard let idx = detailTmRoundIdx, idx < detailTmRounds.count, let currentPhase = detailRoundPhase else {
+        guard let idx = detailTmRoundIdx, idx < detailTmRounds.count else {
             return
         }
         
@@ -62,7 +62,7 @@ extension DetailViewModel {
     // 현재 타이머 종료시 다음 단계로 이동
     func completedCurrentTimer() {
         timerCancellable?.cancel()
-        detailState = .completed
+        detailTimerState = .completed
         updateDetailTimerCompletion() // 기록
         detailUnitProgress = 0.0
         // 다음 라운드 페이즈로 이동
@@ -83,7 +83,7 @@ extension DetailViewModel {
     // 재개
     func resumeDetailTimer() {
         print("재개")
-        detailState = .active
+        detailTimerState = .active
         controlBtn = false
         return
     }
@@ -102,7 +102,7 @@ extension DetailViewModel {
     // MARK: - detailTimerCanclled
     // 타이머 취소
     func detailTimerCanclled() {
-        detailState = .cancelled
+        detailTimerState = .cancelled
         detailTmRoundIdx = nil
         controlBtn = false
         detailUnitProgress = 0
@@ -122,12 +122,12 @@ extension DetailViewModel {
         
         controlBtn.toggle()
         
-        if detailState == .paused {
+        if detailTimerState == .paused {
             controlBtn = false
-            detailState = .resumed
-        } else if detailState == .active {
+            detailTimerState = .resumed
+        } else if detailTimerState == .active {
             controlBtn = true
-            detailState = .paused
+            detailTimerState = .paused
         }
     }
     
@@ -140,7 +140,7 @@ extension DetailViewModel {
         }
         
         // 현재 타이머 중지
-        detailState = .paused
+        detailTimerState = .paused
         detailUnitProgress = 0
         
         // 완료인 경우
@@ -159,8 +159,8 @@ extension DetailViewModel {
             detailRoundPhase = current.currentPhase
         }
         
-        updateBackgroundColor()
-        detailState = controlBtn ? .paused : .active
+        updateTimerBackgroundColor()
+        detailTimerState = controlBtn ? .paused : .active
         return
     }
     
@@ -173,7 +173,7 @@ extension DetailViewModel {
         }
         
         // 현재 타이머 중지
-        detailState = .paused
+        detailTimerState = .paused
         detailUnitProgress = 0
         if roundIdx + 1 == detailTmRounds.count {
             detailDisplay = 0
@@ -186,10 +186,8 @@ extension DetailViewModel {
             detailRoundPhase = current.currentPhase
             detailRTotalTime = detailTmRounds[(roundIdx + 1)...].reduce(0) { $0 + $1.time.totalSeconds }
         }
-        updateBackgroundColor()
-        detailState = controlBtn ? .paused : .active
-//        nextSimpleTimerRoundPhase()
-//        updateNextSimpleTotalTime()
+        updateTimerBackgroundColor()
+        detailTimerState = controlBtn ? .paused : .active
         return
     }
     

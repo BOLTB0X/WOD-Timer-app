@@ -33,7 +33,7 @@ extension Int {
             return String(format: "%02i:%02i", minute, second)
         }
     }
-    
+        
     var IndexToColor: String {
         switch self {
         case 0:

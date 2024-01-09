@@ -18,7 +18,7 @@ extension DetailViewModel {
         detailTmRounds = [] // 초기화
         
         // 준비
-        detailTmRounds.append(DetailTmRound(currentRound: 0, currentPhase: .preparation, time: MovementTime(seconds: selectedPreparationAmount)))
+        detailTmRounds.append(DetailTmRound(currentRound: 0, currentPhase: .preparation, title: "Preparation", time: MovementTime(seconds: selectedPreparationAmount)))
         
         for i in 0..<selectedRoundAmount {
             // Loop
@@ -36,12 +36,12 @@ extension DetailViewModel {
             if i == selectedRoundAmount - 1 {
                 continue
             } else {
-                detailTmRounds.append(DetailTmRound(currentRound: i+1, currentPhase: .rest, time: selectedRestAmount))
+                detailTmRounds.append(DetailTmRound(currentRound: i+1, currentPhase: .rest, title: "Rest", time: selectedRestAmount))
             }
         }
         
         detailRTotalTime = detailTmRounds.reduce(0) { $0 + $1.time.totalSeconds } - selectedPreparationAmount
-        detailSTotalTime = 0
+        //detailSTotalTime = 0
         return
     }
     
@@ -52,7 +52,6 @@ extension DetailViewModel {
         detailTmRounds[idx].endDate = Date().formatted("yyyy-MM-dd HH:mm:ss")
         return
     }
-    
     
     /*==================================================================================*/
     // MARK: - phase, Round Update Method
@@ -69,16 +68,16 @@ extension DetailViewModel {
         return
     }
     
-    // MARK: - isFirstStart
+    // MARK: - isTimerFirstStart
     // 루틴 타이머가 첫 시작인지 체크 메소드
     func isTimerFirstStart() -> Bool {
         // 첫 시작, 준비 카운트 셋팅
         if detailTmRoundIdx == nil {
             detailTmRoundIdx = 0
             detailRoundPhase = .preparation
-            updateBackgroundColor()
+            updateTimerBackgroundColor()
             detailDisplay = detailTmRounds[0].time.totalSeconds
-            detailState = controlBtn ? .paused : .active
+            detailTimerState = controlBtn ? .paused : .active
             return true
         }
         
@@ -95,9 +94,9 @@ extension DetailViewModel {
         // 타이머 셋팅 값을 다 순회했는지 가드
         guard idx < detailTmRounds.count else {
             detailRoundPhase = .completed
-            detailState = .completed
+            detailTimerState = .completed
             detailDisplay = 0
-            updateBackgroundColor()
+            updateTimerBackgroundColor()
             detailTimerCompletion = Date().formatted("yyyy-MM-dd HH:mm:ss")
             return
         }
@@ -106,8 +105,8 @@ extension DetailViewModel {
         detailTmRoundIdx! += 1
         detailRoundPhase = detailTmRounds[idx].currentPhase
         detailDisplay = detailTmRounds[idx].time.totalSeconds
-        updateBackgroundColor()
-        detailState = controlBtn ? .paused : .active
+        updateTimerBackgroundColor()
+        detailTimerState = controlBtn ? .paused : .active
         return
     }
 
@@ -120,7 +119,7 @@ extension DetailViewModel {
         }
         
         guard let currentPhase = detailRoundPhase else { return }
-        let currentRound = detailTmRounds[idx]
+        //let currentRound = detailTmRounds[idx]
         
         calculateProgress(currentPhase: currentPhase)
         return

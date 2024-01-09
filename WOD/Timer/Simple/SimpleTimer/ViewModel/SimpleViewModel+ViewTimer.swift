@@ -108,7 +108,7 @@ extension SimpleViewModel {
     
     // MARK: - isDisplayToolbarTmBtn
     var isDisplayToolbarTmBtn: Bool {
-        simpleState == .paused || simpleTmRoundIdx ?? 0 == selectedRoundAmount
+        simpleTimerState == .paused || simpleTmRoundIdx ?? 0 == selectedRoundAmount
     }
     
     // MARK: - isTmEnd

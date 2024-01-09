@@ -106,7 +106,7 @@ struct SimpleView: View {
             }
         } else { // 스톱워치
             if simpleButton == .round {
-                SimpleRoundStopSet(showPopup: $showPopup)
+                SimpleStopwatchRoundSet(showPopup: $showPopup)
                     .environmentObject(viewModel)
             } else if simpleButton == .preparation {
                 SimpleStopwatchPreparationSet(showPopup: $showPopup)

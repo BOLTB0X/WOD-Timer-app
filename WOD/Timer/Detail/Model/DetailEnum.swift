@@ -69,7 +69,7 @@ enum DetailRoundPhase {
         case .loopMovement:
             return "Movement"
         case .loopRest:
-            return "Rest"
+            return "Loop Rest"
         case .rest:
             return "Rest"
         case .completed:

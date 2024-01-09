@@ -29,12 +29,10 @@ struct DetailTimerDisplayTime: View {
             .padding()
             
             
-            DetailRealTime()
-                .environmentObject(viewModel)
+            DetailRealTime(currentTitle: viewModel.currentTimerTitle, currentDisplayTime: viewModel.currentTimerDisplayTime, bigFontSize: viewModel.selectedMovementAmount.timerBigFontSize)
                 .padding()
             
-            DetailNextRealTime()
-                .environmentObject(viewModel)
+            DetailNextRealTime(nextPhase: viewModel.nextTimerPhase, nextTime: viewModel.nextTimerTime, smallFontSize: viewModel.selectedMovementAmount.timerSmallFontSize, backColor: viewModel.isTmEnd)
                 .padding()
             
             Button(action: {

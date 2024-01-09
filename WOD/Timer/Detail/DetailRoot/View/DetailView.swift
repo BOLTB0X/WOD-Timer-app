@@ -13,67 +13,50 @@ struct DetailView: View {
     @ObservedObject private var viewModel = DetailViewModel.shared
     
     // MARK: State
+    // 모드, 각 셋팅 관련
+    @State private var isModeBtn: Int = 0
     @State private var detailButton: DetailButton?
-    @State private var isDetailStart: Bool = false
     @State private var showPopup: Bool = false
     @State private var rootView: Bool = false
-    @State private var isModeBtn: Int = 0
+    
+    // 타이머/스톱워치 실행 관련
+    @State private var isDetailStart: Bool = false
     @State private var isStartBtn: Bool = false
     
     // MARK: - View
     var body: some View {
-        NavigationView {
-            // MARK: main
-            // ...
-            VStack(alignment: .center, spacing: 0) {
-                Form {
-                    // MARK: - Set
-                    Section(header: SectionHeader(idx: $isModeBtn)) {
-                        ForEach(viewModel.detailButtonType, id: \.self) { btn in
-                            HStack(alignment: .center, spacing: 15) {
-                                DetailImageSetRow(detailButton: $detailButton, showPopup: $showPopup, isMode: $isModeBtn, preparationColor: $viewModel.timerPreparationColor, loopRestColor: $viewModel.timerRestColor,
-                                                  btn: btn)
-                                
-                                DetailButtonSetRow(
-                                    detailButton: $detailButton,
-                                    showPopup: $showPopup,
-                                    rootView: $rootView,
-                                    isModeBtn: $isModeBtn,
-                                    viewModel: viewModel,
-                                    btn: btn)
-                            } // HStack
-                        } // ForEach
-                        
-                        Button("Start") {
-                            isStartBtn.toggle()
-                        }
-                        .buttonStyle(BlueButtonStyle())
-                    } // Section
+        NavigationStack {
+            Form {
+                // MARK: - Set
+                Section(header: SectionHeader(idx: $isModeBtn)) {
+                    ForEach(viewModel.detailButtonType, id: \.self) { btn in
+                        rootRow(btn)
+                    } // ForEach
                     
-                    // TODO: - My Set, Coredata
-                    Section(header: Text("My Set").font(.headline)) {
-                        
-                    } // WOD(My Set)
-                    
-                    
-                } // Form
-                .listStyle(SidebarListStyle())
+                    Button("Start") {
+                        isStartBtn.toggle()
+                    }
+                    .buttonStyle(BlueButtonStyle())
+                } // Section
                 
-                // 이동
-                NavigationLink(
-                    destination: DetailTimerLoopView(rootView: $rootView)
-                        .environmentObject(viewModel)
-                        .navigationBarBackButtonHidden(),
-                    isActive: $rootView
-                ) {
-                    EmptyView()
-                }
-            } // VStack
+                // TODO: - My Set, Coredata
+                Section(header: Text("My Set").font(.headline)) {
+                    
+                } // WOD(My Set)
+            } // Form
+            .listStyle(SidebarListStyle())
             .navigationTitle("Detail Set")
             .navigationBarTitleDisplayMode(.inline)
             
             // MARK: side
             // ...
+            // MARK: - navigationDestination
+            .navigationDestination(isPresented: $rootView) {
+                DetailLoopView(rootView: $rootView, modeBtn: $isModeBtn)
+                    .environmentObject(viewModel)
+                    .navigationBarBackButtonHidden()
+            }
+            
             // MARK: - popupNavigationView
             // 팝업
             .popupNavigationView(show: $showPopup) {
@@ -85,7 +68,7 @@ struct DetailView: View {
             .alert(isPresented: $isStartBtn) {
                 Alert(
                     title: Text("Confirm").bold(),
-                    message: Text(viewModel.confirmationMessage)
+                    message: Text(isModeBtn == 0 ? viewModel.confirmationMessage : viewModel.confirmationMessageStop)
                         .font(.subheadline),
                     primaryButton: .default(Text("Start")) {
                         buttonAction()
@@ -99,6 +82,7 @@ struct DetailView: View {
             .fullScreenCover(isPresented: $isDetailStart) {
                 goFullScreenCover()
             }
+            
         } // NavigationView
         
         .onTapGesture {
@@ -108,25 +92,66 @@ struct DetailView: View {
     
     // MARK: - ViewBuilder
     // ...
+    // MARK: rootRow
+    @ViewBuilder
+    private func rootRow(_ btn: DetailButton) -> some View {
+        HStack(alignment: .center, spacing: 15) {
+            DetailImageSetRow(
+                detailButton: $detailButton,
+                showPopup: $showPopup,
+                preparationColor: isModeBtn == 0 ? $viewModel.timerPreparationColor : $viewModel.stopPreparationColor,
+                loopRestColor: isModeBtn == 0 ? $viewModel.timerRestColor : $viewModel.stopRestColor,
+                btn: btn)
+            
+            DetailButtonSetRow(
+                detailButton: $detailButton,
+                showPopup: $showPopup,
+                rootView: $rootView,
+                isModeBtn: $isModeBtn,
+                viewModel: viewModel,
+                btn: btn)
+        } // HStack
+    } // rootRow
+    
     // MARK: - displayPopup
     @ViewBuilder
     private func displayPopup() -> some View {
-        switch detailButton {
-        case .preparation:
-            DeatilTimerPreparationSet(showPopup: $showPopup)
-                .environmentObject(viewModel)
-        case .round:
-            DetailTimerRoundSet(showPopup: $showPopup)
-                .environmentObject(viewModel)
-        case .preparationColor:
-            DeatilTimerPreparationColorSet(showPopup: $showPopup)
-                .environmentObject(viewModel)
-        case .loopRestColor:
-            DetailTimerRestColorSet(showPopup: $showPopup)
-                .environmentObject(viewModel)
-        default:
-            DetailTimerRestSet(showPopup: $showPopup)
-                .environmentObject(viewModel)
+        if isModeBtn == 0 {
+            switch detailButton {
+            case .preparation:
+                DeatilTimerPreparationSet(showPopup: $showPopup)
+                    .environmentObject(viewModel)
+            case .round:
+                DetailTimerRoundSet(showPopup: $showPopup)
+                    .environmentObject(viewModel)
+            case .preparationColor:
+                DeatilTimerPreparationColorSet(showPopup: $showPopup)
+                    .environmentObject(viewModel)
+            case .loopRestColor:
+                DetailTimerRestColorSet(showPopup: $showPopup)
+                    .environmentObject(viewModel)
+            default:
+                DetailTimerRestSet(showPopup: $showPopup)
+                    .environmentObject(viewModel)
+            }
+        } else {
+            switch detailButton {
+            case .preparation:
+                DetailStopwatchPreparationSet(showPopup: $showPopup)
+                    .environmentObject(viewModel)
+            case .round:
+                DetailStopwatchRoundSet(showPopup: $showPopup)
+                    .environmentObject(viewModel)
+            case .preparationColor:
+                DeatilStopwatchPreparationColorSet(showPopup: $showPopup)
+                    .environmentObject(viewModel)
+            case .loopRestColor:
+                DetailStopwatchRestColorSet(showPopup: $showPopup)
+                    .environmentObject(viewModel)
+            default:
+                DetailTimerRestSet(showPopup: $showPopup)
+                    .environmentObject(viewModel)
+            }
         }
     } // displayPopup
     
@@ -137,7 +162,8 @@ struct DetailView: View {
             DetailTimerView(isBackRootView: $isDetailStart)
                 .environmentObject(viewModel)
         } else {
-            
+            DetailStopwatchView(isBackRootView: $isDetailStart)
+                .environmentObject(viewModel)
         } // if - else
     } // goFullScreenCover
     
@@ -148,7 +174,7 @@ struct DetailView: View {
         if isModeBtn == 0 {
             viewModel.createDetailTimerRounds()
         } else {
-            
+            viewModel.createDetailStopRounds()
         }
         isDetailStart.toggle()
     } // buttonAction

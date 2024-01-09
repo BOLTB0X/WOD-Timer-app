@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-// MARK: - TimerCycleLisButtontRow
-struct TimerLoopListRow: View {
+// MARK: - LoopListRow
+struct LoopListRow: View {
     // MARK: State
     @State private var isTouch: Bool = false
     
@@ -17,6 +17,7 @@ struct TimerLoopListRow: View {
     
     // MARK: 프로퍼티
     let row: DetailItem
+    let mode: Int
     
     // MARK: View
     var body: some View {
@@ -39,7 +40,9 @@ struct TimerLoopListRow: View {
             Spacer()
                 .frame(width: 25)
             
-            Text(row.time.totalSeconds.asTimestamp)
+            if mode == 0 {
+                Text(row.time.totalSeconds.asTimestamp)
+            }
         } // HStack
         
         .onTapGesture {

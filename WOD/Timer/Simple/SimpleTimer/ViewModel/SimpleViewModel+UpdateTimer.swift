@@ -70,7 +70,7 @@ extension SimpleViewModel {
             updateBackgroundColor()
             
             simpleDisplay = selectedPreparationAmount
-            simpleState = controlBtn ? .paused : .active
+            simpleTimerState = controlBtn ? .paused : .active
             
             return true
         } else {
@@ -88,7 +88,7 @@ extension SimpleViewModel {
         guard let idx = simpleTmRoundIdx, idx < simpleTmRounds.count else {
             // 더 이상 진행할 라운드가 없으면 완료 상태로 변경
             simpleRoundPhase = .completed
-            simpleState = .completed
+            simpleTimerState = .completed
             simpleDisplay = 0
             updateBackgroundColor()
             simpleTimerCompletion = Date().formatted("yyyy-MM-dd HH:mm:ss")
@@ -109,7 +109,7 @@ extension SimpleViewModel {
         simpleDisplay = currentRound.movement
         simpleRoundPhase = .movement
         updateBackgroundColor()
-        simpleState = controlBtn ? .paused : .active
+        simpleTimerState = controlBtn ? .paused : .active
         return
     }
     
@@ -175,7 +175,7 @@ extension SimpleViewModel {
         simpleDisplay = currentRound.movement
         simpleRoundPhase = .movement
         updateBackgroundColor()
-        simpleState = controlBtn ? .paused : .active
+        simpleTimerState = controlBtn ? .paused : .active
         return
     }
     
@@ -186,7 +186,7 @@ extension SimpleViewModel {
             simpleDisplay = currentRound.rest
             simpleRoundPhase = .rest
             updateBackgroundColor()
-            simpleState = controlBtn ? .paused : .active
+            simpleTimerState = controlBtn ? .paused : .active
         } else { // 마지막 라운드인 경우
             nextSimpleTimerRound()
         }

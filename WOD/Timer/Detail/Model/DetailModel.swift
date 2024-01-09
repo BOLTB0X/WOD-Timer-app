@@ -90,19 +90,19 @@ struct DetailTmRound: Identifiable, Equatable {
     let currentLoop: Int?
     let lengthLoop: Int?
     let title: String?
-    let time: MovementTime
+    var time: MovementTime
     let color: Int?
     var startDate: String
     var history: [String]
     var endDate: String
     
     // 준비, 휴식 용 init
-    init(currentRound: Int, currentPhase: DetailRoundPhase, currentLoop: Int? = nil, lengthLoop: Int? = nil, title: String? = nil, time: MovementTime, color: Int? = nil) {
+    init(currentRound: Int, currentPhase: DetailRoundPhase, currentLoop: Int? = nil, lengthLoop: Int? = nil, title: String, time: MovementTime, color: Int? = nil) {
         self.currentRound = currentRound
         self.currentPhase = currentPhase
         self.currentLoop = nil
         self.lengthLoop = nil
-        self.title = nil
+        self.title = title
         self.time = time
         self.color = nil
         self.startDate = ""
