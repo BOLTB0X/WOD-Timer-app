@@ -8,23 +8,23 @@
 import SwiftUI
 
 // MARK: - TimerCycleScrollRow
-struct TimerLoopScrollRow: View {
-    // MARK: Object
-    @EnvironmentObject private var viewModel: DetailViewModel
-    
+struct LoopScrollRow: View {
     // MARK: Binding
     @Binding var row: DetailItem
     @Binding var isPopup: Bool
     @Binding var selectType: SelectedSetting?
+    @Binding var selectedLoopIndex: Int
     
     // MARK: 프로퍼티
-    let idx: Int
+    var foreachIdx: Int
+    let mode: Int
     
     // MARK: View
     var body: some View {
         HStack(alignment: .center, spacing: 0) {
             Button(action: {
-                viewModel.selectedTimerLoopIndex = idx
+                selectedLoopIndex = foreachIdx
+                //viewModel.selectedTimerLoopIndex = idx
                 selectType = .color
                 isPopup.toggle()
             }, label: {
@@ -44,7 +44,7 @@ struct TimerLoopScrollRow: View {
                 .frame(width: 15)
             
             Button(action: {
-                viewModel.selectedTimerLoopIndex = idx
+                selectedLoopIndex = foreachIdx
                 selectType = .text
                 isPopup.toggle()
             }, label: {
@@ -54,15 +54,17 @@ struct TimerLoopScrollRow: View {
             .buttonStyle(EffectButtonStyle())
             
             Spacer()
-
-            Button(action: {
-                viewModel.selectedTimerLoopIndex = idx
-                selectType = .time
-                isPopup.toggle()
-            }, label: {
-                Text(row.time.totalSeconds.asTimestamp)
-            }) // Button
-            .buttonStyle(EffectButtonStyle())
+            
+            if mode == 0 {
+                Button(action: {
+                    selectedLoopIndex = foreachIdx
+                    selectType = .time
+                    isPopup.toggle()
+                }, label: {
+                    Text(row.time.totalSeconds.asTimestamp)
+                }) // Button
+                .buttonStyle(EffectButtonStyle())
+            }
         } // HStack
         .padding(.horizontal)
     } // body

@@ -32,7 +32,7 @@ extension DetailViewModel {
         }
         
         if idx + 1 < detailTmRounds.count && detailTmRounds[idx + 1].currentRound <= selectedRoundAmount {
-            switch phase {
+            switch detailTmRounds[idx+1].currentPhase {
             case .preparation:
                 return phase.phaseText
             case .loopMovement:
@@ -40,7 +40,7 @@ extension DetailViewModel {
             case .loopRest:
                 return detailTmRounds[idx+1].title ?? "Rest in loop"
             case .rest:
-                return phase.phaseText
+                return detailTmRounds[idx+1].currentPhase.phaseText
             case .completed:
                 return "END"
             }
@@ -80,7 +80,7 @@ extension DetailViewModel {
     }
     
     // MARK: - currentPhaseText
-    var currentTitle: String {
+    var currentTimerTitle: String {
         guard let idx = detailTmRoundIdx, let phase = detailRoundPhase else {
             return "Nothing"
         }
@@ -129,7 +129,7 @@ extension DetailViewModel {
     var isDisplayToolbarTmBtn: Bool {
         guard let idx = detailTmRoundIdx else { return true }
         
-        return detailState == .paused || idx == detailTmRounds.count || detailState == .completed
+        return detailTimerState == .paused || idx == detailTmRounds.count || detailTimerState == .completed
     }
     
     // MARK: - isTmEnd

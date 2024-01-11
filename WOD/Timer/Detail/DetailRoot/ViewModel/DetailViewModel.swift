@@ -26,15 +26,7 @@ class DetailViewModel: InputManager {
     @Published var defaultRest: DetailItem = DetailItem(type: .rest, title: "Rest", time: MovementTime(seconds: 10), color: 6)
     @Published var alretMoniter: AlertType = .general
     @Published var multiSelection: Set<UUID> = []
-    @Published var betweenRest: Bool = false {
-        didSet {
-            if betweenRest {
-                insertRestBetweenMovements()
-            } else {
-                removeRestBetweenMovements()
-            }
-        } // didSet
-    }
+    @Published var detailUnitProgress: Float = 0.0
     
     let detailButtonType: [DetailButton] = [.preparation, .loop, .loopRest, .round]
     var timerCancellable: AnyCancellable? //   // 타이머 메모리 날리기 용
@@ -48,12 +40,20 @@ class DetailViewModel: InputManager {
     @Published var detailTmRounds: [DetailTmRound] = [] // 디테일 타이머 배열
     @Published var detailTmRoundIdx: Int? // 진행
     @Published var detailTimerCompletion: String = "X" // 완료일
-    @Published var detailUnitProgress: Float = 0.0
+    @Published var betweenRestInTimer: Bool = false {
+        didSet {
+            if betweenRestInTimer {
+                insertRestBetweenMovementsInTimer()
+            } else {
+                removeRestBetweenMovementsInTimer()
+            }
+        } // didSet
+    }
     
     // 타이머 상태 관련
-    @Published var detailState: TimerState = .cancelled {
+    @Published var detailTimerState: TimerState = .cancelled {
         didSet {
-            switch detailState {
+            switch detailTimerState {
             case .cancelled, .completed: // 취소 또는 완료
                 timerCancellable?.cancel()
                 detailDisplay = 0
@@ -73,9 +73,43 @@ class DetailViewModel: InputManager {
     
     // ...
     // MARK: - Stopwatch
-    @Published var StopCycleList: [DetailItem] = [DetailItem(type: .movement, title: "Movement1"), DetailItem(type: .movement, title: "Movement2")]
-    @Published var selectedStopCycleIndex: Int = 0
-    @Published var detailSwRounds: [DetailRound] = [] // 디테일 스톱워치 배열
+    @Published var stopPreparationColor: Int  = 15
+    @Published var stopRestColor: Int = 8
+    @Published var stopLoopList: [DetailItem] = [DetailItem(type: .movement, title: "Movement1", time: MovementTime(seconds: 0)), DetailItem(type: .movement, title: "Movement2", time: MovementTime(seconds: 0))]
+    @Published var selectedStopLoopIndex: Int = 0
+    @Published var detailSwRounds: [DetailTmRound] = [] // 디테일 스톱워치 배열
     @Published var detailSwRoundIdx: Int? // 진행
+    @Published var detailStopCompletion: String = "X" // 완료일
+
+    @Published var betweenRestInStop: Bool = false {
+        didSet {
+            if betweenRestInStop {
+                insertRestBetweenMovementsInStop()
+            } else {
+                removeRestBetweenMovementsInStop()
+            }
+        } // didSet
+    }
+    
+    // 스톱워치 상태 관련
+    @Published var detailStopState: TimerState = .cancelled {
+        didSet {
+            switch detailStopState {
+            case .cancelled, .completed: // 취소 또는 완료
+                timerCancellable?.cancel()
+                detailDisplay = 0
+                updateDetailCompletionDate()
+            case .active: // 실행
+                startDetailStopwatch()
+
+            case .paused: // 중지
+                pauseDetailStop()
+
+            case .resumed: // 재개
+                resumeDetailStop()
+
+            } // switch
+        } // didSet
+    }
     // ...
 }

@@ -49,13 +49,13 @@ extension DetailViewModel {
             }
         } else {
             if state == "Round" {
-                return String(selectedRoundAmount)
+                return String(selectedRoundStop)
             } else if state == "Preparation" {
                 return String(format: "00:%02d", selectedPreparationStop)
             } else if state == "Self section" {
-                return "Set Yourself, Yourself Stop"
+                return "Yourself"
             }
-            return "Yourself Stop"
+            return "Yourself"
         }
     }
     
@@ -80,8 +80,8 @@ extension DetailViewModel {
         return
     }
     
-    // MARK: - updateBackgroundColor
-    func updateBackgroundColor() {
+    // MARK: - updateTimerBackgroundColor
+    func updateTimerBackgroundColor() {
         guard let phase = detailRoundPhase, let idx = detailTmRoundIdx else { return }
         
         switch phase {
@@ -93,6 +93,24 @@ extension DetailViewModel {
             }
         case .rest:
             phaseBackgroundColor = Color(timerRestColor.IndexToColor)
+        case .completed:
+            phaseBackgroundColor = Color(.systemGray)
+        }
+    }
+    
+    // MARK: - updateStopwatchBackgroundColor
+    func updateStopwatchBackgroundColor() {
+        guard let phase = detailRoundPhase, let idx = detailSwRoundIdx else { return }
+        
+        switch phase {
+        case .preparation:
+            phaseBackgroundColor = Color(stopPreparationColor.IndexToColor)
+        case .loopMovement, .loopRest:
+            if let color = detailSwRounds[idx].color {
+                phaseBackgroundColor = Color(color.IndexToColor)
+            }
+        case .rest:
+            phaseBackgroundColor = Color(stopRestColor.IndexToColor)
         case .completed:
             phaseBackgroundColor = Color(.systemGray)
         }

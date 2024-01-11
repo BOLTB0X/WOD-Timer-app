@@ -12,7 +12,6 @@ struct DetailImageSetRow: View {
     // MARK: Binding
     @Binding var detailButton: DetailButton?
     @Binding var showPopup: Bool
-    @Binding var isMode: Int
 
     @Binding var preparationColor: Int
     @Binding var loopRestColor: Int
@@ -36,7 +35,7 @@ struct DetailImageSetRow: View {
                     Circle()
                         .stroke(Color.secondary)
                         .frame(width: 30, height: 30)
-                }
+                } // ZStack
             })
             .buttonStyle(EffectButtonStyle())
             

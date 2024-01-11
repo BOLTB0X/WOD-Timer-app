@@ -56,7 +56,7 @@ extension SimpleViewModel {
     // 현재 타이머 종료시 다음 단계로 이동
     func completedCurrentStop() {
         timerCancellable?.cancel()
-        simpleState = .completed
+        simpleTimerState = .completed
         // 다음 라운드 페이즈로 이동
         nextSimpleStopRoundPhase()
         return
@@ -76,7 +76,7 @@ extension SimpleViewModel {
     func resumeSimpleStop() {
         print("재개")
         updateSimpleCompletionDate()
-        simpleState = .active
+        simpleTimerState = .active
         controlBtn = false
         return
     }
@@ -93,7 +93,7 @@ extension SimpleViewModel {
     // MARK: - simpleStopCanclled
     // 타이머 취소
     func simpleStopCanclled() {
-        simpleState = .cancelled
+        simpleTimerState = .cancelled
         simpleSwRoundIdx = nil
         controlBtn = false
         return

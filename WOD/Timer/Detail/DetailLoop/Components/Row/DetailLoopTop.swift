@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-// MARK: - DetailTopRow
-struct DetailCycleTop: View {
+// MARK: - DetailLoopTop
+struct DetailLoopTop: View {
     // MARK: Binding
     @Binding var tableType: Int
     @Binding var betweenRest: Bool
@@ -16,7 +16,7 @@ struct DetailCycleTop: View {
     // MARK: 프로퍼티
     let createRemoveAction: () -> Void
     let sortAction: () -> Void
-
+    
     // MARK: - View
     var body: some View {
         HStack(alignment: .center,spacing: 10) {

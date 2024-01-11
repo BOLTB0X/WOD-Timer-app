@@ -101,7 +101,7 @@ extension SimpleViewModel {
         guard let idx = simpleSwRoundIdx, idx < simpleSwRounds.count else {
             // 더 이상 진행할 라운드가 없으면 완료 상태로 변경
             simpleRoundPhase = .completed
-            simpleState = .completed
+            simpleTimerState = .completed
             simpleDisplay = 0
             updateBackgroundColor()
             print("완료")

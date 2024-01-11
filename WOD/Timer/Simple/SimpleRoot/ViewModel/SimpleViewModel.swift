@@ -30,9 +30,9 @@ class SimpleViewModel: InputManager {
     @Published var simpleFullProgress: Float = 0.0
 
     // 타이머 상태 관련
-    @Published var simpleState: TimerState = .cancelled {
+    @Published var simpleTimerState: TimerState = .cancelled {
         didSet {
-            switch simpleState {
+            switch simpleTimerState {
             case .cancelled, .completed: // 취소 또는 완료
                 timerCancellable?.cancel()
                 simpleDisplay = 0

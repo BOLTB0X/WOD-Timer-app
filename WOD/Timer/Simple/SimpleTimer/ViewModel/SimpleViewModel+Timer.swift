@@ -64,7 +64,7 @@ extension SimpleViewModel {
     // 현재 타이머 종료시 다음 단계로 이동
     func completedCurrentTimer() {
         timerCancellable?.cancel()
-        simpleState = .completed
+        simpleTimerState = .completed
         updateSimpleTimerCompletion() // 기록
         simpleUnitProgress = 0.0
         // 다음 라운드 페이즈로 이동
@@ -86,7 +86,7 @@ extension SimpleViewModel {
     func resumeSimpleTimer() {
         print("재개")
         updateSimpleCompletionDate()
-        simpleState = .active
+        simpleTimerState = .active
         controlBtn = false
         return
     }
@@ -103,7 +103,7 @@ extension SimpleViewModel {
     // MARK: - simpleTimerCanclled
     // 타이머 취소
     func simpleTimerCanclled() {
-        simpleState = .cancelled
+        simpleTimerState = .cancelled
         simpleTmRoundIdx = nil
         controlBtn = false
         simpleUnitProgress = 0
@@ -123,12 +123,12 @@ extension SimpleViewModel {
         
         controlBtn.toggle()
         
-        if simpleState == .paused {
+        if simpleTimerState == .paused {
             controlBtn = false
-            simpleState = .resumed
-        } else if simpleState == .active {
+            simpleTimerState = .resumed
+        } else if simpleTimerState == .active {
             controlBtn = true
-            simpleState = .paused
+            simpleTimerState = .paused
         }
     }
     
@@ -141,7 +141,7 @@ extension SimpleViewModel {
         }
         
         // 현재 타이머 중지
-        simpleState = .paused
+        simpleTimerState = .paused
         simpleUnitProgress = 0
         
         if simpleRoundPhase == .completed {
@@ -153,7 +153,7 @@ extension SimpleViewModel {
             
             controlBtn = controlBtn
             
-            simpleState = controlBtn ? .paused : .active
+            simpleTimerState = controlBtn ? .paused : .active
             return
         }
         
@@ -182,7 +182,7 @@ extension SimpleViewModel {
         
         updateBeforeSimpleTotalTime()
         updateBackgroundColor()
-        simpleState = controlBtn ? .paused : .active
+        simpleTimerState = controlBtn ? .paused : .active
         return
     }
     
@@ -195,7 +195,7 @@ extension SimpleViewModel {
         }
         
         // 현재 타이머 중지
-        simpleState = .paused
+        simpleTimerState = .paused
         simpleUnitProgress = 0
         nextSimpleTimerRoundPhase()
         updateNextSimpleTotalTime()

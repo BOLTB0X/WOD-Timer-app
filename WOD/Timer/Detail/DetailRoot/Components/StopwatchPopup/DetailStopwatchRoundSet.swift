@@ -1,16 +1,16 @@
 //
-//  SimpleRoundStopSet.swift
+//  DetailRoundStopSet.swift
 //  Timer
 //
-//  Created by lkh on 1/1/24.
+//  Created by lkh on 1/7/24.
 //
 
 import SwiftUI
 
-// MARK: - SimpleRoundStopSet
-struct SimpleRoundStopSet: View {
+// MARK: - DetailStopwatchRoundSet
+struct DetailStopwatchRoundSet: View {
     // MARK: Object
-    @EnvironmentObject var viewModel: SimpleViewModel
+    @EnvironmentObject var viewModel: DetailViewModel
     @StateObject var manager = InputManager()
     
     // MARK: State / Binding

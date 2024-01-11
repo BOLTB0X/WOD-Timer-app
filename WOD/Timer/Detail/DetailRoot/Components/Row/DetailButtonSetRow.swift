@@ -37,12 +37,12 @@ struct DetailButtonSetRow: View {
                             .foregroundColor(Color("lightBlue1"))
                             .frame(width: 30, height: 30)
                     }
-                }
+                } // if btn == .loop || btn == .round
                 
                 VStack(alignment: .leading, spacing: 0) {
                     Text(btn.buttonText)
                         .font(.headline)
-
+                    
                     Text("\(viewModel.displaySubText(state: btn.buttonText))")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
@@ -67,11 +67,15 @@ struct DetailButtonSetRow: View {
     // MARK: - buttonAction
     private func buttonAction() {
         detailButton = btn
-        if btn == .preparation || btn == .loopRest || btn == .round {
+        
+        if btn == .preparation || btn == .round {
+            showPopup.toggle()
+        } else if isModeBtn == 0 && btn == .loopRest {
             showPopup.toggle()
         } else if btn == .loop {
             rootView.toggle()
         }
+        
         return
     }
 }
