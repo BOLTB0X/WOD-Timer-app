@@ -2,10 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <!-- 위젯 Extension지점 식별자, 정보를 정의하는 딕셔너리 -->
 	<key>NSExtension</key>
 	<dict>
+        <!-- 위젯 Extension이 어떤 확장 지점에 속하는지를 식별 -->
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.widgetkit-extension</string>
+    
+    <!-- Extension이 라이브 활동을 지원, . 위젯이 실시간으로 업데이트하게 가능 -->
+    <key>NSSupportsLiveActivities</key>
+    <true/>
 	</dict>
 </dict>
 </plist>

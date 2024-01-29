@@ -9,10 +9,12 @@ import ActivityKit
 import WidgetKit
 import SwiftUI
 
+// MARK: - TimerWidgetAttributes
 struct TimerWidgetAttributes: ActivityAttributes {
     public typealias TimeTrackingStatus = ContentState
     
     public struct ContentState: Codable, Hashable {
+        var currentState: String
         var currentDisplayTime: Int
     }
 
