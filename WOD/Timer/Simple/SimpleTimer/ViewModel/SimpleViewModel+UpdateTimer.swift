@@ -71,7 +71,7 @@ extension SimpleViewModel {
             
             simpleDisplay = selectedPreparationAmount
             simpleTimerState = controlBtn ? .paused : .active
-            
+            requestOnLiveActivity()
             return true
         } else {
             return false
@@ -137,6 +137,8 @@ extension SimpleViewModel {
         default:
             break
         } // switch
+        
+        
     }
     
     // MARK: - updateSimpleUnitProgress

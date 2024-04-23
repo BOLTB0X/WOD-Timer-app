@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import ActivityKit
 
 // MARK: - SimpleViewModel+Timer: SimpleTimer Control
 // 제어관련 메소드들
@@ -28,6 +29,8 @@ extension SimpleViewModel {
             self.speakingCurrentState()
         }
         
+        updateContentState(currentPhase, idx, simpleDisplay)
+        
         timerCancellable = Timer.publish(every: 1.0, on: .main, in: .common)
             .autoconnect()
             .sink { _ in
@@ -36,6 +39,8 @@ extension SimpleViewModel {
                 }
                 
                 self.simpleDisplay -= 1
+                
+                self.updateContentState(currentPhase, idx, self.simpleDisplay)
                 
                 // 5초 이하일 때 countdown 사운드 재생
                 if self.simpleDisplay <= 5 && self.simpleDisplay > 0 {
@@ -55,6 +60,7 @@ extension SimpleViewModel {
                 if self.simpleDisplay < 0 {
                     self.completedCurrentTimer() // 완료
                 }
+                
             } // sink
         
         return
@@ -107,6 +113,7 @@ extension SimpleViewModel {
         simpleTmRoundIdx = nil
         controlBtn = false
         simpleUnitProgress = 0
+        requestOffLiveActivity()
         return
     }
     
@@ -200,6 +207,40 @@ extension SimpleViewModel {
         nextSimpleTimerRoundPhase()
         updateNextSimpleTotalTime()
         return
+    }
+    
+    // MARK: - requestOnLiveActivity
+    func requestOnLiveActivity() {
+        guard ActivityAuthorizationInfo().areActivitiesEnabled else { return }
+        
+        let attribute = SimpleWidgetAttributes(name: "Simple Timer")
+        let state = SimpleWidgetAttributes.ContentState(currentState: "Preparation", currentRound: 1, currentDisplayTime: simpleDisplay)
+        
+        do {
+            self.activity = try Activity.request(attributes: attribute, contentState: state)
+        } catch (let error) {
+            print("Error requesting Live Activity \(error.localizedDescription).")
+        }
+        
+        return
+    }
+    
+    // MARK: - requestOffLiveActivity
+    func requestOffLiveActivity() {
+        Task {
+            await activity?.end(using: nil, dismissalPolicy: .immediate)
+        }
+    }
+    
+    // MARK: - updateContentState
+    func updateContentState(_ currentState: SimpleRoundPhase, _ currentRound: Int , _ time: Int) {
+        if time < 0 { return }
+        
+        Task {
+            let newState = SimpleWidgetAttributes.ContentState(currentState: currentState.phaseText, currentRound: currentRound+1, currentDisplayTime: time)
+            
+            await self.activity?.update(using: newState, alertConfiguration: nil)
+        }
     }
     
     /*==================================================================================*/

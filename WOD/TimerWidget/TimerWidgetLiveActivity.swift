@@ -11,47 +11,49 @@ import SwiftUI
 
 struct TimerWidgetLiveActivity: Widget {
     var body: some WidgetConfiguration {
-        ActivityConfiguration(for: TimerWidgetAttributes.self) { context in
+        ActivityConfiguration(for: SimpleWidgetAttributes.self) { context in
+            
             // MARK: - Notification
-            // Lock screen/banner UI goes here
-            VStack {
-                Text(context.state.currentDisplayTime.asTimestamp)
-            }
-            .activityBackgroundTint(Color.cyan)
-            .activitySystemActionForegroundColor(Color.black)
+            LockScreenLiveActivityView(context: context)
+                .activitySystemActionForegroundColor(Color.black)
+            
 
         } dynamicIsland: { context in
             DynamicIsland {
                 // MARK: - Expanded UI
                 DynamicIslandExpandedRegion(.leading) {
-                    Text("Leading: TODO")
+                    Image(systemName: "hourglass.circle.fill")
+                        .foregroundColor(.blue)
+                        .font(.title2)
                 }
+                
                 DynamicIslandExpandedRegion(.trailing) {
-                    Text("Trailing: TODO")
-                }
-                DynamicIslandExpandedRegion(.bottom) {
                     Text(context.state.currentDisplayTime.asTimestamp)
+                        .frame(width: 50)
+                        .monospacedDigit()
+                }
+                
+                DynamicIslandExpandedRegion(.bottom) {
+                    
                     // more content
                 }
                 // MARK: - Island Compact
             } compactLeading: {
-                Text("타이머")
+                Text(context.state.currentState)
             } compactTrailing: {
-                Text("B0X")
+                Text(context.state.currentDisplayTime.asTimestamp)
                 // MARK: - minimal
             } minimal: {
                 Image(systemName: "timer")
                     .foregroundColor(.blue)
             }
-            //.widgetURL(URL(string: "http://www.apple.com"))
-            //.keylineTint(Color.red)
         }
     }
 }
 
 struct TimerWidgetLiveActivity_Previews: PreviewProvider {
-    static let attributes = TimerWidgetAttributes(name: "Me")
-    static let contentState = TimerWidgetAttributes.ContentState(currentDisplayTime: 3)
+    static let attributes = SimpleWidgetAttributes(name: "Timer")
+    static let contentState = SimpleWidgetAttributes.ContentState(currentState: "Rest", currentRound: 1, currentDisplayTime: 50)
 
     static var previews: some View {
         attributes

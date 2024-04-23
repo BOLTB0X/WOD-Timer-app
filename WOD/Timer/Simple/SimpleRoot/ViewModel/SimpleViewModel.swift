@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import ActivityKit
 
 // MARK: - SimpleViewModel
 class SimpleViewModel: InputManager {
@@ -63,6 +64,7 @@ class SimpleViewModel: InputManager {
             case .cancelled, .completed: // 취소 또는 완료
                 timerCancellable?.cancel()
                 simpleDisplay = 0
+                activity = nil
                 updateSimpleCompletionDate()
                 
             case .active: // 실행
@@ -82,8 +84,8 @@ class SimpleViewModel: InputManager {
     @Published var phaseBackgroundColor: Color = .clear
     @Published var controlBtn: Bool = false // 바인딩할 프로퍼티
     
-    @Published var widgetManager = WidgetManager()
-
-    var timerCancellable: AnyCancellable? //   // 타이머 메모리 날리기 용
+    var timerCancellable: AnyCancellable? // 타이머 메모리 날리기 용
+    var activity: Activity<SimpleWidgetAttributes>? // 라이브 액티비티
+    
     let simpleButtonType: [SimpleButton] = [.preparation, .movements, .rest, .round]
 }
