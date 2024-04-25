@@ -92,6 +92,7 @@ extension DetailViewModel {
             detailDisplay = detailSwRounds[0].time.totalSeconds
             detailStopState = controlBtn ? .paused : .active
             print("준비 단계 시작, \(detailStopState)")
+            requestOnLiveActivity()
             return true
         }
         
@@ -110,6 +111,7 @@ extension DetailViewModel {
             detailStopState = .completed
             detailDisplay = 0
             updateStopwatchBackgroundColor()
+            updateContentState("Completed", 0, 0)
             detailStopCompletion = Date().formatted("yyyy-MM-dd HH:mm:ss")
             return
         }

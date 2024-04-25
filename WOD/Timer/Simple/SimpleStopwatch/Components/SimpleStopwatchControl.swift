@@ -14,7 +14,10 @@ struct SimpleStopwatchControl: View {
     
     // MARK: - View
     var body: some View {
-        HStack(alignment: .center, spacing: 50) {
+        HStack(alignment: .center, spacing: 10) {
+            ControlButton(isPaused: $viewModel.controlBtn ,action: viewModel.controlBack, defaultImgName: "chevron.left.to.line")
+
+            
             ZStack {
                 Circle()
                     .stroke(lineWidth: 8.0)

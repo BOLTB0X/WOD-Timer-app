@@ -10,7 +10,7 @@ import WidgetKit
 import SwiftUI
 
 // MARK: - SimpleWidgetAttributes
-struct SimpleWidgetAttributes: ActivityAttributes {
+struct TimerWidgetAttributes: ActivityAttributes {
     public struct ContentState: Codable, Hashable {
         var currentState: String
         var currentRound: Int

@@ -34,16 +34,16 @@ struct SimpleStopWatchView: View {
             } // VStack
             
             // MARK: - side
-            .navigationTitle(
-                Text("\(viewModel.simpleTotalTime.asTimestamp)")
+            .navigationTitle("\(viewModel.simpleTotalTime.asTimestamp)")
                     .bold()
-                    .foregroundColor(.black))
+                    .foregroundColor(.black)
             .navigationBarTitleDisplayMode(.inline)
             
             .toolbar {
                 // MARK: 왼쪽 뒤로가기
                 ToolbarItem(placement: .navigationBarLeading) {
                     ToolbarButton(action: {
+                        viewModel.simpleStopCanclled()
                         isBackRootView.toggle()
                     }, condition: viewModel.isDisplayToolbarSwBtn, systemName: "arrow.backward")
                 }

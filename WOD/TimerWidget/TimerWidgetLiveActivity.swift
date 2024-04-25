@@ -9,9 +9,10 @@ import ActivityKit
 import WidgetKit
 import SwiftUI
 
+// MARK: - TimerWidgetLiveActivity
 struct TimerWidgetLiveActivity: Widget {
     var body: some WidgetConfiguration {
-        ActivityConfiguration(for: SimpleWidgetAttributes.self) { context in
+        ActivityConfiguration(for: TimerWidgetAttributes.self) { context in
             
             // MARK: - Notification
             LockScreenLiveActivityView(context: context)
@@ -22,9 +23,15 @@ struct TimerWidgetLiveActivity: Widget {
             DynamicIsland {
                 // MARK: - Expanded UI
                 DynamicIslandExpandedRegion(.leading) {
-                    Image(systemName: "hourglass.circle.fill")
-                        .foregroundColor(.blue)
-                        .font(.title2)
+                    HStack {
+                        Image(systemName: "hourglass.circle.fill")
+                            .foregroundColor(.blue)
+                            .font(.title2)
+                        
+                        Text(context.state.currentState)
+                            .monospacedDigit()
+
+                    }
                 }
                 
                 DynamicIslandExpandedRegion(.trailing) {
@@ -34,8 +41,8 @@ struct TimerWidgetLiveActivity: Widget {
                 }
                 
                 DynamicIslandExpandedRegion(.bottom) {
-                    
                     // more content
+                    ExpandedLiveActivityView()
                 }
                 // MARK: - Island Compact
             } compactLeading: {
@@ -48,12 +55,12 @@ struct TimerWidgetLiveActivity: Widget {
                     .foregroundColor(.blue)
             }
         }
-    }
+    } // body
 }
 
 struct TimerWidgetLiveActivity_Previews: PreviewProvider {
-    static let attributes = SimpleWidgetAttributes(name: "Timer")
-    static let contentState = SimpleWidgetAttributes.ContentState(currentState: "Rest", currentRound: 1, currentDisplayTime: 50)
+    static let attributes = TimerWidgetAttributes(name: "Timer")
+    static let contentState = TimerWidgetAttributes.ContentState(currentState: "Rest", currentRound: 1, currentDisplayTime: 50)
 
     static var previews: some View {
         attributes

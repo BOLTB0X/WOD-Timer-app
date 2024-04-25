@@ -38,10 +38,9 @@ struct DetailStopwatchView: View {
             } // VStack
             
             // MARK: - side
-            .navigationTitle(
-                Text("\(viewModel.detailSTotalTime.asTimestamp)")
+            .navigationTitle("\(viewModel.detailSTotalTime.asTimestamp)")
                     .bold()
-                    .foregroundColor(.black))
+                    .foregroundColor(.black)
             .navigationBarTitleDisplayMode(.inline)
             
             .toolbar {

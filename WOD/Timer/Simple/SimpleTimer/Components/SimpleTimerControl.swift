@@ -34,6 +34,23 @@ struct SimpleTimerControl: View {
             ControlButton(isPaused: $viewModel.controlBtn, action: viewModel.controlNext, defaultImgName: "chevron.right.2")
         } // HStack
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .onOpenURL { url in
+            guard let action = url.host else { return }
+            
+            switch action {
+            case "stopResume":
+                // 타이머 정지 또는 재개 로직 수행
+                viewModel.controlTmPausedOrResumed()
+            case "next":
+                // 다음 동작 로직 수행
+                viewModel.controlNext()
+            case "before":
+                // 이전 동작 로직 수행
+                viewModel.controlBefore()
+            default:
+                break
+            }
+        }
     } // body
 }
 

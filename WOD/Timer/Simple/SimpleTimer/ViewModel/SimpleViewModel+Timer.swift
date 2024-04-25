@@ -209,40 +209,6 @@ extension SimpleViewModel {
         return
     }
     
-    // MARK: - requestOnLiveActivity
-    func requestOnLiveActivity() {
-        guard ActivityAuthorizationInfo().areActivitiesEnabled else { return }
-        
-        let attribute = SimpleWidgetAttributes(name: "Simple Timer")
-        let state = SimpleWidgetAttributes.ContentState(currentState: "Preparation", currentRound: 1, currentDisplayTime: simpleDisplay)
-        
-        do {
-            self.activity = try Activity.request(attributes: attribute, contentState: state)
-        } catch (let error) {
-            print("Error requesting Live Activity \(error.localizedDescription).")
-        }
-        
-        return
-    }
-    
-    // MARK: - requestOffLiveActivity
-    func requestOffLiveActivity() {
-        Task {
-            await activity?.end(using: nil, dismissalPolicy: .immediate)
-        }
-    }
-    
-    // MARK: - updateContentState
-    func updateContentState(_ currentState: SimpleRoundPhase, _ currentRound: Int , _ time: Int) {
-        if time < 0 { return }
-        
-        Task {
-            let newState = SimpleWidgetAttributes.ContentState(currentState: currentState.phaseText, currentRound: currentRound+1, currentDisplayTime: time)
-            
-            await self.activity?.update(using: newState, alertConfiguration: nil)
-        }
-    }
-    
     /*==================================================================================*/
     // MARK: - in using
     // ...

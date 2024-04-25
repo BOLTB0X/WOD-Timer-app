@@ -38,6 +38,7 @@ class SimpleViewModel: InputManager {
                 timerCancellable?.cancel()
                 simpleDisplay = 0
                 updateSimpleCompletionDate()
+                
             case .active: // 실행
                 startSimpleTimer()
                 
@@ -64,7 +65,6 @@ class SimpleViewModel: InputManager {
             case .cancelled, .completed: // 취소 또는 완료
                 timerCancellable?.cancel()
                 simpleDisplay = 0
-                activity = nil
                 updateSimpleCompletionDate()
                 
             case .active: // 실행
@@ -85,7 +85,7 @@ class SimpleViewModel: InputManager {
     @Published var controlBtn: Bool = false // 바인딩할 프로퍼티
     
     var timerCancellable: AnyCancellable? // 타이머 메모리 날리기 용
-    var activity: Activity<SimpleWidgetAttributes>? // 라이브 액티비티
+    var activity: Activity<TimerWidgetAttributes>? // 라이브 액티비티
     
     let simpleButtonType: [SimpleButton] = [.preparation, .movements, .rest, .round]
 }

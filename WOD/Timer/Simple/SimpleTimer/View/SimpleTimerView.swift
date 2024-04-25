@@ -35,10 +35,9 @@ struct SimpleTimerView: View {
             } // VStack
             
             // MARK: - side
-            .navigationTitle(
-                Text("\(viewModel.simpleTotalTime.asTimestamp)")
+            .navigationTitle("\(viewModel.simpleTotalTime.asTimestamp)")
                     .bold()
-                    .foregroundColor(.black))
+                    .foregroundColor(.black)
             .navigationBarTitleDisplayMode(.inline)
             
             .toolbar {

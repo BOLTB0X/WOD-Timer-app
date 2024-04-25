@@ -78,6 +78,7 @@ extension DetailViewModel {
             updateTimerBackgroundColor()
             detailDisplay = detailTmRounds[0].time.totalSeconds
             detailTimerState = controlBtn ? .paused : .active
+            requestOnLiveActivity()
             return true
         }
         
@@ -97,6 +98,7 @@ extension DetailViewModel {
             detailTimerState = .completed
             detailDisplay = 0
             updateTimerBackgroundColor()
+            updateContentState("Completed", 0, 0)
             detailTimerCompletion = Date().formatted("yyyy-MM-dd HH:mm:ss")
             return
         }

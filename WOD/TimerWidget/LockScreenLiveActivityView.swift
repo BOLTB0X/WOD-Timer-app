@@ -11,8 +11,9 @@ import WidgetKit
 
 // MARK: - LockScreenLiveActivityView
 struct LockScreenLiveActivityView: View {
-    let context: ActivityViewContext<SimpleWidgetAttributes>
+    let context: ActivityViewContext<TimerWidgetAttributes>
     
+    // MARK: - View
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
@@ -22,7 +23,7 @@ struct LockScreenLiveActivityView: View {
                         .foregroundColor(.blue)
                         .font(.title2)
                     
-                    Text("WOD BOX")
+                    Text("WOD B0X")
                         .font(.title3)
                         .foregroundColor(.black)
                         .fontWeight(.bold)
@@ -34,11 +35,18 @@ struct LockScreenLiveActivityView: View {
                 
                 HStack(alignment: .center) {
                     Spacer()
-                    
-                    Text("\(context.state.currentRound) Round:")
-                        .foregroundColor(.black)
-                        .font(.system(size: 16))
-                        .monospaced()
+                    if context.state.currentState != "Completed" {
+                        Text("\(context.state.currentRound)R:")
+                            .foregroundColor(.black)
+                            .font(.system(size: 16))
+                            .monospaced()
+                        
+                    } else {
+                        Text("All")
+                            .foregroundColor(.black)
+                            .font(.system(size: 16))
+                            .monospaced()
+                    }
                     
                     Spacer()
                     
@@ -56,7 +64,7 @@ struct LockScreenLiveActivityView: View {
             }
             
             Text(context.state.currentDisplayTime.asTimestamp)
-                .font(.system(size: 45, weight: .bold))
+                .font(.system(size: 40, weight: .bold))
                 .fontWeight(.bold)
                 .foregroundColor(.black)
                 .monospaced()
