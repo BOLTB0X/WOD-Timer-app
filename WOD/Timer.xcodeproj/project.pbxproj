@@ -158,8 +158,6 @@
 		BE62D1632B312C2600E1B233 /* TimerWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BE62D15F2B312C2400E1B233 /* TimerWidget.intentdefinition */; };
 		BE62D1642B312C2600E1B233 /* TimerWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = BE62D15F2B312C2400E1B233 /* TimerWidget.intentdefinition */; };
 		BE62D1672B312C2600E1B233 /* TimerWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BE62D1522B312C2400E1B233 /* TimerWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		BE62D16E2B3173A400E1B233 /* WidgetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE62D16D2B3173A400E1B233 /* WidgetManager.swift */; };
-		BE62D16F2B3173AA00E1B233 /* WidgetManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE62D16D2B3173A400E1B233 /* WidgetManager.swift */; };
 		BE62D1712B3173D800E1B233 /* TimerWidgetAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE62D1702B3173D800E1B233 /* TimerWidgetAttributes.swift */; };
 		BE62D1722B31741700E1B233 /* TimerWidgetAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE62D1702B3173D800E1B233 /* TimerWidgetAttributes.swift */; };
 		BE62D1732B31747200E1B233 /* Extension+Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562164D12B08D6E5008E472B /* Extension+Type.swift */; };
@@ -168,6 +166,11 @@
 		BE7E91AF2B46ADC100F200B5 /* DetailNextRealTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7E91AE2B46ADC100F200B5 /* DetailNextRealTime.swift */; };
 		BE7E91B12B46B50000F200B5 /* DetailTimerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7E91B02B46B50000F200B5 /* DetailTimerControl.swift */; };
 		BEA72DCE2B2F1B70004BC9D9 /* whistle_counting.caf in Resources */ = {isa = PBXBuildFile; fileRef = BEA72DCD2B2F1B2B004BC9D9 /* whistle_counting.caf */; };
+		BEAC353E2BD6476300D0A204 /* LockScreenLiveActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAC353D2BD6476300D0A204 /* LockScreenLiveActivityView.swift */; };
+		BEAC353F2BD6476300D0A204 /* LockScreenLiveActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEAC353D2BD6476300D0A204 /* LockScreenLiveActivityView.swift */; };
+		BEAC35402BD64F3E00D0A204 /* SimpleEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562164D82B08DA26008E472B /* SimpleEnum.swift */; };
+		BEB05CF32BD9DD1000EACFF8 /* ExpandedLiveActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB05CF22BD9DD1000EACFF8 /* ExpandedLiveActivityView.swift */; };
+		BEB05CF42BD9DD1000EACFF8 /* ExpandedLiveActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB05CF22BD9DD1000EACFF8 /* ExpandedLiveActivityView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -348,13 +351,14 @@
 		BE62D15F2B312C2400E1B233 /* TimerWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = TimerWidget.intentdefinition; sourceTree = "<group>"; };
 		BE62D1602B312C2600E1B233 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE62D1622B312C2600E1B233 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BE62D16D2B3173A400E1B233 /* WidgetManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetManager.swift; sourceTree = "<group>"; };
 		BE62D1702B3173D800E1B233 /* TimerWidgetAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWidgetAttributes.swift; sourceTree = "<group>"; };
 		BE7E91AA2B46ACD200F200B5 /* DetailTimerDisplayTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTimerDisplayTime.swift; sourceTree = "<group>"; };
 		BE7E91AC2B46ADAA00F200B5 /* DetailRealTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRealTime.swift; sourceTree = "<group>"; };
 		BE7E91AE2B46ADC100F200B5 /* DetailNextRealTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailNextRealTime.swift; sourceTree = "<group>"; };
 		BE7E91B02B46B50000F200B5 /* DetailTimerControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTimerControl.swift; sourceTree = "<group>"; };
 		BEA72DCD2B2F1B2B004BC9D9 /* whistle_counting.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = whistle_counting.caf; sourceTree = "<group>"; };
+		BEAC353D2BD6476300D0A204 /* LockScreenLiveActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenLiveActivityView.swift; sourceTree = "<group>"; };
+		BEB05CF22BD9DD1000EACFF8 /* ExpandedLiveActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedLiveActivityView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -409,7 +413,6 @@
 				568F1CFE2B32DDB100E1D58A /* SimpleViewModel+Stopwatch.swift */,
 				568F1D092B33211400E1D58A /* SimpleViewModel+UpdateStopwatch.swift */,
 				568F1D0B2B33D70F00E1D58A /* SimpleViewModel+ViewStopwatch.swift */,
-				568F1D0E2B33D91800E1D58A /* Stopwatch */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -490,13 +493,6 @@
 				568F1D032B32F8EC00E1D58A /* SimpleTimerControl.swift */,
 			);
 			path = Components;
-			sourceTree = "<group>";
-		};
-		568F1D0E2B33D91800E1D58A /* Stopwatch */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Stopwatch;
 			sourceTree = "<group>";
 		};
 		568F1D112B33DAE200E1D58A /* ViewModel */ = {
@@ -996,8 +992,9 @@
 		56C4F6522B1CAB90009D2721 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				BE62D16C2B31736200E1B233 /* Widget */,
-				56C4F65F2B1D6F3F009D2721 /* Input */,
+				5697A7D32AFF431400ADBBD1 /* InputManager.swift */,
+				5621651E2B0B85F2008E472B /* InputManager+Movement.swift */,
+				562165202B0B8CA6008E472B /* InputManager+Rest.swift */,
 				56C5A49A2B136BDE008ABCA0 /* TextLimiter.swift */,
 				562FC9212B2483630038731B /* AVManager.swift */,
 			);
@@ -1029,16 +1026,6 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
-		56C4F65F2B1D6F3F009D2721 /* Input */ = {
-			isa = PBXGroup;
-			children = (
-				5697A7D32AFF431400ADBBD1 /* InputManager.swift */,
-				5621651E2B0B85F2008E472B /* InputManager+Movement.swift */,
-				562165202B0B8CA6008E472B /* InputManager+Rest.swift */,
-			);
-			path = Input;
-			sourceTree = "<group>";
-		};
 		56C4F6602B1D7059009D2721 /* Time */ = {
 			isa = PBXGroup;
 			children = (
@@ -1060,6 +1047,9 @@
 		BE62D1582B312C2400E1B233 /* TimerWidget */ = {
 			isa = PBXGroup;
 			children = (
+				BEAC353D2BD6476300D0A204 /* LockScreenLiveActivityView.swift */,
+				BEB05CF22BD9DD1000EACFF8 /* ExpandedLiveActivityView.swift */,
+				BE62D1702B3173D800E1B233 /* TimerWidgetAttributes.swift */,
 				BE62D1592B312C2400E1B233 /* TimerWidgetBundle.swift */,
 				BE62D15B2B312C2400E1B233 /* TimerWidgetLiveActivity.swift */,
 				BE62D15D2B312C2400E1B233 /* TimerWidget.swift */,
@@ -1068,15 +1058,6 @@
 				BE62D1622B312C2600E1B233 /* Info.plist */,
 			);
 			path = TimerWidget;
-			sourceTree = "<group>";
-		};
-		BE62D16C2B31736200E1B233 /* Widget */ = {
-			isa = PBXGroup;
-			children = (
-				BE62D16D2B3173A400E1B233 /* WidgetManager.swift */,
-				BE62D1702B3173D800E1B233 /* TimerWidgetAttributes.swift */,
-			);
-			path = Widget;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1251,6 +1232,7 @@
 				568F1CF02B3283C700E1D58A /* SimpleTimerRestSet.swift in Sources */,
 				56AC34162AF930EC00A100BF /* Extension+View.swift in Sources */,
 				5697A7E02AFF56CE00ADBBD1 /* RestSet.swift in Sources */,
+				BEB05CF32BD9DD1000EACFF8 /* ExpandedLiveActivityView.swift in Sources */,
 				568F1D2D2B35652300E1D58A /* DetailEnum.swift in Sources */,
 				562165212B0B8CA6008E472B /* InputManager+Rest.swift in Sources */,
 				568F1CFD2B32DA1400E1D58A /* SimpleStopWatchView.swift in Sources */,
@@ -1295,7 +1277,6 @@
 				56A849D52B4AD81200128F6B /* DetailStopwatchTextSet.swift in Sources */,
 				56B7420C2B4548EC00F369CA /* DeatilTimerPreparationColorSet.swift in Sources */,
 				568F1CF92B32B72700E1D58A /* SectionHeader.swift in Sources */,
-				BE62D16E2B3173A400E1B233 /* WidgetManager.swift in Sources */,
 				BE7E91AD2B46ADAA00F200B5 /* DetailRealTime.swift in Sources */,
 				568F1D1D2B341E1700E1D58A /* ScrollTestView.swift in Sources */,
 				56B742002B4394C200F369CA /* DetailViewModel+Timer.swift in Sources */,
@@ -1305,6 +1286,7 @@
 				BE62D1712B3173D800E1B233 /* TimerWidgetAttributes.swift in Sources */,
 				568F1D2B2B35648F00E1D58A /* DetailViewModel.swift in Sources */,
 				56C4F64D2B1B5A74009D2721 /* LabelView.swift in Sources */,
+				BEAC353E2BD6476300D0A204 /* LockScreenLiveActivityView.swift in Sources */,
 				56A849CC2B4AC7C400128F6B /* DetailStopwatchRoundSet.swift in Sources */,
 				568F1D4B2B35C53600E1D58A /* DetailLoopView.swift in Sources */,
 				56A84A052B4BE09F00128F6B /* DetailStopwatchControl.swift in Sources */,
@@ -1335,9 +1317,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEB05CF42BD9DD1000EACFF8 /* ExpandedLiveActivityView.swift in Sources */,
+				BEAC35402BD64F3E00D0A204 /* SimpleEnum.swift in Sources */,
+				BEAC353F2BD6476300D0A204 /* LockScreenLiveActivityView.swift in Sources */,
 				BE62D1732B31747200E1B233 /* Extension+Type.swift in Sources */,
 				BE62D15C2B312C2400E1B233 /* TimerWidgetLiveActivity.swift in Sources */,
-				BE62D16F2B3173AA00E1B233 /* WidgetManager.swift in Sources */,
 				BE62D1722B31741700E1B233 /* TimerWidgetAttributes.swift in Sources */,
 				BE62D15A2B312C2400E1B233 /* TimerWidgetBundle.swift in Sources */,
 				BE62D1632B312C2600E1B233 /* TimerWidget.intentdefinition in Sources */,
@@ -1489,6 +1473,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Timer/Info.plist;
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1523,6 +1508,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Timer/Info.plist;
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

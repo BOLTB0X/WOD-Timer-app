@@ -23,6 +23,8 @@ extension DetailViewModel {
         print("타이머 실행")
         print(detailRoundPhase?.phaseText ?? "??")
         
+        updateContentState(detailSwRounds[idx].title ?? "Movements", detailSwRounds[idx].currentRound-1, detailDisplay)
+        
         timerCancellable = Timer.publish(every: 1.0, on: .main, in: .common)
             .autoconnect()
             .sink { _ in
@@ -39,6 +41,9 @@ extension DetailViewModel {
                 } else { // 나머진 그냥 증가
                     self.detailDisplay += 1
                 }
+                
+                self.updateContentState(self.detailSwRounds[idx].title ?? "Movements", self.detailSwRounds[idx].currentRound-1, self.detailDisplay)
+                
                 // 5초 이하이고 준비일 때 countdown 사운드 재생
                 if self.detailDisplay <= 5 && self.detailDisplay > 0 && self.detailRoundPhase == .preparation {
                     DispatchQueue.global().async {
@@ -53,10 +58,6 @@ extension DetailViewModel {
                 DispatchQueue.main.async {
                     self.updateDetailUnitProgress()
                 }
-                
-//                if self.detailDisplay < 0 {
-//                    self.completedCurrentTimer() // 완료
-//                }
             } // sink
     } // startDetailStopwatch
     
@@ -105,6 +106,7 @@ extension DetailViewModel {
         detailStopState = .cancelled
         detailSwRoundIdx = nil
         controlBtn = false
+        requestOffLiveActivity()
         return
     }
     

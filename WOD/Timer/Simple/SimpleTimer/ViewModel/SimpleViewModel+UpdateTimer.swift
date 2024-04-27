@@ -71,7 +71,7 @@ extension SimpleViewModel {
             
             simpleDisplay = selectedPreparationAmount
             simpleTimerState = controlBtn ? .paused : .active
-            
+            requestOnLiveActivity()
             return true
         } else {
             return false
@@ -92,16 +92,7 @@ extension SimpleViewModel {
             simpleDisplay = 0
             updateBackgroundColor()
             simpleTimerCompletion = Date().formatted("yyyy-MM-dd HH:mm:ss")
-            
-            // 테스트
-            for tm in simpleTmRounds {
-                print("운동 시작 시간: ", tm.date.movementStart)
-                print("운동 완료 시간: ", tm.date.movementComplted)
-                print("휴식 시작 시간: ", tm.date.restStart)
-                print("휴식 완료 시간: ", tm.date.restComplted)
-                print("===================================================")
-            }
-            print("총 타이머 완료", simpleTimerCompletion)
+            updateContentState(.completed, 0, 0)
             return
         }
         
@@ -137,6 +128,8 @@ extension SimpleViewModel {
         default:
             break
         } // switch
+        
+        
     }
     
     // MARK: - updateSimpleUnitProgress

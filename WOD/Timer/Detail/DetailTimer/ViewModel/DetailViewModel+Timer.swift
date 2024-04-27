@@ -27,6 +27,7 @@ extension DetailViewModel {
         DispatchQueue.main.async {
             self.speakingCurrentState()
         }
+        updateContentState(detailTmRounds[idx].title ?? "Movements", detailTmRounds[idx].currentRound-1, detailDisplay)
         
         timerCancellable = Timer.publish(every: 1.0, on: .main, in: .common)
             .autoconnect()
@@ -36,6 +37,8 @@ extension DetailViewModel {
                 }
                 
                 self.detailDisplay -= 1
+                
+                self.updateContentState(self.detailTmRounds[idx].title ?? "Movements", self.detailTmRounds[idx].currentRound-1, self.detailDisplay)
                 
                 // 5초 이하일 때 countdown 사운드 재생
                 if self.detailDisplay <= 5 && self.detailDisplay > 0 {
@@ -106,6 +109,7 @@ extension DetailViewModel {
         detailTmRoundIdx = nil
         controlBtn = false
         detailUnitProgress = 0
+        requestOffLiveActivity()
         return
     }
     

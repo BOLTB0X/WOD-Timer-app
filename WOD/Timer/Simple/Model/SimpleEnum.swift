@@ -30,7 +30,7 @@ enum SimpleButton {
 }
 
 // MARK: - SimpleRoundPhase
-enum SimpleRoundPhase {
+enum SimpleRoundPhase: Codable {
     case preparation
     case movement
     case rest

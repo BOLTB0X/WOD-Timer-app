@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import ActivityKit
 
 // MARK: - SimpleViewModel+Timer: SimpleTimer Control
 // 제어관련 메소드들
@@ -28,6 +29,8 @@ extension SimpleViewModel {
             self.speakingCurrentState()
         }
         
+        updateContentState(currentPhase, idx, simpleDisplay)
+        
         timerCancellable = Timer.publish(every: 1.0, on: .main, in: .common)
             .autoconnect()
             .sink { _ in
@@ -36,6 +39,8 @@ extension SimpleViewModel {
                 }
                 
                 self.simpleDisplay -= 1
+                
+                self.updateContentState(currentPhase, idx, self.simpleDisplay)
                 
                 // 5초 이하일 때 countdown 사운드 재생
                 if self.simpleDisplay <= 5 && self.simpleDisplay > 0 {
@@ -55,6 +60,7 @@ extension SimpleViewModel {
                 if self.simpleDisplay < 0 {
                     self.completedCurrentTimer() // 완료
                 }
+                
             } // sink
         
         return
@@ -107,6 +113,7 @@ extension SimpleViewModel {
         simpleTmRoundIdx = nil
         controlBtn = false
         simpleUnitProgress = 0
+        requestOffLiveActivity()
         return
     }
     

@@ -14,7 +14,10 @@ struct SimpleStopwatchControl: View {
     
     // MARK: - View
     var body: some View {
-        HStack(alignment: .center, spacing: 50) {
+        HStack(alignment: .center, spacing: 10) {
+            ControlButton(isPaused: $viewModel.controlBtn ,action: viewModel.controlBack, defaultImgName: "chevron.left.to.line")
+
+            
             ZStack {
                 Circle()
                     .stroke(lineWidth: 8.0)
@@ -41,6 +44,23 @@ struct SimpleStopwatchControl: View {
         } // HStack
         .padding(.horizontal)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .onOpenURL { url in
+            guard let action = url.host else { return }
+            
+            switch action {
+            case "stopResume":
+                // 타이머 정지 또는 재개 로직 수행
+                viewModel.controlSwPausedOrResumed()
+            case "next":
+                // 다음 동작 로직 수행
+                viewModel.controlStopwatchCheck()
+            case "before":
+                // 이전 동작 로직 수행
+                viewModel.controlBack()
+            default:
+                break
+            }
+        }
     }
 }
 

@@ -40,10 +40,9 @@ struct DetailTimerView: View {
             } // VStack
             
             // MARK: - side
-            .navigationTitle(
-                Text("\(viewModel.detailRTotalTime.asTimestamp)")
+            .navigationTitle("\(viewModel.detailRTotalTime.asTimestamp)")
                     .bold()
-                    .foregroundColor(.black))
+                    .foregroundColor(.black)
             .navigationBarTitleDisplayMode(.inline)
             
             .toolbar {

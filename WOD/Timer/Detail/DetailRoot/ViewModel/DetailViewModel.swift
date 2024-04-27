@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import ActivityKit
 
 // MARK: - DetailViewModel
 class DetailViewModel: InputManager {
@@ -112,4 +113,6 @@ class DetailViewModel: InputManager {
         } // didSet
     }
     // ...
+    
+    var activity: Activity<TimerWidgetAttributes>? // 라이브 액티비티
 }

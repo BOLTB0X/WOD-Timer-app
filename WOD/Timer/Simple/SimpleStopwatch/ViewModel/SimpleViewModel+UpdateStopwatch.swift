@@ -84,7 +84,7 @@ extension SimpleViewModel {
             
             simpleDisplay = selectedPreparationStop
             simpleStopState = controlBtn ? .paused : .active
-            
+            requestOnLiveActivity()
             return true
         } else {
             return false
@@ -104,6 +104,7 @@ extension SimpleViewModel {
             simpleTimerState = .completed
             simpleDisplay = 0
             updateBackgroundColor()
+            updateContentState(.completed, 0, 0)
             print("완료")
             return
         }

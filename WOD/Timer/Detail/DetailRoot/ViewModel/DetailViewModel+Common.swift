@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Foundation
+import ActivityKit
 
 // MARK: - DetailViewModel + Common
 // 공통적으로 사용할 메세지(Color, AV 등)
@@ -113,6 +114,40 @@ extension DetailViewModel {
             phaseBackgroundColor = Color(stopRestColor.IndexToColor)
         case .completed:
             phaseBackgroundColor = Color(.systemGray)
+        }
+    }
+    
+    // MARK: - requestOnLiveActivity
+    func requestOnLiveActivity() {
+        guard ActivityAuthorizationInfo().areActivitiesEnabled else { return }
+        
+        let attribute = TimerWidgetAttributes(name: "Detail")
+        let state = TimerWidgetAttributes.ContentState(currentState: "Preparation", currentRound: 1, currentDisplayTime: detailDisplay)
+        
+        do {
+            self.activity = try Activity.request(attributes: attribute, contentState: state)
+        } catch (let error) {
+            print("Error requesting Live Activity \(error.localizedDescription).")
+        }
+        
+        return
+    }
+    
+    // MARK: - requestOffLiveActivity
+    func requestOffLiveActivity() {
+        Task {
+            await activity?.end(using: nil, dismissalPolicy: .immediate)
+        }
+    }
+    
+    // MARK: - updateContentState
+    func updateContentState(_ currentState: String, _ currentRound: Int , _ time: Int) {
+        if time < 0 { return }
+        
+        Task {
+            let newState = TimerWidgetAttributes.ContentState(currentState: currentState, currentRound: currentRound+1, currentDisplayTime: time)
+            
+            await self.activity?.update(using: newState, alertConfiguration: nil)
         }
     }
 }

@@ -22,6 +22,8 @@ extension SimpleViewModel {
         
         updateStopPhaseStart(idx: idx, currentPhase: currentPhase)
         
+        updateContentState(currentPhase, idx, simpleDisplay)
+        
         timerCancellable = Timer.publish(every: 1.0, on: .main, in: .common)
             .autoconnect()
             .sink { _ in
@@ -38,6 +40,8 @@ extension SimpleViewModel {
                 } else { // 나머진 그냥 증가
                     self.simpleDisplay += 1
                 }
+                
+                self.updateContentState(currentPhase, idx, self.simpleDisplay)
                 
                 // 5초 이하이고 준비일 때 countdown 사운드 재생
                 if self.simpleDisplay <= 5 && self.simpleDisplay > 0 && self.simpleRoundPhase == .preparation {
@@ -76,7 +80,7 @@ extension SimpleViewModel {
     func resumeSimpleStop() {
         print("재개")
         updateSimpleCompletionDate()
-        simpleTimerState = .active
+        simpleStopState = .active
         controlBtn = false
         return
     }
@@ -96,6 +100,7 @@ extension SimpleViewModel {
         simpleTimerState = .cancelled
         simpleSwRoundIdx = nil
         controlBtn = false
+        requestOffLiveActivity()
         return
     }
     
@@ -121,6 +126,56 @@ extension SimpleViewModel {
         }
     }
     
+    // MARK: - controlBack
+    // 그 이전으로 되돌아가기
+    func controlBack() {
+        // 현재가 0일땐 Nothing
+        guard let roundIdx = simpleSwRoundIdx, roundIdx >= 0, simpleRoundPhase != .preparation else {
+            return
+        }
+        
+        // 현재 타이머 중지
+        simpleStopState = .paused
+        
+        if simpleRoundPhase == .completed {
+            simpleSwRoundIdx! -= 1
+            simpleRoundPhase = .movement
+            simpleDisplay = 0
+            updateBackgroundColor()
+            
+            controlBtn = controlBtn
+            
+            simpleStopState = controlBtn ? .paused : .active
+            return
+        }
+        
+        // 현재가 완전 맨 처음인 경우
+        if roundIdx == 0 {
+            if simpleRoundPhase == .movement { // 운동인 경우 -> 준비 단계로
+                simpleRoundPhase = .preparation
+                simpleDisplay = selectedPreparationAmount
+                
+            } else { // 현재가 첫번째이고 휴식인 경우 -> 운동으로
+                simpleDisplay = simpleSwRounds[roundIdx].movement
+                simpleRoundPhase = .movement
+            }
+        } else {
+            if simpleRoundPhase == .movement { // 현재가 운동이면 라운드를 앞으로 당겨야함
+                // 이전 라운드로 이동
+                simpleSwRoundIdx! -= 1
+                let currentRound = simpleSwRounds[simpleSwRoundIdx!]
+                simpleRoundPhase = .rest
+                simpleDisplay = currentRound.rest
+            } else { // 휴식인 경우
+                simpleRoundPhase = .movement
+                simpleDisplay = simpleSwRounds[simpleSwRoundIdx!].movement
+            }
+        }
+        
+        updateBackgroundColor()
+        simpleStopState = controlBtn ? .paused : .active
+        return
+    }
     
     // MARK: - controlStopwatchCheck
     // 기록 후 다음으로 가기
@@ -145,4 +200,5 @@ extension SimpleViewModel {
         nextSimpleStopRoundPhase()
         return
     }
+    
 }
