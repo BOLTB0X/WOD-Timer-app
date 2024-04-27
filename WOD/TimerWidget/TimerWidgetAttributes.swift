@@ -15,6 +15,7 @@ struct TimerWidgetAttributes: ActivityAttributes {
         var currentState: String
         var currentRound: Int
         var currentDisplayTime: Int
+        //var color: Color
     }
     
     var name: String

@@ -18,32 +18,13 @@ struct TimerWidgetLiveActivity: Widget {
             LockScreenLiveActivityView(context: context)
                 .activitySystemActionForegroundColor(Color.black)
             
-
         } dynamicIsland: { context in
             DynamicIsland {
                 // MARK: - Expanded UI
-                DynamicIslandExpandedRegion(.leading) {
-                    HStack {
-                        Image(systemName: "hourglass.circle.fill")
-                            .foregroundColor(.blue)
-                            .font(.title2)
-                        
-                        Text(context.state.currentState)
-                            .monospacedDigit()
-
-                    }
+                DynamicIslandExpandedRegion(.center) {
+                    ExpandedLiveActivityView(context: context)
                 }
                 
-                DynamicIslandExpandedRegion(.trailing) {
-                    Text(context.state.currentDisplayTime.asTimestamp)
-                        .frame(width: 50)
-                        .monospacedDigit()
-                }
-                
-                DynamicIslandExpandedRegion(.bottom) {
-                    // more content
-                    ExpandedLiveActivityView()
-                }
                 // MARK: - Island Compact
             } compactLeading: {
                 Text(context.state.currentState)
@@ -61,7 +42,7 @@ struct TimerWidgetLiveActivity: Widget {
 struct TimerWidgetLiveActivity_Previews: PreviewProvider {
     static let attributes = TimerWidgetAttributes(name: "Timer")
     static let contentState = TimerWidgetAttributes.ContentState(currentState: "Rest", currentRound: 1, currentDisplayTime: 50)
-
+    
     static var previews: some View {
         attributes
             .previewContext(contentState, viewKind: .dynamicIsland(.compact))

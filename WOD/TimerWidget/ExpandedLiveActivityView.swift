@@ -6,62 +6,76 @@
 //
 
 import SwiftUI
-import UIKit
+import ActivityKit
+import WidgetKit
 
 // MARK: - ExpandedLiveActivityView
 struct ExpandedLiveActivityView: View {
-    @State private var playOrStop: Bool = false
-    
+    let context: ActivityViewContext<TimerWidgetAttributes>
     // MARK: - View
     var body: some View {
-        HStack {
-            Link(destination: URL(string: "WODB0X://before")!, label: {
-                Image(systemName: "backward.end.circle")
-                    .resizable()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .foregroundColor(.blue)
-            })
-            .environment(\.openURL, OpenURLAction { url in
-                print("The the action to the app with \(url)")
-                return .handled
-            })
-            .padding()
-            
-            Link(destination: URL(string: "WODB0X://stopResume")!, label: {
-                Image(systemName: "playpause.circle.fill")
-                    .resizable()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .foregroundColor(.blue)
-                    .onTapGesture {
-                        playOrStop.toggle()
-                    }
+        VStack {
+            ZStack {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(.blue)
+                HStack {
+                    Spacer()
+                    
+                    Text(context.state.currentState)
+                        .bold()
+                        .font(.system(size: 30, weight: .semibold))
+                        .monospacedDigit()
+                    
+                    Spacer()
+                    
+                    Text(context.state.currentDisplayTime.asTimestamp)
+                        .font(.system(size: 30, weight: .bold))
+                        .fontWeight(.bold)
+                        .monospaced()
+                    
+                    Spacer()
+                }
+            }
+            HStack {
+                Link(destination: URL(string: "WODB0X://before")!, label: {
+                    Image(systemName: "backward.end.fill")
+                        .resizable()
+                        .frame(width: 20 , height: 20)
+                    
+                        .foregroundColor(.white)
+                })
+                .environment(\.openURL, OpenURLAction { url in
+                    print("\(url)")
+                    return .handled
+                })
+                .padding(.horizontal)
                 
-            })
-            .environment(\.openURL, OpenURLAction { url in
-                print("The the action to the app with \(url)")
-                return .handled
-            })
-            .padding()
-            
-            Link(destination: URL(string: "WODB0X://next")!, label: {
-                Image(systemName: "forward.end.circle")
-                    .resizable()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .foregroundColor(.blue)
+                Link(destination: URL(string: "WODB0X://stopResume")!, label: {
+                    Image(systemName: "playpause.circle.fill")
+                        .resizable()
+                        .frame(width: 40 , height: 30)
+                        .foregroundColor(.white)
+                })
+                .environment(\.openURL, OpenURLAction { url in
+                    print("\(url)")
+                    return .handled
+                })
+                .padding(.horizontal)
                 
-            })
-            .environment(\.openURL, OpenURLAction { url in
-                print("The the action to the app with \(url)")
-                return .handled
-            })
-            .padding()
-            
+                Link(destination: URL(string: "WODB0X://next")!, label: {
+                    Image(systemName: "forward.end.fill")
+                        .resizable()
+                        .frame(width: 20 , height: 20)
+                        .foregroundColor(.white)
+                    
+                })
+                .environment(\.openURL, OpenURLAction { url in
+                    print("\(url)")
+                    return .handled
+                })
+                .padding(.horizontal)
+                
+            }
         }
-    }
-}
-
-struct ExpandedLiveActivityView_Previews: PreviewProvider {
-    static var previews: some View {
-        ExpandedLiveActivityView()
     }
 }
