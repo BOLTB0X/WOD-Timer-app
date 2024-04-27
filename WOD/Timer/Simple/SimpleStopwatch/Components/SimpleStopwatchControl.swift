@@ -44,6 +44,23 @@ struct SimpleStopwatchControl: View {
         } // HStack
         .padding(.horizontal)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .onOpenURL { url in
+            guard let action = url.host else { return }
+            
+            switch action {
+            case "stopResume":
+                // 타이머 정지 또는 재개 로직 수행
+                viewModel.controlSwPausedOrResumed()
+            case "next":
+                // 다음 동작 로직 수행
+                viewModel.controlStopwatchCheck()
+            case "before":
+                // 이전 동작 로직 수행
+                viewModel.controlBack()
+            default:
+                break
+            }
+        }
     }
 }
 
