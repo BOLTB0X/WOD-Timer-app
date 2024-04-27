@@ -4,7 +4,8 @@
 
 ## current - ing
 
-![으아아아아아가](https://github.com/BOLTB0X/WOD-Timer-app/blob/main/history/detail_%ED%83%80%EC%9D%B4%EB%A8%B8.gif?raw=true) ![으아아아아아](https://github.com/BOLTB0X/WOD-Timer-app/blob/main/history/detail_%EC%9A%B4%EB%8F%99%EB%A3%A8%ED%94%84%20%EC%84%A4%EC%A0%95.gif?raw=true) ![으아아아아아](https://github.com/BOLTB0X/WOD-Timer-app/blob/main/history/%EB%94%94%ED%85%8C%EC%9D%BC%EC%8A%A4%ED%86%B1%EC%9B%8C%EC%B9%98.gif?raw=true)
+![으아아아아아가](https://github.com/BOLTB0X/WOD-Timer-app/blob/main/history/detail_%ED%83%80%EC%9D%B4%EB%A8%B8.gif?raw=true) ![으아아아아아](https://github.com/BOLTB0X/WOD-Timer-app/blob/main/history/detail_%EC%9A%B4%EB%8F%99%EB%A3%A8%ED%94%84%20%EC%84%A4%EC%A0%95.gif?raw=true) ![으아아아아아](https://github.com/BOLTB0X/WOD-Timer-app/blob/main/history/%EB%94%94%ED%85%8C%EC%9D%BC%EC%8A%A4%ED%86%B1%EC%9B%8C%EC%B9%98.gif?raw=true) ![오아아아악](https://github.com/BOLTB0X/WOD-Timer-app/blob/main/history/%EB%8B%A4%EC%9D%B4%EB%82%98%EB%AF%B9%EC%95%84%EC%9D%BC%EB%9E%9C%EB%93%9C_%ED%99%95%EC%9E%A5.gif?raw=true)
+![하하ㅏ하하아아아아악](https://github.com/BOLTB0X/WOD-Timer-app/blob/main/history/%EB%8B%A4%EC%9D%B4%EB%82%98%EB%AF%B9%EC%95%84%EC%9D%BC%EB%9E%9C%EB%93%9C%202.gif?raw=true)![으어어어어ㅓ어어억](https://github.com/BOLTB0X/WOD-Timer-app/blob/main/history/%EC%9E%A0%EA%B8%88%ED%99%94%EB%A9%B43.gif?raw=true)
 <br/>
 
 ## Reference
@@ -86,6 +87,8 @@
 
   [블로그 참조 - Live Activities](https://velog.io/@maddie/iOS-Live-Activity-%EB%9D%BC%EC%9D%B4%EB%B8%8C-%EC%95%A1%ED%8B%B0%EB%B9%84%ED%8B%B0)
   <br/>
+
+  [Live Activities Timer 참고](https://santoshbotre01.medium.com/empower-your-ios-apps-with-liveactivity-6f2b461e78f3)
 
 - Alert
   <br/>
