@@ -6,7 +6,7 @@
 
 | 항목      | 내용                                                   |
 | --------- | ------------------------------------------------------ |
-| 개발 환경 | Xcode 14.2, iOS 15.0                                   |
+| 개발 환경 | Xcode 14.2, iOS 16.2                                   |
 | 주요 기술 | SwiftUI, Combine, WidgetKit, ActivityKit, AVFoundation |
 | 개발 언어 | Swift                                                  |
 
