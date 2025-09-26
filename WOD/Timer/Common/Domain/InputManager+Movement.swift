@@ -98,5 +98,5 @@ extension InputManager {
                 selectedMovementAmount.seconds = seconds
             } else { selectedMovementAmount.seconds = newValue }
         }
-    }
+    } // autoMovementCalculator
 }

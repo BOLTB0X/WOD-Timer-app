@@ -67,5 +67,5 @@ extension InputManager {
                 selectedRestAmount.seconds = seconds
             } else { selectedRestAmount.seconds = newValue }
         }
-    }
+    } // autoRestCalculator
 }

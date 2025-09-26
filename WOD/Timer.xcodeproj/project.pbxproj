@@ -171,6 +171,7 @@
 		BEAC35402BD64F3E00D0A204 /* SimpleEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562164D82B08DA26008E472B /* SimpleEnum.swift */; };
 		BEB05CF32BD9DD1000EACFF8 /* ExpandedLiveActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB05CF22BD9DD1000EACFF8 /* ExpandedLiveActivityView.swift */; };
 		BEB05CF42BD9DD1000EACFF8 /* ExpandedLiveActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB05CF22BD9DD1000EACFF8 /* ExpandedLiveActivityView.swift */; };
+		BEDF5DA12E867333008291DB /* PhaseStateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDF5DA02E867327008291DB /* PhaseStateHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -359,6 +360,7 @@
 		BEA72DCD2B2F1B2B004BC9D9 /* whistle_counting.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = whistle_counting.caf; sourceTree = "<group>"; };
 		BEAC353D2BD6476300D0A204 /* LockScreenLiveActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenLiveActivityView.swift; sourceTree = "<group>"; };
 		BEB05CF22BD9DD1000EACFF8 /* ExpandedLiveActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedLiveActivityView.swift; sourceTree = "<group>"; };
+		BEDF5DA02E867327008291DB /* PhaseStateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseStateHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -812,7 +814,7 @@
 				56AF0AF82AEA35B5009AF8A2 /* CustomStyle */,
 				56C4F65E2B1D6F13009D2721 /* Components */,
 				56C4F6532B1CABD7009D2721 /* View */,
-				56C4F6522B1CAB90009D2721 /* Controller */,
+				56C4F6522B1CAB90009D2721 /* Domain */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -989,16 +991,17 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		56C4F6522B1CAB90009D2721 /* Controller */ = {
+		56C4F6522B1CAB90009D2721 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				BEDF5DA02E867327008291DB /* PhaseStateHandler.swift */,
 				5697A7D32AFF431400ADBBD1 /* InputManager.swift */,
 				5621651E2B0B85F2008E472B /* InputManager+Movement.swift */,
 				562165202B0B8CA6008E472B /* InputManager+Rest.swift */,
 				56C5A49A2B136BDE008ABCA0 /* TextLimiter.swift */,
 				562FC9212B2483630038731B /* AVManager.swift */,
 			);
-			path = Controller;
+			path = Domain;
 			sourceTree = "<group>";
 		};
 		56C4F6532B1CABD7009D2721 /* View */ = {
@@ -1218,6 +1221,7 @@
 				56B742082B45102C00F369CA /* DetailViewModel+ViewTimer.swift in Sources */,
 				568F1D062B32F9ED00E1D58A /* SimpleStopwatchControl.swift in Sources */,
 				56B741F52B42DF7A00F369CA /* SimpleTimerRoundSet.swift in Sources */,
+				BEDF5DA12E867333008291DB /* PhaseStateHandler.swift in Sources */,
 				5621651F2B0B85F2008E472B /* InputManager+Movement.swift in Sources */,
 				568F1D492B35B30500E1D58A /* CustomTextField.swift in Sources */,
 				562FC9222B2483630038731B /* AVManager.swift in Sources */,
