@@ -2,6 +2,21 @@
 
 ![naruto-shippuden-op](https://github.com/BOLTB0X/WOD-Timer-app/assets/83914919/46390356-0983-4b42-917b-5a44cbbffbd4)
 
+## Refactoring
+
+###  분해 단계
+
+일단 기능을 전혀 건드리지 않고 ‘경계만’ 만
+
+1. `TimerEngine` 프로토콜 생성
+
+2. `SimpleTimerEngine`, `SimpleStopwatchEngine` 구현 (기존 로직 그대로 이동)
+
+3. `ViewModel`에서 `TimerEngine` 주입 방식 도입
+
+4. `AVManager` `async` 버전 추가
+
+
 ## 개발 환경 및 기술 스택
 
 | 항목      | 내용                                                   |
