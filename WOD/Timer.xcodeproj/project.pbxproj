@@ -151,6 +151,7 @@
 		56D233B92B25E2F70077468D /* round.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D233932B25E2DC0077468D /* round.caf */; };
 		BE0FB82C2EC1634400FDD1C8 /* TimerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0FB82B2EC1634300FDD1C8 /* TimerProtocol.swift */; };
 		BE0FB82E2EC163A900FDD1C8 /* StopwatchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0FB82D2EC163A800FDD1C8 /* StopwatchProtocol.swift */; };
+		BE3BCA9C2ECC521A00B7EF87 /* SimpleTimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3BCA9B2ECC521A00B7EF87 /* SimpleTimerViewModel.swift */; };
 		BE62D1552B312C2400E1B233 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE62D1542B312C2400E1B233 /* WidgetKit.framework */; };
 		BE62D1572B312C2400E1B233 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE62D1562B312C2400E1B233 /* SwiftUI.framework */; };
 		BE62D15A2B312C2400E1B233 /* TimerWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE62D1592B312C2400E1B233 /* TimerWidgetBundle.swift */; };
@@ -350,6 +351,7 @@
 		56D2339E2B25E2DC0077468D /* remaining.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = remaining.caf; sourceTree = "<group>"; };
 		BE0FB82B2EC1634300FDD1C8 /* TimerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerProtocol.swift; sourceTree = "<group>"; };
 		BE0FB82D2EC163A800FDD1C8 /* StopwatchProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchProtocol.swift; sourceTree = "<group>"; };
+		BE3BCA9B2ECC521A00B7EF87 /* SimpleTimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTimerViewModel.swift; sourceTree = "<group>"; };
 		BE62D1522B312C2400E1B233 /* TimerWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TimerWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE62D1542B312C2400E1B233 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		BE62D1562B312C2400E1B233 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -425,7 +427,6 @@
 				568F1CFE2B32DDB100E1D58A /* SimpleViewModel+Stopwatch.swift */,
 				568F1D092B33211400E1D58A /* SimpleViewModel+UpdateStopwatch.swift */,
 				568F1D0B2B33D70F00E1D58A /* SimpleViewModel+ViewStopwatch.swift */,
-				BE8F3DEE2EC1B5F100C97B20 /* SimpleStopwatchEngine.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -766,6 +767,7 @@
 		56A998822AF67D27000D5C99 /* Simple */ = {
 			isa = PBXGroup;
 			children = (
+				BE3BCA9D2ECC54C200B7EF87 /* Engine */,
 				562164D52B08D861008E472B /* Model */,
 				56B742562B4A896D00F369CA /* SimpleRoot */,
 				56B742592B4A8A6E00F369CA /* SimpleTimer */,
@@ -990,7 +992,7 @@
 				56C4F6562B1CBDDC009D2721 /* SimpleViewModel+Timer.swift */,
 				56C5A4BE2B14B570008ABCA0 /* SimpleViewModel+UpdateTimer.swift */,
 				56C4F6232B184195009D2721 /* SimpleViewModel+ViewTimer.swift */,
-				BE8F3DEC2EC1B58600C97B20 /* SimpleTimerEngine.swift */,
+				BE3BCA9B2ECC521A00B7EF87 /* SimpleTimerViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1014,7 +1016,6 @@
 				562165202B0B8CA6008E472B /* InputManager+Rest.swift */,
 				56C5A49A2B136BDE008ABCA0 /* TextLimiter.swift */,
 				562FC9212B2483630038731B /* AVManager.swift */,
-				BE8F3DE82EC1B3E700C97B20 /* BaseTimerEngine.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -1051,6 +1052,16 @@
 				56AF0AF12AE9F4B3009AF8A2 /* RealTime.swift */,
 			);
 			path = Time;
+			sourceTree = "<group>";
+		};
+		BE3BCA9D2ECC54C200B7EF87 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				BE8F3DE82EC1B3E700C97B20 /* BaseTimerEngine.swift */,
+				BE8F3DEC2EC1B58600C97B20 /* SimpleTimerEngine.swift */,
+				BE8F3DEE2EC1B5F100C97B20 /* SimpleStopwatchEngine.swift */,
+			);
+			path = Engine;
 			sourceTree = "<group>";
 		};
 		BE62D1532B312C2400E1B233 /* Frameworks */ = {
@@ -1246,6 +1257,7 @@
 				56B741E52B42DB5500F369CA /* DeatilTimerPreparationSet.swift in Sources */,
 				568F1D042B32F8EC00E1D58A /* SimpleTimerControl.swift in Sources */,
 				568F1CF72B32ADAC00E1D58A /* SegmentedButton.swift in Sources */,
+				BE3BCA9C2ECC521A00B7EF87 /* SimpleTimerViewModel.swift in Sources */,
 				BE7E91AF2B46ADC100F200B5 /* DetailNextRealTime.swift in Sources */,
 				568F1D672B3BF8C000E1D58A /* DetailViewModel+Loop.swift in Sources */,
 				568F1D2F2B35680400E1D58A /* DetailButtonSetRow.swift in Sources */,

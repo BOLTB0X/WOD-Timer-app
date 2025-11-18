@@ -84,8 +84,8 @@ extension SimpleViewModel {
     // MARK: - speakingProcessingRound
     func speakingProcessingRound() {
         DispatchQueue.global().async {
-            AVManager.shared.playSound(named: self.currentTimerRoundString, fileExtension: "caf")
-            AVManager.shared.playSound(named: "round", fileExtension: "caf")
+//            AVManager.shared.playSound(named: self.currentTimerRoundString, fileExtension: "caf")
+//            AVManager.shared.playSound(named: "round", fileExtension: "caf")
         }
         return
     }
@@ -93,8 +93,8 @@ extension SimpleViewModel {
     // MARK: - speakingRemainingRound
     func speakingRemainingRound() {
         DispatchQueue.global().async {
-            AVManager.shared.playSound(named: self.currentTimerRemainingString, fileExtension: "caf")
-            AVManager.shared.playSound(named: "round", fileExtension: "caf")
+//            AVManager.shared.playSound(named: self.currentTimerRemainingString, fileExtension: "caf")
+//            AVManager.shared.playSound(named: "round", fileExtension: "caf")
         }
         return
     }

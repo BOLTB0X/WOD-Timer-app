@@ -46,13 +46,13 @@ extension DetailViewModel {
                 
                 // 5초 이하이고 준비일 때 countdown 사운드 재생
                 if self.detailDisplay <= 5 && self.detailDisplay > 0 && self.detailRoundPhase == .preparation {
-                    DispatchQueue.global().async {
-                        AVManager.shared.playSound(named: "whistle_counting", fileExtension: "caf")
-                    }
+//                    DispatchQueue.global().async {
+//                        AVManager.shared.playSound(named: "whistle_counting", fileExtension: "caf")
+//                    }
                 } else if self.detailDisplay == 0 && self.detailRoundPhase == .preparation {
-                    DispatchQueue.global().async {
-                        AVManager.shared.playSound(named: "whistle_countComplete", fileExtension: "caf")
-                    }
+//                    DispatchQueue.global().async {
+//                        AVManager.shared.playSound(named: "whistle_countComplete", fileExtension: "caf")
+//                    }
                 }
                 
                 DispatchQueue.main.async {

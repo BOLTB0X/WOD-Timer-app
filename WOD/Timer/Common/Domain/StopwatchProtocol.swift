@@ -5,6 +5,9 @@
 //  Created by KyungHeon Lee on 11/10/25.
 //
 
+import Foundation
+import Combine
+
 // MARK: - StopwatchProtocol
 protocol StopwatchProtocol: ObservableObject, PhaseStateHandler {
     var elapsedTime: Int { get set }

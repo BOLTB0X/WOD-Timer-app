@@ -42,13 +42,13 @@ extension DetailViewModel {
                 
                 // 5초 이하일 때 countdown 사운드 재생
                 if self.detailDisplay <= 5 && self.detailDisplay > 0 {
-                    DispatchQueue.global().async {
-                        AVManager.shared.playSound(named: "whistle_counting", fileExtension: "caf")
-                    }
+//                    DispatchQueue.global().async {
+//                        AVManager.shared.playSound(named: "whistle_counting", fileExtension: "caf")
+//                    }
                 } else if self.detailDisplay == 0 {
-                    DispatchQueue.global().async {
-                        AVManager.shared.playSound(named: "whistle_countComplete", fileExtension: "caf")
-                    }
+//                    DispatchQueue.global().async {
+//                        AVManager.shared.playSound(named: "whistle_countComplete", fileExtension: "caf")
+//                    }
                 }
                 
                 DispatchQueue.main.async {
@@ -201,15 +201,15 @@ extension DetailViewModel {
     private func speakingCurrentState() {
         guard let phase = detailRoundPhase else { return }
         
-        switch phase {
-        case .preparation:
-            AVManager.shared.playSound(named: "preparation", fileExtension: "caf")
-        case .loopMovement:
-            AVManager.shared.playSound(named: "movement", fileExtension: "caf")
-        case .rest, .loopRest:
-            AVManager.shared.playSound(named: "rest", fileExtension: "caf")
-        case .completed:
-            AVManager.shared.playSound(named: "completed", fileExtension: "caf")
-        }
+//        switch phase {
+//        case .preparation:
+//            AVManager.shared.playSound(named: "preparation", fileExtension: "caf")
+//        case .loopMovement:
+//            AVManager.shared.playSound(named: "movement", fileExtension: "caf")
+//        case .rest, .loopRest:
+//            AVManager.shared.playSound(named: "rest", fileExtension: "caf")
+//        case .completed:
+//            AVManager.shared.playSound(named: "completed", fileExtension: "caf")
+//        }
     }
 }

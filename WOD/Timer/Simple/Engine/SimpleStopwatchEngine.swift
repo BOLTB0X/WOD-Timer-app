@@ -14,32 +14,40 @@ final class SimpleStopwatchEngine: BaseTimerEngine {
     var display: Int = 0
     var totalTime: Int = 0
     var phase: SimpleRoundPhase?
-
+    
+    var onTick: (() -> Void)?
+    var onPhaseCompleted: (() -> Void)?
+    
     var onCancelled: (() -> Void)?
     var onCompleted: (() -> Void)?
     var onActive: (() -> Void)?
     var onPaused: (() -> Void)?
     var onResumed: (() -> Void)?
     
-    // MARK: - onTick
-    func onTick() {
-        guard let phase else { return }
-
+    // MARK: - onTickImpl
+    func onTickImpl() {
+        guard let phase = phase else { return }
+        
+        // 준비 단계: countdown
         if phase == .preparation {
             display -= 1
-            if display < 0 { onPhaseCompleted() }
+            
+            // play sound handled by Base.playSoundIfNeeded
+            if display < 0 {
+                onPhaseCompleted?()
+                stopTicking()
+                return
+            }
+            
         } else {
+            // 증가
             display += 1
             totalTime += 1
         }
-
+        
+        // 사운드 트리거
         playSoundIfNeeded()
-    } // onTick
-
-    // MARK: - onPhaseCompleted
-    func onPhaseCompleted() {
-        onCompleted?()
-        stopTicking()
-    } // onPhaseCompleted
+    } // onTickImpl
+    
     
 } // SimpleStopwatchEngine

@@ -45,13 +45,13 @@ extension SimpleViewModel {
                 
                 // 5초 이하이고 준비일 때 countdown 사운드 재생
                 if self.simpleDisplay <= 5 && self.simpleDisplay > 0 && self.simpleRoundPhase == .preparation {
-                    DispatchQueue.global().async {
-                        AVManager.shared.playSound(named: "whistle_counting", fileExtension: "caf")
-                    }
+//                    DispatchQueue.global().async {
+//                        AVManager.shared.playSound(named: "whistle_counting", fileExtension: "caf")
+//                    }
                 } else if self.simpleDisplay == 0 && self.simpleRoundPhase == .preparation {
-                    DispatchQueue.global().async {
-                        AVManager.shared.playSound(named: "whistle_countComplete", fileExtension: "caf")
-                    }
+//                    DispatchQueue.global().async {
+//                        AVManager.shared.playSound(named: "whistle_countComplete", fileExtension: "caf")
+//                    }
                 }
             } // sink
     } // startSimpleStopWatch
