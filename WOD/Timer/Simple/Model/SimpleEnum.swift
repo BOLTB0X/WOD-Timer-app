@@ -30,7 +30,7 @@ enum SimpleButton {
 }
 
 // MARK: - SimpleRoundPhase
-enum SimpleRoundPhase: Codable {
+enum SimpleRoundPhase: Codable, CaseIterable {
     case preparation
     case movement
     case rest
@@ -49,4 +49,22 @@ enum SimpleRoundPhase: Codable {
             return "Completed"
         }
     }
+} // SimpleRoundPhase
+
+extension SimpleRoundPhase {
+    func next(isLastRound: Bool) -> SimpleRoundPhase {
+        switch self {
+        case .preparation:
+            return .movement
+
+        case .movement:
+            return .rest
+
+        case .rest:
+            return isLastRound ? .completed : .preparation
+
+        case .completed:
+            return .completed
+        }
+    } // next
 }

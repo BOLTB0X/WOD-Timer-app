@@ -120,16 +120,17 @@ extension SimpleViewModel {
         Task {
             await activity?.end(using: nil, dismissalPolicy: .immediate)
         }
-    }
+    } // requestOffLiveActivity
     
     // MARK: - updateContentState
-    func updateContentState(_ currentState: SimpleRoundPhase, _ currentRound: Int , _ time: Int) {
-        if time < 0 { return }
+    func updateContentState(_ currentState: SimpleRoundPhase?, _ currentRound: Int? , _ time: Int) {
+        guard let currentState = currentState, let currentRound = currentRound, time < 0 else { return }
+        
         
         Task {
             let newState = TimerWidgetAttributes.ContentState(currentState: currentState.phaseText, currentRound: currentRound+1, currentDisplayTime: time)
             
             await self.activity?.update(using: newState, alertConfiguration: nil)
         }
-    }
+    } // updateContentState
 }

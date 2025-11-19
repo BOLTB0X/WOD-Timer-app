@@ -15,87 +15,93 @@ extension SimpleViewModel {
     // MARK: - basic Control
     // ....
     // MARK: - startSimpleTimer
-    func startSimpleTimer() {
-        guard let idx = simpleTmRoundIdx, idx < simpleTmRounds.count, let currentPhase = simpleRoundPhase else {
-            return
-        }
-        
-        print("타이머 실행")
-        print(simpleRoundPhase?.phaseText ?? "??")
-        
-        updateTimerPhaseStart(idx: idx, currentPhase: currentPhase)
-        
-        DispatchQueue.main.async {
-            self.speakingCurrentState()
-        }
-        
-        updateContentState(currentPhase, idx, simpleDisplay)
-        
-        timerCancellable = Timer.publish(every: 1.0, on: .main, in: .common)
-            .autoconnect()
-            .sink { _ in
-                if self.simpleDisplay > 0 && self.simpleRoundPhase != .preparation {
-                    self.simpleTotalTime -= 1
-                }
-                
-                self.simpleDisplay -= 1
-                
-                self.updateContentState(currentPhase, idx, self.simpleDisplay)
-                
-                // 5초 이하일 때 countdown 사운드 재생
-                if self.simpleDisplay <= 5 && self.simpleDisplay > 0 {
-//                    DispatchQueue.global().async {
-//                        AVManager.shared.playSound(named: "whistle_counting", fileExtension: "caf")
-//                    }
-                } else if self.simpleDisplay == 0 {
-//                    DispatchQueue.global().async {
-//                        AVManager.shared.playSound(named: "whistle_countComplete", fileExtension: "caf")
-//                    }
-                }
-                
-                DispatchQueue.main.async {
-                    self.updateSimpleUnitProgress()
-                }
-                
-                if self.simpleDisplay < 0 {
-                    self.completedCurrentTimer() // 완료
-                }
-                
-            } // sink
-        
-        return
-    }
+//    func startSimpleTimer() {
+//        guard let idx = simpleTmRoundIdx, idx < simpleTmRounds.count, let currentPhase = simpleRoundPhase else {
+//            return
+//        }
+////        
+////        print("타이머 실행")
+////        print(simpleRoundPhase?.phaseText ?? "??")
+//        
+//        updateTimerPhaseStart(idx: idx, currentPhase: currentPhase)
+//        
+//        Task {
+//            try? await AVManager.shared.playSound(named: currentPhase.phaseText, fileExtension: "caf")
+//        }
+//        
+////        DispatchQueue.main.async {
+////            self.speakingCurrentState()
+////        }
+//        
+//        updateContentState(currentPhase, idx, simpleDisplay)
+//        
+//        // 엔진에 현재 상태 전달
+//        timerEngine.phase = currentPhase
+//        timerEngine.display = simpleDisplay
+//        timerEngine.totalTime = simpleTotalTime
+//
+//        // 엔진 시작
+//        timerEngine.startTicking()
+//        
+////        timerCancellable = Timer.publish(every: 1.0, on: .main, in: .common)
+////            .autoconnect()
+////            .sink { _ in
+////                if self.simpleDisplay > 0 && self.simpleRoundPhase != .preparation {
+////                    self.simpleTotalTime -= 1
+////                }
+////                
+////                self.simpleDisplay -= 1
+////                
+////                self.updateContentState(currentPhase, idx, self.simpleDisplay)
+////                
+////                // 5초 이하일 때 countdown 사운드 재생
+////                if self.simpleDisplay <= 5 && self.simpleDisplay > 0 {
+//////                    DispatchQueue.global().async {
+//////                        AVManager.shared.playSound(named: "whistle_counting", fileExtension: "caf")
+//////                    }
+////                } else if self.simpleDisplay == 0 {
+//////                    DispatchQueue.global().async {
+//////                        AVManager.shared.playSound(named: "whistle_countComplete", fileExtension: "caf")
+//////                    }
+////                }
+////                
+////                DispatchQueue.main.async {
+////                    self.updateSimpleUnitProgress()
+////                }
+////                
+////                if self.simpleDisplay < 0 {
+////                    self.completedCurrentTimer() // 완료
+////                }
+////                
+////            } // sink
+//        
+//        return
+//    }
     
     // MARK: - completedCurrentTimer
     // 현재 타이머 종료시 다음 단계로 이동
     func completedCurrentTimer() {
-        timerCancellable?.cancel()
+        //timerCancellable?.cancel()
         simpleTimerState = .completed
         updateSimpleTimerCompletion() // 기록
         simpleUnitProgress = 0.0
-        // 다음 라운드 페이즈로 이동
         nextSimpleTimerRoundPhase()
-        return
-    }
+    } // completedCurrentTimer
     
     // MARK: - pauseSimpleTimer
     // 일시 중지
     func pauseSimpleTimer() {
         timerCancellable?.cancel()
-        print("일시중지")
         updateSimpleCompletionDate()
-        return
-    }
+    } // pauseSimpleTimer
     
     // MARK: - resumeSimpleTimer
     // 재개
     func resumeSimpleTimer() {
-        print("재개")
         updateSimpleCompletionDate()
         simpleTimerState = .active
         controlBtn = false
-        return
-    }
+    } // resumeSimpleTimer
     
     // MARK: - simpleTimerRestart
     // 재시작
@@ -103,8 +109,7 @@ extension SimpleViewModel {
         simpleTmRoundIdx = nil
         simpleTotalTime = simpleTmRounds.reduce(0) {$0 + ($1.movement + $1.rest) }
         nextSimpleTimerRound()
-        return
-    }
+    } // simpleTimerRestart
     
     // MARK: - simpleTimerCanclled
     // 타이머 취소
@@ -114,8 +119,7 @@ extension SimpleViewModel {
         controlBtn = false
         simpleUnitProgress = 0
         requestOffLiveActivity()
-        return
-    }
+    } // simpleTimerCanclled
     
     /*==================================================================================*/
     // MARK: - user Interfase Control
@@ -137,7 +141,7 @@ extension SimpleViewModel {
             controlBtn = true
             simpleTimerState = .paused
         }
-    }
+    } // controlTmPausedOrResumed
     
     // MARK: - controlBefore
     // 그 이전으로 되돌아가기

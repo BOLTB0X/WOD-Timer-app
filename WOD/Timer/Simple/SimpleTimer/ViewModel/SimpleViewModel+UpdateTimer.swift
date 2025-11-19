@@ -107,7 +107,9 @@ extension SimpleViewModel {
     // MARK: - nextSimpleRoundPhase
     // 라운드의 다음 단계로 이동
     func nextSimpleTimerRoundPhase() {
-        guard let idx = simpleTmRoundIdx, idx < simpleTmRounds.count else {
+        guard let idx = simpleTmRoundIdx,
+                idx < simpleTmRounds.count
+        else {
             return
         }
         

@@ -10,9 +10,11 @@ import Combine
 import ActivityKit
 
 // MARK: - SimpleViewModel
+@MainActor
 class SimpleViewModel: InputManager {
+    
     static let shared = SimpleViewModel() // 싱글톤 패턴
-
+    
     // MARK: - 프로퍼티s
     // ...
     // etc
@@ -25,59 +27,66 @@ class SimpleViewModel: InputManager {
     @Published var simpleTmRoundIdx: Int? //
     @Published var simpleTimerCompletion: String = "X" // 완료일
     @Published var simpleTimerHistory: RoundHistory = RoundHistory() // 히스토리
-
+    
     // 진행률 -> 타이머
     @Published var simpleUnitProgress: Float = 0.0
     @Published var simpleFullProgress: Float = 0.0
-
+    
     // 타이머 상태 관련
     @Published var simpleTimerState: TimerState = .cancelled {
-        didSet {
-            switch simpleTimerState {
-            case .cancelled, .completed: // 취소 또는 완료
-                timerCancellable?.cancel()
-                simpleDisplay = 0
-                updateSimpleCompletionDate()
-                
-            case .active: // 실행
-                startSimpleTimer()
-                
-            case .paused: // 중지
-                pauseSimpleTimer()
-                
-            case .resumed: // 재개
-                resumeSimpleTimer()
-            } // switch
-        } // didSet
+        didSet { handleTimerState(simpleTimerState) }
     }
+    //    @Published var simpleTimerState: TimerState = .cancelled {
+    //        didSet {
+    //            switch simpleTimerState {
+    //            case .cancelled, .completed: // 취소 또는 완료
+    //                timerCancellable?.cancel()
+    //                simpleDisplay = 0
+    //                updateSimpleCompletionDate()
+    //
+    //            case .active: // 실행
+    //                startSimpleTimer()
+    //
+    //            case .paused: // 중지
+    //                pauseSimpleTimer()
+    //
+    //            case .resumed: // 재개
+    //                resumeSimpleTimer()
+    //            } // switch
+    //        } // didSet
+    //    }
     
     // MARK: - Stopwatch
     // 심플 스톱워치 루틴 배열
     @Published var simpleSwRounds: [SimpleRound] = []  // 심플 루틴 배열
+    
     @Published var simpleSwRoundIdx: Int? //
     @Published var simpleSwCompletion: String = "X" // 완료일
     @Published var simpleSwHistory: RoundHistory = RoundHistory() // 히스토리
     
-    // 스톱워치 상태 관련
     @Published var simpleStopState: TimerState = .cancelled {
-        didSet {
-            switch simpleStopState {
-            case .cancelled, .completed: // 취소 또는 완료
-                timerCancellable?.cancel()
-                simpleDisplay = 0
-                updateSimpleCompletionDate()
-                
-            case .active: // 실행
-                startSimpleStopWatch()
-                
-            case .paused: // 중지
-                pauseSimpleStop()
-                
-            case .resumed: // 재개
-                resumeSimpleStop()
-            } // switch
-        } // didSet
+        didSet { handleStopState(simpleStopState) }
     }
+    // 스톱워치 상태 관련
+    //    @Published var simpleStopState: TimerState = .cancelled {
+    //        didSet {
+    //            switch simpleStopState {
+    //            case .cancelled, .completed: // 취소 또는 완료
+    //                timerCancellable?.cancel()
+    //                simpleDisplay = 0
+    //                updateSimpleCompletionDate()
+    //
+    //            case .active: // 실행
+    //                startSimpleStopWatch()
+    //
+    //            case .paused: // 중지
+    //                pauseSimpleStop()
+    //
+    //            case .resumed: // 재개
+    //                resumeSimpleStop()
+    //            } // switch
+    //        } // didSet
+    //    }
     
     // MARK: - 공통
     @Published var simpleRoundPhase: SimpleRoundPhase?
@@ -88,4 +97,201 @@ class SimpleViewModel: InputManager {
     var activity: Activity<TimerWidgetAttributes>? // 라이브 액티비티
     
     let simpleButtonType: [SimpleButton] = [.preparation, .movements, .rest, .round]
+    
+    //    var timerEngine: SimpleTimerEngine
+    //    var stopwatchEngine: SimpleStopwatchEngine
+    
+    // Engines
+    private var engine: PhaseEngine
+    private var engineMode: EngineMode = .timer
+    
+    init(engine: PhaseEngine = PhaseEngine(mode: .timer)) {
+        self.engine = engine
+        super.init()
+        bindEngine()
+    }
+    
+    // MARK: - bindEngine
+    private func bindEngine() {
+        
+        engine.onTick = { [weak self] in
+            guard let self = self else { return }
+            Task { @MainActor in
+                self.simpleDisplay = self.engine.display
+                self.simpleTotalTime = self.engine.totalTime
+                self.updateContentState(self.simpleRoundPhase,
+                                        self.simpleTmRoundIdx,
+                                        self.simpleDisplay)
+                self.updateSimpleUnitProgress()
+            }
+        }
+        
+        engine.onPhaseCompleted = { [weak self] in
+            guard let self = self else { return }
+            Task { @MainActor in
+                self.handleEnginePhaseCompleted()
+            }
+        }
+        
+        engine.onActive = { }
+        engine.onPaused = { }
+        engine.onResumed = { }
+        engine.onCompleted = { }
+        engine.onCancelled = { }
+    } // bindEngine
+    
+    // MARK: - Configure Engine
+    // ...
+    
+    private func configureEngineForTimer() {
+        engine.mode = .timer
+        engine.rounds = simpleTmRounds
+    }
+    
+    private func configureEngineForStopwatch() {
+        engine.mode = .stopwatch
+        engine.rounds = simpleSwRounds
+    }
+    
+    // MARK: - handleEnginePhaseCompleted
+    private func handleEnginePhaseCompleted() {
+        guard let currentPhase = simpleRoundPhase else { return }
+        nextPhaseFrom(currentPhase: currentPhase)
+    } // handleEnginePhaseCompleted
+    
+    // MARK: - nextPhaseFrom
+    private func nextPhaseFrom(currentPhase: SimpleRoundPhase) {
+        guard let idx = simpleTmRoundIdx ?? simpleSwRoundIdx else { return }
+        let rounds = engine.rounds
+        let isLastRound = (idx == rounds.count - 1)
+        
+        switch currentPhase.next(isLastRound: isLastRound) {
+        case .preparation: applyPreparationPhase(at: idx)
+        case .movement:    applyMovementPhase(at: idx)
+        case .rest:        applyRestPhase(at: idx)
+        case .completed:   moveToNextRoundOrFinish(from: idx)
+        }
+    } // nextPhaseFrom
+    
+    // MARK: - applyPreparationPhase
+    private func applyPreparationPhase(at idx: Int) {
+        simpleDisplay = engine.mode == .timer
+        ? selectedPreparationAmount
+        : selectedPreparationStop
+        
+        simpleRoundPhase = .preparation
+        updateBackgroundColor()
+        
+        engine.phase = .preparation
+        engine.currentRoundIndex = idx
+        engine.display = simpleDisplay
+        engine.totalTime = simpleTotalTime
+        engine.start()
+    } // applyPreparationPhase
+    
+    // MARK: - applyMovementPhase
+    private func applyMovementPhase(at idx: Int) {
+        let round = engine.rounds[idx]
+        simpleDisplay = round.movement
+        
+        simpleRoundPhase = .movement
+        updateBackgroundColor()
+        
+        engine.phase = .movement
+        engine.currentRoundIndex = idx
+        engine.display = simpleDisplay
+        engine.totalTime = simpleTotalTime
+        engine.start()
+    } // applyMovementPhase
+    
+    // MARK: - applyRestPhase
+    private func applyRestPhase(at idx: Int) {
+        let round = engine.rounds[idx]
+        simpleDisplay = round.rest
+        
+        simpleRoundPhase = .rest
+        updateBackgroundColor()
+        
+        engine.phase = .rest
+        engine.currentRoundIndex = idx
+        engine.display = simpleDisplay
+        engine.totalTime = simpleTotalTime
+        engine.start()
+    } // applyRestPhase
+    
+    // MARK: - moveToNextRoundOrFinish
+    private func moveToNextRoundOrFinish(from idx: Int) {
+        let nextIdx = idx + 1
+        if nextIdx >= engine.rounds.count {
+            simpleRoundPhase = .completed
+            simpleTimerState = .completed
+            
+            simpleDisplay = 0
+            updateBackgroundColor()
+            updateContentState(.completed, 0, 0)
+            simpleTimerCompletion = Date().formatted("yyyy-MM-dd HH:mm:ss")
+        } else {
+            simpleTmRoundIdx = nextIdx
+            applyPreparationPhase(at: nextIdx)
+        }
+    } // moveToNextRoundOrFinish
+    
+    // MARK: - handleTimerState
+    private func handleTimerState(_ state: TimerState) {
+        switch state {
+        case .cancelled:
+            engine.cancel()
+            simpleDisplay = 0
+            updateSimpleCompletionDate()
+            
+        case .completed:
+            engine.stopTicking()
+            simpleDisplay = 0
+            updateSimpleCompletionDate()
+            
+        case .active:
+            configureEngineForTimer()
+            if simpleTmRoundIdx == nil {
+                nextSimpleTimerRound()
+            } else {
+                engine.start()
+            }
+            
+        case .paused:
+            engine.pause()
+            updateSimpleCompletionDate()
+            
+        case .resumed:
+            engine.resume()
+        }
+    } // handleTimerState
+    
+    // MARK: - handleStopState
+    private func handleStopState(_ state: TimerState) {
+        switch state {
+        case .cancelled:
+            engine.cancel()
+            simpleDisplay = 0
+            updateSimpleCompletionDate()
+            
+        case .completed:
+            engine.stopTicking()
+            nextSimpleStopwatchRound()
+            
+        case .active:
+            configureEngineForStopwatch()
+            if simpleSwRoundIdx == nil {
+                nextSimpleStopwatchRound()
+            } else {
+                engine.start()
+            }
+            
+        case .paused:
+            engine.pause()
+            updateSimpleCompletionDate()
+            
+        case .resumed:
+            engine.resume()
+        }
+    } // handleStopState
 }
