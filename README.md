@@ -4,18 +4,36 @@
 
 ## Refactoring
 
-###  분해 단계
+<details>
+<summary> 1 Step </summary>
+ 
 
-일단 기능을 전혀 건드리지 않고 ‘경계만’ 만
+### 일단 기능을 전혀 건드리지 않고 ‘경계만’ 만 목표
 
 1. `TimerEngine` 프로토콜 생성
 
-2. `SimpleTimerEngine`, `SimpleStopwatchEngine` 구현 (기존 로직 그대로 이동)
+    - `startSimpleTimer()` , `startSimpleStopWatch()` : 모두 엔진 통합 구조와 중복됨
+
+    - 
+
+2. `BaseTimerEngine`, 관련 구현체 (기존 로직 그대로 이동)
 
 3. `ViewModel`에서 `TimerEngine` 주입 방식 도입
 
 4. `AVManager` `async` 버전 추가
 
+5. 되도록 디스패치 큐 사용 X
+
+
+### 기능 이동
+
+- `Phase` 시작 시 초기 `display` 설정 -> `applyXXXPhase`
+
+- `Phase` 시작 시 효과음 재생 -> `applyXXXPhase` 또는`onPhaseChanged`
+
+- `tick` 처리 -> `engine.onTick`
+
+</details>
 
 ## 개발 환경 및 기술 스택
 
