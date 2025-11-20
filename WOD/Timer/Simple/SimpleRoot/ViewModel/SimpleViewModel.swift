@@ -36,26 +36,6 @@ class SimpleViewModel: InputManager {
     @Published var simpleTimerState: TimerState = .cancelled {
         didSet { handleTimerState(simpleTimerState) }
     }
-    //    @Published var simpleTimerState: TimerState = .cancelled {
-    //        didSet {
-    //            switch simpleTimerState {
-    //            case .cancelled, .completed: // 취소 또는 완료
-    //                timerCancellable?.cancel()
-    //                simpleDisplay = 0
-    //                updateSimpleCompletionDate()
-    //
-    //            case .active: // 실행
-    //                startSimpleTimer()
-    //
-    //            case .paused: // 중지
-    //                pauseSimpleTimer()
-    //
-    //            case .resumed: // 재개
-    //                resumeSimpleTimer()
-    //            } // switch
-    //        } // didSet
-    //    }
-    
     // MARK: - Stopwatch
     // 심플 스톱워치 루틴 배열
     @Published var simpleSwRounds: [SimpleRound] = []  // 심플 루틴 배열
@@ -67,26 +47,6 @@ class SimpleViewModel: InputManager {
     @Published var simpleStopState: TimerState = .cancelled {
         didSet { handleStopState(simpleStopState) }
     }
-    // 스톱워치 상태 관련
-    //    @Published var simpleStopState: TimerState = .cancelled {
-    //        didSet {
-    //            switch simpleStopState {
-    //            case .cancelled, .completed: // 취소 또는 완료
-    //                timerCancellable?.cancel()
-    //                simpleDisplay = 0
-    //                updateSimpleCompletionDate()
-    //
-    //            case .active: // 실행
-    //                startSimpleStopWatch()
-    //
-    //            case .paused: // 중지
-    //                pauseSimpleStop()
-    //
-    //            case .resumed: // 재개
-    //                resumeSimpleStop()
-    //            } // switch
-    //        } // didSet
-    //    }
     
     // MARK: - 공통
     @Published var simpleRoundPhase: SimpleRoundPhase?
@@ -102,14 +62,19 @@ class SimpleViewModel: InputManager {
     //    var stopwatchEngine: SimpleStopwatchEngine
     
     // Engines
-    private var engine: PhaseEngine
-    private var engineMode: EngineMode = .timer
+    var engine: PhaseEngine
+    var engineMode: EngineMode = .timer
     
     init(engine: PhaseEngine = PhaseEngine(mode: .timer)) {
         self.engine = engine
         super.init()
         bindEngine()
     }
+    
+}
+
+// MARK: - state methods
+extension SimpleViewModel {
     
     // MARK: - bindEngine
     private func bindEngine() {
@@ -133,11 +98,43 @@ class SimpleViewModel: InputManager {
             }
         }
         
-        engine.onActive = { }
-        engine.onPaused = { }
-        engine.onResumed = { }
-        engine.onCompleted = { }
-        engine.onCancelled = { }
+        engine.onActive = { [weak self] in
+            guard let self = self else { return }
+            Task { @MainActor in
+                // when engine reports active, ensure UI shows running state (no pause overlay)
+                self.controlBtn = false
+            }
+        }
+        engine.onPaused = { [weak self] in
+            guard let self = self else { return }
+            Task { @MainActor in
+                self.controlBtn = true
+            }
+        }
+        engine.onResumed = { [weak self] in
+            guard let self = self else { return }
+            Task { @MainActor in
+                self.controlBtn = false
+            }
+        }
+        engine.onCancelled = { [weak self] in
+            guard let self = self else { return }
+            Task { @MainActor in
+                // cleanup UI
+                self.simpleRoundPhase = .completed
+                self.simpleDisplay = 0
+                self.updateBackgroundColor()
+            }
+        }
+        engine.onCompleted = { [weak self] in
+            guard let self = self else { return }
+            Task { @MainActor in
+                self.simpleRoundPhase = .completed
+                self.simpleDisplay = 0
+                self.updateBackgroundColor()
+                self.simpleTimerCompletion = Date().formatted("yyyy-MM-dd HH:mm:ss")
+            }
+        }
     } // bindEngine
     
     // MARK: - Configure Engine
@@ -294,4 +291,5 @@ class SimpleViewModel: InputManager {
             engine.resume()
         }
     } // handleStopState
-}
+    
+} // state methods

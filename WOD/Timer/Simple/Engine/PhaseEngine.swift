@@ -10,6 +10,7 @@ import Combine
 
 // MARK: - PhaseEngine
 final class PhaseEngine: BaseTimerEngine, PhaseStateHandler {
+    
     var cancellable: AnyCancellable?
     var display: Int = 0
     var totalTime: Int = 0
@@ -21,7 +22,6 @@ final class PhaseEngine: BaseTimerEngine, PhaseStateHandler {
     var onTick: (() -> Void)?
     var onPhaseCompleted: (() -> Void)?
 
-    // PhaseStateHandler callbacks
     var onCancelled: (() -> Void)?
     var onCompleted: (() -> Void)?
     var onActive: (() -> Void)?
@@ -32,13 +32,17 @@ final class PhaseEngine: BaseTimerEngine, PhaseStateHandler {
         self.mode = mode
     } // init
 
+} // PhaseEngine
+
+// MARK: - tick methods
+extension PhaseEngine {
+    
     // MARK: - internalTick
     func internalTick() {
         guard let phase = phase else { return }
 
         switch mode {
         case .timer:
-            // countdown behavior: if not preparation, decrement totalTime too
             if display > 0 && phase != .preparation {
                 totalTime -= 1
             }
@@ -51,7 +55,6 @@ final class PhaseEngine: BaseTimerEngine, PhaseStateHandler {
             }
 
         case .stopwatch:
-            // preparation counts down; others count up
             if phase == .preparation {
                 display -= 1
                 playSoundIfNeeded()
@@ -81,44 +84,39 @@ final class PhaseEngine: BaseTimerEngine, PhaseStateHandler {
         case .preparation:
             phase = .preparation
             display = rounds[idx].movement
-            onActive?()
         case .movement:
             phase = .movement
             display = rounds[idx].movement
-            onActive?()
         case .rest:
             phase = .rest
             display = rounds[idx].rest
-            onActive?()
         case .completed:
-            // move to next round or finish
             moveToNextRoundOrFinish()
         }
     } // advancePhase
 
     // MARK: - moveToNextRoundOrFinish
     private func moveToNextRoundOrFinish() {
-        // increment index
         if currentRoundIndex == nil {
             currentRoundIndex = 0
         } else {
             currentRoundIndex! += 1
         }
-        // if overflow -> finished
-        guard let idx = currentRoundIndex, idx < rounds.count else {
+        
+        guard let idx = currentRoundIndex,
+                idx < rounds.count
+        else {
             phase = .completed
             totalTime = 0
             display = 0
-            onCompleted?()
             return
         }
-        // set to preparation for next round by default
+        
         phase = .preparation
-        display = rounds[idx].movement // VM should set actual selectedPreparationAmount if needed
-        onActive?()
+        display = rounds[idx].movement
     } // moveToNextRoundOrFinish
 
-    // configure
+    // MARK: - configure
     func configure(rounds: [SimpleRound], roundIndex: Int, initialPhase: SimpleRoundPhase, displaySeconds: Int, totalTime: Int, mode: EngineMode) {
         self.rounds = rounds
         self.currentRoundIndex = roundIndex
@@ -128,28 +126,35 @@ final class PhaseEngine: BaseTimerEngine, PhaseStateHandler {
         self.mode = mode
     } // configure
 
-    // control methods (start/pause/resume/cancel)
-    // ...
+} // tick methods
+
+// MARK: - control methods
+extension PhaseEngine {
     
+    // MARK: - start
     func start() {
         onActive?()
         startTicking()
     } // start
     
+    // MARK: - pause
     func pause() {
         onPaused?()
         pauseTicking()
     } // pause
     
+    // MARK: - resume
     func resume() {
         onResumed?()
         resumeTicking()
     } // resume
     
+    // MARK: - cancel
     func cancel() {
         onCancelled?()
         stopTicking()
         phase = .completed
         display = 0
     } // cancel
-} // PhaseEngine
+    
+} // control methods

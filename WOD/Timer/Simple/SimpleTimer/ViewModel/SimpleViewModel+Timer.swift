@@ -15,34 +15,30 @@ extension SimpleViewModel {
     // MARK: - basic Control
     // ....
     // MARK: - startSimpleTimer
-//    func startSimpleTimer() {
-//        guard let idx = simpleTmRoundIdx, idx < simpleTmRounds.count, let currentPhase = simpleRoundPhase else {
-//            return
-//        }
+    func startSimpleTimer() {
+        guard let idx = simpleTmRoundIdx, idx < simpleTmRounds.count, let currentPhase = simpleRoundPhase else {
+            return
+        }
 ////        
 ////        print("타이머 실행")
 ////        print(simpleRoundPhase?.phaseText ?? "??")
 //        
-//        updateTimerPhaseStart(idx: idx, currentPhase: currentPhase)
+        updateTimerPhaseStart(idx: idx, currentPhase: currentPhase)
 //        
-//        Task {
-//            try? await AVManager.shared.playSound(named: currentPhase.phaseText, fileExtension: "caf")
-//        }
+        Task {
+            try? await AVManager.shared.playSound(named: currentPhase.phaseText, fileExtension: "caf")
+        }
 //        
 ////        DispatchQueue.main.async {
 ////            self.speakingCurrentState()
 ////        }
 //        
-//        updateContentState(currentPhase, idx, simpleDisplay)
+        updateContentState(currentPhase, idx, simpleDisplay)
 //        
 //        // 엔진에 현재 상태 전달
-//        timerEngine.phase = currentPhase
-//        timerEngine.display = simpleDisplay
-//        timerEngine.totalTime = simpleTotalTime
+        engine.configure(rounds: simpleTmRounds, roundIndex: idx, initialPhase: currentPhase, displaySeconds: simpleDisplay, totalTime: simpleTotalTime, mode: .timer)
+        engine.start()
 //
-//        // 엔진 시작
-//        timerEngine.startTicking()
-//        
 ////        timerCancellable = Timer.publish(every: 1.0, on: .main, in: .common)
 ////            .autoconnect()
 ////            .sink { _ in
@@ -76,7 +72,7 @@ extension SimpleViewModel {
 ////            } // sink
 //        
 //        return
-//    }
+    }
     
     // MARK: - completedCurrentTimer
     // 현재 타이머 종료시 다음 단계로 이동

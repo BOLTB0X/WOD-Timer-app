@@ -63,11 +63,11 @@ struct SimpleStopwatchControl: View {
         }
     }
 }
-
-struct SimpleStopwatchControl_Previews: PreviewProvider {
-    static var previews: some View {
-        SimpleStopwatchControl()
-            .environmentObject(SimpleViewModel())
-    }
-}
+//
+//struct SimpleStopwatchControl_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SimpleStopwatchControl()
+//            .environmentObject(SimpleViewModel())
+//    }
+//}
 

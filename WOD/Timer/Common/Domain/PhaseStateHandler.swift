@@ -16,7 +16,7 @@ protocol PhaseStateHandler {
     func handlePhaseStateChange(_ state: TimerState)
 } // PhaseStateHandler
 
-// MARK: - PhaseStateHandler Methods
+// MARK: - methods
 extension PhaseStateHandler {
     
     // MARK: - handlePhaseStateChange
@@ -34,6 +34,5 @@ extension PhaseStateHandler {
             onResumed?()
         }
     } // handlePhaseStateChange
-    
     
 } // PhaseStateHandler

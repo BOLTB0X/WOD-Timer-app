@@ -149,8 +149,6 @@
 		56D233B72B25E2F70077468D /* remaining.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D2339E2B25E2DC0077468D /* remaining.caf */; };
 		56D233B82B25E2F70077468D /* rest.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D2338A2B25E2DB0077468D /* rest.caf */; };
 		56D233B92B25E2F70077468D /* round.caf in Resources */ = {isa = PBXBuildFile; fileRef = 56D233932B25E2DC0077468D /* round.caf */; };
-		BE0FB82C2EC1634400FDD1C8 /* TimerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0FB82B2EC1634300FDD1C8 /* TimerProtocol.swift */; };
-		BE0FB82E2EC163A900FDD1C8 /* StopwatchProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0FB82D2EC163A800FDD1C8 /* StopwatchProtocol.swift */; };
 		BE42C76A2ECDBF1D006BB82E /* PhaseEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE42C7692ECDBF1D006BB82E /* PhaseEngine.swift */; };
 		BE62D1552B312C2400E1B233 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE62D1542B312C2400E1B233 /* WidgetKit.framework */; };
 		BE62D1572B312C2400E1B233 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE62D1562B312C2400E1B233 /* SwiftUI.framework */; };
@@ -347,8 +345,6 @@
 		56D2339C2B25E2DC0077468D /* 14.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 14.caf; sourceTree = "<group>"; };
 		56D2339D2B25E2DC0077468D /* preparation.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = preparation.caf; sourceTree = "<group>"; };
 		56D2339E2B25E2DC0077468D /* remaining.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = remaining.caf; sourceTree = "<group>"; };
-		BE0FB82B2EC1634300FDD1C8 /* TimerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerProtocol.swift; sourceTree = "<group>"; };
-		BE0FB82D2EC163A800FDD1C8 /* StopwatchProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchProtocol.swift; sourceTree = "<group>"; };
 		BE42C7692ECDBF1D006BB82E /* PhaseEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseEngine.swift; sourceTree = "<group>"; };
 		BE62D1522B312C2400E1B233 /* TimerWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TimerWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE62D1542B312C2400E1B233 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -1003,8 +999,6 @@
 		56C4F6522B1CAB90009D2721 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				BE0FB82D2EC163A800FDD1C8 /* StopwatchProtocol.swift */,
-				BE0FB82B2EC1634300FDD1C8 /* TimerProtocol.swift */,
 				BEDF5DA02E867327008291DB /* PhaseStateHandler.swift */,
 				5697A7D32AFF431400ADBBD1 /* InputManager.swift */,
 				5621651E2B0B85F2008E472B /* InputManager+Movement.swift */,
@@ -1240,7 +1234,6 @@
 				56B741E92B42DBF100F369CA /* DetailTimerRestSet.swift in Sources */,
 				56B742082B45102C00F369CA /* DetailViewModel+ViewTimer.swift in Sources */,
 				568F1D062B32F9ED00E1D58A /* SimpleStopwatchControl.swift in Sources */,
-				BE0FB82E2EC163A900FDD1C8 /* StopwatchProtocol.swift in Sources */,
 				56B741F52B42DF7A00F369CA /* SimpleTimerRoundSet.swift in Sources */,
 				BEDF5DA12E867333008291DB /* PhaseStateHandler.swift in Sources */,
 				5621651F2B0B85F2008E472B /* InputManager+Movement.swift in Sources */,
@@ -1278,7 +1271,6 @@
 				568F1D242B35552D00E1D58A /* CardCellRow.swift in Sources */,
 				BE7E91B12B46B50000F200B5 /* DetailTimerControl.swift in Sources */,
 				56B742062B44506E00F369CA /* DetailTimerView.swift in Sources */,
-				BE0FB82C2EC1634400FDD1C8 /* TimerProtocol.swift in Sources */,
 				56AF0AD92AE892B5009AF8A2 /* TimerApp.swift in Sources */,
 				56A998802AF6799A000D5C99 /* SettingPicker.swift in Sources */,
 				56AF0B002AEA4955009AF8A2 /* RecordButton.swift in Sources */,

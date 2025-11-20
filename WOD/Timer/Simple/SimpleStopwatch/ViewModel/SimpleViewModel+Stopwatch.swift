@@ -11,20 +11,23 @@ import Combine
 // MARK: - SimpleViewModel+StopWatch: SimpleStopWatch Control
 // 스톱워치 제어 관련 메소드들
 extension SimpleViewModel {
-//    // MARK: - startSimpleStopWatch
-//    func startSimpleStopWatch() {
-//        guard let idx = simpleSwRoundIdx,
-//                idx < simpleSwRounds.count,
-//                let currentPhase = simpleRoundPhase else {
-//            return
-//        }
+    // MARK: - startSimpleStopWatch
+    func startSimpleStopWatch() {
+        guard let idx = simpleSwRoundIdx,
+                idx < simpleSwRounds.count,
+                let currentPhase = simpleRoundPhase else {
+            return
+        }
 //        
 ////        print("스톱워치 실행")
 ////        print(simpleRoundPhase?.phaseText ?? "??")
 //        
-//        updateStopPhaseStart(idx: idx, currentPhase: currentPhase)
-//        updateContentState(currentPhase, idx, simpleDisplay)
-//        
+        updateStopPhaseStart(idx: idx, currentPhase: currentPhase)
+        updateContentState(currentPhase, idx, simpleDisplay)
+        
+        engine.configure(rounds: simpleSwRounds, roundIndex: idx, initialPhase: currentPhase, displaySeconds: simpleDisplay, totalTime: simpleTotalTime, mode: .stopwatch)
+        engine.start()
+//
 //        stopwatchEngine.phase = currentPhase
 //        stopwatchEngine.display = simpleDisplay
 //        stopwatchEngine.totalTime = simpleTotalTime
@@ -61,7 +64,7 @@ extension SimpleViewModel {
 ////                }
 ////            } // sink
 //        
-//    } // startSimpleStopWatch
+    } // startSimpleStopWatch
     
     // MARK: - completedCurrentStop
     // 현재 타이머 종료시 다음 단계로 이동

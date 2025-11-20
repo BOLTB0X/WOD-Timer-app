@@ -12,7 +12,7 @@ import Foundation
 enum EngineMode {
     case timer
     case stopwatch
-}
+} // EngineMode
 
 // MARK: - BaseTimerEngine
 protocol BaseTimerEngine: AnyObject {
@@ -23,20 +23,22 @@ protocol BaseTimerEngine: AnyObject {
     var currentRoundIndex: Int? { get set }
     var rounds: [SimpleRound] { get set }
     var mode: EngineMode { get set }
-
+    
     // callbacks to consumer (ViewModel)
     var onTick: (() -> Void)? { get set }
     var onPhaseCompleted: (() -> Void)? { get set }
-
+    
     func startTicking()
     func pauseTicking()
     func resumeTicking()
     func stopTicking()
     func advancePhase()
+    func internalTick()
 } // BaseTimerEngine
 
 extension BaseTimerEngine {
-    // default timer using Combine.Timer
+    
+    // MARK: - startTicking
     func startTicking() {
         stopTicking()
         cancellable = Timer.publish(every: 1.0, on: .main, in: .common)
@@ -46,18 +48,24 @@ extension BaseTimerEngine {
                 self.internalTick()
                 self.onTick?()
             }
-    }
+    } // startTicking
+    
+    // MARK: - stopTicking
     func stopTicking() {
         cancellable?.cancel()
         cancellable = nil
-    }
+    } // stopTicking
+    
+    // MARK: - pauseTicking
     func pauseTicking() {
         stopTicking()
-    }
+    } // pauseTicking
+    
+    // MARK: - resumeTicking
     func resumeTicking() {
         startTicking()
-    }
-
+    } // resumeTicking
+    
     // MARK: - playSoundIfNeeded
     func playSoundIfNeeded() {
         if display <= 5 && display > 0 {
@@ -66,10 +74,5 @@ extension BaseTimerEngine {
             AVManager.shared.playSoundSync(named: "whistle_countComplete", fileExtension: "caf")
         }
     } // playSoundIfNeeded
-
-    // MARK: - internalTick
-    // impl 대체
-    func internalTick() {
-        // default no-op: implement in concrete engine
-    }
-}
+    
+} //
