@@ -52,7 +52,15 @@ extension SimpleViewModel {
         
         // 첫 시작, 준비 카운트를 진행해야할지 판단
         if isTimerFirstStart() {
-            return
+            configureEngineForTimer()
+                    if let idx = simpleTmRoundIdx {
+                        // apply preparation state into engine
+                        engine.phase = simpleRoundPhase
+                        engine.currentRoundIndex = idx
+                        engine.display = simpleDisplay
+                        engine.totalTime = simpleTotalTime
+                        engine.start()
+                    }
         }
         
         // 루틴배열(simpleRounds)의 인덱스를 변경
@@ -85,7 +93,9 @@ extension SimpleViewModel {
         
         simpleTmRoundIdx! += 1
         
-        guard let idx = simpleTmRoundIdx, idx < simpleTmRounds.count else {
+        guard let idx = simpleTmRoundIdx,
+                idx < simpleTmRounds.count
+        else {
             // 더 이상 진행할 라운드가 없으면 완료 상태로 변경
             simpleRoundPhase = .completed
             simpleTimerState = .completed
@@ -101,6 +111,14 @@ extension SimpleViewModel {
         simpleRoundPhase = .movement
         updateBackgroundColor()
         simpleTimerState = controlBtn ? .paused : .active
+        
+        configureEngineForTimer()
+        engine.phase = simpleRoundPhase
+        engine.currentRoundIndex = idx
+        engine.display = simpleDisplay
+        engine.totalTime = simpleTotalTime
+        engine.start()
+        
         return
     }
     

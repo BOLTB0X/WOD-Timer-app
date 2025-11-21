@@ -174,6 +174,10 @@
 		BEB05CF32BD9DD1000EACFF8 /* ExpandedLiveActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB05CF22BD9DD1000EACFF8 /* ExpandedLiveActivityView.swift */; };
 		BEB05CF42BD9DD1000EACFF8 /* ExpandedLiveActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB05CF22BD9DD1000EACFF8 /* ExpandedLiveActivityView.swift */; };
 		BEDF5DA12E867333008291DB /* PhaseStateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDF5DA02E867327008291DB /* PhaseStateHandler.swift */; };
+		BEFA51F02ED00005002D5B57 /* SimpleEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFA51EF2ED00005002D5B57 /* SimpleEngine.swift */; };
+		BEFA51F22ED004D6002D5B57 /* SimpleTimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFA51F12ED004D6002D5B57 /* SimpleTimerViewModel.swift */; };
+		BEFA51F42ED0062D002D5B57 /* SimpleStopwatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFA51F32ED0062D002D5B57 /* SimpleStopwatchViewModel.swift */; };
+		BEFA51F62ED042CC002D5B57 /* SimpleControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFA51F52ED042CC002D5B57 /* SimpleControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -365,6 +369,10 @@
 		BEAC353D2BD6476300D0A204 /* LockScreenLiveActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenLiveActivityView.swift; sourceTree = "<group>"; };
 		BEB05CF22BD9DD1000EACFF8 /* ExpandedLiveActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedLiveActivityView.swift; sourceTree = "<group>"; };
 		BEDF5DA02E867327008291DB /* PhaseStateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhaseStateHandler.swift; sourceTree = "<group>"; };
+		BEFA51EF2ED00005002D5B57 /* SimpleEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleEngine.swift; sourceTree = "<group>"; };
+		BEFA51F12ED004D6002D5B57 /* SimpleTimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTimerViewModel.swift; sourceTree = "<group>"; };
+		BEFA51F32ED0062D002D5B57 /* SimpleStopwatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleStopwatchViewModel.swift; sourceTree = "<group>"; };
+		BEFA51F52ED042CC002D5B57 /* SimpleControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -419,6 +427,7 @@
 				568F1CFE2B32DDB100E1D58A /* SimpleViewModel+Stopwatch.swift */,
 				568F1D092B33211400E1D58A /* SimpleViewModel+UpdateStopwatch.swift */,
 				568F1D0B2B33D70F00E1D58A /* SimpleViewModel+ViewStopwatch.swift */,
+				BEFA51F32ED0062D002D5B57 /* SimpleStopwatchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -984,6 +993,7 @@
 				56C4F6562B1CBDDC009D2721 /* SimpleViewModel+Timer.swift */,
 				56C5A4BE2B14B570008ABCA0 /* SimpleViewModel+UpdateTimer.swift */,
 				56C4F6232B184195009D2721 /* SimpleViewModel+ViewTimer.swift */,
+				BEFA51F12ED004D6002D5B57 /* SimpleTimerViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1048,6 +1058,8 @@
 			children = (
 				BE8F3DE82EC1B3E700C97B20 /* BaseTimerEngine.swift */,
 				BE42C7692ECDBF1D006BB82E /* PhaseEngine.swift */,
+				BEFA51EF2ED00005002D5B57 /* SimpleEngine.swift */,
+				BEFA51F52ED042CC002D5B57 /* SimpleControl.swift */,
 			);
 			path = Engine;
 			sourceTree = "<group>";
@@ -1234,7 +1246,9 @@
 				56B741E92B42DBF100F369CA /* DetailTimerRestSet.swift in Sources */,
 				56B742082B45102C00F369CA /* DetailViewModel+ViewTimer.swift in Sources */,
 				568F1D062B32F9ED00E1D58A /* SimpleStopwatchControl.swift in Sources */,
+				BEFA51F22ED004D6002D5B57 /* SimpleTimerViewModel.swift in Sources */,
 				56B741F52B42DF7A00F369CA /* SimpleTimerRoundSet.swift in Sources */,
+				BEFA51F02ED00005002D5B57 /* SimpleEngine.swift in Sources */,
 				BEDF5DA12E867333008291DB /* PhaseStateHandler.swift in Sources */,
 				5621651F2B0B85F2008E472B /* InputManager+Movement.swift in Sources */,
 				568F1D492B35B30500E1D58A /* CustomTextField.swift in Sources */,
@@ -1242,6 +1256,7 @@
 				5697A7DE2AFF56C200ADBBD1 /* MovementsSet.swift in Sources */,
 				568F1D5B2B3BDEC300E1D58A /* LoopListRow.swift in Sources */,
 				56B741E52B42DB5500F369CA /* DeatilTimerPreparationSet.swift in Sources */,
+				BEFA51F62ED042CC002D5B57 /* SimpleControl.swift in Sources */,
 				568F1D042B32F8EC00E1D58A /* SimpleTimerControl.swift in Sources */,
 				568F1CF72B32ADAC00E1D58A /* SegmentedButton.swift in Sources */,
 				BE7E91AF2B46ADC100F200B5 /* DetailNextRealTime.swift in Sources */,
@@ -1327,6 +1342,7 @@
 				56A849FF2B4BCDEE00128F6B /* DetailViewModel+UpdateStopwatch.swift in Sources */,
 				568F1D222B351C9E00E1D58A /* SimpleRecordCell.swift in Sources */,
 				562164D42B08D7F1008E472B /* TextfieldStyle.swift in Sources */,
+				BEFA51F42ED0062D002D5B57 /* SimpleStopwatchViewModel.swift in Sources */,
 				568F1D152B33DEB800E1D58A /* SimpleStopwatchDisplayTime.swift in Sources */,
 				56B742022B43A1E200F369CA /* DetailViewModel+UpdateTimer.swift in Sources */,
 				568F1D0C2B33D70F00E1D58A /* SimpleViewModel+ViewStopwatch.swift in Sources */,

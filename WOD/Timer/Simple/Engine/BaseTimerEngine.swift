@@ -36,18 +36,29 @@ protocol BaseTimerEngine: AnyObject {
     func internalTick()
 } // BaseTimerEngine
 
+// MARK: - default methods
 extension BaseTimerEngine {
     
     // MARK: - startTicking
     func startTicking() {
         stopTicking()
+        
+        var isFirstTick = true
+        
         cancellable = Timer.publish(every: 1.0, on: .main, in: .common)
             .autoconnect()
             .sink { [weak self] _ in
                 guard let self = self else { return }
+                
+                if isFirstTick {
+                    isFirstTick = false
+                    return
+                }
+                
                 self.internalTick()
                 self.onTick?()
-            }
+            } // sink
+        
     } // startTicking
     
     // MARK: - stopTicking
@@ -75,4 +86,4 @@ extension BaseTimerEngine {
         }
     } // playSoundIfNeeded
     
-} //
+} // default methods

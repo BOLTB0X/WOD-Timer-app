@@ -56,7 +56,6 @@ class SimpleViewModel: InputManager {
     var timerCancellable: AnyCancellable? // 타이머 메모리 날리기 용
     var activity: Activity<TimerWidgetAttributes>? // 라이브 액티비티
     
-    let simpleButtonType: [SimpleButton] = [.preparation, .movements, .rest, .round]
     
     //    var timerEngine: SimpleTimerEngine
     //    var stopwatchEngine: SimpleStopwatchEngine
@@ -140,12 +139,12 @@ extension SimpleViewModel {
     // MARK: - Configure Engine
     // ...
     
-    private func configureEngineForTimer() {
+    func configureEngineForTimer() {
         engine.mode = .timer
         engine.rounds = simpleTmRounds
     }
     
-    private func configureEngineForStopwatch() {
+    func configureEngineForStopwatch() {
         engine.mode = .stopwatch
         engine.rounds = simpleSwRounds
     }
@@ -248,10 +247,20 @@ extension SimpleViewModel {
             
         case .active:
             configureEngineForTimer()
+            
             if simpleTmRoundIdx == nil {
+                
                 nextSimpleTimerRound()
+                
             } else {
-                engine.start()
+                
+                if engine.phase == nil {
+                    engine.phase = simpleRoundPhase
+                    engine.currentRoundIndex = simpleTmRoundIdx
+                    engine.display = simpleDisplay
+                    engine.totalTime = simpleTotalTime
+                }
+                engine.start() // 안전하게 시작
             }
             
         case .paused:

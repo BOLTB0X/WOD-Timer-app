@@ -20,6 +20,8 @@ struct SimpleView: View {
     @State private var isStartBtn: Bool = false
     @State private var isModeBtn: Int = 0 // 0 = timer, 1 = stopwatch
     
+    let simpleButtonType: [SimpleButton] = [.preparation, .movements, .rest, .round]
+    
     // MARK: - View
     var body: some View {
         // MARK: main
@@ -28,7 +30,7 @@ struct SimpleView: View {
                 Form {
                     // MARK: - Set
                     Section(header: SectionHeader(idx: $isModeBtn)) {
-                        ForEach(viewModel.simpleButtonType, id: \.self) { btn in
+                        ForEach(simpleButtonType, id: \.self) { btn in
                             SimpleButtonSetRow(
                                 simpleButton: $simpleButton,
                                 showPopup: $showPopup,
