@@ -10,24 +10,36 @@
 
 ### 일단 기능을 전혀 건드리지 않고 ‘경계만’ 만 목표
 
-1. `TimerEngine` 프로토콜 생성
+1. `SimpleEngine` 프로토콜 생성
 
-    - `startSimpleTimer()` , `startSimpleStopWatch()` : 모두 엔진 통합 구조와 중복됨
+    ```swift
+    func start()
+    func pause()
+    func resume()
+    func completed(completionHook: (() -> Void)?)
+    func canclled(cancelHook: (() -> Void)?)
+    ```
 
-    - 
+2. `SimpleControl`  프로토콜 생성
 
-2. `BaseTimerEngine`, 관련 구현체 (기존 로직 그대로 이동)
+    ```swift
+    controlPausedOrResumed()
+    controlBefore()
+    controlNext()
+    ```
 
-3. `ViewModel`에서 `TimerEngine` 주입 방식 도입
+3. `AVManager` `async` 버전 추가
 
-4. `AVManager` `async` 버전 추가
-
-5. 되도록 디스패치 큐 사용 X
+4. 되도록 디스패치 큐 사용 X
 
 ### Issue
 
 1. 엔진 분리 이후, 타이머, 스톱워치 오작동 (- ing)
 
+    - 뷰모델들이 거대해 시간이 길어지는 중
+
+    - 프로토콜 다중 채택 적용
+    
 ### 기능 이동
 
 - `Phase` 시작 시 초기 `display` 설정 -> `applyXXXPhase`
