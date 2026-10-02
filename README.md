@@ -58,7 +58,7 @@
 | 주요 기술 | SwiftUI, Combine, WidgetKit, ActivityKit, AVFoundation |
 | 개발 언어 | Swift                                                  |
 
-## Current - ing
+## Feature
 
 <p align="center">
   <table style="width:100%; text-align:center; border-spacing:20px;">
